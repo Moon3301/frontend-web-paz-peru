@@ -1,0 +1,29 @@
+/* ============================================================
+   HOME PAGE — Promo Banner Strip
+   ============================================================ */
+
+.paz-promo-banner {
+  display: block;
+  width: 100%;
+  background: #000;
+  line-height: 0; /* remove inline gap below img */
+}
+
+.paz-promo-banner a {
+  display: block;
+  width: 100%;
+}
+
+.paz-promo-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.paz-promo-banner__mob  { display: none; }
+.paz-promo-banner__desk { display: block; }
+
+@media (max-width: 768px) {
+  .paz-promo-banner__desk { display: none; }
+  .paz-promo-banner__mob  { display: block; }
+}

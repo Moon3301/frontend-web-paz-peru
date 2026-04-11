@@ -1,0 +1,205 @@
+/* ============================================================
+   PROYECTOS ENTREGADOS PAGE
+   ============================================================ */
+
+:host { display: block; }
+
+/* ---- Hero Banner ---- */
+.delivered-hero {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.delivered-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  filter: brightness(0.65);
+}
+
+.delivered-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.55) 100%);
+}
+
+/* ---- Title Strip ---- */
+.delivered-title-strip {
+  background: var(--color-darker);
+  padding: 3rem 2rem 0;
+  text-align: center;
+}
+
+.delivered-title-strip__text {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.delivered-title-strip__line {
+  width: 100%;
+  height: 1px;
+  background: var(--color-primary);
+}
+
+/* ---- Projects Section ---- */
+.delivered-section {
+  background: var(--color-darker);
+  padding: 3rem 2rem 5rem;
+}
+
+/* ---- Grid: 2 columns ---- */
+.delivered-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3rem;
+}
+
+/* ---- Card ---- */
+.delivered-card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+}
+
+/* ---- Image wrap ---- */
+.delivered-card__img-wrap {
+  position: relative;
+  flex-shrink: 0;
+  width: 210px;
+  height: 155px;
+  border-left: 3px solid var(--color-primary);
+  overflow: hidden;
+}
+
+.delivered-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.45s ease, filter 0.35s ease;
+}
+
+.delivered-card:hover .delivered-card__img {
+  transform: scale(1.05);
+  filter: brightness(0.45);
+}
+
+/* Default state: district name at bottom */
+.delivered-card__district {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem 0.6rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.delivered-card:hover .delivered-card__district {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+/* Hover state: VER GALERÍA button */
+.delivered-card__hover-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease 0.05s, transform 0.3s ease 0.05s;
+  pointer-events: none;
+}
+
+.delivered-card:hover .delivered-card__hover-overlay {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.delivered-card__hover-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.85);
+  padding: 0.5rem 1rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.delivered-card:hover .delivered-card__hover-btn:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ---- Info ---- */
+.delivered-card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  padding-top: 0.25rem;
+}
+
+.delivered-card__name {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.delivered-card__address {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+.delivered-card__rooms {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .delivered-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .delivered-hero { height: 220px; }
+
+  .delivered-card__img-wrap {
+    width: 140px;
+    height: 110px;
+  }
+}

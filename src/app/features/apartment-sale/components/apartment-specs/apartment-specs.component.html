@@ -1,1 +1,64 @@
-<p>apartment-specs works!</p>
+<!-- Barra de 3 stats del proyecto -->
+<section class="project-stats" *ngIf="stats">
+  <h2 class="project-stats__title">
+    {{ stats.sectionTitle || 'Descubre cada detalle de este gran proyecto' }}
+  </h2>
+  <div class="project-stats__grid">
+    <div class="project-stats__item">
+      <img src="svg/icons/departments.svg" alt="Departamentos" class="project-stats__icon">
+      <span class="project-stats__label">Departamentos</span>
+      <span class="project-stats__value">{{ stats.areaRange }}</span>
+    </div>
+    <div class="project-stats__item">
+      <img src="svg/icons/location.svg" alt="Ubicación" class="project-stats__icon">
+      <span class="project-stats__label">Ubicación del proyecto</span>
+      <span class="project-stats__value">{{ stats.location }}</span>
+    </div>
+    <div class="project-stats__item">
+      <img src="svg/icons/common-areas.svg" alt="Áreas comunes" class="project-stats__icon">
+      <span class="project-stats__label">Áreas comunes</span>
+      <span class="project-stats__value">{{ stats.commonAreasLabel }}</span>
+    </div>
+  </div>
+</section>
+
+<!-- Sección imagen interior + panel de specs detallados -->
+<section class="apartment-specs" *ngIf="specs">
+  <div class="apartment-specs__interior">
+    <img
+      [src]="specs.interiorImage"
+      [alt]="specs.projectName + ' - Interior'"
+      class="apartment-specs__image"
+      (error)="onImgError($event)">
+  </div>
+
+  <div class="apartment-specs__panel">
+    <div class="apartment-specs__branding">
+      <h2 class="apartment-specs__name">{{ specs.projectName }}</h2>
+      <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">
+        {{ specs.projectSubtitle }}
+      </p>
+    </div>
+
+    <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
+      <div class="apartment-specs__amenity-item" *ngFor="let item of specs.amenityIcons">
+        <img [src]="item.icon" [alt]="item.label" class="apartment-specs__amenity-icon">
+      </div>
+    </div>
+
+    <ul class="apartment-specs__details">
+      <li class="apartment-specs__detail-item" *ngIf="specs.floors">
+        <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon">
+        <span><strong>Pisos:</strong> {{ specs.floors }}</span>
+      </li>
+      <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes">
+        <img src="svg/icons/unit-type.svg" alt="Tipo unidad" class="apartment-specs__detail-icon">
+        <span>{{ specs.unitTypes }}</span>
+      </li>
+      <li class="apartment-specs__detail-item" *ngIf="specs.areaRange">
+        <img src="svg/icons/area.svg" alt="Metrajes" class="apartment-specs__detail-icon">
+        <span><strong>Metrajes:</strong> {{ specs.areaRange }}</span>
+      </li>
+    </ul>
+  </div>
+</section>

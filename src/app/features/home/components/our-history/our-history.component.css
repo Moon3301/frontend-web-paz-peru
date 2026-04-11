@@ -1,0 +1,191 @@
+/* ============================================================
+   HOME OUR HISTORY — Nuestra historia + stats
+   ============================================================ */
+
+:host { display: block; }
+
+.paz-history {
+  background: var(--color-darker);
+}
+
+/* ---- Top section ---- */
+.paz-history__top {
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.paz-history__main-title {
+  margin-bottom: var(--space-lg);
+}
+
+.paz-history__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+/* ---- Left column ---- */
+.paz-history__left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.paz-history__brand-name {
+  font-family: var(--font-body);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 300;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+.paz-history__desc {
+  font-family: var(--font-light);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  max-width: 50ch;
+  font-weight: 300;
+}
+
+.paz-history__actions {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.paz-history__bracket-link {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+  transition: color var(--transition-fast);
+}
+
+.paz-history__bracket-link:hover {
+  color: var(--color-primary);
+}
+
+/* ---- Right column: YouTube ---- */
+.paz-history__video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.paz-history__iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* ---- Stats strip ---- */
+.paz-history__stats {
+  background-image: url('/images/our-history/lima.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.paz-history__stats::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.paz-history__stats-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  padding: var(--space-lg) var(--space-md);
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 0;
+}
+
+.paz-history__stat {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.paz-history__stat-value {
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.paz-history__stat-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Vertical red divider between stats */
+.paz-history__stat-divider {
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 20%;
+  width: 1px;
+  background: var(--color-primary);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .paz-history__content {
+    grid-template-columns: 1fr;
+  }
+
+  .paz-history__left {
+    align-items: center;
+    text-align: center;
+  }
+
+  .paz-history__desc {
+    max-width: 100%;
+  }
+
+  .paz-history__actions {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .paz-history__stats-inner {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .paz-history__stat-divider {
+    display: none;
+  }
+
+  .paz-history__stat {
+    padding: var(--space-sm);
+    border-bottom: 1px solid rgba(178, 34, 31, 0.4);
+  }
+
+  .paz-history__stat--last {
+    border-bottom: none;
+  }
+}

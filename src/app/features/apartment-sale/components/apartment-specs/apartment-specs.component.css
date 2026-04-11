@@ -1,0 +1,183 @@
+/* ============================
+   PROJECT STATS — Barra 3 columnas
+   ============================ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.project-stats {
+  padding: 4rem 2rem;
+  background: #faf7f2;
+  text-align: center;
+}
+
+.project-stats__title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #333;
+  margin: 0 0 2.5rem;
+}
+
+.project-stats__grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.project-stats__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 200px;
+}
+
+.project-stats__icon {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  min-height: 64px;
+  background-color: #e0d5c5;
+  border-radius: 4px;
+  /* Color heredado por SVGs con currentColor */
+  color: #555;
+}
+
+.project-stats__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.project-stats__value {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+/* ============================
+   APARTMENT SPECS — Interior + Panel
+   ============================ */
+
+.apartment-specs {
+  display: flex;
+  min-height: 520px;
+}
+
+.apartment-specs__interior {
+  flex: 1;
+  overflow: hidden;
+  background-color: #d0c8b8; /* Fallback si no carga la imagen */
+}
+
+.apartment-specs__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.apartment-specs__panel {
+  flex: 1;
+  padding: 3.5rem 3rem;
+  background: #f5f0e8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+.apartment-specs__branding {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.apartment-specs__name {
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #222;
+  margin: 0;
+  line-height: 1;
+}
+
+.apartment-specs__subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: #666;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+/* Íconos de amenidades en fila */
+.apartment-specs__amenity-icons {
+  display: flex;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.apartment-specs__amenity-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  background-color: #d0c8b8;
+  border-radius: 4px;
+  color: #444;
+}
+
+/* Lista de specs (pisos, tipos, metrajes) */
+.apartment-specs__details {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.apartment-specs__detail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.apartment-specs__detail-icon {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  min-height: 32px;
+  background-color: #d0c8b8;
+  border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .project-stats__grid {
+    gap: 2rem;
+  }
+
+  .apartment-specs {
+    flex-direction: column;
+  }
+
+  .apartment-specs__interior {
+    min-height: 280px;
+  }
+
+  .apartment-specs__panel {
+    padding: 2rem 1.5rem;
+  }
+
+  .apartment-specs__name {
+    font-size: 2.5rem;
+  }
+}

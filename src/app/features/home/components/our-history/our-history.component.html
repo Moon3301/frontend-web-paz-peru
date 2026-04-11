@@ -1,1 +1,57 @@
-<p>our-history works!</p>
+<section class="paz-history" id="home-our-history">
+
+  <!-- Top section: text + YouTube video -->
+  <div class="paz-history__top">
+    <h2 class="section-title paz-history__main-title">Nuestra historia</h2>
+
+    <div class="paz-history__content">
+
+      <!-- Left: brand story -->
+      <div class="paz-history__left">
+        <h3 class="paz-history__brand-name">Paz</h3>
+        <p class="paz-history__desc">
+          Paz Inmobiliaria, con más de 16 años desarrollando proyectos inmobiliarios,
+          +8,700 unidades entregadas que corroboran nuestro compromiso con nuestros clientes
+          y +29 proyectos desarrollados que nos alientan a seguir mejorando la ciudad,
+          nuestro propósito. "Creamos espacios, para disfrutar la vida" es la guía en cada
+          paso que damos.
+        </p>
+        <div class="paz-history__actions">
+          <a routerLink="/about" class="paz-history__bracket-link">[Quiénes somos]</a>
+          <a routerLink="/contact" class="paz-history__bracket-link">[Contáctanos]</a>
+        </div>
+      </div>
+
+      <!-- Right: YouTube embed -->
+      <div class="paz-history__right">
+        <div class="paz-history__video-wrapper">
+          <iframe
+            [src]="safeYoutubeUrl"
+            title="Paz Inmobiliaria — Nuestra historia"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            class="paz-history__iframe"
+          ></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="paz-history__stats">
+    <div class="paz-history__stats-inner">
+      <div
+        *ngFor="let stat of stats; let last = last"
+        class="paz-history__stat"
+        [class.paz-history__stat--last]="last"
+      >
+        <span class="paz-history__stat-value">{{ stat.value }}</span>
+        <span class="paz-history__stat-label">{{ stat.label }}</span>
+        <span *ngIf="!last" class="paz-history__stat-divider"></span>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,1 +1,82 @@
-<p>hero works!</p>
+<section class="paz-hero" id="home-hero">
+
+  <!-- Slides container -->
+  <div class="paz-hero__slides">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      class="paz-hero__slide"
+      [class.active]="i === currentSlide"
+      [attr.aria-hidden]="i !== currentSlide"
+    >
+      <!-- Video Background -->
+      <div class="paz-hero__media">
+        <video
+          #videoRef
+          autoplay
+          muted
+          loop
+          playsinline
+          [poster]="slide.poster"
+          class="paz-hero__video"
+          [attr.aria-label]="slide.projectName"
+        >
+          <source [src]="slide.videoSrc" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Dark overlay -->
+      <div class="paz-hero__overlay"></div>
+
+      <!-- Content -->
+      <div class="paz-hero__content" [class.animate]="i === currentSlide">
+        <div class="paz-hero__text">
+          <h1 class="paz-hero__title">
+            {{ slide.title }}<br>
+            <span class="paz-hero__title-bold">{{ slide.titleBold }}</span>
+          </h1>
+          <div class="paz-hero__project">
+            <p class="paz-hero__project-name">{{ slide.projectName }}</p>
+            <p class="paz-hero__project-label">{{ slide.projectLabel }}</p>
+          </div>
+          <a [routerLink]="slide.link" class="btn-paz paz-hero__cta" id="hero-cta-{{i}}">
+            Conocer más
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Arrows -->
+  <button class="paz-hero__arrow paz-hero__arrow--prev" (click)="prev()" aria-label="Anterior" id="hero-prev">
+    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+    </svg>
+  </button>
+  <button class="paz-hero__arrow paz-hero__arrow--next" (click)="next()" aria-label="Siguiente" id="hero-next">
+    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+    </svg>
+  </button>
+
+  <!-- Dots Navigation -->
+  <div class="paz-hero__dots" role="tablist" id="hero-dots">
+    <button
+      *ngFor="let slide of slides; let i = index"
+      class="paz-hero__dot"
+      [class.active]="i === currentSlide"
+      (click)="goTo(i)"
+      [attr.aria-label]="'Ir al slide ' + (i + 1)"
+      [id]="'hero-dot-' + i"
+      role="tab"
+    ></button>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="paz-hero__scroll-indicator" id="hero-scroll">
+    <div class="paz-hero__scroll-line"></div>
+  </div>
+
+</section>

@@ -1,5 +1,16 @@
+:host {
+    display: block;
+    width: 100%;
+}
+
 .container-layout {
-    display: grid;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    grid-template-rows: auto 1fr auto;
+    width: 100%;
+}
+
+.container-layout main {
+    flex: 1;
+    width: 100%;
 }

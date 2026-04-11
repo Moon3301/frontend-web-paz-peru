@@ -1,0 +1,63 @@
+/* ============================
+   QUOTER — Cotizador embebido
+   ============================ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.quoter {
+  background: #1e1e1e;
+  padding: 3rem 0 0;
+}
+
+.quoter__title {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 2rem;
+}
+
+.quoter__iframe-wrap {
+  width: 100%;
+  /* El PHP tiene su propio padding interno (#custom-data-form padding: 80px).
+     Dejamos que el iframe se ajuste dinámicamente a su contenido. */
+  min-height: 600px;
+}
+
+.quoter__iframe {
+  display: block;
+  width: 100%;
+  min-height: 600px;
+  border: none;
+  /* Se expande con el contenido del PHP via resize observer o height fijo */
+}
+
+.quoter__success {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 3rem 2rem;
+}
+
+.quoter__success-msg {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .quoter {
+    padding: 2rem 0 0;
+  }
+
+  .quoter__iframe-wrap,
+  .quoter__iframe {
+    min-height: 900px; /* más alto en mobile porque el form se apila */
+  }
+}

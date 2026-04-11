@@ -1,1 +1,26 @@
-<p>video works!</p>
+<section class="video-section" *ngIf="hasValidUrl">
+  <h2 class="video-section__title" *ngIf="config.title">{{ config.title }}</h2>
+
+  <!-- Tabs de vistas (Fachada, Interior, etc.) -->
+  <div class="video-section__tabs" *ngIf="config.tabs?.length">
+    <button
+      *ngFor="let tab of config.tabs; let i = index"
+      class="video-section__tab-btn"
+      [class.video-section__tab-btn--active]="i === activeTabIndex"
+      (click)="selectTab(i)">
+      {{ tab.label }}
+    </button>
+  </div>
+
+  <div class="video-section__embed" *ngIf="activeUrl">
+    <iframe
+      [src]="activeUrl"
+      class="video-section__iframe"
+      frameborder="0"
+      allowfullscreen
+      allow="xr-spatial-tracking">
+    </iframe>
+  </div>
+
+  <p class="video-section__subtitle" *ngIf="config.subtitle">{{ config.subtitle }}</p>
+</section>

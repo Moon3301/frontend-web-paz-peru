@@ -1,0 +1,142 @@
+/* ============================================================
+   HOME UBICATION — Mapa de proyectos
+   ============================================================ */
+
+:host { display: block; }
+
+.paz-ubication {
+  background: var(--color-dark);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-lg);
+}
+
+/* ---- Header ---- */
+.paz-ubication__header {
+  text-align: center;
+  margin-bottom: var(--space-md);
+  padding: 0 var(--space-md);
+}
+
+.paz-ubication__title {
+  color: var(--color-text);
+}
+
+.paz-ubication__subtitle {
+  color: var(--color-text-muted);
+}
+
+/* ---- Map container ---- */
+.paz-ubication__map-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.paz-ubication__map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: saturate(0.8);
+}
+
+/* ---- Brand panel (left overlay) ---- */
+.paz-ubication__brand-panel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  top: 0;
+  width: 18%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 6% 5%;
+  background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, transparent 100%);
+  gap: 1rem;
+}
+
+.paz-ubication__brand-label {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.paz-ubication__brand-logo {
+  width: clamp(60px, 8vw, 100px);
+  height: auto;
+  filter: brightness(0) invert(1); /* logo blanco sobre fondo oscuro */
+}
+
+/* ---- Project pins ---- */
+.paz-ubication__pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+
+.paz-ubication__pin:hover {
+  transform: translate(-50%, -50%) scale(1.12);
+  z-index: 3;
+}
+
+/* Pin with SVG logo */
+.paz-ubication__pin-logo {
+  width: clamp(54px, 8vw, 80px);
+  height: clamp(54px, 6vw, 80px);
+  border-radius: 50%;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  padding: 4px;
+  display: block;
+}
+
+/* Pin with text (no logo available) */
+.paz-ubication__pin-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(48px, 6vw, 72px);
+  height: clamp(48px, 6vw, 72px);
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: clamp(0.45rem, 0.9vw, 0.65rem);
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.45);
+  padding: 4px;
+  line-height: 1.2;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .paz-ubication__brand-panel {
+    width: 30%;
+  }
+
+  .paz-ubication__brand-label {
+    font-size: clamp(0.8rem, 2.5vw, 1.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  /* On small screens, hide the map and show a simple list */
+  .paz-ubication__map-container {
+    display: none;
+  }
+
+  .paz-ubication {
+    padding-bottom: var(--space-sm);
+  }
+}

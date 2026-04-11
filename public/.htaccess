@@ -1,0 +1,10 @@
+Options -MultiViews
+RewriteEngine On
+
+# ── Cotizador PHP: pass through as-is (do not rewrite to index.html) ──────────
+RewriteRule ^apicotizador/ - [L]
+
+# ── Angular SPA: everything else → index.html ─────────────────────────────────
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]

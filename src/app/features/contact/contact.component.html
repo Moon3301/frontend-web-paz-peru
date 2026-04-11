@@ -1,1 +1,136 @@
-<p>contact works!</p>
+<!-- ============================================================
+     CONTACTO PAGE
+     ============================================================ -->
+
+<!-- Hero Banner -->
+<div class="contact-hero">
+  <picture>
+    <source media="(max-width: 768px)" srcset="/images/contact/banner-contact-mb.jpg">
+    <img src="/images/contact/banner-contact-desk.jpg" alt="Contáctanos Paz Perú" class="contact-hero__img">
+  </picture>
+  <div class="contact-hero__overlay"></div>
+</div>
+
+<!-- Main Content -->
+<section class="contact-main">
+
+  <!-- Title -->
+  <h1 class="contact-title">Contáctanos</h1>
+
+  <!-- Servicio al Cliente box -->
+  <div class="contact-service-box">
+    <p class="contact-service-box__label">SERVICIO AL CLIENTE</p>
+    <p class="contact-service-box__phone">922 631 338</p>
+    <p class="contact-service-box__hours">*Lunes a Jueves: 8:30 am a 6:00 pm</p>
+    <p class="contact-service-box__hours">*Viernes: 8:30 am a 2:00 pm</p>
+  </div>
+
+  <!-- Contact Form -->
+  <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- Row 1: Proyecto + DNI -->
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <select class="contact-form__select" formControlName="project">
+          <option value="" disabled>Proyecto</option>
+          <option *ngFor="let p of projects" [value]="p">{{ p }}</option>
+        </select>
+      </div>
+      <div class="contact-form__field">
+        <input
+          class="contact-form__input"
+          type="text"
+          placeholder="DNI"
+          formControlName="dni"
+          maxlength="8"
+        >
+      </div>
+    </div>
+
+    <!-- Row 2: Nombre + Apellido -->
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <input
+          class="contact-form__input"
+          type="text"
+          placeholder="Nombre"
+          formControlName="nombre"
+        >
+      </div>
+      <div class="contact-form__field">
+        <input
+          class="contact-form__input"
+          type="text"
+          placeholder="Apellido"
+          formControlName="apellido"
+        >
+      </div>
+    </div>
+
+    <!-- Row 3: Email + Teléfono -->
+    <div class="contact-form__row">
+      <div class="contact-form__field">
+        <input
+          class="contact-form__input"
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+        >
+      </div>
+      <div class="contact-form__field">
+        <input
+          class="contact-form__input"
+          type="tel"
+          placeholder="Teléfono de contacto"
+          formControlName="telefono"
+        >
+      </div>
+    </div>
+
+    <!-- Row 4: Horario (full width) -->
+    <div class="contact-form__row contact-form__row--full">
+      <div class="contact-form__field">
+        <select class="contact-form__select" formControlName="horario">
+          <option value="" disabled>Horario de contacto</option>
+          <option *ngFor="let h of horarios" [value]="h">{{ h }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Row 5: Comentario (full width) -->
+    <div class="contact-form__row contact-form__row--full">
+      <div class="contact-form__field">
+        <textarea
+          class="contact-form__textarea"
+          placeholder="Comentario"
+          formControlName="comentario"
+          rows="5"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Checkboxes -->
+    <div class="contact-form__checks">
+      <label class="contact-form__check-label">
+        <input type="checkbox" formControlName="acceptTerms">
+        <span>Acepto los <a href="#" class="contact-form__link">términos y condiciones</a></span>
+      </label>
+      <label class="contact-form__check-label">
+        <input type="checkbox" formControlName="acceptPrivacy">
+        <span>Autorizo el tratamiento de mis datos según la <a href="#" class="contact-form__link">política de privacidad web</a></span>
+      </label>
+    </div>
+
+    <!-- Submit -->
+    <div class="contact-form__submit-wrap">
+      <button type="submit" class="contact-form__submit">
+        ENVIAR
+        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+
+  </form>
+
+</section>

@@ -1,1 +1,47 @@
-<p>ubication works!</p>
+<section class="paz-ubication" id="home-ubication">
+
+  <!-- Section header -->
+  <div class="paz-ubication__header">
+    <h2 class="section-title paz-ubication__title">Ubícanos</h2>
+    <p class="section-subtitle paz-ubication__subtitle">
+      Los proyectos de Paz Inmobiliaria están en los distritos de Miraflores,
+      Pueblo Libre, San Miguel y más.
+    </p>
+  </div>
+
+  <!-- Map with project pins -->
+  <div class="paz-ubication__map-container">
+
+    <!-- Map image -->
+    <img
+      src="/images/ubication/mapa.webp"
+      alt="Mapa de proyectos Paz Inmobiliaria en Lima"
+      class="paz-ubication__map-img"
+    />
+
+    <!-- Left overlay: brand panel -->
+    <!-- <div class="paz-ubication__brand-panel">
+      <p class="paz-ubication__brand-label">NUESTROS<br>PROYECTOS</p>
+      <img
+        src="/images/logos/pazpe.png"
+        alt="Paz Inmobiliaria"
+        class="paz-ubication__brand-logo"
+      />
+    </div> -->
+
+    <!-- Project pins -->
+    <!-- <a
+      *ngFor="let pin of pins"
+      [routerLink]="pin.link"
+      class="paz-ubication__pin"
+      [style.top]="pin.top"
+      [style.left]="pin.left"
+      [attr.aria-label]="pin.name"
+    >
+      <img *ngIf="pin.logo" [src]="pin.logo" [alt]="pin.name" class="paz-ubication__pin-logo" />
+      <span *ngIf="!pin.logo" class="paz-ubication__pin-text">{{ pin.name }}</span>
+    </a> -->
+
+  </div>
+
+</section>

@@ -1,0 +1,305 @@
+/* ============================================================
+   PROMOCIONES PAGE
+   ============================================================ */
+
+:host { display: block; }
+
+/* ---- Hero ---- */
+.promo-hero {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+}
+
+.promo-hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  display: block;
+  filter: brightness(0.65);
+}
+
+.promo-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+/* ---- Title Strip ---- */
+.promo-title-strip {
+  background: var(--color-darker);
+  padding: 2rem 2rem 1.5rem;
+  text-align: center;
+}
+
+.promo-title-strip__text {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+}
+
+/* ---- Main Promo Banner ---- */
+.promo-main-banner {
+  background: var(--color-darker);
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 2.5rem;
+}
+
+.promo-main-banner__img {
+  display: block;
+  max-width: 860px;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---- Section containers ---- */
+.promo-section {
+  padding: 0 1.5rem 3rem;
+}
+
+.promo-section--dark    { background: var(--color-darker); }
+.promo-section--darker  { background: #0a0a0a; }
+
+/* ---- Grids ---- */
+.promo-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.promo-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.promo-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ---- Card ---- */
+.promo-card {
+  background: var(--color-darker);
+  display: flex;
+  flex-direction: column;
+}
+
+/* project name header */
+.promo-card__header {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  padding: 0.85rem 1rem 0.6rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* image */
+.promo-card__img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.promo-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.promo-card:hover .promo-card__img {
+  transform: scale(1.04);
+}
+
+/* footer: CTA + price */
+.promo-card__footer {
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.promo-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
+  padding: 0.5rem 1.25rem;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  width: 100%;
+  justify-content: center;
+}
+
+.promo-card__cta:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.promo-card__desc {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.4;
+  margin-top: 0.25rem;
+}
+
+.promo-card__price {
+  font-family: var(--font-body);
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+}
+
+.promo-card__disclaimer {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* small card variant */
+.promo-card--sm .promo-card__price {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+/* ---- Cliente Amigo ---- */
+.promo-cliente-amigo {
+  background: #111;
+  padding: 4rem 2rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.promo-cliente-amigo__container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+
+.promo-cliente-amigo__img-wrap {
+  flex-shrink: 0;
+  width: 220px;
+}
+
+.promo-cliente-amigo__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+.promo-cliente-amigo__content {
+  flex: 1;
+}
+
+.promo-cliente-amigo__title {
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  font-weight: 300;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+}
+
+.promo-cliente-amigo__title strong {
+  font-weight: 700;
+  color: #fff;
+}
+
+.promo-cliente-amigo__amount {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 1.25rem;
+}
+
+.promo-cliente-amigo__steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  counter-reset: steps;
+}
+
+.promo-cliente-amigo__steps li {
+  counter-increment: steps;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.6;
+}
+
+.promo-cliente-amigo__steps li::before {
+  content: counter(steps);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-primary);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.promo-cliente-amigo__steps strong {
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+}
+
+.promo-cliente-amigo__projects {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-primary);
+  margin-top: 0.2rem;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .promo-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .promo-hero { height: 220px; }
+  .promo-grid--3 { grid-template-columns: 1fr; }
+  .promo-grid--4 { grid-template-columns: 1fr; }
+
+  .promo-cliente-amigo__container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .promo-cliente-amigo__img-wrap { width: 160px; }
+}
+
+@media (max-width: 480px) {
+  .promo-section { padding: 0 0 2rem; }
+}

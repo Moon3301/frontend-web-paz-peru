@@ -1,1 +1,19 @@
-<p>quoter works!</p>
+<section class="quoter" *ngIf="config">
+  <h2 class="quoter__title">Cotiza tu departamento</h2>
+
+  <div class="quoter__success" *ngIf="submitted">
+    <p class="quoter__success-msg">
+      ¡Gracias por tu interés! En breve uno de nuestros asesores se pondrá en contacto contigo.
+    </p>
+  </div>
+
+  <div class="quoter__iframe-wrap" *ngIf="!submitted">
+    <iframe
+      [src]="safeUrl"
+      class="quoter__iframe"
+      frameborder="0"
+      scrolling="auto"
+      title="Cotizador {{ config.projectName }}">
+    </iframe>
+  </div>
+</section>

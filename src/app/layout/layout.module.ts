@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { LayoutRoutingModule } from './layout-routing.module';
 import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
@@ -16,6 +17,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     LayoutRoutingModule
   ]
 })

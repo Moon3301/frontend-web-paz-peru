@@ -1,1 +1,26 @@
-<p>ubication works!</p>
+<section class="ubication">
+  <!-- Mapa solo si hay embed URL válida -->
+  <div class="ubication__map" *ngIf="safeMapUrl; else mapPlaceholder">
+    <iframe
+      [src]="safeMapUrl"
+      class="ubication__iframe"
+      frameborder="0"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+
+  <!-- Placeholder mientras no hay mapa configurado -->
+  <ng-template #mapPlaceholder>
+    <div class="ubication__placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      <p>Mapa próximamente</p>
+    </div>
+  </ng-template>
+
+  <p class="ubication__address" *ngIf="config.address">{{ config.address }}</p>
+</section>

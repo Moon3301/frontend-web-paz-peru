@@ -1,1 +1,173 @@
-<p>header works!</p>
+<nav class="paz-header" [class.scrolled]="isScrolled" [class.menu-open]="isMobileOpen">
+  <div class="paz-header__inner">
+
+    <!-- Logo -->
+    <a routerLink="/home" class="paz-header__logo" id="header-logo">
+      <img
+        [src]="isScrolled || isMobileOpen ? '/images/logos/pazpe-white.png' : '/images/logos/pazpe-white.png'"
+        alt="Paz Inmobiliaria"
+        class="paz-header__logo-img"
+        onerror="this.src='/images/logos/pazpe.png'"
+      />
+    </a>
+
+    <!-- Desktop Nav -->
+    <ul class="paz-header__nav" id="main-nav">
+
+      <li class="paz-header__item paz-header__item--dropdown" [class.open]="isAboutDropdownOpen" id="nav-quienes-somos-wrapper">
+        <button class="paz-header__link paz-header__link--btn" (click)="toggleAboutDropdown()" id="nav-quienes-somos">
+          Quiénes Somos
+          <svg class="paz-header__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="paz-header__dropdown paz-header__dropdown--small">
+          <a routerLink="/about/nosotros" class="paz-header__dropdown-link" (click)="closeAboutDropdown()">Nosotros</a>
+          <a routerLink="/about/proyectos-entregados" class="paz-header__dropdown-link" (click)="closeAboutDropdown()">Proyectos entregados</a>
+        </div>
+      </li>
+
+      <li class="paz-header__item paz-header__item--dropdown" [class.open]="isDropdownOpen" id="nav-departamentos-wrapper">
+        <button class="paz-header__link paz-header__link--btn" (click)="toggleDropdown()" id="nav-departamentos">
+          Departamentos en Venta
+          <svg class="paz-header__chevron" width="10" height="6" viewBox="0 0 10 6" fill="none">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="paz-header__dropdown" id="dropdown-departamentos">
+          <div class="paz-header__dropdown-grid">
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">Miraflores</span>
+              <a routerLink="/apartment-sale/miraflores/central" class="paz-header__dropdown-link" id="nav-central">Central</a>
+              <a routerLink="/apartment-sale/miraflores/lima-15" class="paz-header__dropdown-link" id="nav-lima15">Lima 15</a>
+              <a routerLink="/apartment-sale/miraflores/riva" class="paz-header__dropdown-link" id="nav-riva">Riva</a>
+              <a routerLink="/apartment-sale/miraflores/taller" class="paz-header__dropdown-link" id="nav-taller">Taller</a>
+            </div>
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">San Miguel</span>
+              <a routerLink="/apartment-sale/san-miguel/serena" class="paz-header__dropdown-link" id="nav-serena">Serena</a>
+              <a routerLink="/apartment-sale/san-miguel/marena" class="paz-header__dropdown-link" id="nav-marena">Marena</a>
+              <a routerLink="/apartment-sale/san-miguel/patio-la-paz" class="paz-header__dropdown-link" id="nav-patio-la-paz">Patio La Paz</a>
+              <a routerLink="/apartment-sale/san-miguel/amalfi" class="paz-header__dropdown-link" id="nav-amalfi">Amalfi</a>
+            </div>
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">Pueblo Libre</span>
+              <a routerLink="/apartment-sale/pueblo-libre/savia" class="paz-header__dropdown-link" id="nav-savia">Savia</a>
+              <a routerLink="/apartment-sale/pueblo-libre/florencia" class="paz-header__dropdown-link" id="nav-florencia">Florencia</a>
+            </div>
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">La Victoria</span>
+              <a routerLink="/apartment-sale/la-victoria/real" class="paz-header__dropdown-link" id="nav-real">Real</a>
+              <a routerLink="/apartment-sale/la-victoria/escala" class="paz-header__dropdown-link" id="nav-escala">Escala</a>
+            </div>
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">Jesús María</span>
+              <a routerLink="/apartment-sale/jesus-maria/medina" class="paz-header__dropdown-link" id="nav-medina">Medina</a>
+            </div>
+
+            <div class="paz-header__dropdown-group">
+              <span class="paz-header__dropdown-district">San Isidro</span>
+              <a routerLink="/apartment-sale/san-isidro/matiz" class="paz-header__dropdown-link" id="nav-matiz">Matiz</a>
+            </div>
+
+          </div>
+        </div>
+      </li>
+
+      <li class="paz-header__item">
+        <a routerLink="/promotions" routerLinkActive="active" class="paz-header__link" id="nav-promociones">
+          Promociones
+        </a>
+      </li>
+
+      <li class="paz-header__item">
+        <a routerLink="/events-fairs" routerLinkActive="active" class="paz-header__link" id="nav-eventos">
+          Eventos y Ferias
+        </a>
+      </li>
+
+      <li class="paz-header__item">
+        <a routerLink="/contact" routerLinkActive="active" class="paz-header__link" id="nav-contacto">
+          Contáctanos
+        </a>
+      </li>
+
+      <li class="paz-header__item">
+        <a routerLink="/blog" routerLinkActive="active" class="paz-header__link" id="nav-blog">
+          Blog
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Mobile Hamburger -->
+    <button class="paz-header__hamburger" (click)="toggleMobile()" [class.active]="isMobileOpen" id="menu-hamburger" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="paz-header__mobile-nav" [class.open]="isMobileOpen" id="mobile-nav">
+    <ul class="paz-header__mobile-list">
+      <li><a routerLink="/home" class="paz-header__mobile-link" (click)="closeMobile()">Inicio</a></li>
+      <li class="paz-header__mobile-group">
+        <button class="paz-header__mobile-link paz-header__mobile-link--parent" (click)="toggleMobileAboutDropdown()">
+          Quiénes Somos
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" [class.rotated]="isMobileAboutDropdownOpen">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="paz-header__mobile-submenu" [class.open]="isMobileAboutDropdownOpen">
+          <a routerLink="/about/nosotros" class="paz-header__mobile-sublink" (click)="closeMobile()">Nosotros</a>
+          <a routerLink="/about/proyectos-entregados" class="paz-header__mobile-sublink" (click)="closeMobile()">Proyectos entregados</a>
+        </div>
+      </li>
+      <li class="paz-header__mobile-group">
+        <button class="paz-header__mobile-link paz-header__mobile-link--parent" (click)="toggleMobileDropdown()">
+          Departamentos en Venta
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" [class.rotated]="isMobileDropdownOpen">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="paz-header__mobile-submenu" [class.open]="isMobileDropdownOpen">
+          <span class="paz-header__mobile-district">Miraflores</span>
+          <a routerLink="/apartment-sale/miraflores/central" class="paz-header__mobile-sublink" (click)="closeMobile()">Central</a>
+          <a routerLink="/apartment-sale/miraflores/lima-15" class="paz-header__mobile-sublink" (click)="closeMobile()">Lima 15</a>
+          <a routerLink="/apartment-sale/miraflores/riva" class="paz-header__mobile-sublink" (click)="closeMobile()">Riva</a>
+          <a routerLink="/apartment-sale/miraflores/taller" class="paz-header__mobile-sublink" (click)="closeMobile()">Taller</a>
+          <span class="paz-header__mobile-district">San Miguel</span>
+          <a routerLink="/apartment-sale/san-miguel/serena" class="paz-header__mobile-sublink" (click)="closeMobile()">Serena</a>
+          <a routerLink="/apartment-sale/san-miguel/marena" class="paz-header__mobile-sublink" (click)="closeMobile()">Marena</a>
+          <a routerLink="/apartment-sale/san-miguel/patio-la-paz" class="paz-header__mobile-sublink" (click)="closeMobile()">Patio La Paz</a>
+          <a routerLink="/apartment-sale/san-miguel/amalfi" class="paz-header__mobile-sublink" (click)="closeMobile()">Amalfi</a>
+          <span class="paz-header__mobile-district">Pueblo Libre</span>
+          <a routerLink="/apartment-sale/pueblo-libre/savia" class="paz-header__mobile-sublink" (click)="closeMobile()">Savia</a>
+          <a routerLink="/apartment-sale/pueblo-libre/florencia" class="paz-header__mobile-sublink" (click)="closeMobile()">Florencia</a>
+          <span class="paz-header__mobile-district">La Victoria</span>
+          <a routerLink="/apartment-sale/la-victoria/real" class="paz-header__mobile-sublink" (click)="closeMobile()">Real</a>
+          <a routerLink="/apartment-sale/la-victoria/escala" class="paz-header__mobile-sublink" (click)="closeMobile()">Escala</a>
+          <span class="paz-header__mobile-district">Jesús María</span>
+          <a routerLink="/apartment-sale/jesus-maria/medina" class="paz-header__mobile-sublink" (click)="closeMobile()">Medina</a>
+          <span class="paz-header__mobile-district">San Isidro</span>
+          <a routerLink="/apartment-sale/san-isidro/matiz" class="paz-header__mobile-sublink" (click)="closeMobile()">Matiz</a>
+        </div>
+      </li>
+      <li><a routerLink="/promotions" class="paz-header__mobile-link" (click)="closeMobile()">Promociones</a></li>
+      <li><a routerLink="/events-fairs" class="paz-header__mobile-link" (click)="closeMobile()">Eventos y Ferias</a></li>
+      <li><a routerLink="/contact" class="paz-header__mobile-link" (click)="closeMobile()">Contáctanos</a></li>
+      <li><a routerLink="/blog" class="paz-header__mobile-link" (click)="closeMobile()">Blog</a></li>
+    </ul>
+  </div>
+
+</nav>
+
+<!-- Overlay for dropdown on desktop -->
+<div class="paz-header__backdrop" [class.visible]="isDropdownOpen || isAboutDropdownOpen" (click)="closeAllDropdowns()"></div>

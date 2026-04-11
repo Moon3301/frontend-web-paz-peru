@@ -1,0 +1,58 @@
+/* ============================
+   UBICATION — Mapa de ubicación
+   ============================ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.ubication {
+  width: 100%;
+}
+
+.ubication__map {
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  background-color: #e0dbd0; /* Fallback mientras carga el mapa */
+}
+
+.ubication__iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Placeholder mientras no hay mapa real */
+.ubication__placeholder {
+  width: 100%;
+  height: 480px;
+  background-color: #e0dbd0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: #888;
+}
+
+.ubication__placeholder p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.ubication__address {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #555;
+  padding: 1rem 2rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .ubication__map {
+    height: 300px;
+  }
+}

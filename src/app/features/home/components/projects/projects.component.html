@@ -1,1 +1,50 @@
-<p>projects works!</p>
+<section class="paz-projects" id="home-projects">
+
+  <h2 class="section-title paz-projects__title">Nuestros proyectos inmobiliarios</h2>
+
+  <div class="paz-projects__grid">
+    <a
+      *ngFor="let p of projects"
+      [routerLink]="p.link"
+      class="paz-projects__card"
+      [attr.aria-label]="p.name + ' — ' + p.district"
+    >
+      <!-- Status badge (vertical text, left side) -->
+      <span class="paz-projects__status status-badge">{{ p.status }}</span>
+
+      <!-- Thumbnail image -->
+      <img
+        [src]="p.image"
+        [alt]="p.name + ' ' + p.district"
+        class="paz-projects__img"
+        loading="lazy"
+      />
+
+      <!-- Gradient overlay (always present) -->
+      <div class="paz-projects__overlay">
+
+        <!-- Default state: district name -->
+        <div class="paz-projects__default">
+          <h3 class="paz-projects__district">{{ p.district }}</h3>
+        </div>
+
+        <!-- Hover state: project logo + CTA -->
+        <div class="paz-projects__hover">
+          <img
+            [src]="p.logo"
+            [alt]="'Logo ' + p.name"
+            class="paz-projects__logo"
+          />
+          <span class="paz-projects__cta">
+            CONÓCELO AQUÍ
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+
+      </div>
+    </a>
+  </div>
+
+</section>

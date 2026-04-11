@@ -1,0 +1,38 @@
+<ng-container *ngIf="config">
+  <app-hero
+    *ngIf="config.hero"
+    [config]="config.hero">
+  </app-hero>
+
+  <app-apartment-specs
+    *ngIf="config.stats || config.specs"
+    [stats]="config.stats"
+    [specs]="config.specs">
+  </app-apartment-specs>
+
+  <app-amenities
+    *ngIf="config.amenities"
+    [config]="config.amenities">
+  </app-amenities>
+
+  <app-gallery
+    *ngIf="config.gallery"
+    [config]="config.gallery">
+  </app-gallery>
+
+  <app-video
+    *ngIf="config.video"
+    [config]="config.video">
+  </app-video>
+
+  <!-- Cotizador: se renderiza solo si el proyecto tiene iframeUrl configurado -->
+  <app-quoter
+    *ngIf="config.quoter"
+    [config]="config.quoter">
+  </app-quoter>
+
+  <app-ubication
+    *ngIf="config.ubication"
+    [config]="config.ubication">
+  </app-ubication>
+</ng-container>

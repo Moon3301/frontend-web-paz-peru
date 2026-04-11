@@ -1,1 +1,54 @@
-<p>projects-delivered works!</p>
+<!-- ============================================================
+     PROYECTOS ENTREGADOS PAGE
+     ============================================================ -->
+
+<!-- Hero Banner -->
+<div class="delivered-hero">
+  <picture>
+    <source media="(max-width: 768px)" srcset="/images/about/banner-proyectos-entregados-mb.jpg">
+    <img src="/images/about/banner-proyectos-entregados-desk.jpg" alt="Proyectos entregados Paz Perú" class="delivered-hero__img">
+  </picture>
+  <div class="delivered-hero__overlay"></div>
+</div>
+
+<!-- Title Strip -->
+<div class="delivered-title-strip">
+  <h1 class="delivered-title-strip__text">Proyectos entregados</h1>
+  <div class="delivered-title-strip__line"></div>
+</div>
+
+<!-- Projects Grid -->
+<section class="delivered-section">
+  <div class="delivered-grid">
+
+    <div *ngFor="let p of projects" class="delivered-card">
+
+      <!-- Image with district overlay + hover CTA -->
+      <div class="delivered-card__img-wrap">
+        <img [src]="p.image" [alt]="p.name" class="delivered-card__img" loading="lazy">
+
+        <!-- Default: district name -->
+        <div class="delivered-card__district" *ngIf="p.district">{{ p.district }}</div>
+
+        <!-- Hover: "VER GALERÍA" button -->
+        <div class="delivered-card__hover-overlay">
+          <span class="delivered-card__hover-btn">
+            VER GALERÍA
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <!-- Project info -->
+      <div class="delivered-card__info">
+        <h3 class="delivered-card__name">{{ p.name }}</h3>
+        <p class="delivered-card__address" *ngIf="p.address">{{ p.address }}</p>
+        <p class="delivered-card__rooms" *ngIf="p.rooms">{{ p.rooms }}</p>
+      </div>
+
+    </div>
+
+  </div>
+</section>

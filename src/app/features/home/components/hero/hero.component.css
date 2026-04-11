@@ -1,0 +1,230 @@
+/* ============================================================
+   HOME HERO — Fullscreen Video Carousel
+   ============================================================ */
+
+:host { display: block; }
+
+.paz-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #000;
+}
+
+/* ---- Slides ---- */
+.paz-hero__slides {
+  position: absolute;
+  inset: 0;
+}
+
+.paz-hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.85s ease;
+  pointer-events: none;
+}
+
+.paz-hero__slide.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* ---- Video ---- */
+.paz-hero__media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.paz-hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ---- Overlay ---- */
+.paz-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(0,0,0,0.65) 0%,
+    rgba(0,0,0,0.3) 50%,
+    rgba(0,0,0,0.55) 100%
+  );
+}
+
+/* ---- Content ---- */
+.paz-hero__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 6% 8%;
+}
+
+.paz-hero__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  text-align: right;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0s;
+}
+
+.paz-hero__slide.active .paz-hero__content .animate .paz-hero__text,
+.paz-hero__content.animate .paz-hero__text {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.7s ease 0.4s, transform 0.7s ease 0.4s;
+}
+
+.paz-hero__title {
+  font-family: var(--font-body);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+}
+
+.paz-hero__title-bold {
+  font-weight: 700;
+  display: block;
+}
+
+.paz-hero__project {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: flex-end;
+}
+
+.paz-hero__project-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+}
+
+.paz-hero__project-label {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.paz-hero__cta {
+  align-self: flex-end;
+  margin-top: 0.5rem;
+}
+
+/* ---- Navigation Arrows ---- */
+.paz-hero__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+}
+
+.paz-hero__arrow:hover {
+  background: rgba(178,34,31,0.7);
+  border-color: var(--color-primary);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.paz-hero__arrow--prev { left: 2rem; }
+.paz-hero__arrow--next { right: 2rem; }
+
+/* ---- Dots ---- */
+.paz-hero__dots {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.6rem;
+  z-index: 10;
+}
+
+.paz-hero__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.paz-hero__dot.active {
+  background: var(--color-primary);
+  width: 24px;
+  border-radius: 3px;
+}
+
+/* ---- Scroll Indicator ---- */
+.paz-hero__scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+.paz-hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%, transparent 100%);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1; transform: scaleY(1.3); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  .paz-hero__content {
+    align-items: center;
+    justify-content: center;
+    padding: 0 8% 15%;
+    text-align: center;
+  }
+
+  .paz-hero__text { text-align: center; }
+  .paz-hero__project { align-items: center; }
+  .paz-hero__cta { align-self: center; }
+
+  .paz-hero__arrow--prev { left: 1rem; }
+  .paz-hero__arrow--next { right: 1rem; }
+
+  .paz-hero__arrow {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -1,6 +1,267 @@
-/* You can add global styles to this file, and also import other style files */
+/* ============================================================
+   PAZ INMOBILIARIA — Global Design System
+   ============================================================ */
+
+/* ---- Font: Gotham (Principal del sitio) ---- */
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/gotham/Gotham-Book.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/gotham/Gotham-Book.woff') format('woff');
+  font-weight: 500 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Font: CeraPro (Subtítulos) ---- */
+@font-face {
+  font-family: 'CeraPro';
+  src: url('/fonts/ceraPro/CeraPro-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Font: Gogh (Acentos / títulos de sección) ---- */
+@font-face {
+  font-family: 'Gogh';
+  src: url('/fonts/gogh/Gogh-Book.woff') format('woff');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Font: MD System Trial (Medina) ---- */
+@font-face {
+  font-family: 'MedBold';
+  src: url('/fonts/font-medina/mdsystemtrial-bold-webfont.woff2') format('woff2'),
+       url('/fonts/font-medina/mdsystemtrial-bold-webfont.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'MedRegular';
+  src: url('/fonts/font-medina/mdsystemtrial-regular-webfont.woff2') format('woff2'),
+       url('/fonts/font-medina/mdsystemtrial-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- CSS Custom Properties (Design Tokens) ---- */
+:root {
+  /* Colors */
+  --color-primary:      #b2221f;   /* Rojo PAZ institucional */
+  --color-primary-dark: #8b1a17;
+  --color-primary-hover:#d71009;
+  --color-dark:         #0d0d0d;
+  --color-darker:       #080808;
+  --color-surface:      #111111;
+  --color-surface-2:    #1a1a1a;
+  --color-silver:       #252525;
+  --color-text:         #ffffff;
+  --color-text-muted:   #a0a0a0;
+  --color-text-dark:    #505050;
+  --color-border:       rgba(255,255,255,0.12);
+  --color-overlay:      rgba(0,0,0,0.55);
+
+  /* Typography */
+  --font-display:       'MedBold', 'Gogh', 'Gotham', sans-serif;
+  --font-display-reg:   'MedRegular', 'Gogh', 'Gotham', sans-serif;
+  --font-body:          'Gotham', 'CeraPro', 'Inter', sans-serif;
+  --font-light:         'CeraPro', 'Gotham', 'Inter', sans-serif;
+
+  /* Spacing */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   2rem;
+  --space-lg:   4rem;
+  --space-xl:   6rem;
+
+  /* Transitions */
+  --transition-fast:  0.2s ease;
+  --transition-base:  0.35s ease;
+  --transition-slow:  0.6s ease;
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.5);
+  --shadow-nav:  0 2px 20px rgba(0,0,0,0.8);
+}
+
+/* ---- Reset & Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
 
 body {
-    margin: 0;
-    padding: 0;
+  font-family: var(--font-body);
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ---- Layout Shell ---- */
+.container-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container-layout main {
+  flex: 1;
+}
+
+/* Fix for Angular custom elements displaying as inline by default */
+app-root,
+app-main-layout,
+app-project-page,
+app-hero, app-apartment-specs, app-amenities, app-gallery, app-video, app-quoter, app-ubication,
+app-lima15, app-riva, app-central, app-taller, app-marena, app-serena, app-patio-la-paz, app-amalfi, app-real, app-escala,
+app-savia, app-florencia, app-medina, app-matiz {
+  display: block;
+  width: 100%;
+}
+
+/* ---- Section Utility ---- */
+.section-title {
+  font-family: var(--font-body);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 300;
+  color: var(--color-text);
+  text-align: center;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  text-align: center;
+  max-width: 60ch;
+  margin: 0 auto var(--space-md);
+  line-height: 1.7;
+}
+
+/* ---- Buttons ---- */
+.btn-paz {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.btn-paz:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-paz-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid rgba(255,255,255,0.7);
+  border-radius: 0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-paz-outline:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #fff;
+}
+
+/* ---- Status Badge ---- */
+.status-badge {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0.75rem 0.3rem;
+  background: rgba(0,0,0,0.6);
+}
+
+/* ---- Animations ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
 }

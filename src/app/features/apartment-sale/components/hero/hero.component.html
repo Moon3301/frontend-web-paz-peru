@@ -1,1 +1,45 @@
-<p>hero works!</p>
+<section class="hero">
+  <!-- Slides -->
+  <div
+    *ngFor="let slide of config.slides; let i = index"
+    class="hero__slide"
+    [class.hero__slide--active]="i === activeIndex"
+    [style.backgroundImage]="'url(' + slide.image + ')'">
+  </div>
+
+  <!-- Overlay panel (fijo, sobre todos los slides) -->
+  <div
+    class="hero__overlay-panel"
+    [style.backgroundColor]="config.overlayColor || 'rgba(0,0,0,0.55)'">
+    <img [src]="config.logo" alt="" class="hero__logo" style="text-align: center; margin: 0 auto;">
+    <!-- <h1 class="hero__project-name">{{ config.projectName }}</h1> -->
+    <!-- <p class="hero__district">{{ config.district }}</p> -->
+    <span class="hero__badge" *ngIf="config.badge">{{ config.badge }}</span>
+    <p class="hero__description" *ngIf="config.description">{{ config.description }}</p>
+    <p class="hero__price-label" *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
+    <p class="hero__price-from" *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
+  </div>
+
+  <!-- Navegación (flechas) -->
+  <button class="hero__nav hero__nav--prev" (click)="prev()" *ngIf="config.slides.length > 1" aria-label="Anterior">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M15 18l-6-6 6-6"/>
+    </svg>
+  </button>
+  <button class="hero__nav hero__nav--next" (click)="next()" *ngIf="config.slides.length > 1" aria-label="Siguiente">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M9 18l6-6-6-6"/>
+    </svg>
+  </button>
+
+  <!-- Dots de paginación -->
+  <div class="hero__pagination" *ngIf="config.slides.length > 1">
+    <button
+      *ngFor="let slide of config.slides; let i = index"
+      class="hero__dot"
+      [class.hero__dot--active]="i === activeIndex"
+      (click)="goTo(i)"
+      [attr.aria-label]="'Slide ' + (i + 1)">
+    </button>
+  </div>
+</section>

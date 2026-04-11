@@ -1,1 +1,43 @@
-<p>gallery works!</p>
+<section class="gallery">
+  <h2 class="gallery__title">Galería</h2>
+
+  <!-- Tabs de categoría -->
+  <div class="gallery__tabs">
+    <button
+      *ngFor="let tab of config.tabs; let i = index"
+      class="gallery__tab-btn"
+      [class.gallery__tab-btn--active]="i === activeTabIndex"
+      (click)="selectTab(i)">
+      {{ tab.label }}
+    </button>
+  </div>
+
+  <p class="gallery__subtitle" *ngIf="activeTab?.subtitle">{{ activeTab!.subtitle }}</p>
+
+  <!-- Visor de imágenes del tab activo -->
+  <div class="gallery__viewer" *ngIf="activeTab">
+    <div class="gallery__img-wrap">
+      <img
+        [src]="activeTab.images[activeImageIndex].src"
+        class="gallery__image"
+        (error)="onImgError($event)">
+    </div>
+
+    <!-- Flechas -->
+    <button class="gallery__nav gallery__nav--prev" (click)="prevImage()" *ngIf="activeTab.images.length > 1" aria-label="Anterior">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </button>
+    <button class="gallery__nav gallery__nav--next" (click)="nextImage()" *ngIf="activeTab.images.length > 1" aria-label="Siguiente">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M9 18l6-6-6-6"/>
+      </svg>
+    </button>
+
+    <!-- Contador -->
+    <div class="gallery__counter" *ngIf="activeTab.images.length > 1">
+      {{ activeImageIndex + 1 }} / {{ activeTab.images.length }}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,130 @@
+/* ============================
+   GALLERY — Galería con tabs
+   ============================ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.gallery {
+  padding: 4rem 2rem;
+  background: #faf7f2;
+}
+
+.gallery__title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #333;
+  margin: 0 0 1.5rem;
+}
+
+/* Tabs de categoría */
+.gallery__tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 1rem;
+}
+
+.gallery__tab-btn {
+  padding: 0.6rem 1.75rem;
+  border: 1px solid #333;
+  background: transparent;
+  color: #333;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  font-family: inherit;
+}
+
+.gallery__tab-btn:not(:last-child) {
+  border-right: none;
+}
+
+.gallery__tab-btn--active {
+  background: #333;
+  color: #ffffff;
+}
+
+.gallery__tab-btn:hover:not(.gallery__tab-btn--active) {
+  background: #f0ebe3;
+}
+
+/* Subtítulo del tab activo */
+.gallery__subtitle {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 0 0 1.5rem;
+}
+
+/* Visor de imagen */
+.gallery__viewer {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  background: #d0c8b8;
+  overflow: hidden;
+}
+
+.gallery__img-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.gallery__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Navegación flechas */
+.gallery__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  color: #ffffff;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.gallery__nav:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.gallery__nav--prev { left: 1rem; }
+.gallery__nav--next { right: 1rem; }
+
+/* Contador */
+.gallery__counter {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .gallery__viewer {
+    height: 260px;
+  }
+
+  .gallery__tab-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}

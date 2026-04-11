@@ -1,0 +1,112 @@
+<!-- ============================================================
+     PROMOCIONES PAGE
+     ============================================================ -->
+
+<!-- Hero Banner -->
+<div class="promo-hero">
+  <picture>
+    <source media="(max-width: 768px)" srcset="/images/promotions/banner-hero-mb.jpg">
+    <img src="/images/promotions/banner-hero-desk.jpg" alt="Promociones Paz Perú" class="promo-hero__img">
+  </picture>
+  <div class="promo-hero__overlay"></div>
+</div>
+
+<!-- Title Strip -->
+<div class="promo-title-strip">
+  <h1 class="promo-title-strip__text">Promociones del mes</h1>
+</div>
+
+<!-- Main Promo Banner -->
+<div class="promo-main-banner">
+  <img
+    src="/images/promotions/banner-main-promo.jpg"
+    alt="Promoción del mes"
+    class="promo-main-banner__img"
+  >
+</div>
+
+<!-- Featured Projects (3 columns) -->
+<section class="promo-section promo-section--dark">
+  <div class="promo-grid promo-grid--3">
+    <div *ngFor="let p of featuredPromos" class="promo-card">
+      <div class="promo-card__header">
+        {{ p.name }} &mdash; {{ p.district }}
+      </div>
+      <div class="promo-card__img-wrap">
+        <img [src]="p.image" [alt]="p.name" class="promo-card__img" loading="lazy">
+      </div>
+      <div class="promo-card__footer">
+        <a [routerLink]="p.projectLink" class="promo-card__cta">
+          COTIZA AQUÍ
+          <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="promo-card__desc">{{ p.description }}</p>
+        <p class="promo-card__price">{{ p.price }}</p>
+        <p class="promo-card__disclaimer">{{ disclaimer }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Other Projects (4 columns) -->
+<section class="promo-section promo-section--darker">
+  <div class="promo-grid promo-grid--4">
+    <div *ngFor="let p of otherPromos" class="promo-card promo-card--sm">
+      <div class="promo-card__header">
+        {{ p.name }} &mdash; {{ p.district }}
+      </div>
+      <div class="promo-card__img-wrap">
+        <img [src]="p.image" [alt]="p.name" class="promo-card__img" loading="lazy">
+      </div>
+      <div class="promo-card__footer">
+        <a [routerLink]="p.projectLink" class="promo-card__cta">
+          COTIZA AQUÍ
+          <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <p class="promo-card__desc">{{ p.description }}</p>
+        <p class="promo-card__price">{{ p.price }}</p>
+        <p class="promo-card__disclaimer">{{ disclaimer }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programa Cliente Amigo -->
+<section class="promo-cliente-amigo">
+  <div class="promo-cliente-amigo__container">
+
+    <div class="promo-cliente-amigo__img-wrap">
+      <img
+        src="/images/promotions/cliente-amigo.jpg"
+        alt="Programa Cliente Amigo"
+        class="promo-cliente-amigo__img"
+      >
+    </div>
+
+    <div class="promo-cliente-amigo__content">
+      <h2 class="promo-cliente-amigo__title">
+        ¡Refiere a un amigo o familiar y<br>
+        <strong>GANA HASTA</strong>
+      </h2>
+      <p class="promo-cliente-amigo__amount">S/1,000*</p>
+
+      <ol class="promo-cliente-amigo__steps">
+        <li>
+          <strong>Refiere</strong> a un amigo o familiar interesado en comprar un departamento en cualquiera de nuestros proyectos:
+          <span class="promo-cliente-amigo__projects">Amalfi, Galia, Magnolia, Florencia, Patio La Paz, Escala y Lima Uno.</span>
+        </li>
+        <li>
+          <strong>Asesóralos</strong> a contactarse a la siguiente línea: <strong>01 950 447 533</strong>
+        </li>
+        <li>
+          Si la referencia concluye con la <strong>compra de un departamento</strong> en alguno de nuestros proyectos, ganas S/1,000.
+        </li>
+      </ol>
+    </div>
+
+  </div>
+</section>

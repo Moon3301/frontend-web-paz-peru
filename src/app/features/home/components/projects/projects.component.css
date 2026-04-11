@@ -1,0 +1,180 @@
+/* ============================================================
+   HOME PROJECTS — Grid de proyectos inmobiliarios
+   ============================================================ */
+
+:host { display: block; }
+
+.paz-projects {
+  background: var(--color-darker);
+  padding: var(--space-lg) 0 0;
+}
+
+.paz-projects__title {
+  padding: 0 var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+/* ---- Grid ---- */
+.paz-projects__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* ---- Card ---- */
+.paz-projects__card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+}
+
+.paz-projects__card:hover .paz-projects__img {
+  transform: scale(1.06);
+}
+
+/* Darken image more on hover for better logo contrast */
+.paz-projects__card:hover .paz-projects__img {
+  filter: brightness(0.5);
+}
+
+/* ---- Thumbnail ---- */
+.paz-projects__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.55s ease, filter 0.4s ease;
+  filter: brightness(0.75);
+}
+
+/* ---- Status Badge (vertical, left) ---- */
+.paz-projects__status {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 1rem 0.35rem;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ---- Overlay (gradient base) ---- */
+.paz-projects__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.05) 50%, transparent 100%);
+  transition: background 0.4s ease;
+}
+
+.paz-projects__card:hover .paz-projects__overlay {
+  background: rgba(0,0,0,0.45);
+  align-items: center;
+}
+
+/* ---- Default state: district name ---- */
+.paz-projects__default {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem 1rem 1.5rem 2.5rem;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.paz-projects__card:hover .paz-projects__default {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+.paz-projects__district {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+/* ---- Hover state: logo + CTA ---- */
+.paz-projects__hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+  pointer-events: none;
+  padding: 1rem;
+}
+
+.paz-projects__card:hover .paz-projects__hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.paz-projects__logo {
+  max-width: 180px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+}
+
+.paz-projects__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.8);
+  padding: 0.45rem 1rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.paz-projects__card:hover .paz-projects__cta:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+  .paz-projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .paz-projects__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .paz-projects__card {
+    aspect-ratio: 4 / 3;
+  }
+}
