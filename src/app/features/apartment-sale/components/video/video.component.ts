@@ -13,6 +13,7 @@ export class VideoComponent implements OnInit {
 
   activeTabIndex = 0;
   safeUrls: (SafeResourceUrl | null)[] = [];
+  isModalOpen = false;
 
   constructor(private sanitizer: DomSanitizer) {}
 
@@ -36,12 +37,32 @@ export class VideoComponent implements OnInit {
     return this.safeUrls[this.activeTabIndex] ?? null;
   }
 
+  get activeRawUrl(): string {
+    if (this.config.tabs?.length) {
+      return this.config.tabs[this.activeTabIndex]?.url ?? this.config.url;
+    }
+    return this.config.url;
+  }
+
   get hasValidUrl(): boolean {
     return this.safeUrls.some(u => u !== null);
   }
 
+  /** Si hay fallbackImage, el video se abre en modal; si no, se muestra inline */
+  get useModalMode(): boolean {
+    return !!this.config.fallbackImage;
+  }
+
   selectTab(index: number) {
     this.activeTabIndex = index;
+  }
+
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
   }
 
   private isValidUrl(url: string): boolean {

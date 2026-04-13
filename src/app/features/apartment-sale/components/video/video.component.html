@@ -1,26 +1,54 @@
-<section class="video-section" *ngIf="hasValidUrl">
-  <h2 class="video-section__title" *ngIf="config.title">{{ config.title }}</h2>
+<section class="video-section" *ngIf="hasValidUrl || config.fallbackImage" [style.background-color]="config.backgroundColor">
+  <h2 class="video-section__title" *ngIf="config.title" [style.color]="config.textColor">{{ config.title }}</h2>
 
-  <!-- Tabs de vistas (Fachada, Interior, etc.) -->
-  <div class="video-section__tabs" *ngIf="config.tabs?.length">
-    <button
-      *ngFor="let tab of config.tabs; let i = index"
-      class="video-section__tab-btn"
-      [class.video-section__tab-btn--active]="i === activeTabIndex"
-      (click)="selectTab(i)">
-      {{ tab.label }}
-    </button>
-  </div>
+  <!-- MODO MODAL: muestra thumbnail, el iframe se abre en overlay -->
+  <ng-container *ngIf="useModalMode; else inlineMode">
+    <div class="video-section__thumbnail" (click)="openModal()">
+      <img
+        [src]="config.fallbackImage"
+        [alt]="config.title || 'Ver video'"
+        class="video-section__thumb-img">
+      <div class="video-section__play-overlay">
+        <div class="video-section__play-btn">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </ng-container>
 
-  <div class="video-section__embed" *ngIf="activeUrl">
-    <iframe
-      [src]="activeUrl"
-      class="video-section__iframe"
-      frameborder="0"
-      allowfullscreen
-      allow="xr-spatial-tracking">
-    </iframe>
-  </div>
+  <!-- MODO INLINE: muestra el iframe directamente (para recorridos virtuales) -->
+  <ng-template #inlineMode>
+    <!-- Tabs de vistas (Fachada, Interior, etc.) -->
+    <div class="video-section__tabs" *ngIf="config.tabs?.length">
+      <button
+        *ngFor="let tab of config.tabs; let i = index"
+        class="video-section__tab-btn"
+        [class.video-section__tab-btn--active]="i === activeTabIndex"
+        (click)="selectTab(i)">
+        {{ tab.label }}
+      </button>
+    </div>
 
-  <p class="video-section__subtitle" *ngIf="config.subtitle">{{ config.subtitle }}</p>
+    <div class="video-section__embed" *ngIf="activeUrl">
+      <iframe
+        [src]="activeUrl"
+        class="video-section__iframe"
+        frameborder="0"
+        allowfullscreen
+        allow="xr-spatial-tracking">
+      </iframe>
+    </div>
+  </ng-template>
+
+  <p class="video-section__subtitle" *ngIf="config.subtitle" [style.color]="config.textColor">{{ config.subtitle }}</p>
 </section>
+
+<!-- Modal de video -->
+<app-video-modal
+  *ngIf="useModalMode"
+  [isOpen]="isModalOpen"
+  [videoUrl]="activeRawUrl"
+  (closed)="closeModal()">
+</app-video-modal>

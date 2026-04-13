@@ -1,5 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { ApartmentSaleRoutingModule } from './apartment-sale-routing.module';
 
@@ -28,6 +30,8 @@ import { SaviaComponent } from './pages/pueblo-libre/savia/savia.component';
 import { FlorenciaComponent } from './pages/pueblo-libre/florencia/florencia.component';
 import { MedinaComponent } from './pages/jesus-maria/medina/medina.component';
 import { MatizComponent } from './pages/san-isidro/matiz/matiz.component';
+import { VirtualTourComponent } from './components/virtual-tour/virtual-tour.component';
+import { VideoModalComponent } from './components/video-modal/video-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { MatizComponent } from './pages/san-isidro/matiz/matiz.component';
     VideoComponent,
     UbicationComponent,
     ProjectPageComponent,
+    VideoModalComponent,
     // Pages
     Lima15Component,
     RivaComponent,
@@ -55,9 +60,12 @@ import { MatizComponent } from './pages/san-isidro/matiz/matiz.component';
     FlorenciaComponent,
     MedinaComponent,
     MatizComponent,
+    VirtualTourComponent,
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     ApartmentSaleRoutingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

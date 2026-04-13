@@ -1,23 +1,23 @@
 <!-- Barra de 3 stats del proyecto -->
-<section class="project-stats" *ngIf="stats">
-  <h2 class="project-stats__title">
+<section class="project-stats" *ngIf="stats" [style.background-color]="stats.backgroundColor" >
+  <h2 class="project-stats__title" [style.color]="stats.textColor">
     {{ stats.sectionTitle || 'Descubre cada detalle de este gran proyecto' }}
   </h2>
   <div class="project-stats__grid">
-    <div class="project-stats__item">
-      <img src="svg/icons/departments.svg" alt="Departamentos" class="project-stats__icon">
-      <span class="project-stats__label">Departamentos</span>
-      <span class="project-stats__value">{{ stats.areaRange }}</span>
+    <div class="project-stats__item" >
+      <img [src]="stats.location.icon" alt="Ubicación" class="project-stats__icon">
+      <span class="project-stats__label" [style.color]="stats.textColor">Ubicación del proyecto</span>
+      <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.location.label }}</span>
     </div>
     <div class="project-stats__item">
-      <img src="svg/icons/location.svg" alt="Ubicación" class="project-stats__icon">
-      <span class="project-stats__label">Ubicación del proyecto</span>
-      <span class="project-stats__value">{{ stats.location }}</span>
+      <img [src]="stats.areaRange.icon" alt="Departamentos" class="project-stats__icon">
+      <span class="project-stats__label" [style.color]="stats.textColor">Departamentos</span>
+      <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.areaRange.label }}</span>
     </div>
-    <div class="project-stats__item">
-      <img src="svg/icons/common-areas.svg" alt="Áreas comunes" class="project-stats__icon">
-      <span class="project-stats__label">Áreas comunes</span>
-      <span class="project-stats__value">{{ stats.commonAreasLabel }}</span>
+    <div class="project-stats__item" [style.color]="stats.textColor">
+      <img [src]="stats.commonAreasLabel.icon" alt="Áreas comunes" class="project-stats__icon">
+      <span class="project-stats__label" [style.color]="stats.textColor">Áreas comunes</span>
+      <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.commonAreasLabel.label }}</span>
     </div>
   </div>
 </section>
@@ -32,12 +32,13 @@
       (error)="onImgError($event)">
   </div>
 
-  <div class="apartment-specs__panel">
+  <div class="apartment-specs__panel" [style.background-color]="specs.backgroundColor">
     <div class="apartment-specs__branding">
-      <h2 class="apartment-specs__name">{{ specs.projectName }}</h2>
+      <!-- <h2 class="apartment-specs__name">{{ specs.projectName }}</h2>
       <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">
         {{ specs.projectSubtitle }}
-      </p>
+      </p> -->
+      <img [src]="specs.logo" alt="Logo" class="apartment-specs__logo">
     </div>
 
     <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
@@ -49,7 +50,7 @@
     <ul class="apartment-specs__details">
       <li class="apartment-specs__detail-item" *ngIf="specs.floors">
         <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon">
-        <span><strong>Pisos:</strong> {{ specs.floors }}</span>
+        <span>{{ specs.floors }}</span>
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes">
         <img src="svg/icons/unit-type.svg" alt="Tipo unidad" class="apartment-specs__detail-icon">
@@ -57,8 +58,51 @@
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.areaRange">
         <img src="svg/icons/area.svg" alt="Metrajes" class="apartment-specs__detail-icon">
-        <span><strong>Metrajes:</strong> {{ specs.areaRange }}</span>
+        <span>{{ specs.areaRange }}</span>
+      </li>
+
+      <li class="apartment-specs__detail-item" *ngIf="specs.amenities">
+        <img src="svg/icons/floors.svg" alt="Amenidades" class="apartment-specs__detail-icon">
+        <span>{{ specs.amenities }}</span>
       </li>
     </ul>
+
+    <!-- Botones: Brochure + Video -->
+    <div class="apartment-specs__actions" *ngIf="specs.brochureUrl || specs.videoUrl">
+      <a
+        *ngIf="specs.brochureUrl"
+        [href]="specs.brochureUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="apartment-specs__action-btn apartment-specs__action-btn--brochure">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="12" y1="11" x2="12" y2="17"/>
+          <polyline points="9 14 12 17 15 14"/>
+        </svg>
+        Descarga Brochure
+      </a>
+
+      <button
+        *ngIf="specs.videoUrl"
+        type="button"
+        class="apartment-specs__action-btn apartment-specs__action-btn--video"
+        (click)="openVideoModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+          <polygon points="10 8 16 12 10 16 10 8"/>
+        </svg>
+        Mira nuestro video aquí
+      </button>
+    </div>
   </div>
 </section>
+
+<!-- Modal de video -->
+<app-video-modal
+  *ngIf="specs?.videoUrl"
+  [isOpen]="isVideoModalOpen"
+  [videoUrl]="specs!.videoUrl!"
+  (closed)="closeVideoModal()">
+</app-video-modal>

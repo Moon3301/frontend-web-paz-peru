@@ -1,0 +1,14 @@
+<section class="virtual-tour" *ngIf="safeUrl" [style.background-color]="config.backgroundColor">
+  <h2 class="virtual-tour__title" *ngIf="config.projectTitle" [style.color]="config.textColor">
+    {{ config.projectTitle }}
+  </h2>
+  <div class="virtual-tour__embed">
+    <iframe
+      [src]="safeUrl"
+      class="virtual-tour__iframe"
+      frameborder="0"
+      allowfullscreen
+      allow="xr-spatial-tracking; gyroscope; accelerometer">
+    </iframe>
+  </div>
+</section>

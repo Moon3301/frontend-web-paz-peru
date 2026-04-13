@@ -2,7 +2,7 @@
   class="amenities"
   [style.backgroundColor]="config.backgroundColor || '#8B6F57'"
   [style.color]="config.textColor || '#ffffff'">
-  <h2 class="amenities__title">Áreas comunes</h2>
+  <h2 class="amenities__title">{{ config.title || 'Áreas comunes' }}</h2>
   <div class="amenities__grid">
     <div class="amenities__item" *ngFor="let item of config.items">
       <img [src]="item.icon" [alt]="item.label" class="amenities__icon">

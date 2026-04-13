@@ -24,9 +24,18 @@ export class MedinaComponent {
     },
     stats: {
       sectionTitle: 'Descubre cada detalle de este gran proyecto',
-      areaRange: 'Desde 34 m2 hasta 149m2',
-      location: 'Av. Edgardo Rebagliati 405 Jesús María',
-      commonAreasLabel: 'Para disfrutar todos los días'
+      areaRange: {
+        icon: 'svg/icons/area.svg',
+        label: 'Desde 34 m2 hasta 149m2'
+      },
+      location: {
+        icon: 'svg/icons/location.svg',
+        label: 'Av. Edgardo Rebagliati 405 Jesús María'
+      },
+      commonAreasLabel: {
+        icon: 'svg/icons/common-areas.svg',
+        label: 'Para disfrutar todos los días'
+      }
     },
     specs: {
       interiorImage: 'images/projects/medina/specs/interior.jpg',

@@ -55,6 +55,11 @@
 
 .hero__description {
   
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
 }
 
 .hero__district {
@@ -65,8 +70,9 @@
 }
 
 .hero__badge {
+  font-family: 'Montserrat', sans-serif;
   display: inline-block;
-  font-size: 1.25rem;
+  font-size: 2rem;
   font-weight: 600;
   color: #000000;
   margin-bottom: 1rem;

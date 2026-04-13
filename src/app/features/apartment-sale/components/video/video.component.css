@@ -10,18 +10,76 @@
 .video-section {
   background: #2a2a2a;
   color: #ffffff;
+  padding-bottom: 4rem;
 }
 
 .video-section__title {
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 700;
   color: #ffffff;
   padding: 2.5rem 2rem 1.5rem;
   margin: 0;
 }
 
-/* Tabs de vistas (Fachada, Interior, etc.) */
+/* ── Modo thumbnail con overlay de play ── */
+.video-section__thumbnail {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  display: block;
+}
+
+.video-section__thumb-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.video-section__thumbnail:hover .video-section__thumb-img {
+  transform: scale(1.02);
+}
+
+.video-section__play-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.25);
+  transition: background 0.2s;
+}
+
+.video-section__thumbnail:hover .video-section__play-overlay {
+  background: rgba(0, 0, 0, 0.38);
+}
+
+.video-section__play-btn {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: #e83030;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  padding-left: 4px; /* Ajuste óptico del triángulo */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s, background 0.2s;
+}
+
+.video-section__thumbnail:hover .video-section__play-btn {
+  transform: scale(1.1);
+  background: #cc1f1f;
+}
+
+/* ── Modo inline: tabs + iframe ── */
 .video-section__tabs {
   display: flex;
   justify-content: flex-start;
@@ -49,8 +107,6 @@
 .video-section__embed {
   position: relative;
   width: 100%;
-  padding-bottom: 56.25%;
-  /* Fallback de altura mínima */
   min-height: 400px;
 }
 
@@ -59,7 +115,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 80vh;
   border: none;
   display: block;
 }
@@ -73,6 +129,11 @@
 }
 
 @media (max-width: 768px) {
+  .video-section__play-btn {
+    width: 56px;
+    height: 56px;
+  }
+
   .video-section__embed {
     min-height: 220px;
   }

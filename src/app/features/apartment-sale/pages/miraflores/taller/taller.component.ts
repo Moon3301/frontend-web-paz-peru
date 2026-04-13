@@ -20,9 +20,18 @@ export class TallerComponent {
       ]
     },
     stats: {
-      areaRange: 'TODO: Rango de m2',
-      location: 'TODO: Dirección del proyecto, Miraflores',
-      commonAreasLabel: 'Para disfrutar todos los días'
+      areaRange: {
+        icon: 'svg/icons/area.svg',
+        label: 'TODO: Rango de m2'
+      },
+      location: {
+        icon: 'svg/icons/location.svg',
+        label: 'TODO: Dirección del proyecto, Miraflores'
+      },
+      commonAreasLabel: {
+        icon: 'svg/icons/common-areas.svg',
+        label: 'Para disfrutar todos los días'
+      }
     },
     specs: {
       interiorImage: 'images/projects/taller/specs/interior.jpg',

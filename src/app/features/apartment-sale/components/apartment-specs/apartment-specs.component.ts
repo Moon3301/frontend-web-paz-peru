@@ -13,9 +13,19 @@ export class ApartmentSpecsComponent {
   /** Panel interior: imagen + logo + specs detallados */
   @Input() specs?: ApartmentSpecsConfig;
 
+  isVideoModalOpen = false;
+
   onImgError(event: Event) {
     const img = event.target as HTMLImageElement;
     img.onerror = null;
     img.src = '/images/placeholder.svg';
+  }
+
+  openVideoModal() {
+    this.isVideoModalOpen = true;
+  }
+
+  closeVideoModal() {
+    this.isVideoModalOpen = false;
   }
 }

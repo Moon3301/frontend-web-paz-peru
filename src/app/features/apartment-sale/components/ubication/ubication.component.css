@@ -1,5 +1,5 @@
 /* ============================
-   UBICATION — Mapa de ubicación
+   UBICATION — Layout 2 columnas
    ============================ */
 
 :host {
@@ -9,27 +9,119 @@
 
 .ubication {
   width: 100%;
+  background-color: #f0e8f0;
+}
+
+.ubication__layout {
+  display: flex;
+  align-items: stretch;
+  min-height: 420px;
+}
+
+/* ── Panel izquierdo: info ── */
+.ubication__info {
+  flex: 0 0 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 3rem 2.5rem;
+}
+
+.ubication__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.2;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.ubication__address {
+  font-size: 0.92rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ubication__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ubication__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.2rem;
+  font-size: 0.9rem;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  width: 80%;
+}
+
+.ubication__btn:hover {
+  opacity: 0.82;
+}
+
+.ubication__btn--maps {
+  background: #e83030;
+  color: #ffffff;
+  border: none;
+}
+
+.ubication__btn--waze {
+  background: transparent;
+  color: #1a1a2e;
+  border: 1.5px solid #1a1a2e;
+}
+
+/* ── Panel derecho: mapa / imagen ── */
+.ubication__map-wrapper {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 
 .ubication__map {
   width: 100%;
-  height: 480px;
-  overflow: hidden;
-  background-color: #e0dbd0; /* Fallback mientras carga el mapa */
+  height: 100%;
+  min-height: 420px;
+  background-color: #e0dbd0;
 }
 
 .ubication__iframe {
   width: 100%;
   height: 100%;
+  min-height: 420px;
   border: none;
   display: block;
 }
 
-/* Placeholder mientras no hay mapa real */
+.ubication__image-container {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+}
+
+.ubication__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .ubication__placeholder {
   width: 100%;
-  height: 480px;
-  background-color: #e0dbd0;
+  height: 100%;
+  min-height: 420px;
+  background-color: #ddd6d6;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,16 +135,21 @@
   margin: 0;
 }
 
-.ubication__address {
-  text-align: center;
-  font-size: 0.95rem;
-  color: #555;
-  padding: 1rem 2rem;
-  margin: 0;
-}
-
+/* ── Responsive ── */
 @media (max-width: 768px) {
-  .ubication__map {
-    height: 300px;
+  .ubication__layout {
+    flex-direction: column;
+  }
+
+  .ubication__info {
+    flex: none;
+    padding: 2rem 1.5rem;
+  }
+
+  .ubication__map,
+  .ubication__iframe,
+  .ubication__image-container,
+  .ubication__placeholder {
+    min-height: 300px;
   }
 }

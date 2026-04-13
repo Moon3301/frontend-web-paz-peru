@@ -1,19 +1,249 @@
 <section class="quoter" *ngIf="config">
   <h2 class="quoter__title">Cotiza tu departamento</h2>
 
-  <div class="quoter__success" *ngIf="submitted">
+  <!-- CARGANDO -->
+  <div class="quoter__loading" *ngIf="isLoading">
+    <div class="quoter__spinner"></div>
+    <p>Cargando disponibilidad...</p>
+  </div>
+
+  <!-- ERROR DE CARGA -->
+  <div class="quoter__empty" *ngIf="!isLoading && loadError">
+    <p>No se pudo cargar la disponibilidad. Por favor recarga la página.</p>
+  </div>
+
+  <!-- SIN UNIDADES -->
+  <div class="quoter__empty" *ngIf="!isLoading && !loadError && !hasUnits">
+    <p>Este proyecto no tiene unidades disponibles para cotizar.</p>
+  </div>
+
+  <!-- COTIZADOR PRINCIPAL -->
+  <div class="quoter__layout" *ngIf="!isLoading && hasUnits && !submitResult?.success">
+    <!-- ═══════════════════════════════════════════════
+         COLUMNA IZQUIERDA: Selector de unidad
+    ═══════════════════════════════════════════════ -->
+    <div class="quoter__selector">
+
+      <!-- Tabs de dormitorios -->
+      <p class="quoter__label">Tipo unidad</p>
+      <div class="quoter__bedroom-tabs">
+        <button
+          *ngFor="let group of bedroomGroups"
+          type="button"
+          class="quoter__bedroom-btn"
+          [class.quoter__bedroom-btn--active]="group.bedrooms === selectedBedrooms"
+          (click)="selectBedrooms(group.bedrooms)">
+          {{ bedroomLabel(group.bedrooms) }}
+        </button>
+      </div>
+
+      <!-- Botones de tipología -->
+      <p class="quoter__label" *ngIf="currentTypologies.length">Tipología</p>
+      <div class="quoter__typology-btns">
+        <button
+          *ngFor="let typo of currentTypologies"
+          type="button"
+          class="quoter__typology-btn"
+          [class.quoter__typology-btn--active]="typo.id === selectedTypologyId"
+          (click)="selectTypology(typo.id, typo.data)">
+          {{ typo.data.NombreTipologia }}
+        </button>
+      </div>
+
+      <!-- Selector de unidad -->
+      <div class="quoter__unit-select" *ngIf="selectedTypologyData">
+        <p class="quoter__label">Unidad</p>
+        <select class="quoter__select" (change)="onUnitChange($event)">
+          <option value="">Seleccionar</option>
+          <option
+            *ngFor="let unit of selectedTypologyData.Unidades"
+            [value]="unit.IdUnidad">
+            {{ unit.NombreUnidad }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Imagen de planta (thumbnail + modal) -->
+      <div class="quoter__floor-plan-wrap" *ngIf="selectedTypologyData?.UrlImagenTipologia">
+        <img
+          [src]="selectedTypologyData!.UrlImagenTipologia"
+          alt="Planta de tipología"
+          class="quoter__floor-plan"
+          (click)="openImageModal()">
+        <span class="quoter__floor-plan-hint">Clic para ampliar</span>
+      </div>
+
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         COLUMNA DERECHA: Formulario
+    ═══════════════════════════════════════════════ -->
+    <div class="quoter__form-col">
+      <form class="quoter__form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <p class="quoter__label">Completa los datos:</p>
+
+        <div class="quoter__field">
+          <input
+            formControlName="document"
+            type="text"
+            class="quoter__input"
+            [class.quoter__input--error]="isInvalid('document')"
+            placeholder="DNI / CE"
+            maxlength="12">
+          <span class="quoter__error" *ngIf="isInvalid('document')">
+            Ingresa un DNI/CE válido (8–12 dígitos).
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <input
+            formControlName="fname"
+            type="text"
+            class="quoter__input"
+            [class.quoter__input--error]="isInvalid('fname')"
+            placeholder="Nombre"
+            maxlength="50">
+          <span class="quoter__error" *ngIf="isInvalid('fname')">
+            Ingresa tu nombre.
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <input
+            formControlName="lname"
+            type="text"
+            class="quoter__input"
+            [class.quoter__input--error]="isInvalid('lname')"
+            placeholder="Apellido"
+            maxlength="50">
+          <span class="quoter__error" *ngIf="isInvalid('lname')">
+            Ingresa tu apellido.
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <input
+            formControlName="email"
+            type="email"
+            class="quoter__input"
+            [class.quoter__input--error]="isInvalid('email')"
+            placeholder="Email"
+            maxlength="100">
+          <span class="quoter__error" *ngIf="isInvalid('email')">
+            Ingresa un email válido.
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <input
+            formControlName="phone"
+            type="text"
+            class="quoter__input"
+            [class.quoter__input--error]="isInvalid('phone')"
+            placeholder="Celular (9 dígitos)"
+            maxlength="9">
+          <span class="quoter__error" *ngIf="isInvalid('phone')">
+            Ingresa un celular válido de 9 dígitos.
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <select
+            formControlName="rangoEdad"
+            class="quoter__select"
+            [class.quoter__input--error]="isInvalid('rangoEdad')">
+            <option value="">Indica tu rango de edad</option>
+            <option value="18 - 25">18 - 25</option>
+            <option value="26 - 35">26 - 35</option>
+            <option value="36 - 45">36 - 45</option>
+            <option value="46 - 55">46 - 55</option>
+            <option value="56 - 65">56 - 65</option>
+            <option value="65 a más">65 a más</option>
+          </select>
+          <span class="quoter__error" *ngIf="isInvalid('rangoEdad')">
+            Selecciona tu rango de edad.
+          </span>
+        </div>
+
+        <div class="quoter__field">
+          <select
+            formControlName="razonContacto"
+            class="quoter__select"
+            [class.quoter__input--error]="isInvalid('razonContacto')">
+            <option value="">¿Cómo deseas ser contactado?</option>
+            <option value="Whatsapp">Whatsapp</option>
+            <option value="Celular">Celular</option>
+            <option value="Email">Email</option>
+            <option value="Otro medio">Otro medio</option>
+          </select>
+          <span class="quoter__error" *ngIf="isInvalid('razonContacto')">
+            Selecciona cómo deseas ser contactado.
+          </span>
+        </div>
+
+        <div class="quoter__field quoter__field--check">
+          <label class="quoter__check-label">
+            <input
+              formControlName="terminos"
+              type="checkbox"
+              class="quoter__checkbox">
+            <span>
+              Autorizo el tratamiento de mis datos personales según la
+              <a href="https://paz.pe/politica-de-privacidad-web" target="_blank" rel="noopener noreferrer" class="quoter__link">
+                Política de Privacidad.
+              </a>
+            </span>
+          </label>
+          <span class="quoter__error" *ngIf="isInvalid('terminos')">
+            Debes aceptar los términos para continuar.
+          </span>
+        </div>
+
+        <!-- Mensaje de error de envío -->
+        <div class="quoter__submit-error" *ngIf="submitResult && !submitResult.success">
+          {{ submitResult.message }}
+        </div>
+
+        <button
+          type="submit"
+          class="quoter__submit-btn"
+          [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Enviando...' : 'Cotizar' }}
+        </button>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       ÉXITO
+  ═══════════════════════════════════════════════ -->
+  <div class="quoter__success" *ngIf="submitResult?.success">
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <h3 class="quoter__success-title">¡Gracias por tu interés!</h3>
     <p class="quoter__success-msg">
-      ¡Gracias por tu interés! En breve uno de nuestros asesores se pondrá en contacto contigo.
+      En breve uno de nuestros asesores se pondrá en contacto contigo.
     </p>
   </div>
 
-  <div class="quoter__iframe-wrap" *ngIf="!submitted">
-    <iframe
-      [src]="safeUrl"
-      class="quoter__iframe"
-      frameborder="0"
-      scrolling="auto"
-      title="Cotizador {{ config.projectName }}">
-    </iframe>
-  </div>
 </section>
+
+<!-- ══════════════════════════════════════════════════════
+     MODAL IMAGEN DE PLANTA
+══════════════════════════════════════════════════════ -->
+<div class="quoter__img-backdrop" *ngIf="isImageModalOpen" (click)="onImageModalBackdrop($event)">
+  <div class="quoter__img-modal">
+    <button class="quoter__img-close" (click)="closeImageModal()" aria-label="Cerrar">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+    <img
+      [src]="selectedTypologyData?.UrlImagenTipologia"
+      [alt]="selectedTypologyData?.NombreTipologia"
+      class="quoter__img-modal-img">
+  </div>
+</div>

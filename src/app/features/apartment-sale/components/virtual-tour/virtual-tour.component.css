@@ -1,0 +1,45 @@
+/* ============================
+   VIRTUAL TOUR — Recorrido 360°
+   ============================ */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.virtual-tour {
+  background: #2a2a2a;
+}
+
+.virtual-tour__title {
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 2.5rem 2rem 1.5rem;
+  margin: 0;
+}
+
+/* Contenedor con ratio 16:9 */
+.virtual-tour__embed {
+  position: relative;
+  width: 100%;
+  padding-top: 36.25%;
+}
+
+.virtual-tour__iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .virtual-tour__embed {
+    padding-top: 75%; /* Un poco más alto en móvil para mejor experiencia 360° */
+  }
+}

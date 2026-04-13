@@ -21,13 +21,24 @@ export interface HeroConfig {
 }
 
 export interface ProjectStatsConfig {
+
+  backgroundColor?: string;
+  textColor?: string;
+
   sectionTitle?: string;
   /** e.g. "Desde 34 m2 hasta 149m2" */
-  areaRange: string;
+  areaRange: ProjectStatsItem;
   /** Dirección completa del proyecto */
-  location: string;
+  location: ProjectStatsItem;
   /** Frase descriptiva de áreas comunes */
-  commonAreasLabel: string;
+  commonAreasLabel: ProjectStatsItem;
+
+  items?: ProjectStatsItem[];
+}
+
+export interface ProjectStatsItem {
+  label: string;
+  icon: string;
 }
 
 export interface AmenityIconItem {
@@ -51,9 +62,24 @@ export interface ApartmentSpecsConfig {
   unitTypes?: string;
   /** e.g. "Desde 34 m2 hasta 149 m2" */
   areaRange?: string;
+
+  amenities?: string;
+
+  backgroundColor?: string;
+
+  textColor?: string;
+
+  logo?: string;
+  /** Ruta al PDF del brochure para descarga, e.g. "docs/brochures/central.pdf" */
+  brochureUrl?: string;
+  /** URL embed de YouTube para abrir en modal desde el botón del panel */
+  videoUrl?: string;
 }
 
 export interface AmenitiesConfig {
+
+  title?: string;
+
   items: AmenityIconItem[];
   /** Color de fondo de la sección, e.g. "#B87D4B" */
   backgroundColor?: string;
@@ -88,23 +114,43 @@ export interface VideoConfig {
   type: 'iframe' | 'youtube';
   title?: string;
   subtitle?: string;
+  backgroundColor?: string;
+  textColor?: string;
   /** Tabs para recorrido virtual con múltiples vistas (Fachada, Interior, etc.) */
   tabs?: VideoTab[];
+  /** Imagen de portada/thumbnail; si se define, el video se abre en modal al hacer clic */
+  fallbackImage?: string;
 }
 
 export interface QuoterConfig {
-  /** URL del iframe del cotizador en Joomla, e.g. "https://paz.pe/apicotizador/medina/" */
-  iframeUrl: string;
   /** ID del proyecto en Sperant */
   projectId: number;
   /** Nombre del proyecto para el cotizador */
   projectName: string;
+  /** @deprecated URL del iframe legacy (ya no se usa) */
+  iframeUrl?: string;
 }
 
 export interface UbicationConfig {
   /** URL embed de Google Maps */
-  mapEmbedUrl: string;
+  mapEmbedUrl?: string;
+  image?: string;
   address?: string;
+  /** Título de la sección, e.g. "UBICACIÓN DEL PROYECTO" */
+  projectTitle?: string;
+  /** URL externa de Google Maps para abrir en nueva pestaña */
+  mapsUrl?: string;
+  /** Deep link de Waze, e.g. "https://waze.com/ul?q=..." */
+  wazeUrl?: string;
+  /** Color de fondo del panel de información */
+  backgroundColor?: string;
+}
+
+export interface VirtualTourConfig {
+  url?: string;
+  projectTitle?: string;
+  backgroundColor?: string;
+  textColor?: string;
 }
 
 export interface ProjectConfig {
@@ -117,4 +163,5 @@ export interface ProjectConfig {
   /** Si está undefined, el componente cotizador no se renderiza */
   quoter?: QuoterConfig;
   ubication?: UbicationConfig;
+  virtualTour?: VirtualTourConfig;
 }

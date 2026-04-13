@@ -10,22 +10,35 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class Lima15Component {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/projects/lima15/icons/logo-lima15-white.png',
       projectName: 'Lima 15',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
-      badge: 'En venta',
-      overlayColor: 'rgba(80, 60, 40, 0.75)',
+      badge: 'LANZAMIENTO',
+      description: 'Tu depa de 2 ambientes con precio desde:',
+      priceFrom: '678,000*',
+      overlayColor: 'rgba(98, 62, 75, 0.75)',
       slides: [
-        { image: 'images/projects/lima15/hero-1.jpg', alt: 'Lima 15 - Fachada' },
-        { image: 'images/projects/lima15/hero-2.jpg', alt: 'Lima 15 - Vista exterior' },
-        { image: 'images/projects/lima15/hero-3.jpg', alt: 'Lima 15 - Detalle' },
+        { image: 'images/projects/lima15/hero-1.png', alt: 'Lima 15 - Fachada' },
       ]
     },
     stats: {
-      areaRange: 'TODO: Rango de m2',
-      location: 'TODO: Dirección del proyecto, Miraflores',
-      commonAreasLabel: 'Para disfrutar todos los días'
+      backgroundColor: '#CA995E',
+      textColor: '#FFFFFF',
+      areaRange: {
+        icon: 'images/projects/lima15/icons/departamento.svg',
+        label: 'TODO: Rango de m2'
+      },
+      location: {
+        icon: 'images/projects/lima15/icons/ubicacion.svg',
+        label: 'TODO: Dirección del proyecto, Miraflores'
+      },
+      commonAreasLabel: {
+        icon: 'images/projects/lima15/icons/zona-de-parrilla.svg',
+        label: 'Para disfrutar todos los días'
+      }
     },
     specs: {
+      
       interiorImage: 'images/projects/lima15/specs/interior.jpg',
       projectName: 'Lima 15',
       projectSubtitle: 'DEPARTAMENTOS EN MIRAFLORES',

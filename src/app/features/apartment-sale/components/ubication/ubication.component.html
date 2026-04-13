@@ -1,26 +1,66 @@
-<section class="ubication">
-  <!-- Mapa solo si hay embed URL válida -->
-  <div class="ubication__map" *ngIf="safeMapUrl; else mapPlaceholder">
-    <iframe
-      [src]="safeMapUrl"
-      class="ubication__iframe"
-      frameborder="0"
-      allowfullscreen
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
-  </div>
+<section class="ubication" [style.background-color]="config.backgroundColor || '#f0e8f0'">
+  <div class="ubication__layout">
 
-  <!-- Placeholder mientras no hay mapa configurado -->
-  <ng-template #mapPlaceholder>
-    <div class="ubication__placeholder">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
-        <circle cx="12" cy="9" r="2.5"/>
-      </svg>
-      <p>Mapa próximamente</p>
+    <!-- Panel izquierdo: título, dirección y botones -->
+    <div class="ubication__info">
+      <h2 class="ubication__title">
+        {{ config.projectTitle || 'UBICACIÓN DEL PROYECTO' }}
+      </h2>
+      <p class="ubication__address" *ngIf="config.address">{{ config.address }}</p>
+      <div class="ubication__buttons">
+        <a
+          *ngIf="config.mapsUrl"
+          [href]="config.mapsUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ubication__btn ubication__btn--maps">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+          Ver en Google Maps
+        </a>
+        <a
+          *ngIf="config.wazeUrl"
+          [href]="config.wazeUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ubication__btn ubication__btn--waze">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="currentColor">
+            <path d="M24 4C13 4 4 13 4 24c0 5.4 2.1 10.3 5.5 13.9L8 44l6.3-1.5C17.1 44 20.4 44 24 44c11 0 20-9 20-20S35 4 24 4zm0 36c-3.2 0-6.2-.8-8.8-2.2l-4.4 1 1-4.3C10.1 32.1 8 28.2 8 24c0-8.8 7.2-16 16-16s16 7.2 16 16-7.2 16-16 16zm8-20c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-16 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 12c-3.5 0-6.5-2-8-5h16c-1.5 3-4.5 5-8 5z"/>
+          </svg>
+          Waze
+        </a>
+      </div>
     </div>
-  </ng-template>
 
-  <p class="ubication__address" *ngIf="config.address">{{ config.address }}</p>
+    <!-- Panel derecho: mapa o imagen -->
+    <div class="ubication__map-wrapper">
+      <!-- Google Maps embed -->
+      <div class="ubication__map" *ngIf="safeMapUrl">
+        <iframe
+          [src]="safeMapUrl"
+          class="ubication__iframe"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <!-- Imagen estática del mapa -->
+      <div class="ubication__image-container" *ngIf="!safeMapUrl && config.image">
+        <img [src]="config.image" alt="Ubicación del proyecto" class="ubication__image">
+      </div>
+
+      <!-- Placeholder si no hay ni mapa ni imagen -->
+      <div class="ubication__placeholder" *ngIf="!safeMapUrl && !config.image">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+          <circle cx="12" cy="9" r="2.5"/>
+        </svg>
+        <p>Mapa próximamente</p>
+      </div>
+    </div>
+
+  </div>
 </section>

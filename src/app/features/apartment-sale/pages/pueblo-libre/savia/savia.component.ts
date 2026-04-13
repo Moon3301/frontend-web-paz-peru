@@ -20,9 +20,18 @@ export class SaviaComponent {
       ]
     },
     stats: {
-      areaRange: 'TODO: Rango de m2',
-      location: 'TODO: Dirección del proyecto, Pueblo Libre',
-      commonAreasLabel: 'Para disfrutar todos los días'
+      areaRange: {
+        icon: 'svg/icons/area.svg',
+        label: 'TODO: Rango de m2'
+      },
+      location: {
+        icon: 'svg/icons/location.svg',
+        label: 'TODO: Dirección del proyecto, Pueblo Libre'
+      },
+      commonAreasLabel: {
+        icon: 'svg/icons/common-areas.svg',
+        label: 'Para disfrutar todos los días'
+      }
     },
     specs: {
       interiorImage: 'images/projects/savia/specs/interior.jpg',

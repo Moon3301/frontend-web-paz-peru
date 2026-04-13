@@ -20,6 +20,11 @@
     [config]="config.gallery">
   </app-gallery>
 
+  <app-virtual-tour
+    *ngIf="config.virtualTour"
+    [config]="config.virtualTour">
+  </app-virtual-tour>
+
   <app-video
     *ngIf="config.video"
     [config]="config.video">

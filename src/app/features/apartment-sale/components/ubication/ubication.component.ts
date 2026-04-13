@@ -15,7 +15,7 @@ export class UbicationComponent implements OnInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
-    if (this.isValidEmbedUrl(this.config.mapEmbedUrl)) {
+    if (this.config.mapEmbedUrl && this.isValidEmbedUrl(this.config.mapEmbedUrl)) {
       this.safeMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
         this.config.mapEmbedUrl
       );

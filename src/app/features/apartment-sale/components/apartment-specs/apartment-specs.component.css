@@ -14,8 +14,9 @@
 }
 
 .project-stats__title {
+  font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: 600;
   color: #333;
   margin: 0 0 2.5rem;
 }
@@ -24,7 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 4rem;
+  gap: 6rem;
   flex-wrap: wrap;
 }
 
@@ -33,7 +34,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  max-width: 200px;
+  max-width: 250px;
 }
 
 .project-stats__icon {
@@ -41,7 +42,7 @@
   height: 64px;
   min-width: 64px;
   min-height: 64px;
-  background-color: #e0d5c5;
+  padding: 5px;
   border-radius: 4px;
   /* Color heredado por SVGs con currentColor */
   color: #555;
@@ -53,6 +54,12 @@
   color: #555;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.apartment-specs__logo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
 }
 
 .project-stats__value {
@@ -71,7 +78,7 @@
 }
 
 .apartment-specs__interior {
-  flex: 1;
+  flex: 2;
   overflow: hidden;
   background-color: #d0c8b8; /* Fallback si no carga la imagen */
 }
@@ -90,6 +97,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1.75rem;
 }
 
@@ -123,11 +131,12 @@
 }
 
 .apartment-specs__amenity-icon {
-  width: 48px;
-  height: 48px;
-  min-width: 48px;
-  min-height: 48px;
-  background-color: #d0c8b8;
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  min-height: 56px;
+  /* background-color: #d0c8b8; */
+  padding: 5px;
   border-radius: 4px;
   color: #444;
 }
@@ -155,8 +164,53 @@
   height: 32px;
   min-width: 32px;
   min-height: 32px;
-  background-color: #d0c8b8;
+  padding: 4px;
+  /* background-color: #d0c8b8; */
   border-radius: 3px;
+}
+
+/* Botones: Descarga Brochure + Ver video */
+.apartment-specs__actions {
+  display: flex;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.apartment-specs__action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s, background 0.2s;
+  white-space: nowrap;
+  border: none;
+}
+
+.apartment-specs__action-btn--brochure {
+  background: #9dd3cf;
+  color: #1a1a2e;
+}
+
+.apartment-specs__action-btn--brochure:hover {
+  opacity: 0.85;
+}
+
+.apartment-specs__action-btn--video {
+  background: transparent;
+  color: #333;
+  border: 1.5px solid #aaa;
+}
+
+.apartment-specs__action-btn--video:hover {
+  background: rgba(0, 0, 0, 0.06);
 }
 
 /* Responsive */
