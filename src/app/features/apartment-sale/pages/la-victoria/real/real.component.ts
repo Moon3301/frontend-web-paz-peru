@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class RealComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-real.webp',
       projectName: 'Real',
       district: 'DEPARTAMENTOS EN LA VICTORIA',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Real',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(90, 30, 30, 0.75)',
       slides: [
         { image: 'images/projects/real/hero-1.jpg', alt: 'Real - Fachada' },

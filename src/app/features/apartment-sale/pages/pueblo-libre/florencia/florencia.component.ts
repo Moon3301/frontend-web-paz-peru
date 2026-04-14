@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class FlorenciaComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-florencia.png',
       projectName: 'Florencia',
       district: 'DEPARTAMENTOS EN PUEBLO LIBRE',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Florencia',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(120, 60, 20, 0.75)',
       slides: [
         { image: 'images/projects/florencia/hero-1.jpg', alt: 'Florencia - Fachada' },

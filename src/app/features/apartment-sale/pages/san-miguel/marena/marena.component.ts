@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class MarenaComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-marena.webp',
       projectName: 'Marena',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Marena',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(30, 80, 120, 0.75)',
       slides: [
         { image: 'images/projects/marena/hero-1.jpg', alt: 'Marena - Fachada' },

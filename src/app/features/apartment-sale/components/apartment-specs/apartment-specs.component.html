@@ -32,7 +32,7 @@
       (error)="onImgError($event)">
   </div>
 
-  <div class="apartment-specs__panel" [style.background-color]="specs.backgroundColor">
+  <div class="apartment-specs__panel" [style.background-color]="specs.backgroundColor" [style.color]="specs.textColor">
     <div class="apartment-specs__branding">
       <!-- <h2 class="apartment-specs__name">{{ specs.projectName }}</h2>
       <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">
@@ -47,21 +47,21 @@
       </div>
     </div>
 
-    <ul class="apartment-specs__details">
-      <li class="apartment-specs__detail-item" *ngIf="specs.floors">
+    <ul class="apartment-specs__details" [style.color]="specs.textColor">
+      <li class="apartment-specs__detail-item" *ngIf="specs.floors" [style.color]="specs.textColor">
         <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon">
-        <span>{{ specs.floors }}</span>
+        <span >{{ specs.floors }}</span>
       </li>
-      <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes">
+      <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes" [style.color]="specs.textColor">
         <img src="svg/icons/unit-type.svg" alt="Tipo unidad" class="apartment-specs__detail-icon">
         <span>{{ specs.unitTypes }}</span>
       </li>
-      <li class="apartment-specs__detail-item" *ngIf="specs.areaRange">
+      <li class="apartment-specs__detail-item" *ngIf="specs.areaRange" [style.color]="specs.textColor">
         <img src="svg/icons/area.svg" alt="Metrajes" class="apartment-specs__detail-icon">
         <span>{{ specs.areaRange }}</span>
       </li>
 
-      <li class="apartment-specs__detail-item" *ngIf="specs.amenities">
+      <li class="apartment-specs__detail-item" *ngIf="specs.amenities" [style.color]="specs.textColor">
         <img src="svg/icons/floors.svg" alt="Amenidades" class="apartment-specs__detail-icon">
         <span>{{ specs.amenities }}</span>
       </li>

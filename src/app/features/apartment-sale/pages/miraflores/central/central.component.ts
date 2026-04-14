@@ -10,7 +10,7 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class CentralComponent {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/logos/projects/logo-central.png',
+      logo: 'images/logos/projects/logo-central.webp',
       projectName: 'Central',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
       badge: '¡ÚLTIMOS DEPAS!',
@@ -35,7 +35,7 @@ export class CentralComponent {
       },
       commonAreasLabel: {
         icon: 'images/projects/central/icons/piscina.png',
-        label: 'Para disfrutar todos los días'
+        label: 'Para el máximo confort'
       }
     },
     specs: {

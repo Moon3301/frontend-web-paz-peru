@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class MatizComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-matiz.webp',
       projectName: 'Matiz',
       district: 'DEPARTAMENTOS EN SAN ISIDRO',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Matiz',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(50, 80, 50, 0.75)',
       slides: [
         { image: 'images/projects/matiz/hero-1.jpg', alt: 'Matiz - Fachada' },

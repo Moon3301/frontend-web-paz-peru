@@ -7,17 +7,17 @@
     [style.backgroundImage]="'url(' + slide.image + ')'">
   </div>
 
-  <!-- Overlay panel (fijo, sobre todos los slides) -->
-  <div
-    class="hero__overlay-panel"
-    [style.backgroundColor]="config.overlayColor || 'rgba(0,0,0,0.55)'">
-    <img [src]="config.logo" alt="" class="hero__logo" style="text-align: center; margin: 0 auto;">
-    <!-- <h1 class="hero__project-name">{{ config.projectName }}</h1> -->
-    <!-- <p class="hero__district">{{ config.district }}</p> -->
-    <span class="hero__badge" *ngIf="config.badge">{{ config.badge }}</span>
-    <p class="hero__description" *ngIf="config.description">{{ config.description }}</p>
-    <p class="hero__price-label" *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
-    <p class="hero__price-from" *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
+  <!-- Overlay: solo la imagen del logo con textos superpuestos -->
+  <div class="hero__overlay-panel">
+    <div class="hero__logo-wrapper" *ngIf="config.logo">
+      <img [src]="config.logo" [alt]="config.projectName" class="hero__logo">
+      <div class="hero__logo-text">
+        <span class="hero__badge" *ngIf="config.badge">{{ config.badge }}</span>
+        <p class="hero__description" *ngIf="config.description">{{ config.description }}</p>
+        <p class="hero__price-label" *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
+        <p class="hero__price-from" *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
+      </div>
+    </div>
   </div>
 
   <!-- Navegación (flechas) -->

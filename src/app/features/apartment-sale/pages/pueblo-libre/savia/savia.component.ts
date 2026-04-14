@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class SaviaComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-savia.svg',
       projectName: 'Savia',
       district: 'DEPARTAMENTOS EN PUEBLO LIBRE',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Savia',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(50, 100, 50, 0.75)',
       slides: [
         { image: 'images/projects/savia/hero-1.jpg', alt: 'Savia - Fachada' },

@@ -10,9 +10,11 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class MedinaComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-medina.webp',
       projectName: 'Medina',
       district: 'DEPARTAMENTOS EN JESÚS MARÍA',
       badge: 'Lanzamiento',
+      description: 'Tu depa de 2 ambientes con precio desde:',
       priceLine1: 'Tu depa de 2 ambientes\ncon precio desde:',
       priceFrom: 'S/477,000*',
       overlayColor: 'rgba(76, 107, 82, 0.75)',

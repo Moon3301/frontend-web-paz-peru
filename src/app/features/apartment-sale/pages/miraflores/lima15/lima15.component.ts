@@ -10,7 +10,7 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class Lima15Component {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/projects/lima15/icons/logo-lima15-white.png',
+      logo: 'images/logos/projects/logo-lima.webp',
       projectName: 'Lima 15',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
       badge: 'LANZAMIENTO',
@@ -26,11 +26,11 @@ export class Lima15Component {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/lima15/icons/departamento.svg',
-        label: 'TODO: Rango de m2'
+        label: 'Desde 81 m2 hasta 149 m2'
       },
       location: {
         icon: 'images/projects/lima15/icons/ubicacion.svg',
-        label: 'TODO: Dirección del proyecto, Miraflores'
+        label: 'Ca. Gral. Borgoño 240, Miraflores'
       },
       commonAreasLabel: {
         icon: 'images/projects/lima15/icons/zona-de-parrilla.svg',
@@ -38,8 +38,7 @@ export class Lima15Component {
       }
     },
     specs: {
-      
-      interiorImage: 'images/projects/lima15/specs/interior.jpg',
+      interiorImage: 'images/projects/lima15/specs/interior.png',
       projectName: 'Lima 15',
       projectSubtitle: 'DEPARTAMENTOS EN MIRAFLORES',
       amenityIcons: [
@@ -48,18 +47,24 @@ export class Lima15Component {
         { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
         { icon: 'svg/icons/coworking.svg', label: 'Coworking' },
       ],
-      floors: 'TODO: Número de pisos',
-      unitTypes: 'TODO: Tipos de unidades',
-      areaRange: 'TODO: Rango de metrajes'
+      floors: '11 pisos + Azotea',
+      unitTypes: '1, 2 y 3 ambientes',
+      areaRange: 'Desde 81 m2 hasta 149 m2',
+      logo: 'images/logos/projects/logo-lima-morado.svg',
+      brochureUrl: 'docs/brochures/lima15.pdf',
+      videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
     },
     amenities: {
-      backgroundColor: '#8B4513',
+      backgroundColor: '#52273b',
       items: [
-        { icon: 'svg/icons/lobby.svg', label: 'LOBBY' },
-        { icon: 'svg/icons/gym.svg', label: 'GIMNASIO' },
-        { icon: 'svg/icons/meeting-room.svg', label: 'SALA DE REUNIONES' },
-        { icon: 'svg/icons/coworking.svg', label: 'COWORKING' },
-        { icon: 'svg/icons/grill.svg', label: 'ZONA DE PARRILLA' },
+        { icon: 'images/projects/lima15/icons/lobby.svg', label: 'LOBBY' },
+        { icon: 'images/projects/lima15/icons/gimnasio.svg', label: 'GIMNASIO' },
+        { icon: 'images/projects/lima15/icons/sala-bar.svg', label: 'SALA DE REUNIONES' },
+        { icon: 'images/projects/lima15/icons/coworking.svg', label: 'COWORKING' },
+        { icon: 'images/projects/lima15/icons/zona-de-parrilla.svg', label: 'ZONA DE PARRILLA' },
+         { icon: 'images/projects/lima15/icons/piscina.svg', label: 'PISCINA' },
+          { icon: 'images/projects/lima15/icons/patio-interno.svg', label: 'PATIO INTERNO' },
+
       ]
     },
     gallery: {
@@ -68,8 +73,12 @@ export class Lima15Component {
           label: 'Áreas comunes',
           subtitle: 'Áreas para ti y tu familia',
           images: [
-            { src: 'images/projects/lima15/gallery/comunes/1.jpg' },
-            { src: 'images/projects/lima15/gallery/comunes/2.jpg' },
+            { src: 'images/projects/lima15/gallery/comunes/1.png' },
+            { src: 'images/projects/lima15/gallery/comunes/2.png' },
+            { src: 'images/projects/lima15/gallery/comunes/3.png' },
+            { src: 'images/projects/lima15/gallery/comunes/4.png' },
+            { src: 'images/projects/lima15/gallery/comunes/5.png' },
+            { src: 'images/projects/lima15/gallery/comunes/6.png' },
           ]
         },
         {
@@ -82,20 +91,38 @@ export class Lima15Component {
         {
           label: 'Interiores',
           images: [
-            { src: 'images/projects/lima15/gallery/interiores/1.jpg' },
-            { src: 'images/projects/lima15/gallery/interiores/2.jpg' },
+            { src: 'images/projects/lima15/gallery/interiores/1.png' },
+            { src: 'images/projects/lima15/gallery/interiores/2.png' },
+            { src: 'images/projects/lima15/gallery/interiores/3.png' },
+            { src: 'images/projects/lima15/gallery/interiores/4.png' },
+            { src: 'images/projects/lima15/gallery/interiores/5.png' },
+            { src: 'images/projects/lima15/gallery/interiores/6.png' },
           ]
         }
       ]
     },
     quoter: {
-      iframeUrl: '/apicotizador/lima15/',
       projectId: 27,
       projectName: 'LIMA 15'
     },
     ubication: {
       mapEmbedUrl: 'PLACEHOLDER_LIMA15_GOOGLE_MAPS_EMBED',
-      address: 'TODO: Dirección Lima 15, Miraflores, Lima'
-    }
+      address: 'Ca. Gral. Borgoño 240, Miraflores',
+      backgroundColor: '#52273b',
+    },
+    video: {
+      backgroundColor: '#8da096',
+      textColor: '#FFFFFF',
+      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      type: 'youtube',
+      title: 'CONOCE PROYECTO LIMA 15',
+      fallbackImage: 'images/projects/central/video-central.png',
+    },
+    virtualTour: {
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/lima15/ac/index.htm',
+      projectTitle: 'RECORRIDO VIRTUAL',
+      backgroundColor: '#52273b',
+      textColor: '#FFFFFF',
+    },
   };
 }

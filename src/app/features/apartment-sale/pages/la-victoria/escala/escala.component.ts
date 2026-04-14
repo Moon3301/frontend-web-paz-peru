@@ -10,9 +10,13 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class EscalaComponent {
   config: ProjectConfig = {
     hero: {
+      logo: 'images/logos/projects/logo-escala.png',
       projectName: 'Escala',
       district: 'DEPARTAMENTOS EN LA VICTORIA',
       badge: 'En venta',
+      description: 'TODO: Descripción del proyecto Escala',
+      priceLine1: 'Depas con precio desde:',
+      priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(50, 70, 90, 0.75)',
       slides: [
         { image: 'images/projects/escala/hero-1.jpg', alt: 'Escala - Fachada' },
