@@ -49,6 +49,8 @@ export class MatizComponent {
       interiorImage: 'images/projects/matiz/specs/interior.png',
       projectName: 'Matiz',
       projectSubtitle: 'DEPARTAMENTOS EN SAN ISIDRO',
+      brochureUrl: 'docs/brochures/matiz.pdf',
+      videoUrl: 'https://www.youtube.com/embed/BAzaXqK8Emg',
       amenityIcons: [
         // { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
         // { icon: 'svg/icons/pool.svg', label: 'Piscina' },
@@ -104,9 +106,9 @@ export class MatizComponent {
       ]
     },
     video: {
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/BAzaXqK8Emg',
       type: 'youtube',
-      title: 'CONOCE PROYECTO REAL',
+      title: 'CONOCE PROYECTO MATIZ',
       fallbackImage: 'images/projects/central/video-central.png',
       backgroundColor: '#a15739'
     },

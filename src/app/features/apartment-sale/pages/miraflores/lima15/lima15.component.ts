@@ -57,7 +57,7 @@ export class Lima15Component {
       unitTypes: '1, 2 y 3 ambientes',
       areaRange: 'Desde 81 m2 hasta 149 m2',
       logo: 'images/logos/projects/logo-lima-morado.svg',
-      brochureUrl: 'docs/brochures/lima15.pdf',
+      brochureUrl: 'docs/brochures/lima-15.pdf',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
     },
     amenities: {
@@ -122,7 +122,7 @@ export class Lima15Component {
     video: {
       backgroundColor: '#8da096',
       textColor: '#FFFFFF',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/WzLVR52J6xw',
       type: 'youtube',
       title: 'CONOCE PROYECTO LIMA 15',
       fallbackImage: 'images/projects/central/video-central.png',

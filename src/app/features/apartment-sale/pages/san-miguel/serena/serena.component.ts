@@ -53,6 +53,8 @@ export class SerenaComponent {
       interiorImage: 'images/projects/serena/specs/interior.jpg',
       projectName: 'Serena',
       projectSubtitle: 'DEPARTAMENTOS EN SAN MIGUEL',
+      brochureUrl: 'docs/brochures/serena.pdf',
+      videoUrl: 'https://www.youtube.com/embed/CHby76_dqbI',
       amenityIcons: [
         { icon: 'images/projects/serena/icons/lobby.svg', label: 'Lobby' },
         { icon: 'images/projects/serena/icons/gym.svg', label: 'Gimnasio' },
@@ -121,9 +123,9 @@ export class SerenaComponent {
     video: {
       backgroundColor: '#ec615b',
       textColor: '#FFFFFF',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/CHby76_dqbI',
       type: 'youtube',
-      title: 'CONOCE PROYECTO CENTRAL',
+      title: 'CONOCE PROYECTO SERENA',
       fallbackImage: 'images/projects/central/video-central.png',
     },
     virtualTour: {

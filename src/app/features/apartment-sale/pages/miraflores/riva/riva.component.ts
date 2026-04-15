@@ -51,6 +51,8 @@ export class RivaComponent {
       interiorImage: 'images/projects/riva/specs/interior.png',
       projectName: 'Riva',
       projectSubtitle: 'DEPARTAMENTOS EN MIRAFLORES',
+      brochureUrl: 'docs/brochures/riva.pdf',
+      videoUrl: 'https://www.youtube.com/embed/q3BmBjGt-p8',
       amenityIcons: [
         { icon: 'images/projects/riva/icons/pisos.svg', label: 'Pisos' },
         { icon: 'images/projects/riva/icons/flats.svg', label: 'Tipo de unidad' },
@@ -114,9 +116,9 @@ export class RivaComponent {
       projectName: 'RIVA'
     },
     video: {
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/q3BmBjGt-p8',
       type: 'youtube',
-      title: 'CONOCE PROYECTO LIMA 15',
+      title: 'CONOCE PROYECTO RIVA',
       fallbackImage: 'images/projects/central/video-central.png',
     },
     virtualTour: {

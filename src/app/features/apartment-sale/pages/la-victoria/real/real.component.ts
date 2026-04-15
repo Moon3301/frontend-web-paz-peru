@@ -50,7 +50,7 @@ export class RealComponent {
       description: 'Paz Inmobiliaria presenta Residencial Real, 2 modernas torres con todo lo que necesitas; la comodidad de una ubicación inmejorable con las mejores áreas comunes y acabados de primera. Todo esto, al precio correcto. Residencial Real se ubica frente al Circuito mágico del agua con fácil acceso a avenidas principales que conectan distritos como Jesús María; Lince; San Isidro y La Victoria. Su diseño práctico y moderno te permitirá volver Real todo los momentos que siempre soñaste.',
       backgroundColor: '#778b5c',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
-      brochureUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      brochureUrl: 'docs/brochures/real.pdf',
       textColor: '#FFFFFF',
       interiorImage: 'images/projects/real/specs/interior.png',
       projectName: 'Real',
@@ -124,7 +124,7 @@ export class RealComponent {
       textColor: '#FFFFFF',
     },
     video: {
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/lY6fxsGDaw4',
       type: 'youtube',
       title: 'CONOCE PROYECTO REAL',
       fallbackImage: 'images/projects/central/video-central.png',

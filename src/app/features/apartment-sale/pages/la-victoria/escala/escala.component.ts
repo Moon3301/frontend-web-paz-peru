@@ -52,6 +52,8 @@ export class EscalaComponent {
       backgroundColor: '#f5f0cc',
       interiorImage: 'images/projects/escala/specs/interior.png',
       projectName: 'Escala',
+      brochureUrl: 'docs/brochures/escala.pdf',
+      videoUrl: 'https://www.youtube.com/embed/j2mJQ6IVg9U',
       projectSubtitle: 'DEPARTAMENTOS EN LA VICTORIA',
       amenityIcons: [
         // { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
@@ -111,10 +113,9 @@ export class EscalaComponent {
       ]
     },
     video: {
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/j2mJQ6IVg9U',
       type: 'iframe',
-      title: 'Escala',
-      subtitle: 'DEPARTAMENTOS EN LA VICTORIA',
+      title: 'CONOCE PROYECTO ESCALA',
       backgroundColor: '#b2e1d8',
       textColor: '#FFFFFF',
     },

@@ -50,6 +50,8 @@ export class FlorenciaComponent {
       interiorImage: 'images/projects/florencia/specs/interior.jpg',
       projectName: 'Florencia',
       projectSubtitle: 'DEPARTAMENTOS EN PUEBLO LIBRE',
+      brochureUrl: 'docs/brochures/florencia.pdf',
+      videoUrl: 'https://www.youtube.com/embed/LkungfaWf-c',
       amenityIcons: [
         // { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         // { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
@@ -112,9 +114,9 @@ export class FlorenciaComponent {
     video: {
       backgroundColor: '#038e01',
       textColor: '#FFFFFF',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/LkungfaWf-c',
       type: 'youtube',
-      title: 'CONOCE PROYECTO CENTRAL',
+      title: 'CONOCE PROYECTO FLORENCIA',
       fallbackImage: 'images/projects/central/video-central.png',
     },
     virtualTour: {

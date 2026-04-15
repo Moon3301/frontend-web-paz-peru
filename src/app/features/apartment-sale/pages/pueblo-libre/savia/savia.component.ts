@@ -60,7 +60,7 @@ export class SaviaComponent {
       floors: '27 pisos + Azotea',
       unitTypes: '1, 2 y 3 dormitorios',
       areaRange: 'Desde 39.82m2 hasta 140.38m2',
-      brochureUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      brochureUrl: 'docs/brochures/savia.pdf',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
     },
     amenities: {
@@ -107,7 +107,7 @@ export class SaviaComponent {
     video: {
       backgroundColor: '#9aaf99',
       textColor: '#FFFFFF',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/48vBugkbJc8',
       type: 'youtube',
       title: 'CONOCE PROYECTO SAVIA',
       fallbackImage: 'images/projects/central/video-central.png',

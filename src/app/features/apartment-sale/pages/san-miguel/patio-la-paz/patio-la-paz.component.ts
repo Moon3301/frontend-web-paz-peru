@@ -46,20 +46,22 @@ export class PatioLaPazComponent {
     },
     specs: {
       backgroundColor: '#fab605',
-      textColor: '#FFFFFF',
+      textColor: '#231f20',
       logo: 'images/logos/projects/logo-patio-la-paz-1.png',
       interiorImage: 'images/projects/patio-la-paz/specs/interior.jpg',
       projectName: 'Patio La Paz',
       projectSubtitle: 'DEPARTAMENTOS EN SAN MIGUEL',
+      brochureUrl: 'docs/brochures/patio-la-paz.pdf',
+      videoUrl: 'https://www.youtube.com/embed/QD35i4dF5Ug',
       amenityIcons: [
         { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
         { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
-      floors: 'TODO: Número de pisos',
-      unitTypes: 'TODO: Tipos de unidades',
-      areaRange: 'TODO: Rango de metrajes'
+      floors: '15 pisos',
+      unitTypes: '1, 2 y 3 dormitorios',
+      areaRange: 'Desde 40 m2 hasta 150 m2'
     },
     amenities: {
       backgroundColor: '#ffffff',
@@ -115,7 +117,7 @@ export class PatioLaPazComponent {
     video: {
       backgroundColor: '#231f20',
       textColor: '#fab605',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/QD35i4dF5Ug',
       type: 'youtube',
       title: 'CONOCE PROYECTO PATIO LA PAZ',
       fallbackImage: 'images/projects/patio-la-paz/video-patio.jpg',

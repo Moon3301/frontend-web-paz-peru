@@ -51,6 +51,8 @@ export class AmalfiComponent {
       interiorImage: 'images/projects/amalfi/specs/interior.png',
       projectName: 'Amalfi',
       projectSubtitle: 'DEPARTAMENTOS EN SAN MIGUEL',
+      brochureUrl: 'docs/brochures/amalfi.pdf',
+      videoUrl: 'https://www.youtube.com/embed/UGpOIL-LkUc',
       amenityIcons: [
         { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
@@ -110,7 +112,7 @@ export class AmalfiComponent {
     video: {
       backgroundColor: '#2d5066',
       textColor: '#dcd0c9',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/UGpOIL-LkUc',
       type: 'youtube',
       title: 'CONOCE PROYECTO AMALFI',
       fallbackImage: 'images/projects/central/video-central.png',

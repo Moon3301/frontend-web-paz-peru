@@ -52,6 +52,8 @@ export class MedinaComponent {
       interiorImage: 'images/projects/medina/specs/interior.png',
       projectName: 'Medina',
       projectSubtitle: 'DEPARTAMENTOS EN JESÚS MARÍA',
+      brochureUrl: 'docs/brochures/medina.pdf',
+      videoUrl: 'https://www.youtube.com/embed/Rblod8ZrW-8',
       amenityIcons: [
         { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
@@ -115,7 +117,7 @@ export class MedinaComponent {
     video: {
       backgroundColor: '#c6824f',
       textColor: '#FFFFFF',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/Rblod8ZrW-8',
       type: 'youtube',
       title: 'CONOCE PROYECTO MEDINA',
       fallbackImage: 'images/projects/central/video-central.png',

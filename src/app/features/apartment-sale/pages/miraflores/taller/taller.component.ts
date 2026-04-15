@@ -52,6 +52,7 @@ export class TallerComponent {
       interiorImage: 'images/projects/taller/specs/interior.jpg',
       projectName: 'Taller',
       projectSubtitle: 'DEPARTAMENTOS EN MIRAFLORES',
+      brochureUrl: 'docs/brochures/taller.pdf',
       amenityIcons: [
         { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
@@ -127,7 +128,7 @@ export class TallerComponent {
     video: {
       backgroundColor: '#ece8dc',
       textColor: '#161129',
-      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      url: 'https://www.youtube.com/embed/35BMHYaqVHg',
       type: 'youtube',
       title: 'CONOCE PROYECTO TALLER',
       fallbackImage: 'images/projects/taller/img-video.jpg',
