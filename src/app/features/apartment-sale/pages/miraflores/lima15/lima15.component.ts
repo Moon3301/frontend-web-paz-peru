@@ -14,9 +14,15 @@ export class Lima15Component {
       projectName: 'Lima 15',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
       badge: 'LANZAMIENTO',
-      description: 'Tu depa de 2 ambientes con precio desde:',
-      priceFrom: '678,000*',
+      description: 'TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:',
+      priceFrom: 'S/ 678,000*',
       overlayColor: 'rgba(98, 62, 75, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#CA995E',
+      descriptionColor: '#f0dfc0',
+      priceLabelColor: '#f0dfc0',
+      priceFromColor: '#CA995E',
+      textPosition: { bottom: '20%' },
       slides: [
         { image: 'images/projects/lima15/hero-1.png', alt: 'Lima 15 - Fachada' },
       ]
@@ -106,9 +112,12 @@ export class Lima15Component {
       projectName: 'LIMA 15'
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_LIMA15_GOOGLE_MAPS_EMBED',
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9221261625453!2d-77.03591522408877!3d-12.11748068812482!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c817df310d77%3A0xffa929a1e359ca0f!2sCa.%20Gral.%20Borgo%C3%B1o%20240%2C%20Miraflores%2015074%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776206396575!5m2!1ses!2scl',
       address: 'Ca. Gral. Borgoño 240, Miraflores',
       backgroundColor: '#52273b',
+      textColor: '#FFFFFF',
+      mapsUrl: 'https://maps.google.com/?q=Ca.+Gral.+Borgo%C3%B1o+240,+Miraflores,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Ca+Gral+Borgo%C3%B1o+240+Miraflores+Lima&navigate=yes',
     },
     video: {
       backgroundColor: '#8da096',

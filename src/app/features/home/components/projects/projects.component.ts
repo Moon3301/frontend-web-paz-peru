@@ -89,6 +89,14 @@ export class ProjectsComponent {
       image: '/images/projects/thumb-savia-home.jpg',
       logo: '/images/logos/projects/logo-savia.svg',
       link: '/apartment-sale/pueblo-libre/savia'
+    },
+    {
+      name: 'Marena',
+      district: 'San Miguel',
+      status: 'LANZAMIENTO',
+      image: '/images/projects/thumb-marena-home.png',
+      logo: '/images/logos/projects/logo-marena-1.svg',
+      link: '/apartment-sale/san-miguel/marena'
     }
   ];
 }

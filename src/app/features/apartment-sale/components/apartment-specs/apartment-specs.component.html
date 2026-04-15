@@ -39,7 +39,12 @@
         {{ specs.projectSubtitle }}
       </p> -->
       <img [src]="specs.logo" alt="Logo" class="apartment-specs__logo">
+      
     </div>
+
+    <p class="apartment-specs__description" *ngIf="specs.description">
+        {{ specs.description }}
+      </p>
 
     <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
       <div class="apartment-specs__amenity-item" *ngFor="let item of specs.amenityIcons">
@@ -49,7 +54,7 @@
 
     <ul class="apartment-specs__details" [style.color]="specs.textColor">
       <li class="apartment-specs__detail-item" *ngIf="specs.floors" [style.color]="specs.textColor">
-        <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon">
+        <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon" >
         <span >{{ specs.floors }}</span>
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes" [style.color]="specs.textColor">

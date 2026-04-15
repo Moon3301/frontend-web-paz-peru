@@ -3,10 +3,10 @@
 
     <!-- Panel izquierdo: título, dirección y botones -->
     <div class="ubication__info">
-      <h2 class="ubication__title">
+      <h2 class="ubication__title" [style.color]="config.textColor || '#ffffff'">
         {{ config.projectTitle || 'UBICACIÓN DEL PROYECTO' }}
       </h2>
-      <p class="ubication__address" *ngIf="config.address">{{ config.address }}</p>
+      <p class="ubication__address" *ngIf="config.address" [style.color]="config.textColor || '#ffffff'">{{ config.address }}</p>
       <div class="ubication__buttons">
         <a
           *ngIf="config.mapsUrl"
@@ -33,10 +33,16 @@
       </div>
     </div>
 
-    <!-- Panel derecho: mapa o imagen -->
+    <!-- Panel derecho: imagen o embed de Maps -->
     <div class="ubication__map-wrapper">
-      <!-- Google Maps embed -->
-      <div class="ubication__map" *ngIf="safeMapUrl">
+
+      <!-- 1. Imagen estática — tiene prioridad cuando existe -->
+      <div class="ubication__image-container" *ngIf="config.image">
+        <img [src]="config.image" [alt]="'Ubicación ' + (config.projectTitle || 'del proyecto')" class="ubication__image">
+      </div>
+
+      <!-- 2. Google Maps embed — se usa cuando NO hay imagen -->
+      <div class="ubication__map" *ngIf="!config.image && safeMapUrl">
         <iframe
           [src]="safeMapUrl"
           class="ubication__iframe"
@@ -47,13 +53,8 @@
         </iframe>
       </div>
 
-      <!-- Imagen estática del mapa -->
-      <div class="ubication__image-container" *ngIf="!safeMapUrl && config.image">
-        <img [src]="config.image" alt="Ubicación del proyecto" class="ubication__image">
-      </div>
-
-      <!-- Placeholder si no hay ni mapa ni imagen -->
-      <div class="ubication__placeholder" *ngIf="!safeMapUrl && !config.image">
+      <!-- 3. Placeholder si no hay ni imagen ni embed válido -->
+      <div class="ubication__placeholder" *ngIf="!config.image && !safeMapUrl">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
           <circle cx="12" cy="9" r="2.5"/>

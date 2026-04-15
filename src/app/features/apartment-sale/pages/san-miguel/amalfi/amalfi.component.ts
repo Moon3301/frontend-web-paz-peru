@@ -10,7 +10,6 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class AmalfiComponent {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/logos/projects/logo-amalfi.svg',
       projectName: 'Amalfi',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
       badge: 'En venta',
@@ -18,9 +17,16 @@ export class AmalfiComponent {
       priceLine1: 'Depas con precio desde:',
       priceFrom: 'TODO: S/ XXX,000*',
       overlayColor: 'rgba(150, 90, 30, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#3e6d81',
+      descriptionColor: '#dcd0c9',
+      priceLabelColor: '#dcd0c9',
+      priceFromColor: '#3e6d81',
+      textPosition: { bottom: '10%' },
       slides: [
         { image: 'images/projects/amalfi/hero-1.jpg', alt: 'Amalfi - Fachada' },
         { image: 'images/projects/amalfi/hero-2.jpg', alt: 'Amalfi - Vista exterior' },
+        { image: 'images/projects/amalfi/hero-3.jpg', alt: 'Amalfi - Vista exterior' },
       ]
     },
     stats: {
@@ -40,7 +46,9 @@ export class AmalfiComponent {
       }
     },
     specs: {
-      interiorImage: 'images/projects/amalfi/specs/interior.jpg',
+      logo: 'images/logos/projects/logo-amalfi-1.png',
+      textColor: '#3e6d81',
+      interiorImage: 'images/projects/amalfi/specs/interior.png',
       projectName: 'Amalfi',
       projectSubtitle: 'DEPARTAMENTOS EN SAN MIGUEL',
       amenityIcons: [
@@ -49,9 +57,10 @@ export class AmalfiComponent {
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
         { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
-      floors: 'TODO: Número de pisos',
-      unitTypes: 'TODO: Tipos de unidades',
-      areaRange: 'TODO: Rango de metrajes'
+      description: 'Condominio Amalfi está ubicado en la Av. Costanera cdra. 25 San Miguel. Una elegante torre en forma de T que se levanta frente al mar. Con 17 pisos y 279 departamentos, el cual es único en su estilo, pues permite que la mayoría de departamentos tengan vista hacia el océano Pacífico. Navega hacia tu nuevo estilo de vida, descubre en Condominio Amalfi un espacio único, un proyecto que va más allá de sus departamentos, y en el que podrás vivir como dentro de un club, con áreas comunes, la vista y los espacios que te permitirán vivir siempre, como de vacaciones.',
+      floors: '17 pisos',
+      unitTypes: '1, 2 y 3 Dormitorios',
+      areaRange: 'Desde: 36.98m2 Hasta: 135.46m2'
     },
     amenities: {
       backgroundColor: '#dcd0c9',
@@ -117,8 +126,12 @@ export class AmalfiComponent {
       projectName: 'Amalfi',
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_AMALFI_GOOGLE_MAPS_EMBED',
-      address: 'TODO: Dirección Amalfi, San Miguel, Lima'
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3901.455105341643!2d-77.10708393791298!3d-12.080965167273371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAv.%20Costanera%20cdra.25%2C%20San%20Miguel.!5e0!3m2!1ses!2scl!4v1776207349513!5m2!1ses!2scl',
+      address: 'Av. Costanera cdra.25, San Miguel',
+      backgroundColor: '#3e6d81',
+      textColor: '#FFFFFF',
+      mapsUrl: 'https://maps.google.com/?q=Av.+Costanera+cdra.25,+San+Miguel,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Av+Costanera+cdra.25+San+Miguel+Lima&navigate=yes',
     }
   };
 }

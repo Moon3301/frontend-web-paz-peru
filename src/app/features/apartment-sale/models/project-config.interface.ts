@@ -3,21 +3,68 @@ export interface HeroSlide {
   alt?: string;
 }
 
+/**
+ * Posición del bloque de texto dentro de la imagen del logo.
+ * Usa valores CSS (px, %, em). Solo los definidos sobreescriben el default.
+ * Ejemplo: { top: '58%', left: '8%', right: '8%' }
+ */
+export interface HeroTextPosition {
+  top?: string;
+  bottom?: string;
+  left?: string;
+  right?: string;
+}
+
 export interface HeroConfig {
   logo?: string;
   slides: HeroSlide[];
   projectName: string;
   district: string;
-  /** Badge flotante: "Lanzamiento", "Preventa", etc. */
+  /** Badge: "Lanzamiento", "En venta", etc. */
   badge?: string;
-  /** Descripción del proyecto */
+  /** Descripción corta del proyecto */
   description?: string;
-  /** Primera línea del texto de precio */
+  /** Primera línea del bloque de precio */
   priceLine1?: string;
-  /** Precio desde, e.g. "S/477,000*" */
+  /** Precio desde, e.g. "S/ 477,000*" */
   priceFrom?: string;
-  /** Color del panel overlay central, e.g. "rgba(76,107,82,0.75)" */
+  /** @deprecated No usado en la vista actual */
   overlayColor?: string;
+  /**
+   * Posición del bloque de texto DENTRO de la imagen del logo.
+   * Por defecto: bottom 8%, left 0, right 0.
+   * Ajustar por proyecto según el espacio disponible en cada logo.
+   */
+  textPosition?: HeroTextPosition;
+  /**
+   * Color base para todos los textos (fallback si no se define el color individual).
+   * Default: '#ffffff'.
+   */
+  textColor?: string;
+
+  /**
+   * Color del badge ("En venta", "Lanzamiento", etc.).
+   * Si no se define, usa textColor.
+   */
+  badgeColor?: string;
+
+  /**
+   * Color de la descripción corta del proyecto.
+   * Si no se define, usa textColor.
+   */
+  descriptionColor?: string;
+
+  /**
+   * Color de la etiqueta de precio (priceLine1 — texto pequeño).
+   * Si no se define, usa textColor.
+   */
+  priceLabelColor?: string;
+
+  /**
+   * Color del precio principal (priceFrom — número grande).
+   * Si no se define, usa textColor.
+   */
+  priceFromColor?: string;
 }
 
 export interface ProjectStatsConfig {
@@ -48,6 +95,8 @@ export interface AmenityIconItem {
 }
 
 export interface ApartmentSpecsConfig {
+
+  description?: string;
   /** Imagen de interior del proyecto */
   interiorImage: string;
   /** Nombre del proyecto (fallback si no hay logo imagen) */
@@ -56,6 +105,8 @@ export interface ApartmentSpecsConfig {
   projectSubtitle?: string;
   /** Íconos de amenidades que van en el panel derecho */
   amenityIcons?: AmenityIconItem[];
+
+  amenityIcon?: string;
   /** e.g. "18 pisos + Azotea" */
   floors?: string;
   /** e.g. "Flats y Dúplex 1, 2 y 3 ambientes." */
@@ -144,6 +195,8 @@ export interface UbicationConfig {
   wazeUrl?: string;
   /** Color de fondo del panel de información */
   backgroundColor?: string;
+  /** Color del texto, default blanco */
+  textColor?: string;
 }
 
 export interface VirtualTourConfig {

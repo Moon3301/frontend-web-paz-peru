@@ -10,56 +10,62 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class MatizComponent {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/logos/projects/logo-matiz.webp',
+      logo: 'images/logos/projects/logo-matiz-1-2.webp',
       projectName: 'Matiz',
       district: 'DEPARTAMENTOS EN SAN ISIDRO',
       badge: 'En venta',
-      description: 'TODO: Descripción del proyecto Matiz',
-      priceLine1: 'Depas con precio desde:',
-      priceFrom: 'TODO: S/ XXX,000*',
+      description: 'ENTREGA INMEDIATA',
+      priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
+      priceFrom: 'S/ 727,000*',
       overlayColor: 'rgba(50, 80, 50, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#ffffff',
+      descriptionColor: '#e0e8ec',
+      priceLabelColor: '#e0e8ec',
+      priceFromColor: '#ffffff',
+      textPosition: { bottom: '25%' },
       slides: [
-        { image: 'images/projects/matiz/hero-1.jpg', alt: 'Matiz - Fachada' },
-        { image: 'images/projects/matiz/hero-2.jpg', alt: 'Matiz - Vista exterior' },
-        { image: 'images/projects/matiz/hero-3.jpg', alt: 'Matiz - Detalle' },
+        { image: 'images/projects/matiz/1.jpeg', alt: 'Matiz - Fachada' },
       ]
     },
     stats: {
       areaRange: {
-        icon: 'svg/icons/area.svg',
-        label: 'TODO: Rango de m2'
+        icon: 'images/projects/matiz/icons/ico_departamento.png',
+        label: 'Departamentos Desde 80 m2 hasta 255 m2'
       },
       location: {
-        icon: 'svg/icons/location.svg',
-        label: 'TODO: Dirección del proyecto, San Isidro'
+        icon: 'images/projects/matiz/icons/ico_ubicacion.png',
+        label: 'Ubicación del proyecto Calle Machaypuito 163, San Isidro'
       },
       commonAreasLabel: {
-        icon: 'svg/icons/common-areas.svg',
+        icon: 'images/projects/matiz/icons/ico_areaComunes.png',
         label: 'Para disfrutar todos los días'
       }
     },
     specs: {
-      interiorImage: 'images/projects/matiz/specs/interior.jpg',
+      backgroundColor: '#7f9097',
+      textColor: '#FFFFFF',
+      logo: 'images/logos/projects/logo-matiz-1.png',
+      interiorImage: 'images/projects/matiz/specs/interior.png',
       projectName: 'Matiz',
       projectSubtitle: 'DEPARTAMENTOS EN SAN ISIDRO',
       amenityIcons: [
-        { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
-        { icon: 'svg/icons/pool.svg', label: 'Piscina' },
-        { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
-        { icon: 'svg/icons/coworking.svg', label: 'Coworking' },
+        // { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
+        // { icon: 'svg/icons/pool.svg', label: 'Piscina' },
+        // { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
+        // { icon: 'svg/icons/coworking.svg', label: 'Coworking' },
       ],
-      floors: 'TODO: Número de pisos',
-      unitTypes: 'TODO: Tipos de unidades',
-      areaRange: 'TODO: Rango de metrajes'
+      floors: 'Pisos 6 pisos + Azotea',
+      unitTypes: 'Flats y Dúplex 2 y 3 ambientes.',
+      areaRange: 'Desde 80 m2 hasta 255 m2'
     },
     amenities: {
-      backgroundColor: '#4A6741',
+      backgroundColor: '#a15739',
       items: [
-        { icon: 'svg/icons/lobby.svg', label: 'LOBBY' },
-        { icon: 'svg/icons/gym.svg', label: 'GIMNASIO' },
-        { icon: 'svg/icons/pool.svg', label: 'PISCINA' },
-        { icon: 'svg/icons/meeting-room.svg', label: 'SALA DE REUNIONES' },
-        { icon: 'svg/icons/coworking.svg', label: 'COWORKING' },
+        { icon: 'images/projects/matiz/icons/ico_lobby.png', label: 'LOBBY' },
+        { icon: 'images/projects/matiz/icons/ico_piscina.png', label: 'ROOFTOP POOL' },
+        { icon: 'images/projects/matiz/icons/ico_parrilla.png', label: 'BBQ ZONE' },
+        { icon: 'images/projects/matiz/icons/ico_bar.png', label: 'LOUNGE' }
       ]
     },
     gallery: {
@@ -68,8 +74,10 @@ export class MatizComponent {
           label: 'Áreas comunes',
           subtitle: 'Áreas para ti y tu familia',
           images: [
-            { src: 'images/projects/matiz/gallery/comunes/1.jpg' },
-            { src: 'images/projects/matiz/gallery/comunes/2.jpg' },
+            { src: 'images/projects/matiz/gallery/comunes/1.png' },
+            { src: 'images/projects/matiz/gallery/comunes/2.png' },
+            { src: 'images/projects/matiz/gallery/comunes/3.png' },
+            { src: 'images/projects/matiz/gallery/comunes/4.png' }
           ]
         },
         {
@@ -82,11 +90,31 @@ export class MatizComponent {
         {
           label: 'Interiores',
           images: [
-            { src: 'images/projects/matiz/gallery/interiores/1.jpg' },
-            { src: 'images/projects/matiz/gallery/interiores/2.jpg' },
+            { src: 'images/projects/matiz/gallery/interiores/1.png' },
+            { src: 'images/projects/matiz/gallery/interiores/2.png' },
+            { src: 'images/projects/matiz/gallery/interiores/3.png' },
+            { src: 'images/projects/matiz/gallery/interiores/4.png' },
+            { src: 'images/projects/matiz/gallery/interiores/5.png' },
+            { src: 'images/projects/matiz/gallery/interiores/6.png' },
+            { src: 'images/projects/matiz/gallery/interiores/7.png' },
+            { src: 'images/projects/matiz/gallery/interiores/8.png' },
+            { src: 'images/projects/matiz/gallery/interiores/9.png' },
           ]
         }
       ]
+    },
+    video: {
+      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      type: 'youtube',
+      title: 'CONOCE PROYECTO REAL',
+      fallbackImage: 'images/projects/central/video-central.png',
+      backgroundColor: '#a15739'
+    },
+    virtualTour: {
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/matiz/ac/index.htm',
+      projectTitle: 'RECORRIDO VIRTUAL',
+      backgroundColor: '#7f9097',
+      textColor: '#FFFFFF',
     },
     quoter: {
       iframeUrl: '/apicotizador/matiz/',
@@ -94,8 +122,12 @@ export class MatizComponent {
       projectName: 'MATIZ'
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_MATIZ_GOOGLE_MAPS_EMBED',
-      address: 'TODO: Dirección Matiz, San Isidro, Lima'
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.271052535379!2d-77.03700532408901!3d-12.09358728814692!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c85d9be5ca49%3A0xac684974e9adb521!2sC.%20Machaypuito%20163%2C%20San%20Isidro%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776207655492!5m2!1ses!2scl',
+      address: 'Calle Machaypuito 163, San Isidro',
+      backgroundColor: '#7f9097',
+      textColor: '#FFFFFF',
+      mapsUrl: 'https://maps.google.com/?q=Calle+Machaypuito+163,+San+Isidro,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Calle+Machaypuito+163+San+Isidro+Lima&navigate=yes',
     }
   };
 }

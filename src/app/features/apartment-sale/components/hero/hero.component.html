@@ -7,15 +7,27 @@
     [style.backgroundImage]="'url(' + slide.image + ')'">
   </div>
 
-  <!-- Overlay: solo la imagen del logo con textos superpuestos -->
+  <!-- Overlay: logo image + textos superpuestos dentro de ella -->
   <div class="hero__overlay-panel">
     <div class="hero__logo-wrapper" *ngIf="config.logo">
       <img [src]="config.logo" [alt]="config.projectName" class="hero__logo">
-      <div class="hero__logo-text">
-        <span class="hero__badge" *ngIf="config.badge">{{ config.badge }}</span>
-        <p class="hero__description" *ngIf="config.description">{{ config.description }}</p>
-        <p class="hero__price-label" *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
-        <p class="hero__price-from" *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
+
+      <!-- Bloque de texto posicionado DENTRO de la imagen del logo.
+           La posición por defecto (CSS) es: bottom 8%, left 0, right 0.
+           Cada proyecto puede sobreescribir con textPosition en HeroConfig. -->
+      <div class="hero__logo-text" [ngStyle]="getTextPositionStyle()">
+        <span class="hero__badge"
+              [style.color]="badgeColor"
+              *ngIf="config.badge">{{ config.badge }}</span>
+        <p class="hero__description"
+           [style.color]="descriptionColor"
+           *ngIf="config.description">{{ config.description }}</p>
+        <p class="hero__price-label"
+           [style.color]="priceLabelColor"
+           *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
+        <p class="hero__price-from"
+           [style.color]="priceFromColor"
+           *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
       </div>
     </div>
   </div>

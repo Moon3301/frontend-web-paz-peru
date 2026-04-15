@@ -10,37 +10,46 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class MedinaComponent {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/logos/projects/logo-medina.webp',
+      logo: 'images/logos/projects/logo-medina-1-2.webp',
       projectName: 'Medina',
       district: 'DEPARTAMENTOS EN JESÚS MARÍA',
       badge: 'Lanzamiento',
-      description: 'Tu depa de 2 ambientes con precio desde:',
-      priceLine1: 'Tu depa de 2 ambientes\ncon precio desde:',
+      description: 'EN CONSTRUCCION',
+      priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/477,000*',
       overlayColor: 'rgba(76, 107, 82, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#ffffff',
+      descriptionColor: '#f1e7d5',
+      priceLabelColor: '#f1e7d5',
+      priceFromColor: '#ffffff',
+      textPosition: { bottom: '20%' },
       slides: [
-        { image: 'images/projects/medina/hero-1.jpg', alt: 'Medina - Fachada' },
-        { image: 'images/projects/medina/hero-2.jpg', alt: 'Medina - Vista exterior' },
-        { image: 'images/projects/medina/hero-3.jpg', alt: 'Medina - Detalle' },
+        { image: 'images/projects/medina/1.jpeg', alt: 'Medina - Fachada' },
       ]
     },
     stats: {
+      
+      backgroundColor: '#f1e7d5',
       sectionTitle: 'Descubre cada detalle de este gran proyecto',
       areaRange: {
-        icon: 'svg/icons/area.svg',
-        label: 'Desde 34 m2 hasta 149m2'
-      },
-      location: {
-        icon: 'svg/icons/location.svg',
+        icon: 'images/projects/medina/icons/icono_ubica_1.png',
         label: 'Av. Edgardo Rebagliati 405 Jesús María'
       },
+      location: {
+        icon: 'images/projects/medina/icons/icono_depto_1.png',
+        label: 'Desde 34 m2 hasta 149m2'
+      },
       commonAreasLabel: {
-        icon: 'svg/icons/common-areas.svg',
+        icon: 'images/projects/medina/icons/icono_area_comun_1.png',
         label: 'Para disfrutar todos los días'
       }
     },
     specs: {
-      interiorImage: 'images/projects/medina/specs/interior.jpg',
+      backgroundColor: '#7f9884',
+      textColor: '#FFFFFF',
+      logo: 'images/logos/projects/logo-medina-1.png',
+      interiorImage: 'images/projects/medina/specs/interior.png',
       projectName: 'Medina',
       projectSubtitle: 'DEPARTAMENTOS EN JESÚS MARÍA',
       amenityIcons: [
@@ -56,11 +65,11 @@ export class MedinaComponent {
     amenities: {
       backgroundColor: '#B87D4B',
       items: [
-        { icon: 'svg/icons/lobby.svg', label: 'LOBBY' },
-        { icon: 'svg/icons/meeting-room.svg', label: 'SALA DE REUNIONES' },
-        { icon: 'svg/icons/coworking.svg', label: 'COWORKING' },
-        { icon: 'svg/icons/grill.svg', label: 'ZONA DE PARRILLA' },
-        { icon: 'svg/icons/gym.svg', label: 'GIMNASIO' },
+        { icon: 'images/projects/medina/icons/icono_lobby.png', label: 'LOBBY' },
+        { icon: 'images/projects/medina/icons/icono_sreuniones.png', label: 'SALA DE REUNIONES' },
+        { icon: 'images/projects/medina/icons/icono_working.png', label: 'COWORKING' },
+        { icon: 'images/projects/medina/icons/icono_parrilla.png', label: 'ZONA DE PARRILLA' },
+        { icon: 'images/projects/medina/icons/icono_gym.png', label: 'GIMNASIO' },
       ]
     },
     gallery: {
@@ -69,37 +78,53 @@ export class MedinaComponent {
           label: 'Áreas comunes',
           subtitle: 'Áreas para ti y tu familia',
           images: [
-            { src: 'images/projects/medina/gallery/comunes/1.jpg', alt: 'Área común 1' },
-            { src: 'images/projects/medina/gallery/comunes/2.jpg', alt: 'Área común 2' },
-            { src: 'images/projects/medina/gallery/comunes/3.jpg', alt: 'Área común 3' },
+            { src: 'images/projects/medina/gallery/comunes/1.png', alt: 'Área común 1' },
+            { src: 'images/projects/medina/gallery/comunes/2.png', alt: 'Área común 2' },
+            { src: 'images/projects/medina/gallery/comunes/3.png', alt: 'Área común 3' },
+            { src: 'images/projects/medina/gallery/comunes/4.png', alt: 'Área común 4' },
+            { src: 'images/projects/medina/gallery/comunes/5.png', alt: 'Área común 5' },
+            { src: 'images/projects/medina/gallery/comunes/6.png', alt: 'Área común 6' },
           ]
         },
         {
           label: 'Exteriores',
           subtitle: 'Fachada y áreas externas',
           images: [
-            { src: 'images/projects/medina/gallery/exteriores/1.jpg', alt: 'Exterior 1' },
-            { src: 'images/projects/medina/gallery/exteriores/2.jpg', alt: 'Exterior 2' },
+            { src: 'images/projects/medina/gallery/exteriores/1.png', alt: 'Exterior 1' },
+            { src: 'images/projects/medina/gallery/exteriores/2.png', alt: 'Exterior 2' },
+            { src: 'images/projects/medina/gallery/exteriores/3.png', alt: 'Exterior 3' },
+            { src: 'images/projects/medina/gallery/exteriores/4.png', alt: 'Exterior 4' },
+            { src: 'images/projects/medina/gallery/exteriores/5.png', alt: 'Exterior 5' },
+            { src: 'images/projects/medina/gallery/exteriores/6.png', alt: 'Exterior 6' },
           ]
         },
         {
           label: 'Interiores',
           subtitle: 'Tu nuevo hogar',
           images: [
-            { src: 'images/projects/medina/gallery/interiores/1.jpg', alt: 'Interior 1' },
-            { src: 'images/projects/medina/gallery/interiores/2.jpg', alt: 'Interior 2' },
+            { src: 'images/projects/medina/gallery/exteriores/1.png', alt: 'Exterior 1' },
+            { src: 'images/projects/medina/gallery/exteriores/2.png', alt: 'Exterior 2' },
+            { src: 'images/projects/medina/gallery/exteriores/3.png', alt: 'Exterior 3' },
+            { src: 'images/projects/medina/gallery/exteriores/4.png', alt: 'Exterior 4' },
+            { src: 'images/projects/medina/gallery/exteriores/5.png', alt: 'Exterior 5' },
+            { src: 'images/projects/medina/gallery/exteriores/6.png', alt: 'Exterior 6' },
           ]
         }
       ]
     },
     video: {
-      type: 'iframe',
-      url: 'PLACEHOLDER_MEDINA_VIRTUAL_TOUR_URL',
-      title: 'Recorrido Virtual',
-      subtitle: 'Vive feliz y conoce nuestro nuevo proyecto Medina',
-      tabs: [
-        { label: 'Fachada', url: 'PLACEHOLDER_MEDINA_FACHADA_URL' }
-      ]
+      backgroundColor: '#c6824f',
+      textColor: '#FFFFFF',
+      url: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      type: 'youtube',
+      title: 'CONOCE PROYECTO MEDINA',
+      fallbackImage: 'images/projects/central/video-central.png',
+    },
+    virtualTour: {
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/medina/index.htm',
+      projectTitle: 'RECORRIDO VIRTUAL',
+      backgroundColor: '#605f4d',
+      textColor: '#FFFFFF',
     },
     quoter: {
       iframeUrl: '/apicotizador/medina/',
@@ -107,7 +132,9 @@ export class MedinaComponent {
       projectName: 'MEDINA'
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_MEDINA_GOOGLE_MAPS_EMBED',
+      backgroundColor: '#605f4d',
+      textColor: '#FFFFFF',
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.467838119167!2d-77.04230562408924!3d-12.080091488159296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8f1524b8a25%3A0x32fbddcd2bd65a3d!2sAv.%20Edgardo%20Rebagliati%20405%2C%20Jes%C3%BAs%20Mar%C3%ADa%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776205686064!5m2!1ses!2scl',
       address: 'Av. Edgardo Rebagliati 405, Jesús María, Lima'
     }
   };

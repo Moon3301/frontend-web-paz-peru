@@ -14,10 +14,16 @@ export class PatioLaPazComponent {
       projectName: 'Patio La Paz',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
       badge: 'En venta',
-      description: 'TODO: Descripción del proyecto Patio La Paz',
-      priceLine1: 'Depas con precio desde:',
-      priceFrom: 'TODO: S/ XXX,000*',
+      description: 'ENTREGA INMEDIATA',
+      priceLine1: 'TU DEPA DE 2 AMBIENTE CON CUOTAS DESDE',
+      priceFrom: 'S/ 2,633*',
       overlayColor: 'rgba(80, 70, 50, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#fab605',
+      descriptionColor: '#fff4cc',
+      priceLabelColor: '#fff4cc',
+      priceFromColor: '#fab605',
+      textPosition: { bottom: '15%' },
       slides: [
         { image: 'images/projects/patio-la-paz/1.jpg', alt: 'Patio La Paz - Fachada' },
       ]
@@ -125,8 +131,12 @@ export class PatioLaPazComponent {
       projectName: 'Patio La Paz'
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_PATIO_LA_PAZ_GOOGLE_MAPS_EMBED',
-      address: 'TODO: Dirección Patio La Paz, San Miguel, Lima'
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.4729547058646!2d-77.10877732408919!3d-12.079740388159653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cbd711b0a51d%3A0x46a0bd7cfc7a04f9!2sAv.%20La%20Paz%202551%2C%20Lima%2015087%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776207213516!5m2!1ses!2scl',
+      address: 'Av. La Paz 2551, San Miguel, Lima',
+      backgroundColor: '#231f20',
+      textColor: '#FFFFFF',
+      mapsUrl: 'https://maps.google.com/?q=Av.+La+Paz+2551,+San+Miguel,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Av+La+Paz+2551+San+Miguel+Lima&navigate=yes',
     }
   };
 }

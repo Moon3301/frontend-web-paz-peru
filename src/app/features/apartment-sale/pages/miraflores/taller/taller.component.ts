@@ -14,10 +14,16 @@ export class TallerComponent {
       projectName: 'Taller',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
       badge: 'En venta',
-      description: 'TODO: Descripción del proyecto Taller',
-      priceLine1: 'Depas con precio desde:',
-      priceFrom: 'TODO: S/ XXX,000*',
+      description: 'ENTREGA SEPTIEMBRE 2026',
+      priceLine1: 'TU DEPA DE 1 AMBIENTE CON PRECIO DESDE',
+      priceFrom: 'S/ 554,000*',
       overlayColor: 'rgba(60, 40, 30, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#c2304f',
+      descriptionColor: '#c2304f',
+      priceLabelColor: '#c2304f',
+      priceFromColor: '#c2304f',
+      textPosition: { bottom: '30%', left: '30%' },
       slides: [
         { image: 'images/projects/taller/banner-1.jpg', alt: 'Taller - Fachada' },
         { image: 'images/projects/taller/banner-2.jpg', alt: 'Taller - Vista exterior' },
@@ -107,13 +113,16 @@ export class TallerComponent {
       ]
     },
     quoter: {
-      projectId: 28,
+      projectId: 12,
       projectName: 'TALLER'
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_TALLER_GOOGLE_MAPS_EMBED',
-      address: 'Toribio Polo 450, Miraflores',
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.9888828479448!2d-77.04916432408885!3d-12.11291298812904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8373e3711ef%3A0x1b56a055bf7da94b!2sCa.%20Jos%C3%A9%20Toribio%20Polo%20450%2C%20Lima%2015074%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776206870503!5m2!1ses!2scl',
+      address: 'Ca. José Toribio Polo 450, Miraflores',
       backgroundColor: '#ece8dc',
+      textColor: '#161129',
+      mapsUrl: 'https://maps.google.com/?q=Ca.+Jos%C3%A9+Toribio+Polo+450,+Miraflores,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Ca+Jos%C3%A9+Toribio+Polo+450+Miraflores+Lima&navigate=yes',
     },
     video: {
       backgroundColor: '#ece8dc',

@@ -14,10 +14,16 @@ export class SerenaComponent {
       projectName: 'Serena',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
       badge: 'En venta',
-      description: 'TODO: Descripción del proyecto Serena',
-      priceLine1: 'Depas con precio desde:',
-      priceFrom: 'TODO: S/ XXX,000*',
+      description: 'ENTREGA INMEDIATA',
+      priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
+      priceFrom: 'S/ 439,000*',
       overlayColor: 'rgba(90, 110, 90, 0.75)',
+      textColor: '#ffffff',
+      badgeColor: '#ffd6d4',
+      descriptionColor: '#ffd6d4',
+      priceLabelColor: '#ffd6d4',
+      priceFromColor: '#ffd6d4',
+      textPosition: { bottom: '35%' },
       slides: [
         { image: 'images/projects/serena/1.jpg', alt: 'Serena - Fachada' },
         { image: 'images/projects/serena/2.jpg', alt: 'Serena - Vista exterior' },
@@ -127,11 +133,15 @@ export class SerenaComponent {
       textColor: '#FFFFFF',
     },
     ubication: {
-      mapEmbedUrl: 'PLACEHOLDER_SERENA_GOOGLE_MAPS_EMBED',
-      address: 'TODO: Dirección Serena, San Miguel, Lima'
+      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.2799138360874!2d-77.08243072408902!3d-12.092979888147434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c9596680071b%3A0xdb6ffe63c669d7a7!2sSerena%20-%20Paz%20Inmobiliaria!5e0!3m2!1ses!2scl!4v1776207060702!5m2!1ses!2scl',
+      address: 'Av. Bertolotto esquina Jirón Sucre Nros. 120-130 San Miguel',
+      backgroundColor: '#ec615b',
+      textColor: '#FFFFFF',
+      mapsUrl: 'https://maps.google.com/?q=Av.+Bertolotto+esquina+Jir%C3%B3n+Sucre+Nros.+120-130,+San+Miguel,+Lima,+Per%C3%BA',
+      wazeUrl: 'https://waze.com/ul?q=Av+Bertolotto+esquina+Jir%C3%B3n+Sucre+Nros+120-130+San+Miguel+Lima&navigate=yes',
     },
     quoter: {
-      projectId: 1,
+      projectId: 11,
       projectName: 'SERENA',
     },
   };

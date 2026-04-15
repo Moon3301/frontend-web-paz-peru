@@ -13,6 +13,14 @@
   text-align: center;
 }
 
+.apartment-specs__description {
+  padding: 0 12%;
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
 .project-stats__title {
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
