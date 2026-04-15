@@ -62,9 +62,9 @@ export interface QuotationResponse {
 export class QuoterService {
 
   /** Base URL de la API NestJS. Ajustar en producción. */
-  private readonly apiBase = 'http://localhost:3000/api';
+  private readonly apiBase = '/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Obtiene las unidades del proyecto agrupadas por dormitorios y tipología.
