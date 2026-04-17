@@ -64,7 +64,7 @@ export class QuoterService {
   private readonly environment = 'dev';
 
   /** Base URL de la API NestJS. Ajustar en producción. */
-  private readonly apiBase = this.environment === 'dev' ? 'http://localhost:3000/api' : '/api';
+  private readonly apiBase = '/api';
 
   constructor(private http: HttpClient) { }
 
