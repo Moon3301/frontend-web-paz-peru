@@ -15,10 +15,18 @@
     [config]="config.amenities">
   </app-amenities>
 
+  <!-- Cotizador: se renderiza solo si el proyecto tiene iframeUrl configurado -->
+  <app-quoter
+    *ngIf="config.quoter"
+    [config]="config.quoter">
+  </app-quoter>
+
   <app-gallery
     *ngIf="config.gallery"
     [config]="config.gallery">
   </app-gallery>
+
+  
 
   <app-virtual-tour
     *ngIf="config.virtualTour"
@@ -29,12 +37,6 @@
     *ngIf="config.video"
     [config]="config.video">
   </app-video>
-
-  <!-- Cotizador: se renderiza solo si el proyecto tiene iframeUrl configurado -->
-  <app-quoter
-    *ngIf="config.quoter"
-    [config]="config.quoter">
-  </app-quoter>
 
   <app-ubication
     *ngIf="config.ubication"

@@ -1,0 +1,26 @@
+:host { display: block; }
+
+.all-projects {
+  background: var(--color-darker);
+  min-height: 60vh;
+}
+
+.all-projects__header {
+  padding: var(--space-lg) var(--space-md) var(--space-md);
+  text-align: center;
+}
+
+.all-projects__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: #fff;
+  margin: 0 0 0.5rem;
+  font-weight: 300;
+}
+
+.all-projects__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}

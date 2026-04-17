@@ -13,7 +13,7 @@ export class RivaComponent {
       logo: 'images/logos/projects/logo-riva.webp',
       projectName: 'Riva',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ULTIMO MES DE PREVENTA',
       priceLine1: 'TU DEPA DE 2 AMBIENTES CON PRECIO DESDE',
       priceFrom: 'S/ 630,000*',
@@ -124,7 +124,7 @@ export class RivaComponent {
     virtualTour: {
       url: 'https://360.lumica3d.com/lumica3d/PAZ_DONOVAN/',
       projectTitle: 'RECORRIDO VIRTUAL',
-      backgroundColor: '#52273b',
+      backgroundColor: '#997b4f',
       textColor: '#FFFFFF',
     },
     ubication: {

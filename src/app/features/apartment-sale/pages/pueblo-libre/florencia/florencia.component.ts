@@ -13,7 +13,7 @@ export class FlorenciaComponent {
       logo: 'images/logos/projects/logo-florencia-1-2.webp',
       projectName: 'Florencia',
       district: 'DEPARTAMENTOS EN PUEBLO LIBRE',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 405,000*',

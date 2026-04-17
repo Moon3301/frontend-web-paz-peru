@@ -13,7 +13,7 @@ export class SaviaComponent {
       
       projectName: 'Savia',
       district: 'DEPARTAMENTOS EN PUEBLO LIBRE',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'TODO: Descripción del proyecto Savia',
       priceLine1: 'Depas con precio desde:',
       priceFrom: 'TODO: S/ XXX,000*',

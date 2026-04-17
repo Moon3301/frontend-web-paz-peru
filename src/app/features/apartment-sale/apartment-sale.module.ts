@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 import { ApartmentSaleRoutingModule } from './apartment-sale-routing.module';
 
@@ -14,6 +15,7 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { VideoComponent } from './components/video/video.component';
 import { UbicationComponent } from './components/ubication/ubication.component';
 import { ProjectPageComponent } from './components/project-page/project-page.component';
+import { ProjectsGridComponent } from './components/projects-grid/projects-grid.component';
 
 // Page components
 import { Lima15Component } from './pages/miraflores/lima15/lima15.component';
@@ -32,6 +34,8 @@ import { MedinaComponent } from './pages/jesus-maria/medina/medina.component';
 import { MatizComponent } from './pages/san-isidro/matiz/matiz.component';
 import { VirtualTourComponent } from './components/virtual-tour/virtual-tour.component';
 import { VideoModalComponent } from './components/video-modal/video-modal.component';
+import { AllProjectsComponent } from './pages/all-projects/all-projects.component';
+import { DistrictComponent } from './pages/district/district.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,7 @@ import { VideoModalComponent } from './components/video-modal/video-modal.compon
     UbicationComponent,
     ProjectPageComponent,
     VideoModalComponent,
+    ProjectsGridComponent,
     // Pages
     Lima15Component,
     RivaComponent,
@@ -61,11 +66,14 @@ import { VideoModalComponent } from './components/video-modal/video-modal.compon
     MedinaComponent,
     MatizComponent,
     VirtualTourComponent,
+    AllProjectsComponent,
+    DistrictComponent,
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    RouterModule,
     ApartmentSaleRoutingModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

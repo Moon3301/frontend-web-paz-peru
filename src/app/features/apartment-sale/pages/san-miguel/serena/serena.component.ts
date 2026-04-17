@@ -13,7 +13,7 @@ export class SerenaComponent {
       logo: 'images/logos/projects/logo-serena.webp',
       projectName: 'Serena',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 439,000*',
@@ -129,7 +129,7 @@ export class SerenaComponent {
       fallbackImage: 'images/projects/central/video-central.png',
     },
     virtualTour: {
-      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/central/index.htm',
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/serena/test/index.htm',
       projectTitle: 'RECORRIDO VIRTUAL',
       backgroundColor: '#ec615b',
       textColor: '#FFFFFF',

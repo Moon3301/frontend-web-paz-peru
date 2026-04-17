@@ -1,0 +1,24 @@
+<section class="district-page">
+
+  <!-- Header -->
+  <div class="district-page__header">
+    <span class="district-page__eyebrow">Departamentos en Venta</span>
+    <h1 class="district-page__title">{{ districtLabel }}</h1>
+  </div>
+
+  <!-- Projects grid -->
+  <apartment-projects-grid [projects]="projects" />
+
+  <!-- District map -->
+  <div class="district-page__map">
+    <h2 class="district-page__map-title">Nuestros proyectos en {{ districtLabel }}</h2>
+    <div class="district-page__map-img-wrapper">
+      <img
+        [src]="mapImage"
+        [alt]="'Mapa de proyectos en ' + districtLabel"
+        class="district-page__map-img"
+      />
+    </div>
+  </div>
+
+</section>

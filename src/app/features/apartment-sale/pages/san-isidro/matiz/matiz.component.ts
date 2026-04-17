@@ -13,7 +13,7 @@ export class MatizComponent {
       logo: 'images/logos/projects/logo-matiz-1-2.webp',
       projectName: 'Matiz',
       district: 'DEPARTAMENTOS EN SAN ISIDRO',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 727,000*',

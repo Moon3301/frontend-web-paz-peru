@@ -12,7 +12,7 @@ export class AmalfiComponent {
     hero: {
       projectName: 'Amalfi',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'TODO: Descripción del proyecto Amalfi',
       priceLine1: 'Depas con precio desde:',
       priceFrom: 'TODO: S/ XXX,000*',

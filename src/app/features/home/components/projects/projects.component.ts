@@ -19,6 +19,38 @@ export class ProjectsComponent {
 
   projects: HomeProject[] = [
     {
+      name: 'Marena',
+      district: 'San Miguel',
+      status: 'LANZAMIENTO',
+      image: '/images/projects/thumb-marena-home.png',
+      logo: '/images/logos/projects/logo-marena-1.svg',
+      link: '/apartment-sale/san-miguel/marena'
+    },
+    {
+      name: 'Lima 15',
+      district: 'Miraflores',
+      status: 'LANZAMIENTO',
+      image: '/images/projects/thumb-lima15-home.png',
+      logo: '/images/logos/projects/logo-lima-morado.svg',
+      link: '/apartment-sale/miraflores/lima-15'
+    },
+    {
+      name: 'Matiz',
+      district: 'San Isidro',
+      status: 'LANZAMIENTO',
+      image: '/images/projects/thumb-matiz-home.png',
+      logo: '/images/logos/projects/logo-matiz-transparent.png',
+      link: '/apartment-sale/san-isidro/matiz'
+    },
+    {
+      name: 'Riva',
+      district: 'Miraflores',
+      status: 'LANZAMIENTO',
+      image: '/images/projects/thumb-riva-home.jpg',
+      logo: '/images/logos/projects/logo-riva-1.png',
+      link: '/apartment-sale/miraflores/riva'
+    },
+    {
       name: 'Taller',
       district: 'Miraflores',
       status: 'PREVENTA',
@@ -89,14 +121,6 @@ export class ProjectsComponent {
       image: '/images/projects/thumb-savia-home.jpg',
       logo: '/images/logos/projects/logo-savia.svg',
       link: '/apartment-sale/pueblo-libre/savia'
-    },
-    {
-      name: 'Marena',
-      district: 'San Miguel',
-      status: 'LANZAMIENTO',
-      image: '/images/projects/thumb-marena-home.png',
-      logo: '/images/logos/projects/logo-marena-1.svg',
-      link: '/apartment-sale/san-miguel/marena'
     }
   ];
 }

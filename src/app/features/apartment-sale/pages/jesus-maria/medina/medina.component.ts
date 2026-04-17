@@ -14,7 +14,7 @@ export class MedinaComponent {
       projectName: 'Medina',
       district: 'DEPARTAMENTOS EN JESÚS MARÍA',
       badge: 'Lanzamiento',
-      description: 'EN CONSTRUCCION',
+      // description: 'EN CONSTRUCCION',
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/477,000*',
       overlayColor: 'rgba(76, 107, 82, 0.75)',

@@ -13,7 +13,7 @@ export class RealComponent {
       // logo: 'images/logos/projects/logo-real.webp',
       projectName: 'Real',
       district: 'DEPARTAMENTOS EN LA VICTORIA',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'TODO: Descripción del proyecto Real',
       priceLine1: 'Depas con precio desde:',
       priceFrom: 'TODO: S/ XXX,000*',

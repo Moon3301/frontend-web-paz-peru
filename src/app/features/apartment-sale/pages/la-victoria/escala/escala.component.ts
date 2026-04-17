@@ -114,17 +114,18 @@ export class EscalaComponent {
     },
     video: {
       url: 'https://www.youtube.com/embed/j2mJQ6IVg9U',
+      fallbackImage: 'images/projects/central/video-central.png',
       type: 'iframe',
       title: 'CONOCE PROYECTO ESCALA',
       backgroundColor: '#b2e1d8',
       textColor: '#FFFFFF',
     },
-    // virtualTour: {
-    //   url: 'https://storage.net-fs.com/hosting/6359227/0/',
-    //   projectTitle: 'RECORRIDO VIRTUAL',
-    //   backgroundColor: '#b2e1d8',
-    //   textColor: '#FFFFFF',
-    // },
+    virtualTour: {
+      url: 'https://storage.net-fs.com/hosting/6359227/0/',
+      projectTitle: 'RECORRIDO VIRTUAL',
+      backgroundColor: '#b2e1d8',
+      textColor: '#FFFFFF',
+    },
     quoter: {
       projectId: 1,
       projectName: 'Escala',

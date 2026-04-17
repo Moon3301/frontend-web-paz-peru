@@ -1,0 +1,159 @@
+:host { display: block; }
+
+.apg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.apg-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.apg-card:hover .apg-img {
+  transform: scale(1.06);
+  filter: brightness(0.5);
+}
+
+.apg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.55s ease, filter 0.4s ease;
+  filter: brightness(0.75);
+}
+
+.apg-status {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 1rem 0.35rem;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.apg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.05) 50%, transparent 100%);
+  transition: background 0.4s ease;
+}
+
+.apg-card:hover .apg-overlay {
+  background: rgba(0,0,0,0.45);
+  align-items: center;
+}
+
+.apg-default {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.25rem 1rem 1.25rem 2.5rem;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.apg-card:hover .apg-default {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+}
+
+.apg-district {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-weight: 300;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+  margin: 0;
+}
+
+.apg-name {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1.2vw, 1rem);
+  font-weight: 600;
+  color: rgba(255,255,255,0.85);
+  margin: 0.2rem 0 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.apg-hover {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+  pointer-events: none;
+  padding: 1rem;
+}
+
+.apg-card:hover .apg-hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.apg-logo {
+  max-width: 180px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  display: block;
+}
+
+.apg-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.8);
+  padding: 0.45rem 1rem;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.apg-card:hover .apg-cta:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 1024px) {
+  .apg-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .apg-grid { grid-template-columns: 1fr; }
+  .apg-card { aspect-ratio: 4 / 3; }
+}

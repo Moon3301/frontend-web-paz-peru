@@ -54,7 +54,7 @@ export class MarenaComponent {
       projectName: 'Marena',
       projectSubtitle: 'DEPARTAMENTOS EN SAN MIGUEL',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
-      brochureUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
+      brochureUrl: 'docs/brochures/marena.pdf',
       amenityIcons: [
         // { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         // { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },

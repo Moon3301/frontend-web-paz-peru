@@ -384,3 +384,59 @@
     height: 36px;
   }
 }
+
+/* District links in dropdown */
+.paz-header__dropdown-district {
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.paz-header__dropdown-district:hover {
+  color: var(--color-primary, #9b6fa0);
+}
+
+/* Ver todos footer link */
+.paz-header__dropdown-footer {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 0.75rem 1.5rem;
+  text-align: right;
+}
+.paz-header__dropdown-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-primary, #9b6fa0);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.paz-header__dropdown-all:hover { opacity: 0.75; }
+
+/* Mobile district links */
+.paz-header__mobile-district {
+  display: block;
+  padding: 0.55rem 1.5rem 0.2rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--color-primary, #9b6fa0);
+  text-decoration: none;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}
+.paz-header__mobile-all {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-primary, #9b6fa0);
+  text-decoration: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 0.5rem;
+}

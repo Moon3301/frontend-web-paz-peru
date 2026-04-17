@@ -13,7 +13,7 @@ export class TallerComponent {
       logo: 'images/logos/projects/logo-taller.webp',
       projectName: 'Taller',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ENTREGA SEPTIEMBRE 2026',
       priceLine1: 'TU DEPA DE 1 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 554,000*',

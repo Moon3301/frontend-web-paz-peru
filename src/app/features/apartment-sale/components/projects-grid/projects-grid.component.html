@@ -1,0 +1,26 @@
+<div class="apg-grid">
+  <a
+    *ngFor="let p of projects"
+    [routerLink]="p.link"
+    class="apg-card"
+    [attr.aria-label]="p.name + ' — ' + p.district"
+  >
+    <span class="apg-status">{{ p.status }}</span>
+    <img [src]="p.image" [alt]="p.name + ' ' + p.district" class="apg-img" loading="lazy" />
+    <div class="apg-overlay">
+      <div class="apg-default">
+        <h3 class="apg-district">{{ p.district }}</h3>
+        <p class="apg-name">{{ p.name }}</p>
+      </div>
+      <div class="apg-hover">
+        <img [src]="p.logo" [alt]="'Logo ' + p.name" class="apg-logo" />
+        <span class="apg-cta">
+          CONÓCELO AQUÍ
+          <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </a>
+</div>

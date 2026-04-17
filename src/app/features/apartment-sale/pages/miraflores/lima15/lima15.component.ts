@@ -13,7 +13,7 @@ export class Lima15Component {
       logo: 'images/logos/projects/logo-lima.webp',
       projectName: 'Lima 15',
       district: 'DEPARTAMENTOS EN MIRAFLORES',
-      badge: 'LANZAMIENTO',
+      // badge: 'LANZAMIENTO',
       description: 'TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:',
       priceFrom: 'S/ 678,000*',
       overlayColor: 'rgba(98, 62, 75, 0.75)',

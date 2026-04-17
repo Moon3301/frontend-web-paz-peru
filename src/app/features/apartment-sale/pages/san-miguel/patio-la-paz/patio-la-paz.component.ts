@@ -13,7 +13,7 @@ export class PatioLaPazComponent {
       logo: 'images/logos/projects/logo-patio-la-paz.webp',
       projectName: 'Patio La Paz',
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
-      badge: 'En venta',
+      // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON CUOTAS DESDE',
       priceFrom: 'S/ 2,633*',
