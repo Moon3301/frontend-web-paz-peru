@@ -111,20 +111,20 @@ export class MarenaComponent {
         }
       ]
     },
-    // video: {
-    //   backgroundColor: '#ec615b',
-    //   textColor: '#FFFFFF',
-    //   url: 'https://www.youtube.com/embed/lvL6jsWh79s',
-    //   type: 'youtube',
-    //   title: 'CONOCE PROYECTO MARENA',
-    //   fallbackImage: 'images/projects/central/video-central.png',
-    // },
-    // virtualTour: {
-    //   url: 'https://360.nerdstudio.pe/recorridovirtual/paz/amalfi/index.htm',
-    //   projectTitle: 'RECORRIDO VIRTUAL',
-    //   backgroundColor: '#2d5066',
-    //   textColor: '#dcd0c9',
-    // },
+    video: {
+      backgroundColor: '#2d5066',
+      textColor: '#FFFFFF',
+      url: 'https://www.youtube.com/embed/uZ1Hy4yBmIM',
+      type: 'youtube',
+      title: 'CONOCE PROYECTO MARENA',
+      fallbackImage: 'images/projects/central/video-central.png',
+    },
+    virtualTour: {
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/amalfi/index.htm',
+      projectTitle: 'RECORRIDO VIRTUAL',
+      backgroundColor: '#2d5066',
+      textColor: '#dcd0c9',
+    },
     quoter: {
       projectId: 28,
       projectName: 'MARENA',
