@@ -34,15 +34,15 @@ export class AmalfiComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/amalfi/icons/2.svg',
-        label: '17 pisos'
+        label: 'Desde 49m2 hasta 104m2'
       },
       location: {
         icon: 'images/projects/amalfi/icons/3.svg',
-        label: 'Desde: 36.98m2 Hasta: 135.46m2'
+        label: 'Av. Costanera 2560, San Miguel'
       },
       commonAreasLabel: {
         icon: 'images/projects/amalfi/icons/1.svg',
-        label: '1, 2 y 3 Dormitorios'
+        label: 'Para toda la familia'
       }
     },
     specs: {
@@ -59,21 +59,21 @@ export class AmalfiComponent {
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
         { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
-      description: 'Condominio Amalfi está ubicado en la Av. Costanera cdra. 25 San Miguel. Una elegante torre en forma de T que se levanta frente al mar. Con 17 pisos y 279 departamentos, el cual es único en su estilo, pues permite que la mayoría de departamentos tengan vista hacia el océano Pacífico. Navega hacia tu nuevo estilo de vida, descubre en Condominio Amalfi un espacio único, un proyecto que va más allá de sus departamentos, y en el que podrás vivir como dentro de un club, con áreas comunes, la vista y los espacios que te permitirán vivir siempre, como de vacaciones.',
+      description: 'Condominio Amalfi redefine tu estilo de vida frente al mar, ofreciendo vistas privilegiadas y una experiencia tipo club, con áreas comunes que te permiten disfrutar cada día como si estuvieras de vacaciones.',
       floors: '17 pisos',
-      unitTypes: '1, 2 y 3 Dormitorios',
-      areaRange: 'Desde: 36.98m2 Hasta: 135.46m2'
+      unitTypes: '3 ambientes',
+      areaRange: 'Desde: 49m2 Hasta: 104m2'
     },
     amenities: {
       backgroundColor: '#dcd0c9',
       textColor: '#2d5066',
       items: [
-        { icon: 'images/projects/amalfi/icons/icono-salakids-amalfi.svg', label: 'KIDS ROOM' },
-        { icon: 'images/projects/amalfi/icons/icono-parrilla-amalfi.svg', label: 'BBQ ZONE' },
-        { icon: 'images/projects/amalfi/icons/icono-coworking-amalfi.svg', label: 'COWORKING' },
-        { icon: 'images/projects/amalfi/icons/icono-piscina-amalfi.svg', label: 'PISCINA' },
-        { icon: 'images/projects/amalfi/icons/icono-gimnasio-amalfi.svg', label: 'GYM' },
-        { icon: 'images/projects/amalfi/icons/icono-salabar-amalfi.svg', label: 'SALA BAR' },
+        // { icon: 'images/projects/amalfi/icons/icono-salakids-amalfi.svg', label: 'KIDS ROOM' },
+        // { icon: 'images/projects/amalfi/icons/icono-parrilla-amalfi.svg', label: 'BBQ ZONE' },
+        // { icon: 'images/projects/amalfi/icons/icono-coworking-amalfi.svg', label: 'COWORKING' },
+        // { icon: 'images/projects/amalfi/icons/icono-piscina-amalfi.svg', label: 'PISCINA' },
+        // { icon: 'images/projects/amalfi/icons/icono-gimnasio-amalfi.svg', label: 'GYM' },
+        // { icon: 'images/projects/amalfi/icons/icono-salabar-amalfi.svg', label: 'SALA BAR' },
       ]
     },
     gallery: {
@@ -95,7 +95,8 @@ export class AmalfiComponent {
         {
           label: 'Exteriores',
           images: [
-            { src: 'images/projects/amalfi/gallery/exteriores/1.jpg' },
+            { src: 'images/projects/amalfi/gallery/exteriores/1.webp' },
+            { src: 'images/projects/amalfi/gallery/exteriores/2.webp' }
           ]
         },
         {
@@ -129,7 +130,7 @@ export class AmalfiComponent {
     },
     ubication: {
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3901.455105341643!2d-77.10708393791298!3d-12.080965167273371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAv.%20Costanera%20cdra.25%2C%20San%20Miguel.!5e0!3m2!1ses!2scl!4v1776207349513!5m2!1ses!2scl',
-      address: 'Av. Costanera cdra.25, San Miguel',
+      address: 'Av. Costanera 2560, San Miguel',
       backgroundColor: '#3e6d81',
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Av.+Costanera+cdra.25,+San+Miguel,+Lima,+Per%C3%BA',

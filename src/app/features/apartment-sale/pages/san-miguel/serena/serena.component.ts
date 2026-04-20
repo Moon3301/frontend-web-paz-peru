@@ -15,6 +15,16 @@ export class SerenaComponent {
       district: 'DEPARTAMENTOS EN SAN MIGUEL',
       // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
+      descriptionStyle: {
+        fontSize: '2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.2rem',
+        fontWeight: '800',
+      },
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 439,000*',
       overlayColor: 'rgba(90, 110, 90, 0.75)',
@@ -35,11 +45,11 @@ export class SerenaComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/serena/icons/departamentos.svg',
-        label: 'Desde 35m2 hasta 155 m2'
+        label: 'Desde 56m2 hasta 121 m2'
       },
       location: {
         icon: 'images/projects/serena/icons/ubicacion.svg',
-        label: 'Av. Bertolotto esquina Jirón Sucre Nros. 120-130 San Miguel'
+        label: 'Av. Bertolotto 390 - San Miguel'
       },
       commonAreasLabel: {
         icon: 'images/projects/serena/icons/areas-comunes.svg',
@@ -57,13 +67,13 @@ export class SerenaComponent {
       videoUrl: 'https://www.youtube.com/embed/CHby76_dqbI',
       amenityIcons: [
         { icon: 'images/projects/serena/icons/lobby.svg', label: 'Lobby' },
-        { icon: 'images/projects/serena/icons/gym.svg', label: 'Gimnasio' },
-        { icon: 'images/projects/serena/icons/grill.svg', label: 'Zona de parrilla' },
+        { icon: 'images/projects/serena/icons/gimnasio.svg', label: 'Gimnasio' },
+        { icon: 'images/projects/serena/icons/area-parrillas.svg', label: 'Zona de parrilla' },
         { icon: 'images/projects/serena/icons/coworking.svg', label: 'Coworking' },
       ],
       floors: '17 pisos + Azotea',
-      unitTypes: 'Flats y Duplex 1, 2 y 3 ambientes.',
-      areaRange: 'Desde 35m2 hasta 155 m2'
+      unitTypes: 'Flats y Duplex 2 y 3 ambientes.',
+      areaRange: 'Desde 56m2 hasta 121 m2'
     },
     amenities: {
       backgroundColor: '#ec615b',
@@ -126,14 +136,14 @@ export class SerenaComponent {
       url: 'https://www.youtube.com/embed/CHby76_dqbI',
       type: 'youtube',
       title: 'CONOCE PROYECTO SERENA',
-      fallbackImage: 'images/projects/central/video-central.png',
+      fallbackImage: 'images/projects/serena/video-serena.jpg',
     },
-    virtualTour: {
-      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/serena/test/index.htm',
-      projectTitle: 'RECORRIDO VIRTUAL',
-      backgroundColor: '#ec615b',
-      textColor: '#FFFFFF',
-    },
+    // virtualTour: {
+    //   url: 'https://360.nerdstudio.pe/recorridovirtual/paz/serena/test/index.htm',
+    //   projectTitle: 'RECORRIDO VIRTUAL',
+    //   backgroundColor: '#ec615b',
+    //   textColor: '#FFFFFF',
+    // },
     ubication: {
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.2799138360874!2d-77.08243072408902!3d-12.092979888147434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c9596680071b%3A0xdb6ffe63c669d7a7!2sSerena%20-%20Paz%20Inmobiliaria!5e0!3m2!1ses!2scl!4v1776207060702!5m2!1ses!2scl',
       address: 'Av. Bertolotto esquina Jirón Sucre Nros. 120-130 San Miguel',

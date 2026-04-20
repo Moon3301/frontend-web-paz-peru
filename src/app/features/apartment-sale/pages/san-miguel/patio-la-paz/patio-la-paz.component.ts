@@ -18,12 +18,23 @@ export class PatioLaPazComponent {
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON CUOTAS DESDE',
       priceFrom: 'S/ 2,633*',
       overlayColor: 'rgba(80, 70, 50, 0.75)',
+      descriptionStyle: {
+        fontSize: '2.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+        marginTop: '20px'
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.8rem',
+        fontWeight: '700',
+      },
       textColor: '#ffffff',
       badgeColor: '#fab605',
       descriptionColor: '#fff4cc',
       priceLabelColor: '#fff4cc',
       priceFromColor: '#fab605',
-      textPosition: { bottom: '15%' },
+      textPosition: { bottom: '10%' },
       slides: [
         { image: 'images/projects/patio-la-paz/1.jpg', alt: 'Patio La Paz - Fachada' },
       ]
@@ -33,15 +44,15 @@ export class PatioLaPazComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/patio-la-paz/icons/cuadrado.png',
-        label: 'De 1, 2 y 3 dormitorios desde 40 m2'
+        label: 'Desde 40m2 hasta 114m2'
       },
       location: {
         icon: 'images/projects/patio-la-paz/icons/map.png',
-        label: 'Avenida La Paz 2551 San Miguel'
+        label: 'Av. La Paz 2551 San Miguel'
       },
       commonAreasLabel: {
         icon: 'images/projects/patio-la-paz/icons/casita.png',
-        label: 'Para toda la familia'
+        label: 'Para disfrutar en familia'
       }
     },
     specs: {
@@ -59,9 +70,9 @@ export class PatioLaPazComponent {
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
         { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
-      floors: '15 pisos',
+      floors: '12 pisos',
       unitTypes: '1, 2 y 3 dormitorios',
-      areaRange: 'Desde 40 m2 hasta 150 m2'
+      areaRange: 'Desde 40 m2 hasta 114 m2'
     },
     amenities: {
       backgroundColor: '#ffffff',

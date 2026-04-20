@@ -22,7 +22,12 @@ export class ContactComponent {
     'Galia — Miraflores',
     'Escala — Santa Catalina',
     'Medina — Jesús María',
-    'Matiz — San Isidro'
+    'Matiz — San Isidro',
+    'Pergola - Jesus Maria',
+    'Piazza - Pueblo Libre',
+    'Riva - Miraflores',
+    'Lima 15 - Miraflores',
+    'Marena - San Miguel'
   ];
 
   readonly horarios = [

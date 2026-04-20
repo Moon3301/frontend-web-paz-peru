@@ -19,6 +19,18 @@ export class TallerComponent {
       priceFrom: 'S/ 554,000*',
       overlayColor: 'rgba(60, 40, 30, 0.75)',
       textColor: '#ffffff',
+      descriptionStyle: {
+        fontSize: '1.6rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+        marginBottom: '35px'
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.8rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
       badgeColor: '#c2304f',
       descriptionColor: '#c2304f',
       priceLabelColor: '#c2304f',
@@ -36,7 +48,7 @@ export class TallerComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'svg/icons/area.svg',
-        label: 'Desde 44 m2 hasta 154 m2'
+        label: 'Desde 47 m2 hasta 122 m2'
       },
       location: {
         icon: 'svg/icons/location.svg',
@@ -60,8 +72,8 @@ export class TallerComponent {
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
       ],
       floors: '13 pisos + azotea',
-      unitTypes: '1, 2 y 3 ambientes',
-      areaRange: 'Desde 44 m2 hasta 154 m2',
+      unitTypes: 'Flats y Dúplex 1, 2 y 3 ambientes',
+      areaRange: 'Desde 47 m2 hasta 122 m2',
       backgroundColor: '#afcdc1',
       textColor: '#161129',
     },
@@ -131,7 +143,7 @@ export class TallerComponent {
       url: 'https://www.youtube.com/embed/35BMHYaqVHg',
       type: 'youtube',
       title: 'CONOCE PROYECTO TALLER',
-      fallbackImage: 'images/projects/taller/img-video.jpg',
+      fallbackImage: 'images/projects/taller/video-taller.jpg',
     },
     virtualTour: {
       url: 'https://360.nerdstudio.pe/recorridovirtual/paz/taller/index.htm',

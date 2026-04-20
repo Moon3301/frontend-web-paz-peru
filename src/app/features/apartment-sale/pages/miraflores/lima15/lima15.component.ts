@@ -18,6 +18,17 @@ export class Lima15Component {
       priceFrom: 'S/ 678,000*',
       overlayColor: 'rgba(98, 62, 75, 0.75)',
       textColor: '#ffffff',
+      descriptionStyle: {
+        fontSize: '1.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.5rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
       badgeColor: '#CA995E',
       descriptionColor: '#f0dfc0',
       priceLabelColor: '#f0dfc0',
@@ -32,7 +43,7 @@ export class Lima15Component {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/lima15/icons/departamento.svg',
-        label: 'Desde 81 m2 hasta 149 m2'
+        label: 'Desde 81 m2 hasta 199 m2'
       },
       location: {
         icon: 'images/projects/lima15/icons/ubicacion.svg',
@@ -54,8 +65,8 @@ export class Lima15Component {
         { icon: 'svg/icons/coworking.svg', label: 'Coworking' },
       ],
       floors: '11 pisos + Azotea',
-      unitTypes: '1, 2 y 3 ambientes',
-      areaRange: 'Desde 81 m2 hasta 149 m2',
+      unitTypes: 'Flats y duplex de 2 y 3 ambientes',
+      areaRange: 'Desde 81 m2 hasta 199 m2',
       logo: 'images/logos/projects/logo-lima-morado.svg',
       brochureUrl: 'docs/brochures/lima-15.pdf',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
@@ -90,8 +101,7 @@ export class Lima15Component {
         {
           label: 'Exteriores',
           images: [
-            { src: 'images/projects/lima15/gallery/exteriores/1.jpg' },
-            { src: 'images/projects/lima15/gallery/exteriores/2.jpg' },
+            { src: 'images/projects/lima15/gallery/exteriores/1.webp' }
           ]
         },
         {
@@ -125,7 +135,7 @@ export class Lima15Component {
       url: 'https://www.youtube.com/embed/WzLVR52J6xw',
       type: 'youtube',
       title: 'CONOCE PROYECTO LIMA 15',
-      fallbackImage: 'images/projects/central/video-central.png',
+      fallbackImage: 'images/projects/lima15/video-lima.jpg',
     },
     virtualTour: {
       url: 'https://360.nerdstudio.pe/recorridovirtual/paz/lima15/ac/index.htm',

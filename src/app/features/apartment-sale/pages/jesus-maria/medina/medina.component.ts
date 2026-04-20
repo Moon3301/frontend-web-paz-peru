@@ -18,6 +18,21 @@ export class MedinaComponent {
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/477,000*',
       overlayColor: 'rgba(76, 107, 82, 0.75)',
+      badgeStyle: {
+        fontSize: '2.5rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      descriptionStyle: {
+        fontSize: '2.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '3rem',
+        fontWeight: '700',
+      },
       textColor: '#ffffff',
       badgeColor: '#ffffff',
       descriptionColor: '#f1e7d5',
@@ -29,7 +44,6 @@ export class MedinaComponent {
       ]
     },
     stats: {
-      
       backgroundColor: '#f1e7d5',
       sectionTitle: 'Descubre cada detalle de este gran proyecto',
       areaRange: {

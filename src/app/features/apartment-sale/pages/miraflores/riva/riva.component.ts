@@ -20,6 +20,17 @@ export class RivaComponent {
       overlayColor: 'rgba(60, 90, 100, 0.75)',
       textColor: '#ffffff',
       badgeColor: '#997b4f',
+      descriptionStyle: {
+        fontSize: '1.6rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.8rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
       descriptionColor: '#f0ebe0',
       priceLabelColor: '#d1cbb8',
       priceFromColor: '#c8a24a',
@@ -33,7 +44,7 @@ export class RivaComponent {
       backgroundColor: '#d1cbb8',
       areaRange: {
         icon: 'images/projects/riva/icons/departamentos.svg',
-        label: 'Desde 60 m2 hasta 150 m2'
+        label: 'Desde 60 m2 hasta 172 m2'
       },
       location: {
         icon: 'images/projects/riva/icons/ubicacion.svg',
@@ -59,8 +70,8 @@ export class RivaComponent {
         { icon: 'images/projects/riva/icons/metrajes.svg', label: 'Metrajes' },
       ],
       floors: '12 pisos + Azotea',
-      unitTypes: 'Flats y Dúplex 1, 2 y 3 ambientes.',
-      areaRange: 'Desde 60 m2 hasta 150 m2'
+      unitTypes: 'Flats y Dúplex 2 y 3 ambientes.',
+      areaRange: 'Desde 60 m2 hasta 172 m2'
     },
     amenities: {
       backgroundColor: '#997b4f',
@@ -119,7 +130,7 @@ export class RivaComponent {
       url: 'https://www.youtube.com/embed/q3BmBjGt-p8',
       type: 'youtube',
       title: 'CONOCE PROYECTO RIVA',
-      fallbackImage: 'images/projects/central/video-central.png',
+      fallbackImage: 'images/projects/riva/video-riva.jpg',
     },
     virtualTour: {
       url: 'https://360.lumica3d.com/lumica3d/PAZ_DONOVAN/',

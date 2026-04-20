@@ -17,12 +17,28 @@ export class CentralComponent {
       description: 'TU DEPA DE 3 AMBIENTES CON PRECIO DESDE',
       priceFrom: 'S/ 764,000*',
       overlayColor: 'rgba(178, 140, 173, 0.5)',
+      badgeStyle: {
+        fontSize: '2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      descriptionStyle: {
+        fontSize: '1.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '4rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
       textColor: '#161129',
-      badgeColor: '#b53b8f',
-      descriptionColor: '#3a1e5a',
-      priceLabelColor: '#5a3a7a',
-      priceFromColor: '#9d1f6b',
-      textPosition: { bottom: '35%' },
+      badgeColor: '#161129',
+      descriptionColor: '#e20b40',
+      priceLabelColor: '#161129',
+      priceFromColor: '#161129',
+      textPosition: { bottom: '15%' },
       slides: [
         { image: 'images/projects/central/hero-1.jpg', alt: 'Central - Fachada' },
         { image: 'images/projects/central/hero-2.jpg', alt: 'Central - Vista exterior' },
@@ -33,7 +49,7 @@ export class CentralComponent {
       sectionTitle: 'DESCUBRE CADA DETALLE DE ESTE GRAN PROYECTO EN MIRAFLORES',
       areaRange: {
         icon: 'images/projects/central/icons/depart.png',
-        label: 'Desde 59m2 hasta 128m2'
+        label: 'Desde 85m2 hasta 86m2'
       },
       location: {
         icon: 'images/projects/central/icons/map.png',
@@ -55,8 +71,8 @@ export class CentralComponent {
         { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
       ],
       floors: 'Flats y Dúplex',
-      unitTypes: '1, 2 y 3 Dormitorios',
-      areaRange: 'Desde 59m2 hasta 128m2',
+      unitTypes: '3 Ambientes',
+      areaRange: 'Desde 85m2 hasta 86m2',
       amenities: 'Coworking, gimnasio, lavandería, sala bar, área de parrillas, piscina con deck y estacionamiento de bicicletas.',
       logo: 'images/logos/projects/logo-central.png',
       brochureUrl: 'docs/brochures/central.pdf',
@@ -96,12 +112,9 @@ export class CentralComponent {
           label: 'Exteriores',
           subtitle: 'Modernos, acogedores, cómodos y multifuncionales, en Central tu departamento hablará por ti, disfruta cada espacio, pensado en darte lo mejor.',
           images: [
-            { src: 'images/projects/central/gallery/exteriores/1.jpg' },
-            { src: 'images/projects/central/gallery/exteriores/2.jpg' },
-            { src: 'images/projects/central/gallery/exteriores/3.jpg' },
-            { src: 'images/projects/central/gallery/exteriores/4.jpg' },
-            { src: 'images/projects/central/gallery/exteriores/5.jpg' },
-            { src: 'images/projects/central/gallery/exteriores/6.jpg' },
+            { src: 'images/projects/central/gallery/exteriores/1.webp' },
+            { src: 'images/projects/central/gallery/exteriores/2.webp' },
+            { src: 'images/projects/central/gallery/exteriores/3.webp' },
           ]
         },
         {

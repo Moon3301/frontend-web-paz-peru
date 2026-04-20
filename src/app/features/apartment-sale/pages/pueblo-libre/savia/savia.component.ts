@@ -33,15 +33,15 @@ export class SaviaComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/savia/icons/icono-pisos.svg',
-        label: '27 pisos +Azotea'
+        label: 'Desde 63m2 hasta 77m2'
       },
       location: {
         icon: 'images/projects/savia/icons/icono-metraje.svg',
-        label: 'Desde: 39.82m2 Hasta: 140.38m2'
+        label: 'Av. Brasil 1470, Pueblo Libre'
       },
       commonAreasLabel: {
         icon: 'images/projects/savia/icons/icono-dormitorios.svg',
-        label: '1-3 Dormitorios'
+        label: 'Para disfrutar'
       }
     },
     specs: {
@@ -50,7 +50,7 @@ export class SaviaComponent {
       interiorImage: 'images/projects/savia/specs/interior.png',
       projectName: 'Savia',
       projectSubtitle: 'DEPARTAMENTOS EN PUEBLO LIBRE',
-      description: 'Cuando buscamos donde vivir, queremos un lugar que nos de paz, que tenga estilo y por ello nos esforzamos por encontrar ese espacio ideal, que este se convierta en nuestro hogar. Sabiendo esto, Paz Inmobiliaria, presenta Savia, un proyecto ubicado en la Av. Brasil - Pueblo Libre (Límite con Jesús María), el cual reúne todo lo que buscamos para despertar cada día en un lugar en que soñamos.',
+      description: 'El edificio Savia reúne todo lo necesario para despertar cada día en el lugar con el que siempre soñaste, con una ubicación estratégica en Av. Brasil, cerca de centros comerciales, supermercados y restaurantes.',
       amenityIcons: [
         // { icon: 'svg/icons/lobby.svg', label: 'Lobby' },
         // { icon: 'svg/icons/gym.svg', label: 'Gimnasio' },
@@ -58,8 +58,8 @@ export class SaviaComponent {
         // { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
       floors: '27 pisos + Azotea',
-      unitTypes: '1, 2 y 3 dormitorios',
-      areaRange: 'Desde 39.82m2 hasta 140.38m2',
+      unitTypes: '3 ambientes',
+      areaRange: 'Desde 63m2 hasta 77m2',
       brochureUrl: 'docs/brochures/savia.pdf',
       videoUrl: 'https://www.youtube.com/embed/lvL6jsWh79s',
     },

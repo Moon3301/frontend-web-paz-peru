@@ -17,16 +17,16 @@
            Cada proyecto puede sobreescribir con textPosition en HeroConfig. -->
       <div class="hero__logo-text" [ngStyle]="getTextPositionStyle()">
         <span class="hero__badge"
-              [style.color]="badgeColor"
+              [ngStyle]="getElementStyle(badgeColor, config.badgeStyle)"
               *ngIf="config.badge">{{ config.badge }}</span>
         <p class="hero__description"
-           [style.color]="descriptionColor"
+           [ngStyle]="getElementStyle(descriptionColor, config.descriptionStyle)"
            *ngIf="config.description">{{ config.description }}</p>
         <p class="hero__price-label"
-           [style.color]="priceLabelColor"
+           [ngStyle]="getElementStyle(priceLabelColor, config.priceLabelStyle)"
            *ngIf="config.priceLine1">{{ config.priceLine1 }}</p>
         <p class="hero__price-from"
-           [style.color]="priceFromColor"
+           [ngStyle]="getElementStyle(priceFromColor, config.priceFromStyle)"
            *ngIf="config.priceFrom">{{ config.priceFrom }}</p>
       </div>
     </div>

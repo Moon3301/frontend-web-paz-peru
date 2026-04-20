@@ -19,11 +19,21 @@ export class FlorenciaComponent {
       priceFrom: 'S/ 405,000*',
       overlayColor: 'rgba(120, 60, 20, 0.75)',
       textColor: '#ffffff',
+      descriptionStyle: {
+        fontSize: '2.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.8rem',
+        fontWeight: '700',
+      },
       badgeColor: '#ffffff',
       descriptionColor: '#c8f5c4',
       priceLabelColor: '#c8f5c4',
-      priceFromColor: '#ffffff',
-      textPosition: { bottom: '40%' },
+      priceFromColor: '#c8f5c4',
+      textPosition: { bottom: '30%' },
       slides: [
         { image: 'images/projects/florencia/1.jpg', alt: 'Florencia - Fachada' },
         { image: 'images/projects/florencia/2.jpg', alt: 'Florencia - Vista exterior' },
@@ -34,11 +44,11 @@ export class FlorenciaComponent {
       textColor: '#FFFFFF',
       areaRange: {
         icon: 'images/projects/florencia/icons/map.png',
-        label: 'Av. Mariano Cornejo n°1455, Pueblo Libre'
+        label: 'Av. Mariano Cornejo 1455, Pueblo Libre'
       },
       location: {
         icon: 'images/projects/florencia/icons/depart.png',
-        label: 'Desde 32 m2 hasta 160m2'
+        label: 'Desde 57 m2 hasta 166m2'
       },
       commonAreasLabel: {
         icon: 'images/projects/florencia/icons/piscina.png',
@@ -58,20 +68,22 @@ export class FlorenciaComponent {
         // { icon: 'svg/icons/grill.svg', label: 'Zona de parrilla' },
         // { icon: 'svg/icons/meeting-room.svg', label: 'Sala de reuniones' },
       ],
-      floors: '1, 2 y 3 Dormitorios',
-      unitTypes: 'Flats y Dúplex',
-      areaRange: 'Desde 32m2 hasta 160m2',
+      floors: '22 Pisos',
+      unitTypes: 'Flats y Dúplex de 2 y 3 ambientes',
+      areaRange: 'Desde 57m2 hasta 166m2',
 
     },
     amenities: {
       backgroundColor: '#fc6954',
       textColor: '#FFFFFF',
-      title: 'Espacios que florecen - áreas comunes',
+      title: 'Espacios para compartir - áreas comunes',
       items: [
         { icon: 'images/projects/florencia/icons/piscina.svg', label: 'PISCINA' },
         { icon: 'images/projects/florencia/icons/parrilla.svg', label: 'PARRILLA' },
         { icon: 'images/projects/florencia/icons/gimnasio.svg', label: 'GIMNASIO' },
         { icon: 'images/projects/florencia/icons/smart-coffe.svg', label: 'SMART COFFEE' },
+        { icon: 'images/projects/florencia/icons/sala-bar.svg', label: 'SALA BAR' },
+        { icon: 'images/projects/florencia/icons/icono-salakids.svg', label: 'KIDS ROOM' },
       ]
     },
     gallery: {
@@ -94,7 +106,10 @@ export class FlorenciaComponent {
           label: 'Exteriores',
           subtitle: 'Florencia, donde podrás estar cerca a todo, cerca a ti mismo.',
           images: [
-            { src: 'images/projects/florencia/gallery/exteriores/1.jpg' },
+            { src: 'images/projects/florencia/gallery/exteriores/1.webp' },
+            { src: 'images/projects/florencia/gallery/exteriores/2.webp' },
+            { src: 'images/projects/florencia/gallery/exteriores/3.webp' },
+            { src: 'images/projects/florencia/gallery/exteriores/4.webp' },
           ]
         },
         {
@@ -119,12 +134,12 @@ export class FlorenciaComponent {
       title: 'CONOCE PROYECTO FLORENCIA',
       fallbackImage: 'images/projects/central/video-central.png',
     },
-    virtualTour: {
-      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/florencia/index.htm',
-      projectTitle: 'RECORRIDO VIRTUAL',
-      backgroundColor: '#ec615b',
-      textColor: '#FFFFFF',
-    },
+    // virtualTour: {
+    //   url: 'https://360.nerdstudio.pe/recorridovirtual/paz/florencia/index.htm',
+    //   projectTitle: 'RECORRIDO VIRTUAL',
+    //   backgroundColor: '#ec615b',
+    //   textColor: '#FFFFFF',
+    // },
     quoter: {
       projectId: 5,
       projectName: 'FLORENCIA',

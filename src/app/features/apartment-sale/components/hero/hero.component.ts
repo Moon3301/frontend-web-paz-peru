@@ -4,7 +4,7 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { HeroConfig } from '../../models/project-config.interface';
+import { HeroConfig, HeroElementStyle } from '../../models/project-config.interface';
 
 @Component({
   selector: 'app-hero',
@@ -80,5 +80,25 @@ export class HeroComponent implements OnInit, OnDestroy {
   /** Color del precio principal efectivo (priceFromColor, luego textColor, luego blanco). */
   get priceFromColor(): string {
     return this.config.priceFromColor ?? this.textColor;
+  }
+
+  /**
+   * Construye el objeto ngStyle para un elemento de texto individual.
+   * Parte del color heredado (legacyColor) y sobreescribe con los campos
+   * definidos en elementStyle. Solo incluye las propiedades explícitamente
+   * definidas para no pisar los valores del CSS.
+   */
+  getElementStyle(legacyColor: string, elementStyle?: HeroElementStyle): Record<string, string> {
+    const style: Record<string, string> = { color: legacyColor };
+    if (!elementStyle) return style;
+    if (elementStyle.color)         style['color']         = elementStyle.color;
+    if (elementStyle.fontFamily)    style['fontFamily']    = elementStyle.fontFamily;
+    if (elementStyle.fontSize)      style['fontSize']      = elementStyle.fontSize;
+    if (elementStyle.fontWeight)    style['fontWeight']    = elementStyle.fontWeight;
+    if (elementStyle.letterSpacing) style['letterSpacing'] = elementStyle.letterSpacing;
+    if (elementStyle.textAlign)     style['textAlign']     = elementStyle.textAlign;
+    if (elementStyle.marginTop)     style['marginTop']     = elementStyle.marginTop;
+    if (elementStyle.marginBottom)  style['marginBottom']  = elementStyle.marginBottom;
+    return style;
   }
 }

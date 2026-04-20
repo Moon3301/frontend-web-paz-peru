@@ -15,6 +15,30 @@ export interface HeroTextPosition {
   right?: string;
 }
 
+/**
+ * Estilos individuales por elemento de texto dentro del hero.
+ * Permiten sobreescribir color, fuente, tamaño y margen de cada pieza de texto.
+ * Los campos no definidos usan el valor por defecto del CSS.
+ */
+export interface HeroElementStyle {
+  /** Sobreescribe el color individual (badgeColor, descriptionColor, etc.) */
+  color?: string;
+  /** Fuente específica, e.g. 'Playfair Display', 'Montserrat' */
+  fontFamily?: string;
+  /** Tamaño de fuente, e.g. '1.2rem', '18px', 'clamp(1rem,2vw,1.5rem)' */
+  fontSize?: string;
+  /** Grosor de fuente, e.g. '300', '700' */
+  fontWeight?: string;
+  /** Espaciado entre letras, e.g. '0.1em', '2px' */
+  letterSpacing?: string;
+  /** Alineación del texto dentro de su elemento */
+  textAlign?: string;
+  /** Margen superior para separación respecto al elemento anterior */
+  marginTop?: string;
+  /** Margen inferior */
+  marginBottom?: string;
+}
+
 export interface HeroConfig {
   logo?: string;
   slides: HeroSlide[];
@@ -65,6 +89,16 @@ export interface HeroConfig {
    * Si no se define, usa textColor.
    */
   priceFromColor?: string;
+
+  /**
+   * Estilos individuales por elemento — permiten cambiar fuente, tamaño,
+   * grosor y margen de cada pieza de texto de forma independiente.
+   * El campo `color` aquí sobreescribe badgeColor/descriptionColor/etc.
+   */
+  badgeStyle?: HeroElementStyle;
+  descriptionStyle?: HeroElementStyle;
+  priceLabelStyle?: HeroElementStyle;
+  priceFromStyle?: HeroElementStyle;
 }
 
 export interface ProjectStatsConfig {
@@ -125,6 +159,15 @@ export interface ApartmentSpecsConfig {
   brochureUrl?: string;
   /** URL embed de YouTube para abrir en modal desde el botón del panel */
   videoUrl?: string;
+
+  /** Color de fondo del botón "Descarga Brochure". Default: #9dd3cf */
+  brochureButtonBg?: string;
+  /** Color de texto/icono del botón "Descarga Brochure". Default: #1a1a2e */
+  brochureButtonColor?: string;
+  /** Color de fondo del botón "Mira nuestro video". Default: transparent */
+  videoButtonBg?: string;
+  /** Color de texto/borde/icono del botón "Mira nuestro video". Default: #333 */
+  videoButtonColor?: string;
 }
 
 export interface AmenitiesConfig {

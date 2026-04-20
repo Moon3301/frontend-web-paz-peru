@@ -15,6 +15,21 @@ export class MatizComponent {
       district: 'DEPARTAMENTOS EN SAN ISIDRO',
       // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
+      badgeStyle: {
+        fontSize: '2.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      descriptionStyle: {
+        fontSize: '2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '3rem',
+        fontWeight: '700',
+      },
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
       priceFrom: 'S/ 727,000*',
       overlayColor: 'rgba(50, 80, 50, 0.75)',
@@ -23,7 +38,7 @@ export class MatizComponent {
       descriptionColor: '#e0e8ec',
       priceLabelColor: '#e0e8ec',
       priceFromColor: '#ffffff',
-      textPosition: { bottom: '25%' },
+      textPosition: { bottom: '20%' },
       slides: [
         { image: 'images/projects/matiz/1.jpeg', alt: 'Matiz - Fachada' },
       ]

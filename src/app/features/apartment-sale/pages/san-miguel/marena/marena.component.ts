@@ -19,6 +19,17 @@ export class MarenaComponent {
       overlayColor: 'rgba(30, 80, 120, 0.75)',
       textColor: '#ffffff',
       badgeColor: '#ffffff',
+      descriptionStyle: {
+        fontSize: '2.2rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
+      priceLabelStyle: { fontSize: '1rem' },
+      priceFromStyle: {
+        fontSize: '2.8rem',
+        letterSpacing: '0.12em',
+        fontWeight: '700',
+      },
       descriptionColor: '#ffffff',
       priceLabelColor: '#ffffff',
       priceFromColor: '#ffffff',

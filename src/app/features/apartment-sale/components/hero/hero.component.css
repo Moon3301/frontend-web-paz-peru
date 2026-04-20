@@ -42,10 +42,13 @@
 }
 
 /* Contenedor del logo: position:relative para que los textos
-   se posicionen absolutamente DENTRO de la imagen */
+   se posicionen absolutamente DENTRO de la imagen.
+   overflow:hidden garantiza que ningún texto salga de los límites del logo. */
 .hero__logo-wrapper {
   position: relative;
   display: inline-block;
+  overflow: hidden;
+  
 }
 
 /* Logo con width Y height explícitos — controla SVGs sin dimensiones.
@@ -59,14 +62,20 @@
 
 /* Bloque de texto posicionado DENTRO de la imagen del logo.
    Por defecto: parte inferior de la imagen, centrado.
-   Cada proyecto puede sobreescribir con [ngStyle] desde HeroConfig.textPosition. */
+   Cada proyecto puede sobreescribir con [ngStyle] desde HeroConfig.textPosition.
+   max-height + overflow:hidden evitan desbordamiento si hay mucho texto. */
 .hero__logo-text {
   position: absolute;
   bottom: 8%;
   left: 0;
   right: 0;
-  padding: 0 1rem;
+  padding: 0 5% ;
   text-align: center;
+  max-height: 85%;
+  max-width: 85%;
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .hero__project-name {
@@ -85,20 +94,22 @@
   display: inline-block;
   font-size: clamp(0.75rem, 2.2vw, 1.25rem);
   font-weight: 700;
-  margin: 0 0 0.3rem;
+  margin: 0 0 1rem;
   line-height: 1.2;
   letter-spacing: 0.04em;
 }
-
+/* necesito aumentarle el bold a el texto de la descripcion */
 .hero__description {
+  font-family: 'Montserrat', sans-serif;
   display: block;
   font-size: clamp(0.7rem, 1.8vw, 1rem);
-  font-weight: 500;
+  font-weight: 700;
   margin: 0 0 0.25rem;
   line-height: 1.3;
 }
 
 .hero__price-label {
+  
   font-size: clamp(0.65rem, 1.5vw, 0.85rem);
   white-space: pre-line;
   margin: 0 0 0.2rem;
@@ -107,6 +118,7 @@
 }
 
 .hero__price-from {
+  font-family: 'Montserrat', sans-serif;
   font-size: clamp(1.1rem, 3.5vw, 2rem);
   font-weight: 700;
   margin: 0;
@@ -165,19 +177,38 @@
   transform: scale(1.3);
 }
 
+/* ---- Tablet ---- */
+@media (max-width: 1024px) {
+  .hero__logo {
+    width: clamp(300px, 45vw, 480px);
+    height: clamp(180px, 38vh, 380px);
+  }
+
+  .hero__badge      { font-size: clamp(0.65rem, 1.8vw, 1rem); }
+  .hero__description{ font-size: clamp(0.6rem,  1.5vw, 0.9rem); }
+  .hero__price-label{ font-size: clamp(0.55rem, 1.2vw, 0.75rem); }
+  .hero__price-from { font-size: clamp(0.9rem,  2.8vw, 1.6rem); }
+}
+
+/* ---- Mobile ---- */
 @media (max-width: 768px) {
   .hero {
     min-height: 400px;
   }
 
   .hero__logo {
-    width: clamp(160px, 55vw, 280px);
-    height: clamp(110px, 22vh, 190px);
+    width: clamp(200px, 72vw, 340px);
+    height: clamp(130px, 30vh, 240px);
   }
 
   .hero__logo-text {
-    padding: 0 0.5rem;
+    padding: 0 5%;
   }
+
+  .hero__badge      { font-size: clamp(0.6rem,  3vw, 0.85rem);  margin-bottom: 0.2rem; }
+  .hero__description{ font-size: clamp(0.55rem, 2.5vw, 0.8rem); margin-bottom: 0.15rem; }
+  .hero__price-label{ font-size: clamp(0.5rem,  2.2vw, 0.7rem); }
+  .hero__price-from { font-size: clamp(0.8rem,  4vw,  1.3rem); }
 
   .hero__nav {
     width: 36px;
@@ -186,4 +217,17 @@
 
   .hero__nav--prev { left: 0.75rem; }
   .hero__nav--next { right: 0.75rem; }
+}
+
+/* ---- Mobile pequeño ---- */
+@media (max-width: 480px) {
+  .hero__logo {
+    width: clamp(180px, 85vw, 300px);
+    height: clamp(110px, 28vh, 200px);
+  }
+
+  .hero__badge      { font-size: 0.6rem; }
+  .hero__description{ font-size: 0.55rem; }
+  .hero__price-label{ font-size: 0.5rem; }
+  .hero__price-from { font-size: 0.85rem; }
 }

@@ -95,8 +95,9 @@ export class EscalaComponent {
         {
           label: 'Exteriores',
           images: [
-            { src: 'images/projects/escala/gallery/exteriores/1.png' },
-            { src: 'images/projects/escala/gallery/exteriores/2.png' },
+            { src: 'images/projects/escala/gallery/exteriores/1.webp' },
+            { src: 'images/projects/escala/gallery/exteriores/2.webp' },
+            { src: 'images/projects/escala/gallery/exteriores/3.webp' },
           ]
         },
         {
