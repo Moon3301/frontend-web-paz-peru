@@ -104,7 +104,7 @@ export class MarenaComponent {
         {
           label: 'Exteriores',
           images: [
-            { src: 'images/projects/marena/gallery/exteriores/1.jpg' },
+            { src: 'images/projects/marena/gallery/exteriores/1.webp' },
           ]
         },
         {

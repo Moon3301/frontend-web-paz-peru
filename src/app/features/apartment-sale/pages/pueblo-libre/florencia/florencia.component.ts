@@ -10,7 +10,7 @@ import { ProjectConfig } from '../../../models/project-config.interface';
 export class FlorenciaComponent {
   config: ProjectConfig = {
     hero: {
-      logo: 'images/logos/projects/logo-florencia-1-2.webp',
+      logo: 'images/logos/projects/logo-florencia-10.webp',
       projectName: 'Florencia',
       district: 'DEPARTAMENTOS EN PUEBLO LIBRE',
       // badge: 'En venta',

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ContactService, ContactPayload } from './services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -36,9 +37,15 @@ export class ContactComponent {
   ];
 
   form: FormGroup;
-  submitted = false;
+  submitted  = false;
+  isLoading  = false;
+  isSuccess  = false;
+  errorMsg   = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService
+  ) {
     this.form = this.fb.group({
       project:       ['', Validators.required],
       dni:           ['', Validators.required],
@@ -55,7 +62,32 @@ export class ContactComponent {
 
   onSubmit(): void {
     this.submitted = true;
+    this.errorMsg  = '';
+
     if (this.form.invalid) return;
-    // Form submission logic will be implemented later
+
+    this.isLoading = true;
+
+    const payload: ContactPayload = this.form.value as ContactPayload;
+
+    this.contactService.send(payload).subscribe({
+      next: () => {
+        this.isLoading = false;
+        this.isSuccess = true;
+        this.form.reset();
+        this.submitted = false;
+      },
+      error: (err) => {
+        this.isLoading = false;
+        const serverMsg = err?.error?.message;
+        this.errorMsg = serverMsg
+          ? serverMsg
+          : 'Ocurrió un error al enviar el mensaje. Por favor intenta nuevamente.';
+      }
+    });
+  }
+
+  resetSuccess(): void {
+    this.isSuccess = false;
   }
 }

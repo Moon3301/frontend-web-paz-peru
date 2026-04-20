@@ -16,6 +16,12 @@
 
   <!-- Visor de imágenes del tab activo -->
   <div class="gallery__viewer" *ngIf="activeTab">
+
+    <!-- Fondo difuminado con la misma imagen -->
+    <div class="gallery__blur-bg"
+         [style.background-image]="'url(' + activeTab.images[activeImageIndex].src + ')'">
+    </div>
+
     <div class="gallery__img-wrap">
       <img
         [src]="activeTab.images[activeImageIndex].src"
