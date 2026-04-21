@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } from '../../../../environments/environments';
 
 // ── Interfaces de datos de unidades ──────────────────────────────────────────
 
@@ -61,10 +62,7 @@ export interface QuotationResponse {
 })
 export class QuoterService {
 
-  private readonly environment = 'dev';
-
-  /** Base URL de la API NestJS. Ajustar en producción. */
-  private readonly apiBase = 'http://localhost:3000/api';
+  private readonly apiBase = API_URL;
 
   constructor(private http: HttpClient) { }
 
@@ -79,7 +77,7 @@ export class QuoterService {
   }
 
   /**
-   * Envía la cotización al CRM vía NestJS.
+   * Envía la cotización al CRM.
    * POST /api/quotation/submit
    */
   submitQuotation(payload: QuotationPayload): Observable<QuotationResponse> {
