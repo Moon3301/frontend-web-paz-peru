@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 export interface PromoProject {
   name: string;
@@ -106,6 +107,8 @@ const D: Record<string, string> = {
 })
 export class PromotionsComponent {
 
+  constructor() {}
+
   /** Proyectos destacados — 3 columnas */
   featuredPromos: PromoProject[] = [
     {
@@ -142,7 +145,7 @@ export class PromotionsComponent {
     {
       name: 'Lima 15',
       district: 'Miraflores',
-      image: '/images/projects/thumb-lima15-home.jpg',
+      image: '/images/projects/thumb-lima15-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/678,000*',
       projectLink: '/apartment-sale/miraflores/lima15',
@@ -151,7 +154,7 @@ export class PromotionsComponent {
     {
       name: 'Matiz',
       district: 'San Isidro',
-      image: '/images/projects/thumb-matiz-home.jpg',
+      image: '/images/projects/thumb-matiz-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/727,000*',
       projectLink: '/apartment-sale/san-isidro/matiz',
@@ -187,7 +190,7 @@ export class PromotionsComponent {
     {
       name: 'Medina',
       district: 'Jesús María',
-      image: '/images/projects/thumb-medina-home.jpg',
+      image: '/images/projects/thumb-medina-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/477,000*',
       projectLink: '/apartment-sale/jesus-maria/medina',
@@ -196,7 +199,7 @@ export class PromotionsComponent {
     {
       name: 'Taller',
       district: 'Miraflores',
-      image: '/images/projects/thumb-taller-home.jpg',
+      image: '/images/projects/thumb-taller.jpg',
       description: 'Tu depa de 1 ambiente con precio desde',
       price: 'S/554,000*',
       projectLink: '/apartment-sale/miraflores/taller',
@@ -250,11 +253,13 @@ export class PromotionsComponent {
     {
       name: 'Marena',
       district: 'San Miguel',
-      image: '/images/projects/thumb-marena-home.jpg',
+      image: '/images/projects/thumb-marena-home.png',
       description: 'Tu depa de 1 ambiente con precio desde',
       price: 'S/297,000*',
       projectLink: '/apartment-sale/san-miguel/marena',
       disclaimer: D['marena']
     }
   ];
+
+  
 }

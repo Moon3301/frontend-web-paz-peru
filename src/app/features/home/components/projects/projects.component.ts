@@ -45,7 +45,7 @@ export class ProjectsComponent {
     {
       name: 'Riva',
       district: 'Miraflores',
-      status: 'LANZAMIENTO',
+      status: 'ÚLTIMO MES DE PREVENTA',
       image: '/images/projects/thumb-riva-home.jpg',
       logo: '/images/logos/projects/logo-riva-1.png',
       link: '/apartment-sale/miraflores/riva'
@@ -53,7 +53,7 @@ export class ProjectsComponent {
     {
       name: 'Taller',
       district: 'Miraflores',
-      status: 'PREVENTA',
+      status: 'ENTREGA SEPTIEMBRE 2026',
       image: '/images/projects/thumb-taller.jpg',
       logo: '/images/logos/projects/logo-taller.png',
       link: '/apartment-sale/miraflores/taller'
@@ -93,7 +93,7 @@ export class ProjectsComponent {
     {
       name: 'Patio La Paz',
       district: 'San Miguel',
-      status: '¡INICIAMOS CONSTRUCCIÓN!',
+      status: 'ENTREGA INMEDIATA',
       image: '/images/projects/thumb-patio-home.jpg',
       logo: '/images/logos/projects/logo-patio.png',
       link: '/apartment-sale/san-miguel/patio-la-paz'
@@ -121,6 +121,14 @@ export class ProjectsComponent {
       image: '/images/projects/thumb-savia-home.jpg',
       logo: '/images/logos/projects/logo-savia.svg',
       link: '/apartment-sale/pueblo-libre/savia'
+    },
+    {
+      name: 'Medina',
+      district: 'Jesús María',
+      status: 'EN CONSTRUCCIÓN',
+      image: '/images/projects/thumb-medina-home.png',
+      logo: '/images/logos/projects/logo-medina-1.png',
+      link: '/apartment-sale/jesus-maria/medina'
     }
   ];
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ProjectConfig } from '../../models/project-config.interface';
 
 @Component({
@@ -7,6 +7,12 @@ import { ProjectConfig } from '../../models/project-config.interface';
   templateUrl: './project-page.component.html',
   styleUrl: './project-page.component.css'
 })
-export class ProjectPageComponent {
+export class ProjectPageComponent implements OnInit {
+
   @Input() config!: ProjectConfig;
+
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+  }
+
 }

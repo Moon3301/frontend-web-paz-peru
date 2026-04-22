@@ -33,7 +33,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     districtSlug: 'san-isidro',
     status: 'LANZAMIENTO',
     image: '/images/projects/thumb-matiz-home.png',
-    logo: '/images/logos/projects/logo-matiz.svg',
+    logo: '/images/logos/projects/logo-matiz-1-2.webp',
     link: '/apartment-sale/san-isidro/matiz'
   },
   {
@@ -41,15 +41,15 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     district: 'Miraflores',
     districtSlug: 'miraflores',
     status: 'LANZAMIENTO',
-    image: '/images/projects/thumb-riva-home.png',
-    logo: '/images/logos/projects/logo-riva.svg',
+    image: '/images/projects/thumb-riva-home.jpg',
+    logo: '/images/logos/projects/logo-riva-1.png',
     link: '/apartment-sale/miraflores/riva'
   },
   {
     name: 'Taller',
     district: 'Miraflores',
     districtSlug: 'miraflores',
-    status: 'PREVENTA',
+    status: 'ENTREGA SEPTIEMBRE 2026',
     image: '/images/projects/thumb-taller.jpg',
     logo: '/images/logos/projects/logo-taller.png',
     link: '/apartment-sale/miraflores/taller'
@@ -94,7 +94,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     name: 'Patio La Paz',
     district: 'San Miguel',
     districtSlug: 'san-miguel',
-    status: '¡INICIAMOS CONSTRUCCIÓN!',
+    status: 'ENTREGA INMEDIATA',
     image: '/images/projects/thumb-patio-home.jpg',
     logo: '/images/logos/projects/logo-patio.png',
     link: '/apartment-sale/san-miguel/patio-la-paz'
@@ -131,8 +131,8 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     district: 'Jesús María',
     districtSlug: 'jesus-maria',
     status: 'EN CONSTRUCCIÓN',
-    image: '/images/projects/thumb-medina-home.jpg',
-    logo: '/images/logos/projects/logo-medina.png',
+    image: '/images/projects/thumb-medina-home.png',
+    logo: '/images/logos/projects/logo-medina-1.png',
     link: '/apartment-sale/jesus-maria/medina'
   }
 ];

@@ -147,6 +147,7 @@
 }
 
 .paz-footer__legal-links {
+  cursor: pointer;
   display: flex;
   gap: 1.5rem;
 }

@@ -12,13 +12,13 @@
 </div>
 
 <!-- Main Content -->
-<section class="contact-main">
+<section id="contact" class="contact-main">
 
   <!-- Title -->
   <h1 class="contact-title">Contáctanos</h1>
 
   <!-- Servicio al Cliente box -->
-  <div class="contact-service-box">
+  <div  class="contact-service-box">
     <p class="contact-service-box__label">SERVICIO AL CLIENTE</p>
     <p class="contact-service-box__phone">922 631 338</p>
     <p class="contact-service-box__hours">*Lunes a Jueves: 8:30 am a 6:00 pm</p>
@@ -37,7 +37,7 @@
   </div>
 
   <!-- Contact Form -->
-  <form class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate *ngIf="!isSuccess">
+  <form  class="contact-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate *ngIf="!isSuccess">
 
     <!-- Row 1: Proyecto + DNI -->
     <div class="contact-form__row">
