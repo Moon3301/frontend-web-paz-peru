@@ -138,10 +138,10 @@ export class SaviaComponent {
         photo: 'images/executives/jorge-coha.jpg',
       },
       {
-        name: 'Ana Alejos',
-        role: 'Ejecutiva de Ventas',
-        phone: '955102219',
-        photo: 'images/executives/ana-alejos.jpg',
+        name: 'Jesús Bello',
+        role: 'Ejecutivo de Ventas',
+        phone: '987952815',
+        photo: 'images/executives/jesus-antonio-bello.jpg',
       },
     ],
   };

@@ -76,7 +76,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     name: 'Serena',
     district: 'San Miguel',
     districtSlug: 'san-miguel',
-    status: 'EN CONSTRUCCIÓN',
+    status: 'ENTREGA INMEDIATA',
     image: '/images/projects/thumb-serena.jpg',
     logo: '/images/logos/projects/logo-serena.png',
     link: '/departamentos-en-venta/san-miguel/serena'
@@ -85,7 +85,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     name: 'Central',
     district: 'Miraflores',
     districtSlug: 'miraflores',
-    status: 'EN CONSTRUCCIÓN',
+    status: 'ENTREGA INMEDIATA',
     image: '/images/projects/thumb-central-home.png',
     logo: '/images/logos/projects/logo-central.png',
     link: '/departamentos-en-venta/miraflores/central'
@@ -94,7 +94,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     name: 'Florencia',
     district: 'Pueblo Libre',
     districtSlug: 'pueblo-libre',
-    status: 'EN CONSTRUCCIÓN',
+    status: 'ENTREGA INMEDIATA',
     image: '/images/projects/thumb-florencia-home.png',
     logo: '/images/logos/projects/logo-florencia.png',
     link: '/departamentos-en-venta/pueblo-libre/florencia'
