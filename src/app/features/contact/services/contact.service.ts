@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { API_URL } from '../../../../environments/environments';
 
 export interface ContactPayload {
   project:       string;
@@ -22,7 +23,7 @@ export interface ContactResponse {
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
-  private readonly apiBase = 'http://localhost:3000/api';
+  private readonly apiBase = API_URL;
 
   constructor(private http: HttpClient) {}
 
