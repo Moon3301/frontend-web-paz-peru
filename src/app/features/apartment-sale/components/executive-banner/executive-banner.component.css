@@ -1,0 +1,221 @@
+/* ====================================================
+   EXECUTIVE BANNER — Barra fija inferior con ejecutivos
+   ==================================================== */
+
+:host {
+  display: block;
+}
+
+/* ── Barra principal ── */
+.exec-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  height: 110px;
+  background: #111111;
+  border-top: 3px solid #c8102e;
+  overflow: hidden;                /* foto queda contenida dentro */
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+  /* El banner usa posicionamiento absoluto interno — no flex en el root */
+}
+
+/* ── Slides apilados (uno por ejecutivo, fade) ── */
+.exec-banner__slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  /* Deja espacio a la derecha para dots + whatsapp */
+  padding-right: 140px;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.exec-banner__slide--active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Foto del ejecutivo (dentro del banner) ── */
+.exec-banner__photo-wrap {
+  flex-shrink: 0;
+  width: 88px;
+  height: 110px;            /* altura exacta del banner */
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.exec-banner__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* ── Texto: nombre y cargo ── */
+.exec-banner__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+  padding: 0 1rem;
+  min-width: 0;             /* permite truncado en flex */
+}
+
+.exec-banner__name {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.exec-banner__role {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.68rem, 1.1vw, 0.82rem);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* ── Dots de paginación — posicionados absolutamente a la derecha,
+      encima de los slides (z-index mayor) ── */
+.exec-banner__dots {
+  position: absolute;
+  right: 80px;               /* espacio para el botón WhatsApp */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;                /* encima de los slides */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+
+.exec-banner__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, transform 0.25s;
+}
+
+.exec-banner__dot--active {
+  background: #ffffff;
+  transform: scale(1.35);
+}
+
+.exec-banner__dot:hover:not(.exec-banner__dot--active) {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Botón WhatsApp — posicionado absolutamente a la derecha,
+      encima de los slides (z-index mayor) ── */
+.exec-banner__whatsapp {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;                /* encima de los slides */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #ffffff;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 12px rgba(37, 211, 102, 0.5);
+}
+
+.exec-banner__whatsapp svg {
+  width: 26px;
+  height: 26px;
+}
+
+.exec-banner__whatsapp:hover {
+  background: #1ebe5a;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* ── Tablet (≤768px) ── */
+@media (max-width: 768px) {
+  .exec-banner {
+    height: 96px;
+  }
+
+  .exec-banner__slide {
+    padding-right: 120px;
+  }
+
+  .exec-banner__photo-wrap {
+    width: 76px;
+    height: 96px;
+  }
+
+  .exec-banner__name   { font-size: 0.88rem; }
+  .exec-banner__role   { font-size: 0.7rem;  }
+
+  .exec-banner__dots   { right: 68px; }
+
+  .exec-banner__whatsapp {
+    width: 44px;
+    height: 44px;
+    right: 12px;
+  }
+
+  .exec-banner__whatsapp svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ── Mobile pequeño (≤480px) ── */
+@media (max-width: 480px) {
+  .exec-banner {
+    height: 86px;
+    border-top-width: 2px;
+  }
+
+  .exec-banner__slide {
+    padding-right: 108px;
+  }
+
+  .exec-banner__photo-wrap {
+    width: 68px;
+    height: 86px;
+  }
+
+  .exec-banner__info   { padding: 0 0.6rem; }
+  .exec-banner__name   { font-size: 0.8rem; }
+  .exec-banner__role   { font-size: 0.65rem; }
+
+  .exec-banner__dots   { right: 60px; gap: 5px; }
+  .exec-banner__dot    { width: 7px; height: 7px; }
+
+  .exec-banner__whatsapp {
+    width: 40px;
+    height: 40px;
+    right: 10px;
+  }
+
+  .exec-banner__whatsapp svg {
+    width: 20px;
+    height: 20px;
+  }
+}

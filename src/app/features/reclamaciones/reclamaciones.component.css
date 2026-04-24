@@ -1,0 +1,484 @@
+/* ============================================================
+   LIBRO DE RECLAMACIONES
+   ============================================================ */
+
+:host { display: block; }
+
+/* ── Hero ── */
+.rec-hero {
+  width: 100%;
+  min-height: 200px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #c8102e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.rec-hero__overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.rec-hero__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.rec-hero__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+.rec-hero__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.8rem, 1.8vw, 1rem);
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  max-width: 540px;
+}
+
+/* ── Main / Container ── */
+.rec-main {
+  background: #f4f4f6;
+  min-height: 60vh;
+  padding: 3rem 1.5rem 6rem;
+}
+
+.rec-container {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ── Éxito ── */
+.rec-success {
+  background: #ffffff;
+  border-radius: 4px;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+
+.rec-success__icon {
+  color: #2e7d32;
+  margin-bottom: 1.25rem;
+}
+
+.rec-success__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 1rem;
+}
+
+.rec-success__text {
+  font-family: 'Montserrat', sans-serif;
+  color: #555;
+  line-height: 1.7;
+  margin: 0 0 2rem;
+}
+
+/* ── Formulario ── */
+.rec-form {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+/* ── Selector de proyecto ── */
+.rec-project-selector {
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.rec-project-selector__label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  text-align: center;
+  margin: 0 0 1.25rem;
+  letter-spacing: 0.03em;
+}
+
+/* ── Tarjeta de empresa ── */
+.rec-company-card {
+  margin: 0 2rem 1.25rem;
+  background: #fdf3e7;
+  border-left: 4px solid #c8102e;
+  border-radius: 2px;
+  padding: 1.25rem 1.5rem;
+}
+
+.rec-company-card__row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.rec-company-card__row:last-child { margin-bottom: 0; }
+
+.rec-company-card__label {
+  font-weight: 700;
+  color: #1a1a2e;
+  flex-shrink: 0;
+}
+
+.rec-company-card__value {
+  color: #444;
+}
+
+/* ── Meta (número + fecha) ── */
+.rec-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ebebeb;
+  background: #fafafa;
+  flex-wrap: wrap;
+}
+
+.rec-meta__item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.rec-meta__label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.rec-meta__value {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  color: #1a1a2e;
+  background: #e8eaf0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  border: 1px solid #d0d3e0;
+}
+
+/* ── Nota de campos obligatorios ── */
+.rec-required-note {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  color: #888;
+  padding: 0.5rem 2rem 0;
+  margin: 0;
+}
+
+/* ── Secciones ── */
+.rec-section {
+  padding: 1.75rem 2rem;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.rec-section:last-of-type { border-bottom: none; }
+
+.rec-section__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rec-section__num {
+  color: #c8102e;
+}
+
+/* ── Grid de campos ── */
+.rec-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.rec-grid:last-child { margin-bottom: 0; }
+
+.rec-grid--1 { grid-template-columns: 1fr; }
+.rec-grid--2 { grid-template-columns: 1fr 1fr; }
+
+/* ── Campos individuales ── */
+.rec-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.rec-input,
+.rec-select {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  background: #ffffff;
+  border: 1px solid #d0d3dc;
+  border-radius: 3px;
+  padding: 0.65rem 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.rec-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.9rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.rec-input:focus,
+.rec-select:focus {
+  border-color: #1a1a2e;
+  box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.08);
+}
+
+.rec-input--error,
+.rec-select--error {
+  border-color: #c8102e;
+}
+
+.rec-input--error:focus,
+.rec-select--error:focus {
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.1);
+}
+
+.rec-field__error {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  color: #c8102e;
+  padding-left: 0.1rem;
+}
+
+/* ── Etiqueta menor de edad ── */
+.rec-minor-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  color: #666;
+  margin: 0.5rem 0 0.75rem;
+  font-style: italic;
+}
+
+/* ── Textarea ── */
+.rec-textarea {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.875rem;
+  color: #333;
+  background: #ffffff;
+  border: 1px solid #d0d3dc;
+  border-radius: 3px;
+  padding: 0.75rem 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 110px;
+  transition: border-color 0.2s;
+  outline: none;
+  line-height: 1.6;
+}
+
+.rec-textarea:focus {
+  border-color: #1a1a2e;
+  box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.08);
+}
+
+.rec-textarea--error {
+  border-color: #c8102e;
+}
+
+/* ── Tipo de reclamo (radio cards) ── */
+.rec-tipo-reclamo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.rec-radio-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 2px solid #d0d3dc;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.rec-radio-card--active {
+  border-color: #c8102e;
+  background: #fdf3e7;
+}
+
+.rec-radio-input {
+  margin-top: 3px;
+  accent-color: #c8102e;
+  flex-shrink: 0;
+}
+
+.rec-radio-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.rec-radio-card__title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+
+.rec-radio-card__desc {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ── Autorización ── */
+.rec-section--auth {
+  background: #f9f9fb;
+}
+
+.rec-checkbox-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.82rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.rec-checkbox {
+  margin-top: 3px;
+  accent-color: #c8102e;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Error global ── */
+.rec-global-error {
+  margin: 0 2rem;
+  padding: 0.75rem 1rem;
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  border-radius: 3px;
+  color: #c8102e;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+}
+
+/* ── Botón de envío ── */
+.rec-submit {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fafafa;
+  border-top: 1px solid #ebebeb;
+}
+
+.rec-submit__note {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem;
+  color: #888;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── Botones ── */
+.rec-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: 0.85rem 3rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.04em;
+}
+
+.rec-btn--primary {
+  background: #c8102e;
+  color: #ffffff;
+}
+
+.rec-btn--primary:hover:not(:disabled) {
+  background: #a50d25;
+  transform: translateY(-1px);
+}
+
+.rec-btn--primary:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.rec-btn__spinner {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rec-btn__spinner svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rec-main { padding: 2rem 1rem 8rem; }
+
+  .rec-project-selector { padding: 1.5rem 1rem 1rem; }
+
+  .rec-company-card { margin: 0 1rem 1rem; padding: 1rem 1.25rem; }
+
+  .rec-meta { padding: 0.75rem 1rem; }
+
+  .rec-section { padding: 1.25rem 1rem; }
+
+  .rec-grid--2 { grid-template-columns: 1fr; }
+
+  .rec-tipo-reclamo { grid-template-columns: 1fr; }
+
+  .rec-submit { padding: 1.5rem 1rem; }
+
+  .rec-btn { width: 100%; text-align: center; }
+}

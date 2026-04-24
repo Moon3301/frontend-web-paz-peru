@@ -1,0 +1,284 @@
+<!-- ============================================================
+     LIBRO DE RECLAMACIONES
+     ============================================================ -->
+
+<!-- Hero Banner -->
+<div class="rec-hero">
+  <div class="rec-hero__overlay">
+    <div class="rec-hero__icon">
+      <svg width="36" height="36" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+      </svg>
+    </div>
+    <h1 class="rec-hero__title">Libro de Reclamaciones</h1>
+    <p class="rec-hero__subtitle">
+      Conforme a lo establecido en el Código de Protección y Defensa del Consumidor
+    </p>
+  </div>
+</div>
+
+<!-- Contenido principal -->
+<main class="rec-main">
+  <div class="rec-container">
+
+    <!-- ── ÉXITO ── -->
+    <div class="rec-success" *ngIf="isSuccess">
+      <div class="rec-success__icon">
+        <svg width="56" height="56" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" stroke-width="1.5"/>
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l3 3 5-5"/>
+        </svg>
+      </div>
+      <h2 class="rec-success__title">¡Reclamación registrada!</h2>
+      <p class="rec-success__text">
+        Su queja o reclamo ha sido registrada con el número <strong>{{ complaintNumber }}</strong>.<br>
+        Nos comunicaremos con usted en un plazo máximo de 30 días hábiles.
+      </p>
+      <button class="rec-btn rec-btn--primary" (click)="resetForm()">Registrar otra reclamación</button>
+    </div>
+
+    <!-- ── FORMULARIO ── -->
+    <form class="rec-form" [formGroup]="form" (ngSubmit)="onSubmit()" novalidate *ngIf="!isSuccess">
+
+      <!-- ─── Selector de proyecto ─── -->
+      <div class="rec-project-selector">
+        <p class="rec-project-selector__label">INDÍQUENOS A QUÉ PROYECTO DEBE IR SU QUEJA O RECLAMO:</p>
+        <div class="rec-field">
+          <select class="rec-select" formControlName="proyecto" [class.rec-select--error]="isFieldInvalid('proyecto')">
+            <option value="" disabled>Seleccionar proyecto *</option>
+            <option *ngFor="let p of projects" [value]="p">{{ p }}</option>
+          </select>
+          <span class="rec-field__error" *ngIf="isFieldInvalid('proyecto')">Seleccione un proyecto</span>
+        </div>
+      </div>
+
+      <!-- Tarjeta de empresa (aparece al seleccionar proyecto) -->
+      <div class="rec-company-card" *ngIf="selectedProject">
+        <div class="rec-company-card__row">
+          <span class="rec-company-card__label">Proyecto:</span>
+          <span class="rec-company-card__value">{{ selectedProject.proyecto }}</span>
+        </div>
+        <div class="rec-company-card__row">
+          <span class="rec-company-card__label">Razón Social:</span>
+          <span class="rec-company-card__value">{{ selectedProject.razonSocial }}</span>
+        </div>
+        <div class="rec-company-card__row">
+          <span class="rec-company-card__label">RUC:</span>
+          <span class="rec-company-card__value">{{ selectedProject.ruc }}</span>
+        </div>
+        <div class="rec-company-card__row">
+          <span class="rec-company-card__label">Dirección:</span>
+          <span class="rec-company-card__value">{{ selectedProject.direccion }}</span>
+        </div>
+      </div>
+
+      <!-- Número de hoja + fecha -->
+      <div class="rec-meta">
+        <div class="rec-meta__item">
+          <span class="rec-meta__label">Hoja de reclamación:</span>
+          <span class="rec-meta__value">{{ complaintNumber }}</span>
+        </div>
+        <div class="rec-meta__item">
+          <span class="rec-meta__label">Fecha:</span>
+          <span class="rec-meta__value">{{ today }}</span>
+        </div>
+      </div>
+
+      <p class="rec-required-note">* Los campos indicados con asterisco son campos obligatorios.</p>
+
+      <!-- ─── Sección 1: Consumidor ─── -->
+      <div class="rec-section">
+        <h2 class="rec-section__title">
+          <span class="rec-section__num">1.</span> Identificación del consumidor reclamante
+        </h2>
+
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Nombres *"
+                   formControlName="nombres" [class.rec-input--error]="isFieldInvalid('nombres')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('nombres')">Ingrese sus nombres</span>
+          </div>
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Apellidos *"
+                   formControlName="apellidos" [class.rec-input--error]="isFieldInvalid('apellidos')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('apellidos')">Ingrese sus apellidos</span>
+          </div>
+        </div>
+
+        <div class="rec-grid rec-grid--1">
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Domicilio *"
+                   formControlName="domicilio" [class.rec-input--error]="isFieldInvalid('domicilio')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('domicilio')">Ingrese su domicilio</span>
+          </div>
+        </div>
+
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <input class="rec-input" type="email" placeholder="Correo electrónico *"
+                   formControlName="email" [class.rec-input--error]="isFieldInvalid('email')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('email')">Ingrese un correo válido</span>
+          </div>
+          <div class="rec-field">
+            <input class="rec-input" type="tel" placeholder="Teléfono / Celular *"
+                   formControlName="telefono" [class.rec-input--error]="isFieldInvalid('telefono')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('telefono')">Ingrese un teléfono válido</span>
+          </div>
+        </div>
+
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <select class="rec-select" formControlName="tipoDoc" [class.rec-select--error]="isFieldInvalid('tipoDoc')">
+              <option value="" disabled>Tipo de Documento *</option>
+              <option *ngFor="let t of tiposDocumento" [value]="t">{{ t }}</option>
+            </select>
+            <span class="rec-field__error" *ngIf="isFieldInvalid('tipoDoc')">Seleccione un tipo de documento</span>
+          </div>
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Número de documento *"
+                   formControlName="numeroDoc" [class.rec-input--error]="isFieldInvalid('numeroDoc')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('numeroDoc')">Ingrese su número de documento</span>
+          </div>
+        </div>
+
+        <!-- Menor de edad -->
+        <p class="rec-minor-label">En caso de ser menor de edad (Datos del padre o madre):</p>
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Nombres"
+                   formControlName="menorNombres">
+          </div>
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Apellidos"
+                   formControlName="menorApellidos">
+          </div>
+        </div>
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <select class="rec-select" formControlName="menorTipoDoc">
+              <option value="">Tipo de Documento</option>
+              <option *ngFor="let t of tiposDocumento" [value]="t">{{ t }}</option>
+            </select>
+          </div>
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Número de documento"
+                   formControlName="menorNumeroDoc">
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Sección 2: Bien/Servicio ─── -->
+      <div class="rec-section">
+        <h2 class="rec-section__title">
+          <span class="rec-section__num">2.</span> Identificación del bien contratado
+        </h2>
+
+        <div class="rec-grid rec-grid--1">
+          <div class="rec-field">
+            <input class="rec-input" type="text"
+                   placeholder="Descripción del bien o servicio contratado *"
+                   formControlName="bienServicio"
+                   [class.rec-input--error]="isFieldInvalid('bienServicio')">
+            <span class="rec-field__error" *ngIf="isFieldInvalid('bienServicio')">
+              Describa el bien o servicio
+            </span>
+          </div>
+        </div>
+
+        <div class="rec-grid rec-grid--2">
+          <div class="rec-field">
+            <input class="rec-input" type="text" placeholder="Monto reclamado (S/.)"
+                   formControlName="monto">
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── Sección 3: Tipo de reclamo ─── -->
+      <div class="rec-section">
+        <h2 class="rec-section__title">
+          <span class="rec-section__num">3.</span> Detalle de la reclamación
+        </h2>
+
+        <div class="rec-tipo-reclamo">
+          <label class="rec-radio-card" *ngFor="let tipo of tiposReclamo"
+                 [class.rec-radio-card--active]="form.get('tipoReclamo')?.value === tipo.value">
+            <input type="radio" formControlName="tipoReclamo" [value]="tipo.value" class="rec-radio-input">
+            <div class="rec-radio-card__content">
+              <span class="rec-radio-card__title">{{ tipo.label }}</span>
+              <span class="rec-radio-card__desc">{{ tipo.desc }}</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <!-- ─── Sección 4: Descripción ─── -->
+      <div class="rec-section">
+        <h2 class="rec-section__title">
+          <span class="rec-section__num">4.</span> Descripción de la reclamación
+        </h2>
+        <div class="rec-field">
+          <textarea class="rec-textarea" rows="5"
+                    placeholder="Describa detalladamente su queja o reclamo *"
+                    formControlName="detalle"
+                    [class.rec-textarea--error]="isFieldInvalid('detalle')"></textarea>
+          <span class="rec-field__error" *ngIf="isFieldInvalid('detalle')">
+            Ingrese al menos 20 caracteres
+          </span>
+        </div>
+      </div>
+
+      <!-- ─── Sección 5: Pedido ─── -->
+      <div class="rec-section">
+        <h2 class="rec-section__title">
+          <span class="rec-section__num">5.</span> Pedido del consumidor
+        </h2>
+        <div class="rec-field">
+          <textarea class="rec-textarea" rows="4"
+                    placeholder="Indique qué acción espera de la empresa *"
+                    formControlName="pedido"
+                    [class.rec-textarea--error]="isFieldInvalid('pedido')"></textarea>
+          <span class="rec-field__error" *ngIf="isFieldInvalid('pedido')">
+            Ingrese su pedido
+          </span>
+        </div>
+      </div>
+
+      <!-- ─── Autorización ─── -->
+      <div class="rec-section rec-section--auth">
+        <label class="rec-checkbox-label">
+          <input type="checkbox" formControlName="autorizaDatos" class="rec-checkbox">
+          <span>
+            Autorizo el tratamiento de mis datos personales conforme a la
+            <strong>Ley N° 29733</strong> — Ley de Protección de Datos Personales,
+            para la gestión de la presente reclamación.
+          </span>
+        </label>
+        <span class="rec-field__error" *ngIf="isFieldInvalid('autorizaDatos')">
+          Debe aceptar la autorización para continuar
+        </span>
+      </div>
+
+      <!-- Error global -->
+      <div class="rec-global-error" *ngIf="errorMsg">{{ errorMsg }}</div>
+
+      <!-- Botón enviar -->
+      <div class="rec-submit">
+        <button type="submit" class="rec-btn rec-btn--primary" [disabled]="isLoading">
+          <span *ngIf="!isLoading">Enviar reclamación</span>
+          <span *ngIf="isLoading" class="rec-btn__spinner">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+            Enviando...
+          </span>
+        </button>
+        <p class="rec-submit__note">
+          El proveedor dará respuesta en un plazo máximo de 30 días hábiles.
+        </p>
+      </div>
+
+    </form>
+
+  </div>
+</main>

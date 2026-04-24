@@ -143,5 +143,19 @@ export class Lima15Component {
       backgroundColor: '#52273b',
       textColor: '#FFFFFF',
     },
+    executives: [
+      {
+        name: 'Mireia Gutierrez',
+        role: 'Ejecutiva de Ventas',
+        phone: '908930387',
+        photo: 'images/executives/mireia-gutierrez.jpg',
+      },
+      {
+        name: 'Joel Pezo',
+        role: 'Ejecutivo de Ventas',
+        phone: '981495711',
+        photo: 'images/executives/joel-pezo.jpg',
+      },
+    ],
   };
 }

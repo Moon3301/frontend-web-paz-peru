@@ -32,8 +32,12 @@ const routes: Routes = [
         loadChildren: () => import('../features/promotions/promotions.module').then(m => m.PromotionsModule)
       },
       {
-        path: 'apartment-sale',
+        path: 'departamentos-en-venta',
         loadChildren: () => import('../features/apartment-sale/apartment-sale.module').then(m => m.ApartmentSaleModule)
+      },
+      {
+        path: 'reclamaciones',
+        loadChildren: () => import('../features/reclamaciones/reclamaciones.module').then(m => m.ReclamacionesModule)
       },
       {
         path: '',

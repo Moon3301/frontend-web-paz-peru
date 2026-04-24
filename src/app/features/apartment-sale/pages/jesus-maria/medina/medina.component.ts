@@ -152,6 +152,20 @@ export class MedinaComponent {
       textColor: '#FFFFFF',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.467838119167!2d-77.04230562408924!3d-12.080091488159296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8f1524b8a25%3A0x32fbddcd2bd65a3d!2sAv.%20Edgardo%20Rebagliati%20405%2C%20Jes%C3%BAs%20Mar%C3%ADa%2015073%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776205686064!5m2!1ses!2scl',
       address: 'Av. Edgardo Rebagliati 405, Jesús María, Lima'
-    }
+    },
+    executives: [
+      {
+        name: 'Jose Luis Napuri',
+        role: 'Ejecutivo de Ventas',
+        phone: '989183368',
+        photo: 'images/executives/jose-napuri.jpg',
+      },
+      {
+        name: 'Ambar Rodriguez',
+        role: 'Ejecutiva de Ventas',
+        phone: '981287530',
+        photo: 'images/executives/ambar-rodriguez.jpg',
+      },
+    ],
   };
 }

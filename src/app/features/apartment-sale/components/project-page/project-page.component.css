@@ -1,4 +1,18 @@
 :host {
   display: block;
   width: 100%;
+  /* Deja espacio para el banner fijo inferior de ejecutivos */
+  padding-bottom: 118px;
+}
+
+@media (max-width: 768px) {
+  :host {
+    padding-bottom: 104px;
+  }
+}
+
+@media (max-width: 480px) {
+  :host {
+    padding-bottom: 94px;
+  }
 }

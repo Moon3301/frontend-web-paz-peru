@@ -42,4 +42,10 @@
     *ngIf="config.ubication"
     [config]="config.ubication">
   </app-ubication>
+
+  <!-- Banner fijo inferior de ejecutivos de ventas -->
+  <app-executive-banner
+    *ngIf="config.executives && config.executives.length > 0"
+    [executives]="config.executives">
+  </app-executive-banner>
 </ng-container>

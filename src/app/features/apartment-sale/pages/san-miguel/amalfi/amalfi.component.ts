@@ -116,7 +116,7 @@ export class AmalfiComponent {
       url: 'https://www.youtube.com/embed/UGpOIL-LkUc',
       type: 'youtube',
       title: 'CONOCE PROYECTO AMALFI',
-      fallbackImage: 'images/projects/central/video-central.png',
+      fallbackImage: 'images/projects/amalfi/video-amalfi.png',
     },
     virtualTour: {
       url: 'https://360.nerdstudio.pe/recorridovirtual/paz/amalfi/index.htm',
@@ -135,6 +135,20 @@ export class AmalfiComponent {
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Av.+Costanera+cdra.25,+San+Miguel,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Av+Costanera+cdra.25+San+Miguel+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Carla Venegas',
+        role: 'Ejecutiva de Ventas',
+        phone: '977876984',
+        photo: 'images/executives/carla-venegas.jpg',
+      },
+      {
+        name: 'Marjourie Acosta',
+        role: 'Ejecutiva de Ventas',
+        phone: '983478905',
+        photo: 'images/executives/marjourie-costa.jpg',
+      },
+    ],
   };
 }

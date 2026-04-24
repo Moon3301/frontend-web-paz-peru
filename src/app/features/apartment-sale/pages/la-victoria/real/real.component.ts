@@ -138,6 +138,26 @@ export class RealComponent {
       textColor: '#FFFFFF',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.576519865062!2d-77.03280412408937!3d-12.072631588166155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8925c6a03ef%3A0x5a0e4809f222373d!2sJr.%20Francia%20130%2C%20Lima%2015033%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776206266980!5m2!1ses!2scl',
       address: 'Jr. Francia 130, La Victoria, Lima'
-    }
+    },
+    executives: [
+      {
+        name: 'Dick Bustamante',
+        role: 'Ejecutivo de Ventas',
+        phone: '970639597',
+        photo: 'images/executives/dick-bustamante.jpg',
+      },
+      {
+        name: 'Juan Leyva',
+        role: 'Ejecutivo de Ventas',
+        phone: '912044799',
+        photo: 'images/executives/juan-leyva.jpg',
+      },
+      {
+        name: 'Carlos Quispe',
+        role: 'Ejecutivo de Ventas',
+        phone: '934866686',
+        photo: 'images/executives/carlos-quispe.jpg',
+      },
+    ],
   };
 }

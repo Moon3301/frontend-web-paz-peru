@@ -36,6 +36,7 @@ import { VirtualTourComponent } from './components/virtual-tour/virtual-tour.com
 import { VideoModalComponent } from './components/video-modal/video-modal.component';
 import { AllProjectsComponent } from './pages/all-projects/all-projects.component';
 import { DistrictComponent } from './pages/district/district.component';
+import { ExecutiveBannerComponent } from './components/executive-banner/executive-banner.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { DistrictComponent } from './pages/district/district.component';
     VirtualTourComponent,
     AllProjectsComponent,
     DistrictComponent,
+    ExecutiveBannerComponent,
   ],
   imports: [
     CommonModule,

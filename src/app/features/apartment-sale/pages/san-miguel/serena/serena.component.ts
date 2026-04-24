@@ -156,5 +156,19 @@ export class SerenaComponent {
       projectId: 11,
       projectName: 'SERENA',
     },
+    executives: [
+      {
+        name: 'Carla Celi',
+        role: 'Ejecutiva de Ventas',
+        phone: '981520744',
+        photo: 'images/executives/carla-celi.jpg',
+      },
+      {
+        name: 'Maria Rodriguez',
+        role: 'Ejecutiva de Ventas',
+        phone: '924902474',
+        photo: 'images/executives/maria-del-carmen-rodriguez.jpg',
+      },
+    ],
   };
 }

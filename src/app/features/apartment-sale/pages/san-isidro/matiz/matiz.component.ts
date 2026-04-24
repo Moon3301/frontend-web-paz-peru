@@ -145,6 +145,20 @@ export class MatizComponent {
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Calle+Machaypuito+163,+San+Isidro,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Calle+Machaypuito+163+San+Isidro+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Gladys Vazquez',
+        role: 'Ejecutiva de Ventas',
+        phone: '922521922',
+        photo: 'images/executives/gladys-vasquez.jpg',
+      },
+      {
+        name: 'Carlos Muga',
+        role: 'Ejecutivo de Ventas',
+        phone: '922522252',
+        photo: 'images/executives/carlos-muga.jpg',
+      },
+    ],
   };
 }

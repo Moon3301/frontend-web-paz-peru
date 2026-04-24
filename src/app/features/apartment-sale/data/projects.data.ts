@@ -16,7 +16,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     status: 'LANZAMIENTO',
     image: '/images/projects/thumb-marena-home.png',
     logo: '/images/logos/projects/logo-marena-1.svg',
-    link: '/apartment-sale/san-miguel/marena'
+    link: '/departamentos-en-venta/san-miguel/marena'
   },
   {
     name: 'Lima 15',
@@ -25,7 +25,7 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     status: 'LANZAMIENTO',
     image: '/images/projects/thumb-lima15-home.png',
     logo: '/images/logos/projects/logo-lima-morado.svg',
-    link: '/apartment-sale/miraflores/lima-15'
+    link: '/departamentos-en-venta/miraflores/lima-15'
   },
   {
     name: 'Matiz',
@@ -33,98 +33,17 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     districtSlug: 'san-isidro',
     status: 'LANZAMIENTO',
     image: '/images/projects/thumb-matiz-home.png',
-    logo: '/images/logos/projects/logo-matiz-1-2.webp',
-    link: '/apartment-sale/san-isidro/matiz'
+    logo: '/images/logos/projects/logo-matiz-transparent.png',
+    link: '/departamentos-en-venta/san-isidro/matiz'
   },
   {
     name: 'Riva',
     district: 'Miraflores',
     districtSlug: 'miraflores',
-    status: 'LANZAMIENTO',
-    image: '/images/projects/thumb-riva-home.jpg',
+    status: 'ÚLTIMO MES DE PREVENTA',
+    image: '/images/projects/thumb-riva-home.png',
     logo: '/images/logos/projects/logo-riva-1.png',
-    link: '/apartment-sale/miraflores/riva'
-  },
-  {
-    name: 'Taller',
-    district: 'Miraflores',
-    districtSlug: 'miraflores',
-    status: 'ENTREGA SEPTIEMBRE 2026',
-    image: '/images/projects/thumb-taller.jpg',
-    logo: '/images/logos/projects/logo-taller.png',
-    link: '/apartment-sale/miraflores/taller'
-  },
-  {
-    name: 'Serena',
-    district: 'San Miguel',
-    districtSlug: 'san-miguel',
-    status: 'EN CONSTRUCCIÓN',
-    image: '/images/projects/thumb-serena.jpg',
-    logo: '/images/logos/projects/logo-serena.png',
-    link: '/apartment-sale/san-miguel/serena'
-  },
-  {
-    name: 'Florencia',
-    district: 'Pueblo Libre',
-    districtSlug: 'pueblo-libre',
-    status: 'EN CONSTRUCCIÓN',
-    image: '/images/projects/thumb-florencia-home.jpg',
-    logo: '/images/logos/projects/logo-florencia.png',
-    link: '/apartment-sale/pueblo-libre/florencia'
-  },
-  {
-    name: 'Real',
-    district: 'La Victoria',
-    districtSlug: 'la-victoria',
-    status: 'ENTREGA INMEDIATA',
-    image: '/images/projects/thumb-real-home.jpg',
-    logo: '/images/logos/projects/logo-real.svg',
-    link: '/apartment-sale/la-victoria/real'
-  },
-  {
-    name: 'Central',
-    district: 'Miraflores',
-    districtSlug: 'miraflores',
-    status: 'EN CONSTRUCCIÓN',
-    image: '/images/projects/thumb-central-home.jpg',
-    logo: '/images/logos/projects/logo-central.png',
-    link: '/apartment-sale/miraflores/central'
-  },
-  {
-    name: 'Patio La Paz',
-    district: 'San Miguel',
-    districtSlug: 'san-miguel',
-    status: 'ENTREGA INMEDIATA',
-    image: '/images/projects/thumb-patio-home.jpg',
-    logo: '/images/logos/projects/logo-patio.png',
-    link: '/apartment-sale/san-miguel/patio-la-paz'
-  },
-  {
-    name: 'Amalfi',
-    district: 'San Miguel',
-    districtSlug: 'san-miguel',
-    status: 'ENTREGA INMEDIATA',
-    image: '/images/projects/thumb-amalfi-home.jpg',
-    logo: '/images/logos/projects/logo-amalfi.svg',
-    link: '/apartment-sale/san-miguel/amalfi'
-  },
-  {
-    name: 'Escala',
-    district: 'La Victoria',
-    districtSlug: 'la-victoria',
-    status: 'ENTREGA INMEDIATA',
-    image: '/images/projects/thumb-escala-home.jpg',
-    logo: '/images/logos/projects/logo-escala.png',
-    link: '/apartment-sale/la-victoria/escala'
-  },
-  {
-    name: 'Savia',
-    district: 'Pueblo Libre',
-    districtSlug: 'pueblo-libre',
-    status: 'ENTREGA INMEDIATA',
-    image: '/images/projects/thumb-savia-home.jpg',
-    logo: '/images/logos/projects/logo-savia.svg',
-    link: '/apartment-sale/pueblo-libre/savia'
+    link: '/departamentos-en-venta/miraflores/riva'
   },
   {
     name: 'Medina',
@@ -133,6 +52,87 @@ export const ALL_APARTMENT_PROJECTS: ApartmentProject[] = [
     status: 'EN CONSTRUCCIÓN',
     image: '/images/projects/thumb-medina-home.png',
     logo: '/images/logos/projects/logo-medina-1.png',
-    link: '/apartment-sale/jesus-maria/medina'
+    link: '/departamentos-en-venta/jesus-maria/medina'
+  },
+  {
+    name: 'Taller',
+    district: 'Miraflores',
+    districtSlug: 'miraflores',
+    status: 'ENTREGA SEPTIEMBRE 2026',
+    image: '/images/projects/thumb-taller.png',
+    logo: '/images/logos/projects/logo-taller.png',
+    link: '/departamentos-en-venta/miraflores/taller'
+  },
+  {
+    name: 'Patio La Paz',
+    district: 'San Miguel',
+    districtSlug: 'san-miguel',
+    status: 'ENTREGA INMEDIATA',
+    image: '/images/projects/thumb-patio-home.jpg',
+    logo: '/images/logos/projects/logo-patio.png',
+    link: '/departamentos-en-venta/san-miguel/patio-la-paz'
+  },
+  {
+    name: 'Serena',
+    district: 'San Miguel',
+    districtSlug: 'san-miguel',
+    status: 'EN CONSTRUCCIÓN',
+    image: '/images/projects/thumb-serena.jpg',
+    logo: '/images/logos/projects/logo-serena.png',
+    link: '/departamentos-en-venta/san-miguel/serena'
+  },
+  {
+    name: 'Central',
+    district: 'Miraflores',
+    districtSlug: 'miraflores',
+    status: 'EN CONSTRUCCIÓN',
+    image: '/images/projects/thumb-central-home.png',
+    logo: '/images/logos/projects/logo-central.png',
+    link: '/departamentos-en-venta/miraflores/central'
+  },
+  {
+    name: 'Florencia',
+    district: 'Pueblo Libre',
+    districtSlug: 'pueblo-libre',
+    status: 'EN CONSTRUCCIÓN',
+    image: '/images/projects/thumb-florencia-home.png',
+    logo: '/images/logos/projects/logo-florencia.png',
+    link: '/departamentos-en-venta/pueblo-libre/florencia'
+  },
+  {
+    name: 'Amalfi',
+    district: 'San Miguel',
+    districtSlug: 'san-miguel',
+    status: 'ENTREGA INMEDIATA',
+    image: '/images/projects/thumb-amalfi-home.png',
+    logo: '/images/logos/projects/logo-amalfi.svg',
+    link: '/departamentos-en-venta/san-miguel/amalfi'
+  },
+  {
+    name: 'Real',
+    district: 'La Victoria',
+    districtSlug: 'la-victoria',
+    status: 'ENTREGA INMEDIATA',
+    image: '/images/projects/thumb-real-home.png',
+    logo: '/images/logos/projects/logo-real.svg',
+    link: '/departamentos-en-venta/la-victoria/real'
+  },
+  {
+    name: 'Savia',
+    district: 'Pueblo Libre',
+    districtSlug: 'pueblo-libre',
+    status: 'ENTREGA INMEDIATA',
+    image: '/images/projects/thumb-savia-home.png',
+    logo: '/images/logos/projects/logo-savia.svg',
+    link: '/departamentos-en-venta/pueblo-libre/savia'
+  },
+  {
+    name: 'Escala',
+    district: 'Santa Catalina',
+    districtSlug: 'santa-catalina',
+    status: 'ENTREGA INMEDIATA',
+    image: '/images/projects/thumb-escala-home.png',
+    logo: '/images/logos/projects/logo-escala.png',
+    link: '/departamentos-en-venta/la-victoria/escala'
   }
 ];

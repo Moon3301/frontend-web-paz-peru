@@ -140,11 +140,25 @@ export class RivaComponent {
     },
     ubication: {
       backgroundColor: '#343233',
-      textColor:'#FFFFFF',
+      textColor: '#FFFFFF',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3900.738553160752!2d-77.03511012408858!3d-12.130032588113282!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c81fe37e8d35%3A0xc39b89f2587eecfa!2sC.%20Comandante%20O%20Donovan%20115%2C%20Miraflores%2015074%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776206526540!5m2!1ses!2scl',
       address: 'Calle Comandante O’Donovan 115, Miraflores',
       mapsUrl: 'https://maps.google.com/?q=Calle+Comandante+O%E2%80%99Donovan+115,+Miraflores,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Calle+Comandante+O%E2%80%99Donovan+115+Miraflores+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Jesús Bello',
+        role: 'Ejecutivo de Ventas',
+        phone: '987952815',
+        photo: 'images/executives/jesus-antonio-bello.jpg',
+      },
+      {
+        name: 'Jorge Coha',
+        role: 'Ejecutivo de Ventas',
+        phone: '977804343',
+        photo: 'images/executives/jorge-coha.jpg',
+      },
+    ],
   };
 }

@@ -249,6 +249,20 @@ export interface VirtualTourConfig {
   textColor?: string;
 }
 
+/**
+ * Datos de un ejecutivo/a de ventas para el banner inferior fijo.
+ */
+export interface Executive {
+  /** Nombre completo */
+  name: string;
+  /** Cargo mostrado bajo el nombre. Default: "Ejecutivo/a de Ventas" */
+  role?: string;
+  /** Número de teléfono (sin código de país). Se usa para el enlace de WhatsApp. */
+  phone: string;
+  /** Ruta a la foto del ejecutivo, e.g. "images/executives/nombre-apellido.jpg" */
+  photo: string;
+}
+
 export interface ProjectConfig {
   hero?: HeroConfig;
   stats?: ProjectStatsConfig;
@@ -260,4 +274,9 @@ export interface ProjectConfig {
   quoter?: QuoterConfig;
   ubication?: UbicationConfig;
   virtualTour?: VirtualTourConfig;
+  /**
+   * Lista de ejecutivos de ventas para el banner fijo inferior.
+   * Si hay más de uno, rota automáticamente con transición de opacidad.
+   */
+  executives?: Executive[];
 }

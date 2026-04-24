@@ -129,6 +129,20 @@ export class SaviaComponent {
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Av.+Brasil+1470,+Pueblo+Libre,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Av+Brasil+1470+Pueblo+Libre+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Jorge Coha',
+        role: 'Ejecutivo de Ventas',
+        phone: '977804343',
+        photo: 'images/executives/jorge-coha.jpg',
+      },
+      {
+        name: 'Ana Alejos',
+        role: 'Ejecutiva de Ventas',
+        phone: '955102219',
+        photo: 'images/executives/ana-alejos.jpg',
+      },
+    ],
   };
 }

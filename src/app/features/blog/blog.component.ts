@@ -122,17 +122,17 @@ export class BlogComponent implements OnInit {
   ];
 
   readonly sidebarProjects = [
-    { name: 'Central Apartments', district: 'Miraflores',     link: '/apartment-sale/miraflores/central' },
-    { name: 'Patio la Paz',       district: 'San Miguel',     link: '/apartment-sale/san-miguel/patio-la-paz' },
-    { name: 'Amalfi',             district: 'San Miguel',     link: '/apartment-sale/san-miguel/amalfi' },
-    { name: 'Escala',             district: 'Santa Catalina', link: '/apartment-sale/la-victoria/escala' },
-    { name: 'Galia',              district: 'Miraflores',     link: '/apartment-sale' },
-    { name: 'Savia',              district: 'Pueblo Libre',   link: '/apartment-sale/pueblo-libre/savia' },
-    { name: 'Magnolia',           district: 'Pueblo Libre',   link: '/apartment-sale' },
-    { name: 'Real',               district: 'La Victoria',    link: '/apartment-sale/la-victoria/real' },
-    { name: 'Serena',             district: 'San Miguel',     link: '/apartment-sale/san-miguel/serena' },
-    { name: 'Taller',             district: 'Miraflores',     link: '/apartment-sale/miraflores/taller' },
-    { name: 'Florencia',          district: 'Pueblo Libre',   link: '/apartment-sale/pueblo-libre/florencia' }
+    { name: 'Central Apartments', district: 'Miraflores',     link: '/departamentos-en-venta/miraflores/central' },
+    { name: 'Patio la Paz',       district: 'San Miguel',     link: '/departamentos-en-venta/san-miguel/patio-la-paz' },
+    { name: 'Amalfi',             district: 'San Miguel',     link: '/departamentos-en-venta/san-miguel/amalfi' },
+    { name: 'Escala',             district: 'Santa Catalina', link: '/departamentos-en-venta/la-victoria/escala' },
+    { name: 'Galia',              district: 'Miraflores',     link: '/departamentos-en-venta' },
+    { name: 'Savia',              district: 'Pueblo Libre',   link: '/departamentos-en-venta/pueblo-libre/savia' },
+    { name: 'Magnolia',           district: 'Pueblo Libre',   link: '/departamentos-en-venta' },
+    { name: 'Real',               district: 'La Victoria',    link: '/departamentos-en-venta/la-victoria/real' },
+    { name: 'Serena',             district: 'San Miguel',     link: '/departamentos-en-venta/san-miguel/serena' },
+    { name: 'Taller',             district: 'Miraflores',     link: '/departamentos-en-venta/miraflores/taller' },
+    { name: 'Florencia',          district: 'Pueblo Libre',   link: '/departamentos-en-venta/pueblo-libre/florencia' }
   ];
 
   readonly pageSize = 6;

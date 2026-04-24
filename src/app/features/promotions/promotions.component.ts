@@ -117,7 +117,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-serena.jpg',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/439,000*',
-      projectLink: '/apartment-sale/san-miguel/serena',
+      projectLink: '/departamentos-en-venta/san-miguel/serena',
       disclaimer: D['serena']
     },
     {
@@ -126,7 +126,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-florencia-home.jpg',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/405,000*',
-      projectLink: '/apartment-sale/pueblo-libre/florencia',
+      projectLink: '/departamentos-en-venta/pueblo-libre/florencia',
       disclaimer: D['florencia']
     },
     {
@@ -135,7 +135,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-central-home.jpg',
       description: 'Tu depa de 3 ambientes con precio desde',
       price: 'S/764,000*',
-      projectLink: '/apartment-sale/miraflores/central',
+      projectLink: '/departamentos-en-venta/miraflores/central',
       disclaimer: D['central']
     }
   ];
@@ -148,7 +148,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-lima15-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/678,000*',
-      projectLink: '/apartment-sale/miraflores/lima15',
+      projectLink: '/departamentos-en-venta/miraflores/lima15',
       disclaimer: D['lima15']
     },
     {
@@ -157,7 +157,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-matiz-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/727,000*',
-      projectLink: '/apartment-sale/san-isidro/matiz',
+      projectLink: '/departamentos-en-venta/san-isidro/matiz',
       disclaimer: D['matiz']
     },
     {
@@ -166,7 +166,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-serena.jpg',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/439,000*',
-      projectLink: '/apartment-sale/san-miguel/serena',
+      projectLink: '/departamentos-en-venta/san-miguel/serena',
       disclaimer: D['serena']
     },
     {
@@ -175,7 +175,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-florencia-home.jpg',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/405,000*',
-      projectLink: '/apartment-sale/pueblo-libre/florencia',
+      projectLink: '/departamentos-en-venta/pueblo-libre/florencia',
       disclaimer: D['florencia']
     },
     {
@@ -184,7 +184,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-central-home.jpg',
       description: 'Tu depa de 3 ambientes con precio desde',
       price: 'S/764,000*',
-      projectLink: '/apartment-sale/miraflores/central',
+      projectLink: '/departamentos-en-venta/miraflores/central',
       disclaimer: D['central']
     },
     {
@@ -193,7 +193,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-medina-home.png',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/477,000*',
-      projectLink: '/apartment-sale/jesus-maria/medina',
+      projectLink: '/departamentos-en-venta/jesus-maria/medina',
       disclaimer: D['medina']
     },
     {
@@ -202,7 +202,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-taller.jpg',
       description: 'Tu depa de 1 ambiente con precio desde',
       price: 'S/554,000*',
-      projectLink: '/apartment-sale/miraflores/taller',
+      projectLink: '/departamentos-en-venta/miraflores/taller',
       disclaimer: D['taller']
     },
     {
@@ -211,7 +211,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-patio-home.jpg',
       description: 'Tu depa de 3 ambientes con cuotas desde',
       price: 'S/2,633*',
-      projectLink: '/apartment-sale/san-miguel/patio-la-paz',
+      projectLink: '/departamentos-en-venta/san-miguel/patio-la-paz',
       disclaimer: D['patioLaPaz']
     },
     {
@@ -220,7 +220,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-real-home.jpg',
       description: 'Tu depa de 2 ambientes con cuotas desde',
       price: 'S/2,680*',
-      projectLink: '/apartment-sale/la-victoria/real',
+      projectLink: '/departamentos-en-venta/la-victoria/real',
       disclaimer: D['real']
     },
     {
@@ -229,7 +229,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-savia-home.jpg',
       description: 'Tu depa de 3 ambientes con precio desde',
       price: 'S/478,000*',
-      projectLink: '/apartment-sale/pueblo-libre/savia',
+      projectLink: '/departamentos-en-venta/pueblo-libre/savia',
       disclaimer: D['savia']
     },
     {
@@ -238,7 +238,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-amalfi-home.jpg',
       description: 'Tu depa de 2 ambientes con precio desde',
       price: 'S/498,000*',
-      projectLink: '/apartment-sale/san-miguel/amalfi',
+      projectLink: '/departamentos-en-venta/san-miguel/amalfi',
       disclaimer: D['amalfi']
     },
     {
@@ -247,7 +247,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-escala-home.jpg',
       description: 'Tu depa de 3 ambientes con precio desde',
       price: 'S/557,000*',
-      projectLink: '/apartment-sale/la-victoria/escala',
+      projectLink: '/departamentos-en-venta/la-victoria/escala',
       disclaimer: D['escala']
     },
     {
@@ -256,7 +256,7 @@ export class PromotionsComponent {
       image: '/images/projects/thumb-marena-home.png',
       description: 'Tu depa de 1 ambiente con precio desde',
       price: 'S/297,000*',
-      projectLink: '/apartment-sale/san-miguel/marena',
+      projectLink: '/departamentos-en-venta/san-miguel/marena',
       disclaimer: D['marena']
     }
   ];

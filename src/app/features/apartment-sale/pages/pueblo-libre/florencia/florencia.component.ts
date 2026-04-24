@@ -149,6 +149,20 @@ export class FlorenciaComponent {
       address: 'Av. Mariano Cornejo n°1455, Pueblo Libre',
       mapsUrl: 'https://maps.google.com/?q=Av.+Mariano+Cornejo+n%C2%B01455,+Pueblo+Libre,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Av+Mariano+Cornejo+n%C2%B01455+Pueblo+Libre+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Kiara Villarreal',
+        role: 'Ejecutiva de Ventas',
+        phone: '922827868',
+        photo: 'images/executives/kiara-villareal.jpg',
+      },
+      {
+        name: 'Eder Davila',
+        role: 'Ejecutivo de Ventas',
+        phone: '987938454',
+        photo: 'images/executives/eder-davila.jpg',
+      },
+    ],
   };
 }

@@ -158,5 +158,19 @@ export class CentralComponent {
       projectId: 2,
       projectName: 'CENTRAL',
     },
+    executives: [
+      {
+        name: 'Maryuri Huamani',
+        role: 'Ejecutiva de Ventas',
+        phone: '969334619',
+        photo: '/images/executives/maryuri-huamani.jpg',
+      },
+      {
+        name: 'Karen Minaya',
+        role: 'Ejecutiva de Ventas',
+        phone: '981287582',
+        photo: '/images/executives/karen-minaya.jpg',
+      },
+    ],
   };
 }

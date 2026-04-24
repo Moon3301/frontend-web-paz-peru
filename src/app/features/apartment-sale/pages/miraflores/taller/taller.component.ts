@@ -151,5 +151,19 @@ export class TallerComponent {
       backgroundColor: '#ece8dc',
       textColor: '#161129',
     },
+    executives: [
+      {
+        name: 'Aracelly Quispe',
+        role: 'Ejecutiva de Ventas',
+        phone: '986651320',
+        photo: 'images/executives/aracelly-quispe.jpg',
+      },
+      {
+        name: 'Josselyn Candelario',
+        role: 'Ejecutiva de Ventas',
+        phone: '934872230',
+        photo: 'images/executives/josselyn-candelario.jpg',
+      },
+    ],
   };
 }

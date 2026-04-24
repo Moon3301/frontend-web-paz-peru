@@ -150,6 +150,20 @@ export class PatioLaPazComponent {
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Av.+La+Paz+2551,+San+Miguel,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Av+La+Paz+2551+San+Miguel+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Grecia Taype',
+        role: 'Ejecutiva de Ventas',
+        phone: '947320843',
+        photo: 'images/executives/grecia-taype.jpg',
+      },
+      {
+        name: 'Lisset Guzman',
+        role: 'Ejecutiva de Ventas',
+        phone: '970114020',
+        photo: 'images/executives/lisset-guzman.jpg',
+      },
+    ],
   };
 }

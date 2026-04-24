@@ -147,6 +147,20 @@ export class MarenaComponent {
       textColor: '#FFFFFF',
       mapsUrl: 'https://maps.google.com/?q=Jr.+Federico+Gallese+Taricchi+399,+San+Miguel,+Lima,+Per%C3%BA',
       wazeUrl: 'https://waze.com/ul?q=Jr+Federico+Gallese+Taricchi+399+San+Miguel+Lima&navigate=yes',
-    }
+    },
+    executives: [
+      {
+        name: 'Carla Celi',
+        role: 'Ejecutiva de Ventas',
+        phone: '981520744',
+        photo: 'images/executives/carla-celi.jpg',
+      },
+      {
+        name: 'Maria Rodriguez',
+        role: 'Ejecutiva de Ventas',
+        phone: '924902474',
+        photo: 'images/executives/maria-del-carmen-rodriguez.jpg',
+      },
+    ],
   };
 }

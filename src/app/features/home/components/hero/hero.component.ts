@@ -39,7 +39,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
       titleBold: 'nueva vida',
       projectName: 'PROYECTO ESCALA',
       projectLabel: 'SANTA CATALINA',
-      link: '/apartment-sale/la-victoria/escala'
+      link: '/departamentos-en-venta/la-victoria/escala'
     },
     {
       videoSrc: '/videos/video-home-pazcentenario-nuevo.mp4',
@@ -48,7 +48,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
       titleBold: 'te espera',
       projectName: 'PROYECTO TALLER',
       projectLabel: 'MIRAFLORES',
-      link: '/apartment-sale/miraflores/taller'
+      link: '/departamentos-en-venta/miraflores/taller'
     },
     {
       videoSrc: '/videos/video-home-pazcentenario-nuevo.mp4',
@@ -57,7 +57,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
       titleBold: 'disfrutar la vida',
       projectName: 'PROYECTO SAVIA',
       projectLabel: 'PUEBLO LIBRE',
-      link: '/apartment-sale/pueblo-libre/savia'
+      link: '/departamentos-en-venta/pueblo-libre/savia'
     }
   ];
 

@@ -136,6 +136,20 @@ export class EscalaComponent {
       textColor: '#FFFFFF',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.343298590849!2d-77.01692212408909!3d-12.088634288151388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c87eebe3b683%3A0x15687c0370c932bd!2sAv.%20Jos%C3%A9%20G%C3%A1lvez%20Barrenechea%20200%2C%20La%20Victoria%2015034%2C%20Per%C3%BA!5e0!3m2!1ses!2scl!4v1776206075672!5m2!1ses!2scl',
       address: 'Av. Gálvez Barrenechea 200 - SANTA CATALINA'
-    }
+    },
+    executives: [
+      {
+        name: 'Patrick Coriat',
+        role: 'Ejecutivo de Ventas',
+        phone: '933336977',
+        photo: 'images/executives/patrick-coriat.jpg',
+      },
+      {
+        name: 'Juda Caceres',
+        role: 'Ejecutivo de Ventas',
+        phone: '947327029',
+        photo: 'images/executives/juda-omar-caceres.jpg',
+      },
+    ],
   };
 }
