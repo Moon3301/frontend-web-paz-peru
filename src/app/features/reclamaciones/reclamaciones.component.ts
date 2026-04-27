@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { API_URL } from '../../../environments/environments';
 
 /* ── Datos de empresas y proyectos ── */
 interface ProjectInfo {
@@ -43,6 +44,8 @@ const PROJECT_DATA: ProjectInfo[] = [
   styleUrl: './reclamaciones.component.css',
 })
 export class ReclamacionesComponent implements OnInit {
+
+  private readonly contactUrl = `${API_URL}/contact`;
 
   form!: FormGroup;
 
@@ -153,7 +156,8 @@ export class ReclamacionesComponent implements OnInit {
     };
 
     this.http.post<{ success: boolean; message: string }>(
-      'http://localhost:3000/api/complaints/submit', payload
+      `${this.contactUrl}/complaint`,
+      payload
     ).subscribe({
       next: () => {
         this.isLoading = false;
