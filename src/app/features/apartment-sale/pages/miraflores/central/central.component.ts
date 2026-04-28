@@ -18,18 +18,18 @@ export class CentralComponent {
       priceFrom: 'S/ 764,000*',
       overlayColor: 'rgba(178, 140, 173, 0.5)',
       badgeStyle: {
-        fontSize: '2rem',
+        fontSize: 'clamp(0.75rem, 2.2vw, 2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
       descriptionStyle: {
-        fontSize: '1.2rem',
+        fontSize: 'clamp(0.6rem, 1.6vw, 1.2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '4rem',
+        fontSize: 'clamp(1rem, 4vw, 4rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
@@ -39,6 +39,12 @@ export class CentralComponent {
       priceLabelColor: '#161129',
       priceFromColor: '#161129',
       textPosition: { bottom: '15%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(39vh, 350px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(30vh, 200px)' },
+      },
       slides: [
         { image: 'images/projects/central/hero-1.jpg', alt: 'Central - Fachada' },
         { image: 'images/projects/central/hero-2.jpg', alt: 'Central - Vista exterior' },

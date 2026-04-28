@@ -16,13 +16,13 @@ export class SerenaComponent {
       // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       descriptionStyle: {
-        fontSize: '2rem',
+        fontSize: 'clamp(0.65rem, 2vw, 2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.2rem',
+        fontSize: 'clamp(1rem, 2.8vw, 2.2rem)',
         fontWeight: '800',
       },
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
@@ -34,6 +34,12 @@ export class SerenaComponent {
       priceLabelColor: '#ffd6d4',
       priceFromColor: '#ffd6d4',
       textPosition: { bottom: '35%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(46vh, 460px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(49vh, 560px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(42vh, 370px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(32vh, 210px)' },
+      },
       slides: [
         { image: 'images/projects/serena/1.jpg', alt: 'Serena - Fachada' },
         { image: 'images/projects/serena/2.jpg', alt: 'Serena - Vista exterior' },

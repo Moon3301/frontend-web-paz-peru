@@ -5,11 +5,12 @@
     class="hero__slide"
     [class.hero__slide--active]="i === activeIndex"
     [style.backgroundImage]="'url(' + slide.image + ')'">
+    <p class="hero__slide-label"> * Imagen referencial</p>
   </div>
 
   <!-- Overlay: logo image + textos superpuestos dentro de ella -->
   <div class="hero__overlay-panel">
-    <div class="hero__logo-wrapper" *ngIf="config.logo">
+    <div class="hero__logo-wrapper" *ngIf="config.logo" [ngStyle]="getLogoCssVars()">
       <img [src]="config.logo" [alt]="config.projectName" class="hero__logo">
 
       <!-- Bloque de texto posicionado DENTRO de la imagen del logo.

@@ -20,13 +20,13 @@ export class MarenaComponent {
       textColor: '#ffffff',
       badgeColor: '#ffffff',
       descriptionStyle: {
-        fontSize: '2.2rem',
+        fontSize: 'clamp(0.65rem, 2.2vw, 2.2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.8rem',
+        fontSize: 'clamp(1rem, 3.4vw, 2.8rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
@@ -34,6 +34,12 @@ export class MarenaComponent {
       priceLabelColor: '#ffffff',
       priceFromColor: '#ffffff',
       textPosition: { bottom: '25%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(39vh, 345px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(30vh, 200px)' },
+      },
       slides: [
         { image: 'images/projects/marena/1.jpg', alt: 'Marena - Fachada' },
         { image: 'images/projects/marena/2.png', alt: 'Marena - Vista exterior' },
@@ -131,7 +137,7 @@ export class MarenaComponent {
       fallbackImage: 'images/projects/central/video-central.png',
     },
     virtualTour: {
-      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/amalfi/index.htm',
+      url: 'https://360.nerdstudio.pe/recorridovirtual/paz/marena/ac/index.htm',
       projectTitle: 'RECORRIDO VIRTUAL',
       backgroundColor: '#2d5066',
       textColor: '#dcd0c9',

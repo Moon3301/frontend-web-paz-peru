@@ -39,8 +39,42 @@ export interface HeroElementStyle {
   marginBottom?: string;
 }
 
+/** Dimensiones del logo hero en un breakpoint. Los valores son strings CSS válidos. */
+export interface LogoBreakpointSize {
+  /** Ancho CSS, e.g. 'min(50vw, 580px)' o '420px' */
+  width?: string;
+  /** Alto CSS, e.g. 'min(45vh, 460px)' o '320px' */
+  height?: string;
+}
+
+/**
+ * Permite ajustar el tamaño del logo hero de forma independiente por breakpoint.
+ * Solo los breakpoints definidos sobreescriben el default del CSS.
+ *
+ * Breakpoints de referencia:
+ *   desktop  → ≥1440 px
+ *   standard → 1025–1439 px  (base por defecto)
+ *   tablet   → 768–1024 px
+ *   mobile   → ≤767 px
+ *   mobileSm → ≤480 px
+ */
+export interface HeroLogoSize {
+  desktop?:  LogoBreakpointSize;
+  standard?: LogoBreakpointSize;
+  tablet?:   LogoBreakpointSize;
+  mobile?:   LogoBreakpointSize;
+  mobileSm?: LogoBreakpointSize;
+}
+
 export interface HeroConfig {
   logo?: string;
+  /**
+   * Dimensiones opcionales del logo hero por breakpoint.
+   * Si no se define, el CSS usa los valores por defecto definidos en hero.component.css.
+   * Ejemplo:
+   *   logoSize: { mobile: { width: 'min(70vw, 260px)', height: 'min(30vh, 190px)' } }
+   */
+  logoSize?: HeroLogoSize;
   slides: HeroSlide[];
   projectName: string;
   district: string;

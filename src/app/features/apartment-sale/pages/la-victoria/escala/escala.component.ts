@@ -24,6 +24,12 @@ export class EscalaComponent {
       priceLabelColor: '#f5f0cc',
       priceFromColor: '#ff7f30',
       textPosition: { bottom: '0%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(38vh, 340px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(28vh, 190px)' },
+      },
       slides: [
         { image: 'images/projects/escala/hero-1.jpg', alt: 'Escala - Fachada' },
         { image: 'images/projects/escala/hero-2.jpg', alt: 'Escala - Vista exterior' },

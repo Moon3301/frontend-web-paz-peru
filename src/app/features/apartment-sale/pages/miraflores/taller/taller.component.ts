@@ -20,14 +20,14 @@ export class TallerComponent {
       overlayColor: 'rgba(60, 40, 30, 0.75)',
       textColor: '#ffffff',
       descriptionStyle: {
-        fontSize: '1.6rem',
+        fontSize: 'clamp(0.6rem, 1.8vw, 1.6rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
-        marginBottom: '35px'
+        marginBottom: 'clamp(8px, 2vw, 35px)',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.8rem',
+        fontSize: 'clamp(1rem, 3.4vw, 2.8rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
@@ -36,6 +36,12 @@ export class TallerComponent {
       priceLabelColor: '#c2304f',
       priceFromColor: '#c2304f',
       textPosition: { bottom: '30%', left: '30%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(40vh, 355px)' },
+        mobile:   { width: 'min(72vw, 270px)', height: 'min(32vh, 210px)' },
+      },
       slides: [
         { image: 'images/projects/taller/banner-1.jpg', alt: 'Taller - Fachada' },
         { image: 'images/projects/taller/banner-2.jpg', alt: 'Taller - Vista exterior' },

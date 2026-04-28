@@ -19,13 +19,13 @@ export class Lima15Component {
       overlayColor: 'rgba(98, 62, 75, 0.75)',
       textColor: '#ffffff',
       descriptionStyle: {
-        fontSize: '1.2rem',
+        fontSize: 'clamp(0.6rem, 1.6vw, 1.2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.5rem',
+        fontSize: 'clamp(1rem, 3.2vw, 2.5rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
@@ -34,6 +34,12 @@ export class Lima15Component {
       priceLabelColor: '#f0dfc0',
       priceFromColor: '#CA995E',
       textPosition: { bottom: '20%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(39vh, 345px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(30vh, 200px)' },
+      },
       slides: [
         { image: 'images/projects/lima15/hero-1.png', alt: 'Lima 15 - Fachada' },
       ]

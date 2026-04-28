@@ -16,18 +16,18 @@ export class MatizComponent {
       // badge: 'En venta',
       description: 'ENTREGA INMEDIATA',
       badgeStyle: {
-        fontSize: '2.2rem',
+        fontSize: 'clamp(0.65rem, 2.2vw, 2.2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
       descriptionStyle: {
-        fontSize: '2rem',
+        fontSize: 'clamp(0.65rem, 2vw, 2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '3rem',
+        fontSize: 'clamp(1rem, 3.6vw, 3rem)',
         fontWeight: '700',
       },
       priceLine1: 'TU DEPA DE 2 AMBIENTE CON PRECIO DESDE',
@@ -39,6 +39,12 @@ export class MatizComponent {
       priceLabelColor: '#e0e8ec',
       priceFromColor: '#ffffff',
       textPosition: { bottom: '20%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(39vh, 345px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(30vh, 200px)' },
+      },
       slides: [
         { image: 'images/projects/matiz/1.jpeg', alt: 'Matiz - Fachada' },
       ]

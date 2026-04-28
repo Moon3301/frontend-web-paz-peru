@@ -19,14 +19,14 @@ export class PatioLaPazComponent {
       priceFrom: 'S/ 2,633*',
       overlayColor: 'rgba(80, 70, 50, 0.75)',
       descriptionStyle: {
-        fontSize: '2.2rem',
+        fontSize: 'clamp(0.65rem, 2.2vw, 2.2rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
-        marginTop: '20px'
+        marginTop: 'clamp(6px, 1.5vw, 20px)',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.8rem',
+        fontSize: 'clamp(1rem, 3.4vw, 2.8rem)',
         fontWeight: '700',
       },
       textColor: '#ffffff',
@@ -35,6 +35,12 @@ export class PatioLaPazComponent {
       priceLabelColor: '#fff4cc',
       priceFromColor: '#fab605',
       textPosition: { bottom: '10%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(38vh, 340px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(28vh, 190px)' },
+      },
       slides: [
         { image: 'images/projects/patio-la-paz/1.jpg', alt: 'Patio La Paz - Fachada' },
       ]

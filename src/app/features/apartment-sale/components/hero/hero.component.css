@@ -31,7 +31,7 @@
   opacity: 1;
 }
 
-/* Panel centrado — sin fondo, solo posiciona el logo-wrapper.
+/* Panel centrado — posiciona el logo-wrapper.
    max-width garantiza que nunca desborde horizontalmente. */
 .hero__overlay-panel {
   position: absolute;
@@ -49,18 +49,40 @@
    overflow:hidden garantiza que ningún texto salga de los límites del logo. */
 .hero__logo-wrapper {
   position: relative;
-  display: block;          /* block en lugar de inline-block para centrarse mejor */
+  display: block;
   overflow: hidden;
   margin: 0 auto;
 }
 
-/* Logo — usa min() en lugar de clamp() para evitar mínimos fijos que
-   superen el ancho del viewport. Siempre cabe en pantalla.
-   Base (escritorio ≤1440px): 50vw de ancho, máximo 580px. */
+.hero__slide-label {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ----------------------------------------------------------------
+   Logo — usa CSS custom properties con fallbacks para permitir
+   ajuste per-proyecto desde logoSize en HeroConfig.
+   Las variables son inyectadas por getLogoCssVars() en el TS.
+
+   Breakpoints y variables:
+     --logo-w / --logo-h          → base (1025–1439 px)
+     --logo-w-xl / --logo-h-xl   → desktop (≥1440 px)
+     --logo-w-tablet / --logo-h-tablet → tablet (768–1024 px)
+     --logo-w-mobile / --logo-h-mobile → mobile (≤767 px)
+     --logo-w-sm / --logo-h-sm   → mobile pequeño (≤480 px)
+   ---------------------------------------------------------------- */
 .hero__logo {
   display: block;
-  width: min(50vw, 580px);
-  height: min(45vh, 460px);
+  width: var(--logo-w, min(50vw, 580px));
+  height: var(--logo-h, min(45vh, 460px));
   object-fit: contain;
   margin: 0 auto;
 }
@@ -80,16 +102,7 @@
   box-sizing: border-box;
 }
 
-.hero__project-name {
-  font-size: clamp(2rem, 6vw, 4.5rem);
-  font-weight: 300;
-  color: #ffffff;
-  margin: 0 0 0.25rem;
-  line-height: 1;
-}
-
-/* Color controlado por [style.color] desde el template (config.textColor / badgeColor).
-   El CSS solo define layout, tamaño y sombra opcional para legibilidad. */
+/* --- Textos (colores controlados por [ngStyle]; CSS define solo layout y tamaño) --- */
 
 .hero__badge {
   font-family: 'Montserrat', sans-serif;
@@ -100,7 +113,7 @@
   line-height: 1.2;
   letter-spacing: 0.04em;
 }
-/* necesito aumentarle el bold a el texto de la descripcion */
+
 .hero__description {
   font-family: 'Montserrat', sans-serif;
   display: block;
@@ -111,7 +124,6 @@
 }
 
 .hero__price-label {
-  
   font-size: clamp(0.65rem, 1.5vw, 0.85rem);
   white-space: pre-line;
   margin: 0 0 0.2rem;
@@ -182,8 +194,8 @@
 /* ---- Pantallas grandes (≥1440px) ---- */
 @media (min-width: 1440px) {
   .hero__logo {
-    width: min(46vw, 720px);
-    height: min(48vh, 560px);
+    width: var(--logo-w-xl, min(46vw, 720px));
+    height: var(--logo-h-xl, min(48vh, 560px));
   }
 
   .hero__badge      { font-size: clamp(0.9rem,  1.8vw, 1.4rem); }
@@ -195,45 +207,43 @@
 /* ---- Pantallas muy grandes (≥1920px) ---- */
 @media (min-width: 1920px) {
   .hero__logo {
-    width: min(44vw, 860px);
-    height: min(50vh, 640px);
+    width: var(--logo-w-xl, min(44vw, 860px));
+    height: var(--logo-h-xl, min(50vh, 640px));
   }
 }
 
-/* ---- Tablet (≤1024px) ---- */
+/* ---- Tablet (768–1024px) ---- */
 @media (max-width: 1024px) {
   .hero__logo {
-    width: min(56vw, 480px);
-    height: min(42vh, 380px);
+    width: var(--logo-w-tablet, min(54vw, 460px));
+    height: var(--logo-h-tablet, min(40vh, 360px));
   }
 
-  .hero__badge      { font-size: clamp(0.65rem, 1.8vw, 1rem);  }
-  .hero__description{ font-size: clamp(0.6rem,  1.5vw, 0.9rem);}
-  .hero__price-label{ font-size: clamp(0.55rem, 1.2vw, 0.75rem);}
-  .hero__price-from { font-size: clamp(0.9rem,  2.8vw, 1.6rem); }
+  .hero__badge      { font-size: clamp(0.62rem, 1.8vw, 0.95rem); }
+  .hero__description{ font-size: clamp(0.58rem, 1.5vw, 0.88rem); }
+  .hero__price-label{ font-size: clamp(0.52rem, 1.2vw, 0.72rem); }
+  .hero__price-from { font-size: clamp(0.85rem, 2.8vw, 1.5rem);  }
 }
 
 /* ================================================================
    MOBILE (≤768px)
-   Cambio de estrategia: el texto sale DEBAJO del logo en lugar de
-   estar absolutamente posicionado dentro de él.
+   El texto sale DEBAJO del logo en lugar de estar absolutamente
+   posicionado dentro de él.
    position:static !important anula el [ngStyle] del componente.
    ================================================================ */
 @media (max-width: 768px) {
   .hero {
-    min-height: 100svh;  /* safe viewport height en iOS */
+    min-height: 100svh;
   }
 
-  /* El panel ocupa todo el ancho y centra verticalmente logo+texto */
   .hero__overlay-panel {
     width: 92vw;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 
-  /* El wrapper pasa a flex-column para apilar logo y texto */
   .hero__logo-wrapper {
-    overflow: visible;          /* el texto puede crecer fuera del logo */
+    overflow: visible;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -241,17 +251,17 @@
   }
 
   .hero__logo {
-    width: min(78vw, 300px);
-    height: min(32vh, 210px);
+    width: var(--logo-w-mobile, min(76vw, 290px));
+    height: var(--logo-h-mobile, min(30vh, 200px));
     flex-shrink: 0;
   }
 
   /* Texto debajo del logo — anula position:absolute del [ngStyle] */
   .hero__logo-text {
-    position: static !important;  /* anula top/bottom/left/right del ngStyle */
+    position: static !important;
     max-height: none;
     overflow: visible;
-    padding: 0.6rem 1rem;
+    padding: 0.5rem 1rem;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
@@ -260,20 +270,24 @@
     -webkit-backdrop-filter: blur(8px);
   }
 
+  /* Fuentes reducidas en mobile — estas reglas tienen mayor especificidad
+     que los [ngStyle] inline solo si el ngStyle no define font-size.
+     Para proyectos con fontStyle hardcodeado (e.g. central) se recomienda
+     usar clamp() en el propio config en lugar de px fijos. */
   .hero__badge {
-    font-size: clamp(0.65rem, 3.2vw, 0.9rem);
+    font-size: clamp(0.6rem, 3vw, 0.85rem) !important;
     margin-bottom: 0.2rem;
   }
   .hero__description {
-    font-size: clamp(0.6rem, 2.8vw, 0.85rem);
+    font-size: clamp(0.58rem, 2.8vw, 0.8rem) !important;
     margin-bottom: 0.15rem;
   }
   .hero__price-label {
-    font-size: clamp(0.55rem, 2.5vw, 0.75rem);
+    font-size: clamp(0.52rem, 2.4vw, 0.72rem) !important;
     margin-bottom: 0.1rem;
   }
   .hero__price-from {
-    font-size: clamp(1rem, 5.5vw, 1.4rem);
+    font-size: clamp(0.95rem, 5.2vw, 1.35rem) !important;
   }
 
   .hero__nav {
@@ -287,15 +301,20 @@
 /* ---- Mobile pequeño (≤480px) ---- */
 @media (max-width: 480px) {
   .hero__logo {
-    width: min(82vw, 260px);
-    height: min(30vh, 185px);
+    width: var(--logo-w-sm, var(--logo-w-mobile, min(80vw, 260px)));
+    height: var(--logo-h-sm, var(--logo-h-mobile, min(28vh, 185px)));
   }
+
+  .hero__badge      { font-size: clamp(0.55rem, 2.8vw, 0.8rem)  !important; }
+  .hero__description{ font-size: clamp(0.52rem, 2.5vw, 0.75rem) !important; }
+  .hero__price-label{ font-size: clamp(0.48rem, 2.2vw, 0.68rem) !important; }
+  .hero__price-from { font-size: clamp(0.9rem,  4.8vw, 1.2rem)  !important; }
 }
 
 /* ---- Mobile muy pequeño (≤360px) ---- */
 @media (max-width: 360px) {
   .hero__logo {
-    width: 86vw;
-    height: min(28vh, 165px);
+    width: var(--logo-w-sm, 84vw);
+    height: var(--logo-h-sm, min(26vh, 165px));
   }
 }

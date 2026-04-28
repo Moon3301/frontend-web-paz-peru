@@ -21,13 +21,13 @@ export class RivaComponent {
       textColor: '#ffffff',
       badgeColor: '#997b4f',
       descriptionStyle: {
-        fontSize: '1.6rem',
+        fontSize: 'clamp(0.6rem, 1.8vw, 1.6rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
-      priceLabelStyle: { fontSize: '1rem' },
+      priceLabelStyle: { fontSize: 'clamp(0.55rem, 1.2vw, 1rem)' },
       priceFromStyle: {
-        fontSize: '2.8rem',
+        fontSize: 'clamp(1rem, 3.4vw, 2.8rem)',
         letterSpacing: '0.12em',
         fontWeight: '700',
       },
@@ -35,6 +35,12 @@ export class RivaComponent {
       priceLabelColor: '#d1cbb8',
       priceFromColor: '#c8a24a',
       textPosition: { bottom: '20%' },
+      logoSize: {
+        standard: { width: 'min(50vw, 560px)', height: 'min(44vh, 450px)' },
+        desktop:  { width: 'min(46vw, 700px)', height: 'min(47vh, 550px)' },
+        tablet:   { width: 'min(54vw, 450px)', height: 'min(39vh, 345px)' },
+        mobile:   { width: 'min(74vw, 280px)', height: 'min(30vh, 200px)' },
+      },
       slides: [
         { image: 'images/projects/riva/1.png', alt: 'Riva - Fachada' },
         { image: 'images/projects/riva/2.png', alt: 'Riva - Vista exterior' },
