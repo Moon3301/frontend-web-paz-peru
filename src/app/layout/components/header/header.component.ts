@@ -1,25 +1,53 @@
 import { Component, HostListener, OnInit } from '@angular/core';
+import { ContentService } from '../../../core/services/content.service';
+import { DistrictSummary, ProjectSummary } from '../../../core/models/content.models';
+import { forkJoin } from 'rxjs';
+
+export interface NavDistrict extends DistrictSummary {
+  projects: ProjectSummary[];
+}
 
 @Component({
   selector: 'layout-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
 export class HeaderComponent implements OnInit {
-
   isScrolled = false;
   isMobileOpen = false;
 
-  // Dropdown: Departamentos en Venta
   isDropdownOpen = false;
   isMobileDropdownOpen = false;
 
-  // Dropdown: Quiénes Somos
   isAboutDropdownOpen = false;
   isMobileAboutDropdownOpen = false;
 
-  ngOnInit(): void {}
+  /** Distritos activos con sus proyectos agrupados */
+  navDistricts: NavDistrict[] = [];
+
+  constructor(private readonly content: ContentService) {}
+
+  ngOnInit(): void {
+    forkJoin({
+      districts: this.content.getDistricts(),
+      projects:  this.content.getProjects(),
+    }).subscribe({
+      next: ({ districts, projects }) => {
+        this.navDistricts = districts
+          .filter(d => d.isActive)
+          .map(d => ({
+            ...d,
+            projects: projects
+              .filter(p => p.district === d.slug)
+              .sort((a, b) => a.sortOrder - b.sortOrder),
+          }))
+          // Solo mostrar distritos que tienen al menos un proyecto activo
+          .filter(d => d.projects.length > 0);
+      },
+      error: () => { /* fallback: navbar vacío */ },
+    });
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
@@ -34,19 +62,13 @@ export class HeaderComponent implements OnInit {
     this.isDropdownOpen = !this.isDropdownOpen;
     if (this.isDropdownOpen) this.isAboutDropdownOpen = false;
   }
-
-  closeDropdown(): void {
-    this.isDropdownOpen = false;
-  }
+  closeDropdown(): void { this.isDropdownOpen = false; }
 
   toggleAboutDropdown(): void {
     this.isAboutDropdownOpen = !this.isAboutDropdownOpen;
     if (this.isAboutDropdownOpen) this.isDropdownOpen = false;
   }
-
-  closeAboutDropdown(): void {
-    this.isAboutDropdownOpen = false;
-  }
+  closeAboutDropdown(): void { this.isAboutDropdownOpen = false; }
 
   closeAllDropdowns(): void {
     this.isDropdownOpen = false;

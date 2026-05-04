@@ -5,7 +5,7 @@
   <ng-container *ngIf="useModalMode; else inlineMode">
     <div class="video-section__thumbnail" (click)="openModal()">
       <img
-        [src]="config.fallbackImage"
+        [src]="config.fallbackImage | assetUrl"
         [alt]="config.title || 'Ver video'"
         class="video-section__thumb-img">
       <div class="video-section__play-overlay">

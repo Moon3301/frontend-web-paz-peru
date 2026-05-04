@@ -2,11 +2,11 @@
   PROMOCIONES PAGE
   ============================================================ -->
 
-<!-- Hero Banner -->
+<!-- Hero Banner — imágenes desde CMS settings -->
 <div class="promo-hero">
   <picture>
-    <source media="(max-width: 768px)" srcset="/images/promotions/banner-hero-mb.jpg">
-    <img src="/images/promotions/banner-hero-desk.jpg" alt="Promociones Paz Perú" class="promo-hero__img">
+    <source media="(max-width: 768px)" [attr.srcset]="heroMobile">
+    <img [src]="heroDesktop" alt="Promociones Paz Perú" class="promo-hero__img">
   </picture>
   <div class="promo-hero__overlay"></div>
 </div>
@@ -30,10 +30,10 @@
   <div class="promo-grid promo-grid--3">
     <div *ngFor="let p of featuredPromos" class="promo-card">
       <div class="promo-card__header">
-        {{ p.name }} &mdash; {{ p.district }}
+        {{ p.title }} &mdash; {{ p.district }}
       </div>
       <div class="promo-card__img-wrap">
-        <img [src]="p.image" [alt]="p.name" class="promo-card__img" loading="lazy">
+        <img [src]="p.imageUrl | assetUrl" [alt]="p.title" class="promo-card__img" loading="lazy">
       </div>
       <div class="promo-card__footer">
         <a [routerLink]="p.projectLink" class="promo-card__cta">
@@ -43,7 +43,7 @@
           </svg>
         </a>
         <p class="promo-card__desc">{{ p.description }}</p>
-        <p class="promo-card__price">{{ p.price }}</p>
+        <p class="promo-card__price">{{ p.badgeText }}</p>
         <p class="promo-card__disclaimer">{{ p.disclaimer }}</p>
       </div>
     </div>
@@ -55,10 +55,10 @@
   <div class="promo-grid promo-grid--4">
     <div *ngFor="let p of otherPromos" class="promo-card promo-card--sm">
       <div class="promo-card__header">
-        {{ p.name }} &mdash; {{ p.district }}
+        {{ p.title }} &mdash; {{ p.district }}
       </div>
       <div class="promo-card__img-wrap">
-        <img [src]="p.image" [alt]="p.name" class="promo-card__img" loading="lazy">
+        <img [src]="p.imageUrl | assetUrl" [alt]="p.title" class="promo-card__img" loading="lazy">
       </div>
       <div class="promo-card__footer">
         <a [routerLink]="p.projectLink" class="promo-card__cta">
@@ -68,7 +68,7 @@
           </svg>
         </a>
         <p class="promo-card__desc">{{ p.description }}</p>
-        <p class="promo-card__price">{{ p.price }}</p>
+        <p class="promo-card__price">{{ p.badgeText }}</p>
         <p class="promo-card__disclaimer">{{ p.disclaimer }}</p>
       </div>
     </div>

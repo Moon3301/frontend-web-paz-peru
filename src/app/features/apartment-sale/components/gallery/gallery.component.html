@@ -19,12 +19,12 @@
 
     <!-- Fondo difuminado con la misma imagen -->
     <div class="gallery__blur-bg"
-         [style.background-image]="'url(' + activeTab.images[activeImageIndex].src + ')'">
+         [style.background-image]="'url(' + (activeTab.images[activeImageIndex].src | assetUrl) + ')'">
     </div>
 
     <div class="gallery__img-wrap">
       <img
-        [src]="activeTab.images[activeImageIndex].src"
+        [src]="activeTab.images[activeImageIndex].src | assetUrl"
         class="gallery__image"
         (error)="onImgError($event)">
     </div>

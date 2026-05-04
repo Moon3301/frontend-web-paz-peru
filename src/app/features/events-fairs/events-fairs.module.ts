@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CoreModule } from '../../core/core.module';
 
 import { EventsFairsRoutingModule } from './events-fairs-routing.module';
-
+import { EventsFairsComponent } from './events-fairs.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [EventsFairsComponent],
   imports: [
     CommonModule,
-    EventsFairsRoutingModule
-  ]
+    EventsFairsRoutingModule,
+    CoreModule,
+  ],
 })
-export class EventsFairsModule { }
+export class EventsFairsModule {}

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { CoreModule } from '../../core/core.module';
 import { HomeComponent } from './home.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { UbicationComponent } from './components/ubication/ubication.component';
@@ -20,7 +21,8 @@ import { OurHistoryComponent } from './components/our-history/our-history.compon
   imports: [
     CommonModule,
     RouterModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    CoreModule,
   ]
 })
 export class HomeModule { }

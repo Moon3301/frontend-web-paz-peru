@@ -1,0 +1,36 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Ejecutivos de Venta</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+  <div class="sec-editor__subheader">
+    <h4 class="sec-editor__subtitle">Ejecutivos asignados al proyecto</h4>
+    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addExec()">+ Agregar ejecutivo</button>
+  </div>
+
+  <div class="exec-list">
+    <div class="exec-card" *ngFor="let e of local.executives; let i = index; trackBy: trackByIndex">
+      <div class="exec-card__num">{{ i + 1 }}</div>
+      <div class="adm-form-grid exec-card__fields">
+        <div class="adm-field">
+          <label class="adm-label">Nombre</label>
+          <input class="adm-input" [(ngModel)]="e.name" (ngModelChange)="emit()" placeholder="María García">
+        </div>
+        <div class="adm-field">
+          <label class="adm-label">Cargo</label>
+          <input class="adm-input" [(ngModel)]="e.role" (ngModelChange)="emit()" placeholder="Ejecutiva de Ventas">
+        </div>
+        <div class="adm-field">
+          <label class="adm-label">Teléfono / WhatsApp</label>
+          <input class="adm-input" [(ngModel)]="e.phone" (ngModelChange)="emit()" placeholder="981495711">
+        </div>
+        <div class="adm-field adm-field--full">
+          <label class="adm-label">Foto (URL)</label>
+          <input class="adm-input" [(ngModel)]="e.photo" (ngModelChange)="emit()" placeholder="images/executives/nombre.jpg">
+        </div>
+      </div>
+      <button class="adm-btn adm-btn--sm adm-btn--danger exec-card__remove" (click)="removeExec(i)">Eliminar</button>
+    </div>
+  </div>
+  <p class="adm-empty-hint" *ngIf="!local.executives?.length">Sin ejecutivos asignados.</p>
+</div>

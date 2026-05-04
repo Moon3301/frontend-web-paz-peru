@@ -1,0 +1,246 @@
+<div class="adm-page bl-page">
+
+  <!-- ── Cabecera ────────────────────────────────────────────────────────── -->
+  <div class="adm-page-header">
+    <div>
+      <h1 class="adm-page-title">Blog</h1>
+      <p class="adm-page-subtitle">Crea y gestiona los artículos del blog</p>
+    </div>
+    <button class="adm-btn adm-btn--primary" (click)="openNew()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      Nuevo artículo
+    </button>
+  </div>
+
+  <!-- ── Loading ─────────────────────────────────────────────────────────── -->
+  <div class="adm-loading" *ngIf="loading"><div class="adm-spinner"></div></div>
+
+  <!-- ── Tabla de posts ──────────────────────────────────────────────────── -->
+  <div class="adm-table-wrap" *ngIf="!loading">
+
+    <table class="adm-table bl-table" *ngIf="posts.length">
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Categoría</th>
+          <th>Autor</th>
+          <th>Tiempo</th>
+          <th>Estado</th>
+          <th>Publicado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of posts" [class.bl-row--draft]="!p.isPublished">
+          <!-- Título + cover thumbnail -->
+          <td class="bl-cell-title">
+            <div class="bl-title-wrap">
+              <div class="bl-thumb" *ngIf="p.coverImageUrl">
+                <img [src]="p.coverImageUrl" [alt]="p.title" class="bl-thumb__img">
+              </div>
+              <div class="bl-thumb bl-thumb--empty" *ngIf="!p.coverImageUrl">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  <circle cx="8.5" cy="8.5" r="1.5"/>
+                  <polyline points="21 15 16 10 5 21"/>
+                </svg>
+              </div>
+              <div>
+                <span class="bl-title">{{ p.title }}</span>
+                <span class="bl-slug">/blog/{{ p.slug }}</span>
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="adm-badge adm-badge--grey" *ngIf="p.category">{{ p.category }}</span>
+            <span class="bl-empty-cell" *ngIf="!p.category">—</span>
+          </td>
+          <td>{{ p.author || '—' }}</td>
+          <td>{{ p.readTime ? p.readTime + ' min' : '—' }}</td>
+          <td>
+            <button
+              class="adm-badge bl-status-btn"
+              [class.adm-badge--green]="p.isPublished"
+              [class.adm-badge--grey]="!p.isPublished"
+              (click)="togglePublished(p)"
+              title="Click para cambiar estado"
+            >
+              {{ p.isPublished ? 'Publicado' : 'Borrador' }}
+            </button>
+          </td>
+          <td>{{ formatDate(p.publishedAt) }}</td>
+          <td class="adm-table__actions">
+            <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="openEdit(p)">Editar</button>
+            <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="confirmDelete(p.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="adm-empty" *ngIf="!posts.length">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" style="opacity:.3">
+        <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+      </svg>
+      <p>Sin artículos todavía</p>
+      <button class="adm-btn adm-btn--primary" (click)="openNew()">Escribir el primero</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════════════════
+     MODAL — Crear / Editar artículo
+══════════════════════════════════════════════════════════════════════════ -->
+<div class="adm-modal-backdrop" *ngIf="showForm" (click)="closeForm()">
+  <div class="adm-modal adm-modal--xl bl-editor" (click)="$event.stopPropagation()">
+
+    <!-- Cabecera del modal -->
+    <div class="adm-modal__header">
+      <h3>{{ editingId ? 'Editar artículo' : 'Nuevo artículo' }}</h3>
+      <button class="adm-btn-icon" (click)="closeForm()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Formulario -->
+    <form [formGroup]="form" class="bl-form">
+
+      <!-- Título -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Título *</label>
+        <input
+          class="adm-input"
+          formControlName="title"
+          placeholder="Cómo elegir tu primer departamento"
+          (input)="onTitleInput()"
+        >
+      </div>
+
+      <!-- Slug -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Slug (URL) *</label>
+        <input
+          class="adm-input"
+          formControlName="slug"
+          placeholder="como-elegir-primer-departamento"
+        >
+        <span class="adm-hint">Solo letras minúsculas, números y guiones. Se genera automáticamente desde el título.</span>
+      </div>
+
+      <!-- Categoría + Autor -->
+      <div class="adm-field">
+        <label class="adm-label">Categoría</label>
+        <select class="adm-select" formControlName="category">
+          <option value="">Sin categoría</option>
+          <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+        </select>
+      </div>
+
+      <div class="adm-field">
+        <label class="adm-label">Autor</label>
+        <input class="adm-input" formControlName="author" placeholder="Equipo Paz Perú">
+      </div>
+
+      <!-- Imagen de portada -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">URL imagen de portada</label>
+        <input class="adm-input" formControlName="coverImageUrl" placeholder="http://localhost:3000/uploads/blog/mi-imagen.jpg">
+        <span class="adm-hint">
+          Sube la imagen desde
+          <a routerLink="/admin/media" class="adm-hint-link" (click)="closeForm()">Archivos → Media Manager</a>
+          y pega aquí la URL copiada.
+        </span>
+      </div>
+
+      <!-- Vista previa de imagen -->
+      <div class="bl-preview-wrap" *ngIf="form.get('coverImageUrl')?.value">
+        <img [src]="form.get('coverImageUrl')?.value" alt="Preview" class="bl-preview">
+      </div>
+
+      <!-- Extracto -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Extracto</label>
+        <textarea
+          class="adm-input adm-textarea"
+          formControlName="excerpt"
+          rows="3"
+          placeholder="Breve descripción del artículo (visible en la lista del blog)..."
+        ></textarea>
+      </div>
+
+      <!-- Contenido -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Contenido</label>
+        <textarea
+          class="adm-input adm-textarea bl-content"
+          formControlName="content"
+          rows="12"
+          placeholder="Escribe el contenido completo del artículo aquí. Puedes usar HTML básico para formato."
+        ></textarea>
+      </div>
+
+      <!-- Tags + Tiempo de lectura -->
+      <div class="adm-field">
+        <label class="adm-label">Etiquetas</label>
+        <input
+          class="adm-input"
+          formControlName="tags"
+          placeholder="departamento, inversión, Lima"
+        >
+        <span class="adm-hint">Separadas por comas</span>
+      </div>
+
+      <div class="adm-field">
+        <label class="adm-label">Tiempo de lectura (min)</label>
+        <input class="adm-input" type="number" formControlName="readTime" min="1" max="60">
+      </div>
+
+      <!-- Publicación -->
+      <div class="adm-field">
+        <label class="adm-label">Fecha de publicación</label>
+        <input class="adm-input" type="date" formControlName="publishedAt">
+        <span class="adm-hint">Vacío = se asigna la fecha actual al publicar</span>
+      </div>
+
+      <div class="adm-field adm-field--checkboxes">
+        <label class="adm-checkbox">
+          <input type="checkbox" formControlName="isPublished">
+          <span>Publicado (visible en el blog)</span>
+        </label>
+      </div>
+
+    </form>
+
+    <!-- Acciones del modal -->
+    <div class="adm-modal__actions">
+      <button class="adm-btn adm-btn--secondary" (click)="closeForm()">Cancelar</button>
+      <button
+        class="adm-btn adm-btn--primary"
+        (click)="save()"
+        [disabled]="saving || form.invalid"
+      >
+        <span *ngIf="!saving">{{ editingId ? 'Guardar cambios' : 'Crear artículo' }}</span>
+        <span *ngIf="saving" class="adm-spinner adm-spinner--sm"></span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── Modal confirmar eliminación ───────────────────────────────────────── -->
+<div class="adm-modal-backdrop" *ngIf="confirmDeleteId !== null" (click)="cancelDelete()">
+  <div class="adm-modal" (click)="$event.stopPropagation()">
+    <h3>¿Eliminar artículo?</h3>
+    <p style="color:#7a6a5a;font-size:0.875rem;margin-top:8px;">
+      Esta acción es permanente y no se puede deshacer.
+    </p>
+    <div class="adm-modal__actions">
+      <button class="adm-btn adm-btn--secondary" (click)="cancelDelete()">Cancelar</button>
+      <button class="adm-btn adm-btn--danger" (click)="doDelete(confirmDeleteId!)">Eliminar</button>
+    </div>
+  </div>
+</div>

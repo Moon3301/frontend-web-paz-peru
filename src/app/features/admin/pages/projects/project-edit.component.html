@@ -1,0 +1,161 @@
+<div class="adm-page" *ngIf="!loading; else loadingTpl">
+
+  <!-- Header -->
+  <div class="adm-page-header">
+    <div class="adm-page-header__back">
+      <button class="adm-btn-icon" (click)="goBack()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <div>
+        <h1 class="adm-page-title">{{ isNew ? 'Nuevo proyecto' : (projectForm.get('name')?.value || 'Editar proyecto') }}</h1>
+        <p class="adm-page-subtitle">{{ isNew ? 'Completa los datos del nuevo proyecto' : 'Edita el contenido de cada sección' }}</p>
+      </div>
+    </div>
+    <div class="adm-page-header__actions">
+      <span class="adm-save-success" *ngIf="saveSuccess">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        Guardado
+      </span>
+      <button class="adm-btn adm-btn--primary" (click)="saveProject()" [disabled]="saving || projectForm.invalid">
+        <span *ngIf="!saving">Guardar proyecto</span>
+        <span *ngIf="saving" class="adm-spinner adm-spinner--sm"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Datos generales -->
+  <div class="adm-card adm-card--mb">
+    <h2 class="adm-card__title">Datos generales</h2>
+    <form [formGroup]="projectForm" class="adm-form-grid">
+      <div class="adm-field">
+        <label class="adm-label">Nombre *</label>
+        <input class="adm-input" formControlName="name" (blur)="isNew && autoSlug()" placeholder="Ej: Lima 15">
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Slug (URL) *</label>
+        <div class="adm-input-row">
+          <input class="adm-input" formControlName="slug" placeholder="lima-15">
+          <button type="button" class="adm-btn adm-btn--sm adm-btn--secondary" (click)="autoSlug()" title="Generar desde nombre">Auto</button>
+        </div>
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Distrito *</label>
+        <select class="adm-select" formControlName="district">
+          <option value="">Selecciona un distrito</option>
+          <option *ngFor="let d of districts" [value]="d.slug">{{ d.label }}</option>
+        </select>
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Estado</label>
+        <select class="adm-select" formControlName="status">
+          <option *ngFor="let s of statusOptions" [value]="s">{{ s }}</option>
+        </select>
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Thumbnail URL</label>
+        <input class="adm-input" formControlName="thumbnailUrl" placeholder="images/projects/...">
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Logo URL</label>
+        <input class="adm-input" formControlName="logoUrl" placeholder="images/logos/projects/...">
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">ID Sperant</label>
+        <input class="adm-input" type="number" formControlName="sperantProjectId" placeholder="Ej: 27">
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Orden</label>
+        <input class="adm-input" type="number" formControlName="sortOrder" placeholder="0">
+      </div>
+    </form>
+  </div>
+
+  <!-- Section Tabs (solo si ya existe el proyecto) -->
+  <div class="adm-card" *ngIf="!isNew">
+    <div class="adm-tabs">
+      <button
+        *ngFor="let t of tabs"
+        class="adm-tab"
+        [class.adm-tab--active]="activeTab === t.key"
+        (click)="setTab(t.key)">
+        {{ t.label }}
+      </button>
+    </div>
+
+    <div class="adm-tab-content">
+
+      <!-- HERO -->
+      <app-hero-editor *ngIf="activeTab === 'hero'"
+        [config]="getSectionConfig('hero')"
+        (configChange)="updateSection('hero', $event)"
+        (save)="saveSection('hero')">
+      </app-hero-editor>
+
+      <!-- BANNER PROMOCIONAL -->
+      <app-promo-banner-editor *ngIf="activeTab === 'promo_banner'"
+        [config]="getSectionConfig('promo_banner')"
+        (configChange)="updateSection('promo_banner', $event)"
+        (save)="saveSection('promo_banner')">
+      </app-promo-banner-editor>
+
+      <!-- SPECS -->
+      <app-specs-editor *ngIf="activeTab === 'specs'"
+        [config]="getSectionConfig('specs')"
+        (configChange)="updateSection('specs', $event)"
+        (save)="saveSection('specs')">
+      </app-specs-editor>
+
+      <!-- AMENIDADES -->
+      <app-amenities-editor *ngIf="activeTab === 'amenities'"
+        [config]="getSectionConfig('amenities')"
+        (configChange)="updateSection('amenities', $event)"
+        (save)="saveSection('amenities')">
+      </app-amenities-editor>
+
+      <!-- GALERÍA -->
+      <app-gallery-editor *ngIf="activeTab === 'gallery'"
+        [config]="getSectionConfig('gallery')"
+        (configChange)="updateSection('gallery', $event)"
+        (save)="saveSection('gallery')">
+      </app-gallery-editor>
+
+      <!-- VIDEO -->
+      <app-video-editor *ngIf="activeTab === 'video'"
+        [config]="getSectionConfig('video')"
+        (configChange)="updateSection('video', $event)"
+        (save)="saveSection('video')">
+      </app-video-editor>
+
+      <!-- TOUR VIRTUAL -->
+      <app-virtual-tour-editor *ngIf="activeTab === 'virtual_tour'"
+        [config]="getSectionConfig('virtual_tour')"
+        (configChange)="updateSection('virtual_tour', $event)"
+        (save)="saveSection('virtual_tour')">
+      </app-virtual-tour-editor>
+
+      <!-- UBICACIÓN -->
+      <app-ubication-editor *ngIf="activeTab === 'ubication'"
+        [config]="getSectionConfig('ubication')"
+        (configChange)="updateSection('ubication', $event)"
+        (save)="saveSection('ubication')">
+      </app-ubication-editor>
+
+      <!-- EJECUTIVOS -->
+      <app-executives-editor *ngIf="activeTab === 'executives'"
+        [config]="getSectionConfig('executives')"
+        (configChange)="updateSection('executives', $event)"
+        (save)="saveSection('executives')">
+      </app-executives-editor>
+
+    </div>
+  </div>
+
+</div>
+
+<ng-template #loadingTpl>
+  <div class="adm-loading"><div class="adm-spinner"></div></div>
+</ng-template>

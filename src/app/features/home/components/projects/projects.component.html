@@ -5,16 +5,16 @@
   <div class="paz-projects__grid">
     <a
       *ngFor="let p of projects"
-      [routerLink]="p.link"
+      [routerLink]="['/departamentos-en-venta', p.district, p.slug]"
       class="paz-projects__card"
       [attr.aria-label]="p.name + ' — ' + p.district"
     >
       <!-- Status badge (vertical text, left side) -->
       <span class="paz-projects__status status-badge">{{ p.status }}</span>
 
-      <!-- Thumbnail image -->
+      <!-- Thumbnail image served from backend -->
       <img
-        [src]="p.image"
+        [src]="p.thumbnailUrl | assetUrl"
         [alt]="p.name + ' ' + p.district"
         class="paz-projects__img"
         loading="lazy"
@@ -31,7 +31,7 @@
         <!-- Hover state: project logo + CTA -->
         <div class="paz-projects__hover">
           <img
-            [src]="p.logo"
+            [src]="p.logoUrl | assetUrl"
             [alt]="'Logo ' + p.name"
             class="paz-projects__logo"
           />

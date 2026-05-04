@@ -1,0 +1,122 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Sección Specs</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+
+  <!-- Stats bar -->
+  <h4 class="sec-editor__subtitle">Barra de estadísticas</h4>
+  <div class="adm-form-grid">
+    <div class="adm-field">
+      <label class="adm-label">Color de fondo</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.stats.backgroundColor||'#CA995E'" (ngModelChange)="local.stats.backgroundColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.stats.backgroundColor" (ngModelChange)="emit()" placeholder="#CA995E">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color texto</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.stats.textColor||'#ffffff'" (ngModelChange)="local.stats.textColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.stats.textColor" (ngModelChange)="emit()" placeholder="#ffffff">
+      </div>
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Ícono ubicación (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.stats.location.icon" (ngModelChange)="emit()" placeholder="images/projects/xxx/icons/ubicacion.svg">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Texto ubicación</label>
+      <input class="adm-input" [(ngModel)]="local.stats.location.label" (ngModelChange)="emit()" placeholder="Ca. Gral. Borgoño 240, Miraflores">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Ícono metraje (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.stats.areaRange.icon" (ngModelChange)="emit()" placeholder="images/projects/xxx/icons/departamento.svg">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Texto metraje</label>
+      <input class="adm-input" [(ngModel)]="local.stats.areaRange.label" (ngModelChange)="emit()" placeholder="Desde 81 m2 hasta 199 m2">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Ícono áreas comunes (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.stats.commonAreasLabel.icon" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Texto áreas comunes</label>
+      <input class="adm-input" [(ngModel)]="local.stats.commonAreasLabel.label" (ngModelChange)="emit()">
+    </div>
+  </div>
+
+  <!-- Panel specs -->
+  <h4 class="sec-editor__subtitle">Panel de detalles</h4>
+  <div class="adm-form-grid">
+    <div class="adm-field">
+      <label class="adm-label">Logo proyecto (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.specs.logo" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Imagen interior (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.specs.interiorImage" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Nombre proyecto</label>
+      <input class="adm-input" [(ngModel)]="local.specs.projectName" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Subtítulo</label>
+      <input class="adm-input" [(ngModel)]="local.specs.projectSubtitle" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Pisos</label>
+      <input class="adm-input" [(ngModel)]="local.specs.floors" (ngModelChange)="emit()" placeholder="11 pisos + Azotea">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Tipos de unidad</label>
+      <input class="adm-input" [(ngModel)]="local.specs.unitTypes" (ngModelChange)="emit()" placeholder="Flats y duplex de 2 y 3 ambientes">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Rango de áreas</label>
+      <input class="adm-input" [(ngModel)]="local.specs.areaRange" (ngModelChange)="emit()" placeholder="Desde 81 m2 hasta 199 m2">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">URL Brochure (PDF)</label>
+      <input class="adm-input" [(ngModel)]="local.specs.brochureUrl" (ngModelChange)="emit()" placeholder="docs/brochures/xxx.pdf">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">URL Video YouTube (embed)</label>
+      <input class="adm-input" [(ngModel)]="local.specs.videoUrl" (ngModelChange)="emit()" placeholder="https://www.youtube.com/embed/...">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color fondo panel</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.specs.backgroundColor||'#ffffff'" (ngModelChange)="local.specs.backgroundColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.specs.backgroundColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color texto panel</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.specs.textColor||'#1a0f0a'" (ngModelChange)="local.specs.textColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.specs.textColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+  </div>
+
+  <!-- Íconos amenidades en specs -->
+  <div class="sec-editor__subheader">
+    <h4 class="sec-editor__subtitle">Íconos de amenidades (specs)</h4>
+    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addAmenityIcon()">+ Agregar</button>
+  </div>
+  <div class="adm-list">
+    <div class="adm-list__item" *ngFor="let item of local.specs.amenityIcons; let i = index; trackBy: trackByIndex">
+      <span class="adm-list__num">{{ i + 1 }}</span>
+      <div class="adm-list__fields">
+        <input class="adm-input" [(ngModel)]="item.icon" (ngModelChange)="emit()" placeholder="URL del ícono">
+        <input class="adm-input" [(ngModel)]="item.label" (ngModelChange)="emit()" placeholder="Etiqueta">
+      </div>
+      <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeAmenityIcon(i)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Tour Virtual</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+  <div class="adm-form-grid">
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">URL del tour virtual (iframe)</label>
+      <input class="adm-input" [(ngModel)]="local.url" (ngModelChange)="emit()" placeholder="https://360.nerdstudio.pe/...">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Título del proyecto</label>
+      <input class="adm-input" [(ngModel)]="local.projectTitle" (ngModelChange)="emit()" placeholder="RECORRIDO VIRTUAL">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de fondo</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.backgroundColor||'#1a1a1a'" (ngModelChange)="local.backgroundColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.backgroundColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de texto</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.textColor||'#ffffff'" (ngModelChange)="local.textColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ALL_APARTMENT_PROJECTS, ApartmentProject } from '../../data/projects.data';
+import { ContentService } from '../../../../core/services/content.service';
+import { ProjectSummary } from '../../../../core/models/content.models';
 
 @Component({
   selector: 'app-all-projects',
@@ -8,9 +9,15 @@ import { ALL_APARTMENT_PROJECTS, ApartmentProject } from '../../data/projects.da
   styleUrl: './all-projects.component.css'
 })
 export class AllProjectsComponent implements OnInit {
-  projects: ApartmentProject[] = ALL_APARTMENT_PROJECTS;
+  projects: ProjectSummary[] = [];
+
+  constructor(private readonly contentService: ContentService) {}
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+    this.contentService.getProjects().subscribe({
+      next: (data) => (this.projects = data),
+      error: (err) => console.error('Error loading projects', err),
+    });
   }
 }

@@ -38,7 +38,7 @@
 
       <!-- 1. Imagen estática — tiene prioridad cuando existe -->
       <div class="ubication__image-container" *ngIf="config.image">
-        <img [src]="config.image" [alt]="'Ubicación ' + (config.projectTitle || 'del proyecto')" class="ubication__image">
+        <img [src]="config.image | assetUrl" [alt]="'Ubicación ' + (config.projectTitle || 'del proyecto')" class="ubication__image">
       </div>
 
       <!-- 2. Google Maps embed — se usa cuando NO hay imagen -->

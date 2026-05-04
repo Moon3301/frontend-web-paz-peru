@@ -1,0 +1,126 @@
+<div class="adm-page">
+  <div class="adm-page-header">
+    <div><h1 class="adm-page-title">Promociones</h1><p class="adm-page-subtitle">Gestiona las promociones del mes</p></div>
+    <button class="adm-btn adm-btn--primary" (click)="openNew()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nueva promoción
+    </button>
+  </div>
+
+  <!-- ── Banners del sitio ─────────────────────────────────────────────── -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Banners del sitio</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="bannersSaved">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveBanners()" [disabled]="savingBanners">
+          <span *ngIf="!savingBanners">Guardar banners</span>
+          <span *ngIf="savingBanners" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+    <p class="adm-hint" style="margin-bottom:16px">
+      Estas imágenes se muestran en el home y en la página de Promociones.
+      Sube tus imágenes en
+      <a routerLink="/admin/media" class="adm-hint-link">Archivos → Media Manager</a>
+      y pega aquí la URL copiada.
+    </p>
+
+    <div class="adm-form-grid">
+      <!-- Banner home -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Banner del Home (franja entre el hero y los proyectos)</label>
+        <input class="adm-input" [(ngModel)]="banners.home_promo_banner"
+               placeholder="/images/home/home_m.png">
+        <div class="pb-preview" *ngIf="banners.home_promo_banner">
+          <img [src]="banners.home_promo_banner" alt="Preview home banner" class="pb-preview__img">
+        </div>
+      </div>
+
+      <!-- Hero Promotions desktop -->
+      <div class="adm-field">
+        <label class="adm-label">Hero Promociones — desktop</label>
+        <input class="adm-input" [(ngModel)]="banners.promos_hero_desktop"
+               placeholder="/images/promotions/banner-hero-desk.jpg">
+        <div class="pb-preview" *ngIf="banners.promos_hero_desktop">
+          <img [src]="banners.promos_hero_desktop" alt="Preview hero desktop" class="pb-preview__img">
+        </div>
+      </div>
+
+      <!-- Hero Promotions mobile -->
+      <div class="adm-field">
+        <label class="adm-label">Hero Promociones — móvil (≤ 768 px)</label>
+        <input class="adm-input" [(ngModel)]="banners.promos_hero_mobile"
+               placeholder="/images/promotions/banner-hero-mb.jpg">
+        <div class="pb-preview" *ngIf="banners.promos_hero_mobile">
+          <img [src]="banners.promos_hero_mobile" alt="Preview hero móvil" class="pb-preview__img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adm-loading" *ngIf="loading"><div class="adm-spinner"></div></div>
+
+  <div class="adm-table-wrap" *ngIf="!loading">
+    <table class="adm-table" *ngIf="promos.length">
+      <thead><tr><th>Proyecto</th><th>Distrito</th><th>Precio</th><th>Destacada</th><th>Activa</th><th>Acciones</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let p of promos">
+          <td><strong>{{ p.title }}</strong></td>
+          <td>{{ p.district }}</td>
+          <td>{{ p.badgeText }}</td>
+          <td><span class="adm-badge" [class.adm-badge--gold]="p.isFeatured">{{ p.isFeatured ? 'Sí' : 'No' }}</span></td>
+          <td><span class="adm-badge" [class.adm-badge--green]="p.isActive" [class.adm-badge--grey]="!p.isActive">{{ p.isActive ? 'Activa' : 'Inactiva' }}</span></td>
+          <td class="adm-table__actions">
+            <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="openEdit(p)">Editar</button>
+            <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="confirmDelete(p.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="adm-empty" *ngIf="!promos.length"><p>Sin promociones</p><button class="adm-btn adm-btn--primary" (click)="openNew()">Crear la primera</button></div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="adm-modal-backdrop" *ngIf="showForm" (click)="closeForm()">
+  <div class="adm-modal adm-modal--lg" (click)="$event.stopPropagation()">
+    <div class="adm-modal__header">
+      <h3>{{ editingId ? 'Editar promoción' : 'Nueva promoción' }}</h3>
+      <button class="adm-btn-icon" (click)="closeForm()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <form [formGroup]="form" class="adm-form-grid">
+      <div class="adm-field"><label class="adm-label">Título *</label><input class="adm-input" formControlName="title" placeholder="Serena"></div>
+      <div class="adm-field"><label class="adm-label">Distrito</label><input class="adm-input" formControlName="district" placeholder="San Miguel"></div>
+      <div class="adm-field adm-field--full"><label class="adm-label">Descripción</label><textarea class="adm-input adm-textarea" formControlName="description" rows="2"></textarea></div>
+      <div class="adm-field adm-field--full"><label class="adm-label">URL imagen</label><input class="adm-input" formControlName="imageUrl" placeholder="images/promotions/xxx.jpg"></div>
+      <div class="adm-field"><label class="adm-label">Precio / badge</label><input class="adm-input" formControlName="badgeText" placeholder="S/ 439,000*"></div>
+      <div class="adm-field"><label class="adm-label">Link del proyecto</label><input class="adm-input" formControlName="projectLink" placeholder="/departamentos-en-venta/san-miguel/serena"></div>
+      <div class="adm-field adm-field--full"><label class="adm-label">Disclaimer legal</label><textarea class="adm-input adm-textarea" formControlName="disclaimer" rows="3"></textarea></div>
+      <div class="adm-field"><label class="adm-label">Orden</label><input class="adm-input" type="number" formControlName="sortOrder"></div>
+      <div class="adm-field adm-field--checkboxes">
+        <label class="adm-checkbox"><input type="checkbox" formControlName="isFeatured"><span>Promoción destacada (3 columnas)</span></label>
+        <label class="adm-checkbox"><input type="checkbox" formControlName="isActive"><span>Activa</span></label>
+      </div>
+    </form>
+    <div class="adm-modal__actions">
+      <button class="adm-btn adm-btn--secondary" (click)="closeForm()">Cancelar</button>
+      <button class="adm-btn adm-btn--primary" (click)="save()" [disabled]="saving||form.invalid">
+        <span *ngIf="!saving">Guardar</span><span *ngIf="saving" class="adm-spinner adm-spinner--sm"></span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="adm-modal-backdrop" *ngIf="confirmDeleteId !== null" (click)="cancelDelete()">
+  <div class="adm-modal" (click)="$event.stopPropagation()">
+    <h3>¿Eliminar promoción?</h3><p>Esta acción no se puede deshacer.</p>
+    <div class="adm-modal__actions">
+      <button class="adm-btn adm-btn--secondary" (click)="cancelDelete()">Cancelar</button>
+      <button class="adm-btn adm-btn--danger" (click)="doDelete(confirmDeleteId!)">Eliminar</button>
+    </div>
+  </div>
+</div>

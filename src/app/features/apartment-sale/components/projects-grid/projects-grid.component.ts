@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ApartmentProject } from '../../data/projects.data';
+import { ProjectSummary } from '../../../../core/models/content.models';
 
 @Component({
   selector: 'apartment-projects-grid',
@@ -8,5 +8,5 @@ import { ApartmentProject } from '../../data/projects.data';
   styleUrl: './projects-grid.component.css'
 })
 export class ProjectsGridComponent {
-  @Input() projects: ApartmentProject[] = [];
+  @Input() projects: ProjectSummary[] = [];
 }

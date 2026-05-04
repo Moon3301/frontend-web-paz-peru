@@ -1,15 +1,6 @@
-import { Component } from '@angular/core';
-import { ALL_APARTMENT_PROJECTS } from '../../../apartment-sale/data/projects.data';
-
-export interface HomeProject {
-  name: string;
-  district: string;
-  districtSlug: string;
-  status: string;
-  image: string;
-  logo: string;
-  link: string;
-}
+import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../../../core/services/content.service';
+import { ProjectSummary } from '../../../../core/models/content.models';
 
 @Component({
   selector: 'home-projects',
@@ -17,7 +8,15 @@ export interface HomeProject {
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
-export class ProjectsComponent {
+export class ProjectsComponent implements OnInit {
+  projects: ProjectSummary[] = [];
 
-  projects = ALL_APARTMENT_PROJECTS;
+  constructor(private readonly contentService: ContentService) {}
+
+  ngOnInit(): void {
+    this.contentService.getProjects().subscribe({
+      next: (data) => (this.projects = data),
+      error: (err) => console.error('Error loading projects', err),
+    });
+  }
 }

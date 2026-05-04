@@ -297,8 +297,16 @@ export interface Executive {
   photo: string;
 }
 
+export interface PromoBannerConfig {
+  imageDesktop: string | null;
+  imageMobile?: string | null;
+  link?: string | null;
+  isVisible: boolean;
+}
+
 export interface ProjectConfig {
   hero?: HeroConfig;
+  promoBanner?: PromoBannerConfig;
   stats?: ProjectStatsConfig;
   specs?: ApartmentSpecsConfig;
   amenities?: AmenitiesConfig;

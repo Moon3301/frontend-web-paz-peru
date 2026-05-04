@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CoreModule } from '../../core/core.module';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
-
 
 @NgModule({
   declarations: [BlogComponent],
@@ -13,7 +13,8 @@ import { BlogComponent } from './blog.component';
     CommonModule,
     ReactiveFormsModule,
     RouterModule,
-    BlogRoutingModule
-  ]
+    BlogRoutingModule,
+    CoreModule,
+  ],
 })
-export class BlogModule { }
+export class BlogModule {}

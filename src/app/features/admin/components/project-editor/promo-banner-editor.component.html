@@ -1,0 +1,99 @@
+<div class="sec-editor">
+
+  <div class="sec-editor__header">
+    <div>
+      <h3 class="sec-editor__title">Banner Promocional</h3>
+      <p class="adm-hint">
+        Banner de ancho completo mostrado entre el Hero y la sección de Specs del proyecto.
+        Activa la visibilidad solo cuando tengas una imagen configurada.
+      </p>
+    </div>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="doSave()">Guardar sección</button>
+  </div>
+
+  <!-- Imagen desktop -->
+  <div class="adm-field adm-field--full">
+    <label class="adm-label">Imagen desktop</label>
+    <input
+      class="adm-input"
+      [(ngModel)]="local.imageDesktop"
+      (ngModelChange)="emit()"
+      placeholder="http://localhost:3000/uploads/banners/promo-central-desk.jpg"
+    >
+    <span class="adm-hint">
+      Sube la imagen en
+      <a routerLink="/admin/media" class="adm-hint-link">Archivos → Media Manager</a>
+      y pega aquí la URL copiada.
+    </span>
+  </div>
+
+  <!-- Vista previa desktop -->
+  <div class="pb-editor-preview" *ngIf="local.imageDesktop">
+    <p class="adm-label">Vista previa desktop</p>
+    <img [src]="local.imageDesktop" alt="Preview desktop" class="pb-editor-preview__img">
+  </div>
+
+  <!-- Imagen móvil -->
+  <div class="adm-field adm-field--full">
+    <label class="adm-label">Imagen móvil (≤ 768 px) <span style="font-weight:400;color:#9a8a7a">— opcional</span></label>
+    <input
+      class="adm-input"
+      [(ngModel)]="local.imageMobile"
+      (ngModelChange)="emit()"
+      placeholder="http://localhost:3000/uploads/banners/promo-central-mob.jpg"
+    >
+    <span class="adm-hint">Si no se define, se muestra la imagen desktop también en móvil.</span>
+  </div>
+
+  <!-- Vista previa móvil -->
+  <div class="pb-editor-preview" *ngIf="local.imageMobile">
+    <p class="adm-label">Vista previa móvil</p>
+    <img [src]="local.imageMobile" alt="Preview móvil" class="pb-editor-preview__img pb-editor-preview__img--mob">
+  </div>
+
+  <!-- Enlace -->
+  <div class="adm-field adm-field--full">
+    <label class="adm-label">Enlace al hacer clic <span style="font-weight:400;color:#9a8a7a">— opcional</span></label>
+    <input
+      class="adm-input"
+      [(ngModel)]="local.link"
+      (ngModelChange)="emit()"
+      placeholder="/departamentos-en-venta/miraflores/central"
+    >
+    <span class="adm-hint">Deja vacío para que el banner no sea clickeable.</span>
+  </div>
+
+  <!-- Visibilidad -->
+  <div class="adm-field">
+    <label class="adm-label">Visibilidad</label>
+    <label class="adm-checkbox">
+      <input
+        type="checkbox"
+        [(ngModel)]="local.isVisible"
+        (ngModelChange)="emit()"
+      >
+      <span>Mostrar banner en la página del proyecto</span>
+    </label>
+    <span class="adm-hint" *ngIf="!local.imageDesktop" style="color:#c62828">
+      ⚠ Configura primero una imagen antes de activar la visibilidad.
+    </span>
+  </div>
+
+</div>
+
+<style>
+  .pb-editor-preview { margin-bottom: 16px; }
+  .pb-editor-preview__img {
+    max-width: 100%;
+    max-height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #e8ddd4;
+    display: block;
+    margin-top: 6px;
+  }
+  .pb-editor-preview__img--mob { max-width: 375px; }
+  .adm-hint-link { color: #CA995E; font-weight: 600; text-decoration: none; }
+  .adm-hint-link:hover { text-decoration: underline; }
+</style>

@@ -3,6 +3,12 @@
     *ngIf="config.hero"
     [config]="config.hero">
   </app-hero>
+  
+  <!-- Banner promocional por proyecto (se oculta si isVisible=false o sin imagen) -->
+  <app-promo-banner
+    *ngIf="config.promoBanner"
+    [config]="config.promoBanner">
+  </app-promo-banner>
 
   <app-apartment-specs
     *ngIf="config.stats || config.specs"

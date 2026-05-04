@@ -8,7 +8,7 @@
     <!-- Foto contenida dentro del banner -->
     <div class="exec-banner__photo-wrap">
       <img
-        [src]="exec.photo"
+        [src]="exec.photo | assetUrl"
         [alt]="exec.name"
         class="exec-banner__photo"
         loading="lazy">

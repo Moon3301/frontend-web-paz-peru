@@ -1,0 +1,15 @@
+.adm-page-header__back {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.adm-save-success {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #34a853;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }

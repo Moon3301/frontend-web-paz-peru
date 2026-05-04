@@ -1,0 +1,40 @@
+/* Toggle switch */
+.adm-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0;
+}
+.adm-toggle__dot {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: #d1c5bb;
+  position: relative;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.adm-toggle__dot::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  transition: left 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.adm-toggle--on .adm-toggle__dot  { background: #34a853; }
+.adm-toggle--on .adm-toggle__dot::after  { left: 19px; }
+.adm-toggle--off .adm-toggle__dot { background: #cccccc; }
+.adm-toggle__label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.adm-toggle--on  .adm-toggle__label { color: #1e7e34; }
+.adm-toggle--off .adm-toggle__label { color: #888888; }

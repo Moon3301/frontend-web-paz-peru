@@ -1,9 +1,9 @@
 <home-hero />
 
-<!-- Banner promocional (full-width, links a /promotions) -->
+<!-- Banner promocional (full-width, links a /promotions) — imagen desde CMS -->
 <section class="paz-promo-banner">
   <a routerLink="/promotions">
-    <img src="/images/home/home_m.png" class="paz-promo-banner__desk" alt="Promociones Paz Inmobiliaria" />
+    <img [src]="homeBanner" class="paz-promo-banner__desk" alt="Promociones Paz Inmobiliaria" />
   </a>
 </section>
 

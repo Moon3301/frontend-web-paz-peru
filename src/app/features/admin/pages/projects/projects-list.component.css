@@ -1,0 +1,72 @@
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+.proj-card {
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.2s;
+}
+.proj-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+
+.proj-card__thumb {
+  position: relative;
+  height: 160px;
+  background: #f2f2f2;
+  overflow: hidden;
+}
+.proj-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.proj-card__thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaaaaa;
+}
+.proj-card__thumb-placeholder svg { width: 40px; height: 40px; }
+
+.proj-card__body {
+  padding: 14px 16px 8px;
+  flex: 1;
+}
+.proj-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin: 0 0 4px;
+}
+.proj-card__district {
+  font-size: 0.8rem;
+  color: #666666;
+  margin: 0;
+  text-transform: capitalize;
+}
+.proj-card__actions {
+  display: flex;
+  gap: 8px;
+  padding: 10px 16px 14px;
+  flex-wrap: wrap;
+}
+
+/* Botón advertencia (proyecto inactivo) */
+.adm-btn--warning { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
+.adm-btn--warning:hover { background: #ffe0b2; }
+
+/* Card de proyecto inactivo — aspecto apagado */
+.proj-card:has(.adm-btn--warning) {
+  opacity: 0.7;
+}
+.proj-card:has(.adm-btn--warning) .proj-card__thumb {
+  filter: grayscale(0.5);
+}

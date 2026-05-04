@@ -1,0 +1,36 @@
+/* promotions-admin uses the global adm-* shared styles from admin-layout */
+
+/* ── Banner card extras ─────────────────────────────────────────────────── */
+.adm-card__title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.adm-card__title-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Preview de imagen */
+.pb-preview { margin-top: 8px; }
+.pb-preview__img {
+  max-width: 100%;
+  max-height: 140px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: block;
+}
+
+/* Hint link */
+.adm-hint-link {
+  color: #b2221f;
+  font-weight: 600;
+  text-decoration: none;
+}
+.adm-hint-link:hover { text-decoration: underline; }

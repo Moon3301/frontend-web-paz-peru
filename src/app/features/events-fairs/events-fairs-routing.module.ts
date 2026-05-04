@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EventsFairsComponent } from './events-fairs.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: EventsFairsComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class EventsFairsRoutingModule { }
+export class EventsFairsRoutingModule {}

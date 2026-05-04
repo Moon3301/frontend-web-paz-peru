@@ -1,0 +1,4 @@
+<app-project-page *ngIf="config" [config]="config"></app-project-page>
+<div *ngIf="!config" class="loading-state">
+    <p>Cargando proyecto...</p>
+</div>

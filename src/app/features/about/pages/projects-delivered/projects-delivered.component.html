@@ -25,7 +25,7 @@
 
       <!-- Image with district overlay + hover CTA -->
       <div class="delivered-card__img-wrap">
-        <img [src]="p.image" [alt]="p.name" class="delivered-card__img" loading="lazy">
+        <img [src]="p.imageUrl | assetUrl" [alt]="p.name" class="delivered-card__img" loading="lazy">
 
         <!-- Default: district name -->
         <div class="delivered-card__district" *ngIf="p.district">{{ p.district }}</div>

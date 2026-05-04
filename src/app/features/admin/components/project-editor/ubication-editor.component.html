@@ -1,0 +1,46 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Sección Ubicación</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+  <div class="adm-form-grid">
+    <div class="adm-field">
+      <label class="adm-label">Título del proyecto</label>
+      <input class="adm-input" [(ngModel)]="local.projectTitle" (ngModelChange)="emit()" placeholder="UBICACIÓN DEL PROYECTO">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Dirección</label>
+      <input class="adm-input" [(ngModel)]="local.address" (ngModelChange)="emit()" placeholder="Ca. Gral. Borgoño 240, Miraflores">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">URL embed de Google Maps</label>
+      <input class="adm-input" [(ngModel)]="local.mapEmbedUrl" (ngModelChange)="emit()" placeholder="https://www.google.com/maps/embed?pb=...">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Imagen estática (opcional, sobrescribe el mapa)</label>
+      <input class="adm-input" [(ngModel)]="local.image" (ngModelChange)="emit()" placeholder="images/projects/xxx/mapa.jpg">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Link Google Maps (botón)</label>
+      <input class="adm-input" [(ngModel)]="local.mapsUrl" (ngModelChange)="emit()" placeholder="https://maps.google.com/?q=...">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Link Waze (botón)</label>
+      <input class="adm-input" [(ngModel)]="local.wazeUrl" (ngModelChange)="emit()" placeholder="https://waze.com/ul?q=...">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de fondo</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.backgroundColor||'#f0e8f0'" (ngModelChange)="local.backgroundColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.backgroundColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de texto</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.textColor||'#ffffff'" (ngModelChange)="local.textColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Sección Video</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+  <div class="adm-form-grid">
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">URL del video (YouTube embed)</label>
+      <input class="adm-input" [(ngModel)]="local.url" (ngModelChange)="emit()" placeholder="https://www.youtube.com/embed/...">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Título de la sección</label>
+      <input class="adm-input" [(ngModel)]="local.title" (ngModelChange)="emit()" placeholder="CONOCE EL PROYECTO">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Subtítulo</label>
+      <input class="adm-input" [(ngModel)]="local.subtitle" (ngModelChange)="emit()">
+    </div>
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Imagen de portada (fallback)</label>
+      <input class="adm-input" [(ngModel)]="local.fallbackImage" (ngModelChange)="emit()" placeholder="images/projects/xxx/video-xxx.jpg">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de fondo</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.backgroundColor||'#1a1a1a'" (ngModelChange)="local.backgroundColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.backgroundColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de texto</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.textColor||'#ffffff'" (ngModelChange)="local.textColor=$event;emit()">
+        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()">
+      </div>
+    </div>
+  </div>
+</div>

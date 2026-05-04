@@ -1,0 +1,56 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Sección Galería</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+
+  <div class="sec-editor__subheader">
+    <h4 class="sec-editor__subtitle">Tabs de galería</h4>
+    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addTab()">+ Agregar tab</button>
+  </div>
+
+  <div class="gallery-tabs-nav" *ngIf="local.tabs?.length">
+    <button
+      *ngFor="let t of local.tabs; let i = index; trackBy: trackByIndex"
+      class="adm-tab"
+      [class.adm-tab--active]="activeTabIndex === i"
+      (click)="activeTabIndex = i">
+      {{ t.label || 'Tab ' + (i+1) }}
+    </button>
+  </div>
+
+  <ng-container *ngIf="local.tabs?.length && local.tabs[activeTabIndex]">
+    <div class="adm-form-grid adm-card--inner">
+      <div class="adm-field">
+        <label class="adm-label">Etiqueta del tab</label>
+        <input class="adm-input" [(ngModel)]="local.tabs[activeTabIndex].label" (ngModelChange)="emit()" placeholder="Áreas comunes">
+      </div>
+      <div class="adm-field">
+        <label class="adm-label">Subtítulo (opcional)</label>
+        <input class="adm-input" [(ngModel)]="local.tabs[activeTabIndex].subtitle" (ngModelChange)="emit()" placeholder="Áreas para ti y tu familia">
+      </div>
+    </div>
+
+    <div class="sec-editor__subheader">
+      <h4 class="sec-editor__subtitle">Imágenes del tab</h4>
+      <div class="adm-row-actions">
+        <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addImage(local.tabs[activeTabIndex])">+ Imagen</button>
+        <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="removeTab(activeTabIndex)">Eliminar tab</button>
+      </div>
+    </div>
+
+    <div class="adm-list">
+      <div class="adm-list__item"
+           *ngFor="let img of local.tabs[activeTabIndex].images; let j = index; trackBy: trackByIndex">
+        <span class="adm-list__num">{{ j + 1 }}</span>
+        <input class="adm-input" [(ngModel)]="img.src" (ngModelChange)="emit()" placeholder="images/projects/xxx/gallery/comunes/1.jpg">
+        <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeImage(local.tabs[activeTabIndex], j)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+    <p class="adm-empty-hint" *ngIf="!local.tabs[activeTabIndex].images?.length">Sin imágenes en este tab.</p>
+  </ng-container>
+
+  <p class="adm-empty-hint" *ngIf="!local.tabs?.length">No hay tabs de galería. Agrega uno.</p>
+</div>

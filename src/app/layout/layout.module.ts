@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './pages/main-layout/main-layout.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CoreModule } from '../core/core.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   imports: [
     CommonModule,
     RouterModule,
+    CoreModule,
     LayoutRoutingModule
   ]
 })

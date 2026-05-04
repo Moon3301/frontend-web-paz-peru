@@ -1,0 +1,80 @@
+<div class="sec-editor">
+  <div class="sec-editor__header">
+    <h3 class="sec-editor__title">Sección Hero</h3>
+    <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
+  </div>
+
+  <div class="adm-form-grid">
+    <div class="adm-field">
+      <label class="adm-label">Logo del proyecto (URL)</label>
+      <input class="adm-input" [(ngModel)]="local.logo" (ngModelChange)="emit()" placeholder="images/logos/projects/logo-xxx.webp">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Nombre del proyecto</label>
+      <input class="adm-input" [(ngModel)]="local.projectName" (ngModelChange)="emit()" placeholder="Lima 15">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Subtítulo del distrito</label>
+      <input class="adm-input" [(ngModel)]="local.district" (ngModelChange)="emit()" placeholder="DEPARTAMENTOS EN MIRAFLORES">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Descripción / Badge texto</label>
+      <input class="adm-input" [(ngModel)]="local.description" (ngModelChange)="emit()" placeholder="TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Línea precio (label)</label>
+      <input class="adm-input" [(ngModel)]="local.priceLine1" (ngModelChange)="emit()" placeholder="TU DEPA DE 2 AMBIENTES">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Precio desde</label>
+      <input class="adm-input" [(ngModel)]="local.priceFrom" (ngModelChange)="emit()" placeholder="S/ 678,000*">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color overlay (rgba)</label>
+      <input class="adm-input" [(ngModel)]="local.overlayColor" (ngModelChange)="emit()" placeholder="rgba(98,62,75,0.75)">
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color texto general</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.textColor || '#ffffff'" (ngModelChange)="local.textColor=$event; emit()">
+        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()" placeholder="#ffffff">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color precio principal</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.priceFromColor || '#CA995E'" (ngModelChange)="local.priceFromColor=$event; emit()">
+        <input class="adm-input" [(ngModel)]="local.priceFromColor" (ngModelChange)="emit()" placeholder="#CA995E">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color descripción</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker" [ngModel]="local.descriptionColor || '#ffffff'" (ngModelChange)="local.descriptionColor=$event; emit()">
+        <input class="adm-input" [(ngModel)]="local.descriptionColor" (ngModelChange)="emit()" placeholder="#ffffff">
+      </div>
+    </div>
+  </div>
+
+  <!-- Slides -->
+  <div class="sec-editor__subheader">
+    <h4 class="sec-editor__subtitle">Imágenes del slider</h4>
+    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addSlide()">+ Agregar imagen</button>
+  </div>
+
+  <div class="adm-list" *ngIf="local.slides?.length">
+    <div class="adm-list__item" *ngFor="let slide of local.slides; let i = index; trackBy: trackByIndex">
+      <span class="adm-list__num">{{ i + 1 }}</span>
+      <div class="adm-list__fields">
+        <input class="adm-input" [(ngModel)]="slide.image" (ngModelChange)="emit()" placeholder="images/projects/xxx/hero-1.jpg">
+        <input class="adm-input" [(ngModel)]="slide.alt" (ngModelChange)="emit()" placeholder="Descripción alt">
+      </div>
+      <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeSlide(i)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <p class="adm-empty-hint" *ngIf="!local.slides?.length">No hay imágenes en el slider. Agrega al menos una.</p>
+</div>

@@ -1,19 +1,19 @@
 <div class="apg-grid">
   <a
     *ngFor="let p of projects"
-    [routerLink]="p.link"
+    [routerLink]="['/departamentos-en-venta', p.district, p.slug]"
     class="apg-card"
     [attr.aria-label]="p.name + ' — ' + p.district"
   >
     <span class="apg-status">{{ p.status }}</span>
-    <img [src]="p.image" [alt]="p.name + ' ' + p.district" class="apg-img" loading="lazy" />
+    <img [src]="p.thumbnailUrl | assetUrl" [alt]="p.name + ' ' + p.district" class="apg-img" loading="lazy" />
     <div class="apg-overlay">
       <div class="apg-default">
         <h3 class="apg-district">{{ p.district }}</h3>
         <p class="apg-name">{{ p.name }}</p>
       </div>
       <div class="apg-hover">
-        <img [src]="p.logo" [alt]="'Logo ' + p.name" class="apg-logo" />
+        <img [src]="p.logoUrl | assetUrl" [alt]="'Logo ' + p.name" class="apg-logo" />
         <span class="apg-cta">
           CONÓCELO AQUÍ
           <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

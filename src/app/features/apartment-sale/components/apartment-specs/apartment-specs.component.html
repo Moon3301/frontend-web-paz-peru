@@ -5,17 +5,17 @@
   </h2>
   <div class="project-stats__grid">
     <div class="project-stats__item" >
-      <img [src]="stats.location.icon" alt="Ubicación" class="project-stats__icon">
+      <img [src]="stats.location.icon | assetUrl" alt="Ubicación" class="project-stats__icon">
       <span class="project-stats__label" [style.color]="stats.textColor">Ubicación del proyecto</span>
       <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.location.label }}</span>
     </div>
     <div class="project-stats__item">
-      <img [src]="stats.areaRange.icon" alt="Departamentos" class="project-stats__icon">
+      <img [src]="stats.areaRange.icon | assetUrl" alt="Departamentos" class="project-stats__icon">
       <span class="project-stats__label" [style.color]="stats.textColor">Departamentos</span>
       <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.areaRange.label }}</span>
     </div>
     <div class="project-stats__item" [style.color]="stats.textColor">
-      <img [src]="stats.commonAreasLabel.icon" alt="Áreas comunes" class="project-stats__icon">
+      <img [src]="stats.commonAreasLabel.icon | assetUrl" alt="Áreas comunes" class="project-stats__icon">
       <span class="project-stats__label" [style.color]="stats.textColor">Áreas comunes</span>
       <span class="project-stats__value" [style.color]="stats.textColor">{{ stats.commonAreasLabel.label }}</span>
     </div>
@@ -26,7 +26,7 @@
 <section class="apartment-specs" *ngIf="specs">
   <div class="apartment-specs__interior">
     <img
-      [src]="specs.interiorImage"
+      [src]="specs.interiorImage | assetUrl"
       [alt]="specs.projectName + ' - Interior'"
       class="apartment-specs__image"
       (error)="onImgError($event)">
@@ -38,7 +38,7 @@
       <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">
         {{ specs.projectSubtitle }}
       </p> -->
-      <img [src]="specs.logo" alt="Logo" class="apartment-specs__logo">
+      <img [src]="specs.logo | assetUrl" alt="Logo" class="apartment-specs__logo">
       
     </div>
 
@@ -48,26 +48,26 @@
 
     <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
       <div class="apartment-specs__amenity-item" *ngFor="let item of specs.amenityIcons">
-        <img [src]="item.icon" [alt]="item.label" class="apartment-specs__amenity-icon">
+        <img [src]="item.icon | assetUrl" [alt]="item.label" class="apartment-specs__amenity-icon">
       </div>
     </div>
 
     <ul class="apartment-specs__details" [style.color]="specs.textColor">
       <li class="apartment-specs__detail-item" *ngIf="specs.floors" [style.color]="specs.textColor">
-        <img src="svg/icons/floors.svg" alt="Pisos" class="apartment-specs__detail-icon" >
+        <img [src]="'svg/icons/floors.svg' | assetUrl" alt="Pisos" class="apartment-specs__detail-icon" >
         <span >{{ specs.floors }}</span>
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes" [style.color]="specs.textColor">
-        <img src="svg/icons/unit-type.svg" alt="Tipo unidad" class="apartment-specs__detail-icon">
+        <img [src]="'svg/icons/unit-type.svg' | assetUrl" alt="Tipo unidad" class="apartment-specs__detail-icon">
         <span>{{ specs.unitTypes }}</span>
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.areaRange" [style.color]="specs.textColor">
-        <img src="svg/icons/area.svg" alt="Metrajes" class="apartment-specs__detail-icon">
+        <img [src]="'svg/icons/area.svg' | assetUrl" alt="Metrajes" class="apartment-specs__detail-icon">
         <span>{{ specs.areaRange }}</span>
       </li>
 
       <li class="apartment-specs__detail-item" *ngIf="specs.amenities" [style.color]="specs.textColor">
-        <img src="svg/icons/floors.svg" alt="Amenidades" class="apartment-specs__detail-icon">
+        <img [src]="'svg/icons/floors.svg' | assetUrl" alt="Amenidades" class="apartment-specs__detail-icon">
         <span>{{ specs.amenities }}</span>
       </li>
     </ul>
@@ -76,7 +76,7 @@
     <div class="apartment-specs__actions" *ngIf="specs.brochureUrl || specs.videoUrl">
       <a
         *ngIf="specs.brochureUrl"
-        [href]="specs.brochureUrl"
+        [href]="specs.brochureUrl | assetUrl"
         target="_blank"
         rel="noopener noreferrer"
         class="apartment-specs__action-btn apartment-specs__action-btn--brochure"

@@ -1,0 +1,25 @@
+<section class="pb-wrap" *ngIf="config?.isVisible && config?.imageDesktop">
+
+  <!-- Con enlace -->
+  <a *ngIf="config?.link; else noLink"
+     [href]="config!.link!"
+     class="pb-link"
+     target="_blank"
+     rel="noopener">
+    <img [src]="config!.imageDesktop!" alt="Promoción" class="pb-img pb-img--desk">
+    <img *ngIf="config?.imageMobile"
+         [src]="config!.imageMobile!"
+         alt="Promoción"
+         class="pb-img pb-img--mob">
+  </a>
+
+  <!-- Sin enlace -->
+  <ng-template #noLink>
+    <img [src]="config!.imageDesktop!" alt="Promoción" class="pb-img pb-img--desk">
+    <img *ngIf="config?.imageMobile"
+         [src]="config!.imageMobile!"
+         alt="Promoción"
+         class="pb-img pb-img--mob">
+  </ng-template>
+
+</section>
