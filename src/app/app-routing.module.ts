@@ -2,6 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
+  // Redirect raíz → home
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+
   // Admin panel (login + /admin/* with sidebar layout)
   {
     path: '',
@@ -16,7 +23,7 @@ const routes: Routes = [
 
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 ];
