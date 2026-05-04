@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AdminApiService } from '../../services/admin-api.service';
 
 @Component({
+  standalone: false,
   selector: 'app-dev-tools-admin',
   templateUrl: './dev-tools-admin.component.html',
   styleUrls: ['./dev-tools-admin.component.css'],
