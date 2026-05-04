@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminApiService } from '../../services/admin-api.service';
+import { environment } from '../../../../../environments/environments';
 
 @Component({
   selector: 'app-admin-projects-list',
@@ -9,6 +10,8 @@ import { AdminApiService } from '../../services/admin-api.service';
   styleUrl: './projects-list.component.css',
 })
 export class ProjectsListComponent implements OnInit {
+  imageUrl: string = environment.uploadsUrl;
+
   projects: any[] = [];
   loading = true;
   confirmDeleteId: number | null = null;

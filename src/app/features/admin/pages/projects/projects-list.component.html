@@ -21,7 +21,7 @@
   <div class="proj-grid" *ngIf="!loading">
     <div class="proj-card" *ngFor="let p of projects">
       <div class="proj-card__thumb">
-        <img [src]="p.thumbnailUrl ? ('http://localhost:3000/uploads/' + p.thumbnailUrl) : ''" [alt]="p.name"
+        <img [src]="p.thumbnailUrl ? ( imageUrl + '/' + p.thumbnailUrl) : ''" [alt]="p.name"
              onerror="this.style.display='none'" class="proj-card__img">
         <div class="proj-card__thumb-placeholder" *ngIf="!p.thumbnailUrl">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
