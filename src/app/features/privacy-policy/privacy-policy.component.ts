@@ -1,0 +1,28 @@
+import { Component, OnInit } from '@angular/core';
+import { ContentService } from '../../core/services/content.service';
+
+@Component({
+  selector: 'app-privacy-policy',
+  standalone: false,
+  templateUrl: './privacy-policy.component.html',
+  styleUrl: './privacy-policy.component.css',
+})
+export class PrivacyPolicyComponent implements OnInit {
+  content = '';
+  loading = true;
+
+  constructor(private readonly contentService: ContentService) {}
+
+  ngOnInit(): void {
+    this.contentService.getSettings().subscribe({
+      next: (s) => {
+        this.content = s['privacy_policy'] ?? '<p>Contenido no disponible.</p>';
+        this.loading = false;
+      },
+      error: () => {
+        this.content = '<p>No se pudo cargar la política de privacidad.</p>';
+        this.loading = false;
+      },
+    });
+  }
+}

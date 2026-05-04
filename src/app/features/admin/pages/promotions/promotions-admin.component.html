@@ -59,6 +59,16 @@
           <img [src]="banners.promos_hero_mobile" alt="Preview hero móvil" class="pb-preview__img">
         </div>
       </div>
+
+      <!-- Banner principal página Promociones -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Banner principal Promociones (debajo del título de la sección)</label>
+        <input class="adm-input" [(ngModel)]="banners.promos_main_banner"
+               placeholder="/images/home/home_d.png">
+        <div class="pb-preview" *ngIf="banners.promos_main_banner">
+          <img [src]="banners.promos_main_banner" alt="Preview banner principal" class="pb-preview__img">
+        </div>
+      </div>
     </div>
   </div>
 

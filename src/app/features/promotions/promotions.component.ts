@@ -13,18 +13,19 @@ export class PromotionsComponent implements OnInit {
   otherPromos: Promotion[] = [];
   loading = true;
 
-  /** Hero banner de la página de promociones (valores por defecto = imágenes estáticas) */
-  heroDesktop = '/images/promotions/banner-hero-desk.jpg';
-  heroMobile  = '/images/promotions/banner-hero-mb.jpg';
+  /** Banners desde CMS settings (valores por defecto = imágenes estáticas) */
+  heroDesktop   = '/images/promotions/banner-hero-desk.jpg';
+  heroMobile    = '/images/promotions/banner-hero-mb.jpg';
+  promoMainBanner = '/images/home/home_d.png';
 
   constructor(private readonly content: ContentService) { }
 
   ngOnInit(): void {
-    // Cargar banners hero desde CMS settings
     this.content.getSettings().subscribe({
       next: (s) => {
-        if (s['promos_hero_desktop']) this.heroDesktop = s['promos_hero_desktop'];
-        if (s['promos_hero_mobile'])  this.heroMobile  = s['promos_hero_mobile'];
+        if (s['promos_hero_desktop']) this.heroDesktop      = s['promos_hero_desktop'];
+        if (s['promos_hero_mobile'])  this.heroMobile       = s['promos_hero_mobile'];
+        if (s['promos_main_banner'])  this.promoMainBanner  = s['promos_main_banner'];
       },
       error: () => { /* mantener fallback */ },
     });

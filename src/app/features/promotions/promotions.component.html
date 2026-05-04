@@ -17,9 +17,9 @@
 </div>
 
 <!-- Main Promo Banner -->
-<div class="promo-main-banner">
+<div class="promo-main-banner" *ngIf="promoMainBanner">
   <img
-    src="/images/home/home_d.png"
+    [src]="promoMainBanner"
     alt="Promoción del mes"
     class="promo-main-banner__img"
   >

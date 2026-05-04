@@ -22,6 +22,7 @@ export class PromotionsAdminComponent implements OnInit {
     home_promo_banner:   '',
     promos_hero_desktop: '',
     promos_hero_mobile:  '',
+    promos_main_banner:  '',
   };
   savingBanners = false;
   bannersSaved = false;
@@ -54,6 +55,7 @@ export class PromotionsAdminComponent implements OnInit {
         this.banners.home_promo_banner   = s['home_promo_banner']   ?? '';
         this.banners.promos_hero_desktop = s['promos_hero_desktop'] ?? '';
         this.banners.promos_hero_mobile  = s['promos_hero_mobile']  ?? '';
+        this.banners.promos_main_banner  = s['promos_main_banner']  ?? '';
       },
     });
   }
@@ -64,6 +66,7 @@ export class PromotionsAdminComponent implements OnInit {
       { key: 'home_promo_banner',   value: this.banners.home_promo_banner   },
       { key: 'promos_hero_desktop', value: this.banners.promos_hero_desktop },
       { key: 'promos_hero_mobile',  value: this.banners.promos_hero_mobile  },
+      { key: 'promos_main_banner',  value: this.banners.promos_main_banner  },
     ];
     this.api.updateSettings(items).subscribe({
       next: () => {

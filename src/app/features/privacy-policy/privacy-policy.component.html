@@ -1,0 +1,15 @@
+<div class="pp-page">
+  <div class="pp-container">
+
+    <div class="pp-header">
+      <h1 class="pp-title">Política de Privacidad</h1>
+    </div>
+
+    <div *ngIf="loading" class="pp-loading">
+      <div class="pp-spinner"></div>
+    </div>
+
+    <div *ngIf="!loading" class="pp-body" [innerHTML]="content"></div>
+
+  </div>
+</div>

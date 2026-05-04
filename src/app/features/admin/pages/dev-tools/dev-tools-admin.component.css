@@ -1,0 +1,132 @@
+.adm-page {
+  padding: 2rem;
+}
+
+.adm-page__header {
+  margin-bottom: 2rem;
+}
+
+.adm-page__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0 0 0.4rem;
+}
+
+.adm-page__subtitle {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.dt-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 2.5rem;
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.dt-card__icon {
+  color: #6366f1;
+  margin-bottom: 0.5rem;
+}
+
+.dt-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.dt-card__desc {
+  color: #6b7280;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  max-width: 440px;
+}
+
+.dt-card__desc code {
+  background: #f3f4f6;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.82em;
+  color: #374151;
+}
+
+.dt-card__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 0.25rem 0;
+}
+
+.dt-card__info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  color: #6b7280;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.25rem 0.7rem;
+}
+
+.dt-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1.6rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: 0.5rem;
+}
+
+.dt-btn:hover:not(:disabled) {
+  background: #4f46e5;
+}
+
+.dt-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.dt-btn__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.dt-card__success {
+  color: #16a34a;
+  font-size: 0.82rem;
+  margin: 0;
+}
+
+.dt-card__error {
+  color: #dc2626;
+  font-size: 0.82rem;
+  margin: 0;
+}

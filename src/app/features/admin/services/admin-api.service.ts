@@ -116,6 +116,11 @@ export class AdminApiService {
     return this.http.delete<any>(`${BASE}/admin/blog/${id}`);
   }
 
+  // ── Dev Tools ─────────────────────────────────────────────────────────────
+  getSeedExport(): Observable<any> {
+    return this.http.get<any>(`${BASE}/admin/seed-export`);
+  }
+
   // ── Media (upload legacy) ──────────────────────────────────────────────────
   uploadFile(file: File, folder?: string): Observable<any> {
     const fd = new FormData();

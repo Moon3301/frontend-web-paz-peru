@@ -11,6 +11,8 @@ import { PromotionsAdminComponent }        from './pages/promotions/promotions-a
 import { DeliveredProjectsAdminComponent } from './pages/delivered-projects/delivered-projects-admin.component';
 import { MediaManagerComponent }          from './pages/media-manager/media-manager.component';
 import { BlogAdminComponent }             from './pages/blog/blog-admin.component';
+import { PrivacyPolicyAdminComponent }    from './pages/privacy-policy/privacy-policy-admin.component';
+import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admin.component';
 import { AdminAuthGuard }                  from './guards/admin-auth.guard';
 
 const routes: Routes = [
@@ -34,6 +36,8 @@ const routes: Routes = [
       { path: 'promotions',        component: PromotionsAdminComponent        },
       { path: 'media',             component: MediaManagerComponent           },
       { path: 'blog',              component: BlogAdminComponent              },
+      { path: 'privacy-policy',   component: PrivacyPolicyAdminComponent     },
+      { path: 'dev-tools',        component: DevToolsAdminComponent          },
       { path: '**',                redirectTo: ''                             },
     ],
   },

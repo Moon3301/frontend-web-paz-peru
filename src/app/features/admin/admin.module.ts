@@ -17,6 +17,8 @@ import { PromotionsAdminComponent }        from './pages/promotions/promotions-a
 import { DeliveredProjectsAdminComponent } from './pages/delivered-projects/delivered-projects-admin.component';
 import { MediaManagerComponent }          from './pages/media-manager/media-manager.component';
 import { BlogAdminComponent }             from './pages/blog/blog-admin.component';
+import { PrivacyPolicyAdminComponent }    from './pages/privacy-policy/privacy-policy-admin.component';
+import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admin.component';
 
 // Section editors
 import { HeroEditorComponent }        from './components/project-editor/hero-editor.component';
@@ -43,6 +45,8 @@ const DECLARATIONS = [
   DeliveredProjectsAdminComponent,
   MediaManagerComponent,
   BlogAdminComponent,
+  PrivacyPolicyAdminComponent,
+  DevToolsAdminComponent,
 
   // Section editors
   HeroEditorComponent,

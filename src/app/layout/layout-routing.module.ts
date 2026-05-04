@@ -40,6 +40,10 @@ const routes: Routes = [
         loadChildren: () => import('../features/reclamaciones/reclamaciones.module').then(m => m.ReclamacionesModule)
       },
       {
+        path: 'politica-privacidad',
+        loadChildren: () => import('../features/privacy-policy/privacy-policy.module').then(m => m.PrivacyPolicyModule)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

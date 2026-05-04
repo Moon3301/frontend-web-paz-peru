@@ -1,0 +1,32 @@
+.adm-textarea--tall {
+  min-height: 420px;
+  resize: vertical;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.pp-preview-section {
+  margin-top: 28px;
+  border-top: 1px solid #e8ddd4;
+  padding-top: 20px;
+}
+
+.pp-preview-body {
+  background: #faf8f5;
+  border: 1px solid #e8ddd4;
+  border-radius: 8px;
+  padding: 24px 28px;
+  color: #444;
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+.pp-preview-body h1, .pp-preview-body h2, .pp-preview-body h3 {
+  color: #2d2d2d;
+  margin: 1.4em 0 0.5em;
+  font-weight: 700;
+}
+.pp-preview-body h2 { font-size: 1.2rem; }
+.pp-preview-body h3 { font-size: 1rem; }
+.pp-preview-body p  { margin: 0 0 0.9em; }
+.pp-preview-body ul, .pp-preview-body ol { padding-left: 1.5em; margin-bottom: 0.9em; }
+.pp-preview-body a  { color: #CA995E; }
