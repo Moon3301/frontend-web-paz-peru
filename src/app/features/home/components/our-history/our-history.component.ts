@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 export interface HistoryStat {
@@ -6,27 +6,51 @@ export interface HistoryStat {
   label: string;
 }
 
+export interface HistoryConfig {
+  text:       string;
+  youtubeId:  string;
+  stats:      HistoryStat[];
+}
+
+const DEFAULT_CONFIG: HistoryConfig = {
+  text: 'Paz Inmobiliaria, con más de 16 años desarrollando proyectos inmobiliarios, ' +
+        '+8,700 unidades entregadas que corroboran nuestro compromiso con nuestros clientes ' +
+        'y +29 proyectos desarrollados que nos alientan a seguir mejorando la ciudad, ' +
+        'nuestro propósito. "Creamos espacios, para disfrutar la vida" es la guía en cada paso que damos.',
+  youtubeId: '8QVPyM1CRaY',
+  stats: [
+    { value: '16 años', label: 'Cumpliendo sueños'          },
+    { value: '+8,700',  label: 'Departamentos entregados'   },
+    { value: '+29',     label: 'Proyectos desarrollados'    },
+  ],
+};
+
 @Component({
   selector: 'home-our-history',
   standalone: false,
   templateUrl: './our-history.component.html',
   styleUrl: './our-history.component.css'
 })
-export class OurHistoryComponent {
+export class OurHistoryComponent implements OnChanges {
 
-  safeYoutubeUrl: SafeResourceUrl;
+  @Input() config: HistoryConfig = DEFAULT_CONFIG;
 
-  stats: HistoryStat[] = [
-    { value: '16 años',  label: 'Cumpliendo sueños' },
-    { value: '+8,700',   label: 'Departamentos entregados' },
-    { value: '+29',      label: 'Proyectos desarrollados' }
-  ];
+  safeYoutubeUrl!: SafeResourceUrl;
 
   constructor(private sanitizer: DomSanitizer) {
-    // Actualizar el ID del video de YouTube cuando se confirme
-    const videoId = '8QVPyM1CRaY';
+    this.updateUrl(DEFAULT_CONFIG.youtubeId);
+  }
+
+  ngOnChanges(): void {
+    this.updateUrl(this.config?.youtubeId || DEFAULT_CONFIG.youtubeId);
+  }
+
+  get text(): string  { return this.config?.text  || DEFAULT_CONFIG.text;  }
+  get stats(): HistoryStat[] { return this.config?.stats?.length ? this.config.stats : DEFAULT_CONFIG.stats; }
+
+  private updateUrl(id: string): void {
     this.safeYoutubeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(
-      `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`
+      `https://www.youtube.com/embed/${id}?rel=0&modestbranding=1`
     );
   }
 }

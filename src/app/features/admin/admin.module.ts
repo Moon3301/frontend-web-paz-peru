@@ -2,6 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+// PrimeNG components used in admin
+import { Slider }         from 'primeng/slider';
+import { ColorPicker }    from 'primeng/colorpicker';
+import { SelectButton }   from 'primeng/selectbutton';
+import { Accordion, AccordionPanel, AccordionHeader, AccordionContent } from 'primeng/accordion';
+import { Tooltip }        from 'primeng/tooltip';
+import { ToggleSwitch }   from 'primeng/toggleswitch';
+
 import { AdminRoutingModule } from './admin-routing.module';
 
 // Layout
@@ -19,6 +27,7 @@ import { MediaManagerComponent }          from './pages/media-manager/media-mana
 import { BlogAdminComponent }             from './pages/blog/blog-admin.component';
 import { PrivacyPolicyAdminComponent }    from './pages/privacy-policy/privacy-policy-admin.component';
 import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admin.component';
+import { HomeAdminComponent }             from './pages/home/home-admin.component';
 
 // Section editors
 import { HeroEditorComponent }        from './components/project-editor/hero-editor.component';
@@ -47,6 +56,7 @@ const DECLARATIONS = [
   BlogAdminComponent,
   PrivacyPolicyAdminComponent,
   DevToolsAdminComponent,
+  HomeAdminComponent,
 
   // Section editors
   HeroEditorComponent,
@@ -67,6 +77,16 @@ const DECLARATIONS = [
     FormsModule,
     ReactiveFormsModule,
     AdminRoutingModule,
+    // PrimeNG
+    Slider,
+    ColorPicker,
+    SelectButton,
+    Accordion,
+    AccordionPanel,
+    AccordionHeader,
+    AccordionContent,
+    Tooltip,
+    ToggleSwitch,
   ],
 })
 export class AdminModule {}

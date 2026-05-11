@@ -1,7 +1,9 @@
 import {
   Component,
+  Input,
   OnInit,
   OnDestroy,
+  OnChanges,
   ViewChildren,
   QueryList,
   ElementRef,
@@ -12,8 +14,12 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 
 export interface HeroSlide {
-  videoSrc: string;
-  poster: string;
+  /** 'video' muestra un <video> en bucle; 'image' muestra una imagen fija */
+  type: 'video' | 'image';
+  /** URL del vídeo (.mp4) o de la imagen */
+  mediaSrc: string;
+  /** Imagen de portada/poster (solo para type='video') */
+  poster?: string;
   title: string;
   titleBold: string;
   projectName: string;
@@ -21,45 +27,54 @@ export interface HeroSlide {
   link: string;
 }
 
+/** Slides por defecto mientras no haya datos del CMS.
+ *  Exportado para que HomeComponent pueda usarlo como valor inicial. */
+export const DEFAULT_SLIDES: HeroSlide[] = [
+  {
+    type:         'video',
+    mediaSrc:     '/videos/video-home-pazcentenario-nuevo.mp4',
+    poster:       '/images/hero/preview-video-home.jpg',
+    title:        'Bienvenido a tu',
+    titleBold:    'nueva vida',
+    projectName:  'PROYECTO ESCALA',
+    projectLabel: 'SANTA CATALINA',
+    link:         '/departamentos-en-venta/la-victoria/escala',
+  },
+  {
+    type:         'video',
+    mediaSrc:     '/videos/video-home-pazcentenario-nuevo.mp4',
+    poster:       '/images/hero/preview-video-home.jpg',
+    title:        'Tu hogar ideal',
+    titleBold:    'te espera',
+    projectName:  'PROYECTO TALLER',
+    projectLabel: 'MIRAFLORES',
+    link:         '/departamentos-en-venta/miraflores/taller',
+  },
+  {
+    type:         'video',
+    mediaSrc:     '/videos/video-home-pazcentenario-nuevo.mp4',
+    poster:       '/images/hero/preview-video-home.jpg',
+    title:        'Espacios para',
+    titleBold:    'disfrutar la vida',
+    projectName:  'PROYECTO SAVIA',
+    projectLabel: 'PUEBLO LIBRE',
+    link:         '/departamentos-en-venta/pueblo-libre/savia',
+  },
+];
+
 @Component({
   selector: 'home-hero',
   standalone: false,
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css'
 })
-export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
+export class HeroComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
+
+  /** Slides inyectados desde HomeComponent (cargados del CMS).
+   *  Si no se reciben, se usan los DEFAULT_SLIDES. */
+  @Input() slides: HeroSlide[] = DEFAULT_SLIDES;
 
   @ViewChildren('videoRef') videoRefs!: QueryList<ElementRef<HTMLVideoElement>>;
-
-  slides: HeroSlide[] = [
-    {
-      videoSrc: '/videos/video-home-pazcentenario-nuevo.mp4',
-      poster: '/images/hero/preview-video-home.jpg',
-      title: 'Bienvenido a tu',
-      titleBold: 'nueva vida',
-      projectName: 'PROYECTO ESCALA',
-      projectLabel: 'SANTA CATALINA',
-      link: '/departamentos-en-venta/la-victoria/escala'
-    },
-    {
-      videoSrc: '/videos/video-home-pazcentenario-nuevo.mp4',
-      poster: '/images/hero/preview-video-home.jpg',
-      title: 'Tu hogar ideal',
-      titleBold: 'te espera',
-      projectName: 'PROYECTO TALLER',
-      projectLabel: 'MIRAFLORES',
-      link: '/departamentos-en-venta/miraflores/taller'
-    },
-    {
-      videoSrc: '/videos/video-home-pazcentenario-nuevo.mp4',
-      poster: '/images/hero/preview-video-home.jpg',
-      title: 'Espacios para',
-      titleBold: 'disfrutar la vida',
-      projectName: 'PROYECTO SAVIA',
-      projectLabel: 'PUEBLO LIBRE',
-      link: '/departamentos-en-venta/pueblo-libre/savia'
-    }
-  ];
 
   currentSlide = 0;
   private autoplayInterval: any;
@@ -69,10 +84,17 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {}
 
+  ngOnChanges(): void {
+    // Cuando cambia el input (datos CMS cargados), reiniciar el slider
+    this.currentSlide = 0;
+    if (isPlatformBrowser(this.platformId)) {
+      this.resetAutoplay();
+    }
+  }
+
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.startAutoplay();
-      // Slight delay to ensure DOM + media are ready before forcing play
       setTimeout(() => this.playActiveVideo(), 150);
     }
   }
@@ -88,32 +110,19 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  prev(): void {
-    this.goTo(this.currentSlide - 1);
-    this.resetAutoplay();
-  }
-
-  next(): void {
-    this.goTo(this.currentSlide + 1);
-    this.resetAutoplay();
-  }
+  prev(): void { this.goTo(this.currentSlide - 1); this.resetAutoplay(); }
+  next(): void { this.goTo(this.currentSlide + 1); this.resetAutoplay(); }
 
   private playActiveVideo(): void {
     const refs = this.videoRefs?.toArray();
     if (!refs?.length) return;
-
     refs.forEach((ref, i) => {
       const video = ref.nativeElement;
-      // Ensure muted is set as a property (not just attribute) — required by some browsers
       video.muted = true;
-
       if (i === this.currentSlide) {
-        const promise = video.play();
-        if (promise !== undefined) {
-          promise.catch(() => {
-            // Retry once after a short delay if autoplay was blocked
-            setTimeout(() => video.play().catch(() => {}), 400);
-          });
+        const p = video.play();
+        if (p !== undefined) {
+          p.catch(() => setTimeout(() => video.play().catch(() => {}), 400));
         }
       } else {
         video.pause();
@@ -122,15 +131,11 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private startAutoplay(): void {
-    this.autoplayInterval = setInterval(() => {
-      this.goTo(this.currentSlide + 1);
-    }, this.AUTOPLAY_MS);
+    this.autoplayInterval = setInterval(() => this.goTo(this.currentSlide + 1), this.AUTOPLAY_MS);
   }
 
   private stopAutoplay(): void {
-    if (this.autoplayInterval) {
-      clearInterval(this.autoplayInterval);
-    }
+    if (this.autoplayInterval) clearInterval(this.autoplayInterval);
   }
 
   private resetAutoplay(): void {

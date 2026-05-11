@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ProjectConfig } from '../../models/project-config.interface';
+import { Executive, ProjectConfig } from '../../models/project-config.interface';
 
 @Component({
   selector: 'app-project-page',
@@ -13,6 +13,10 @@ export class ProjectPageComponent implements OnInit {
 
   ngOnInit(): void {
     window.scrollTo(0, 0);
+  }
+
+  get activeExecutives(): Executive[] {
+    return (this.config.executives ?? []).filter(e => e.isActive !== false);
   }
 
 }

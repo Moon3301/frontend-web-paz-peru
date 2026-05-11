@@ -69,6 +69,69 @@
           <img [src]="banners.promos_main_banner" alt="Preview banner principal" class="pb-preview__img">
         </div>
       </div>
+
+      <!-- Banner 2 (Programa Cliente Amigo) — imagen -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Imagen — Banner 2</label>
+        <input class="adm-input" [(ngModel)]="banners.promo_cliente_amigo_img"
+               placeholder="/images/promotions/cliente-amigo.jpg">
+        <div class="pb-preview" *ngIf="banners.promo_cliente_amigo_img">
+          <img [src]="banners.promo_cliente_amigo_img" alt="Preview Banner 2" class="pb-preview__img">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Bases legales Programa Cliente Amigo ─────────────────────────────── -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Bases legales — Programa Cliente Amigo</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="bannersSaved">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveBanners()" [disabled]="savingBanners">
+          <span *ngIf="!savingBanners">Guardar</span>
+          <span *ngIf="savingBanners" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Nota legal inicial -->
+    <div class="adm-field adm-field--full" style="margin-bottom:20px">
+      <label class="adm-label">Nota inicial (aparece al comienzo del texto legal)</label>
+      <input class="adm-input" [(ngModel)]="banners.promo_cliente_amigo_note"
+             placeholder="(*) La regulación del IRT, se cuenta desde la firma de la minuta...">
+    </div>
+
+    <!-- Bloques de texto legal -->
+    <div class="adm-field adm-field--full" style="margin-bottom:20px">
+      <div class="sec-editor__subheader">
+        <span class="adm-label" style="margin:0">Bloques de texto legal</span>
+        <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addDisclaimerBlock()">+ Agregar bloque</button>
+      </div>
+
+      <div class="disclaimer-block-list" *ngIf="disclaimerBlocks.length">
+        <div class="disclaimer-block-item" *ngFor="let b of disclaimerBlocks; let i = index; trackBy: trackByIndex">
+          <div class="disclaimer-block-item__num">{{ i + 1 }}</div>
+          <div class="disclaimer-block-item__fields">
+            <input class="adm-input" [(ngModel)]="b.title" placeholder="Título del bloque (ej: GALIA – AMALFI – SAVIA...)">
+            <textarea class="adm-input adm-textarea" [(ngModel)]="b.text" rows="3"
+                      placeholder="Texto legal del bloque..."></textarea>
+          </div>
+          <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="removeDisclaimerBlock(i)">Eliminar</button>
+        </div>
+      </div>
+      <p class="adm-empty-hint" *ngIf="!disclaimerBlocks.length">Sin bloques de texto legal. Usa el botón de arriba para agregar uno.</p>
+    </div>
+
+    <!-- Enlace del botón de descarga -->
+    <div class="adm-field adm-field--full">
+      <label class="adm-label">Enlace del botón "Descarga las bases del programa"</label>
+      <input class="adm-input" [(ngModel)]="banners.promo_cliente_amigo_download_link"
+             placeholder="https://drive.google.com/file/d/...">
+      <p class="adm-field-hint">El botón siempre aparece en el sitio. Aquí solo defines a qué archivo o página lleva al hacer clic.</p>
     </div>
   </div>
 

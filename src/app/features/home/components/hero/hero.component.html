@@ -8,20 +8,32 @@
       [class.active]="i === currentSlide"
       [attr.aria-hidden]="i !== currentSlide"
     >
-      <!-- Video Background -->
+      <!-- Media: video o imagen según slide.type -->
       <div class="paz-hero__media">
+
+        <!-- Video en bucle -->
         <video
+          *ngIf="slide.type === 'video'"
           #videoRef
           autoplay
           muted
           loop
           playsinline
-          [poster]="slide.poster"
+          [poster]="slide.poster || ''"
           class="paz-hero__video"
           [attr.aria-label]="slide.projectName"
         >
-          <source [src]="slide.videoSrc" type="video/mp4">
+          <source [src]="slide.mediaSrc" type="video/mp4">
         </video>
+
+        <!-- Imagen fija (carrusel o mixto) -->
+        <img
+          *ngIf="slide.type === 'image'"
+          [src]="slide.mediaSrc"
+          [alt]="slide.projectName"
+          class="paz-hero__image"
+        >
+
       </div>
 
       <!-- Dark overlay -->
@@ -38,7 +50,7 @@
             <p class="paz-hero__project-name">{{ slide.projectName }}</p>
             <p class="paz-hero__project-label">{{ slide.projectLabel }}</p>
           </div>
-          <a [routerLink]="slide.link" class="btn-paz paz-hero__cta" id="hero-cta-{{i}}">
+          <a [routerLink]="slide.link" class="btn-paz paz-hero__cta" [id]="'hero-cta-' + i">
             Conocer más
             <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>

@@ -51,7 +51,7 @@
 
   <!-- Banner fijo inferior de ejecutivos de ventas -->
   <app-executive-banner
-    *ngIf="config.executives && config.executives.length > 0"
-    [executives]="config.executives">
+    *ngIf="activeExecutives.length > 0"
+    [executives]="activeExecutives">
   </app-executive-banner>
 </ng-container>

@@ -1,6 +1,6 @@
-<home-hero />
+<home-hero [slides]="heroSlides" />
 
-<!-- Banner promocional (full-width, links a /promotions) — imagen desde CMS -->
+<!-- Banner promocional (full-width, links a /promotions) -->
 <section class="paz-promo-banner">
   <a routerLink="/promotions">
     <img [src]="homeBanner" class="paz-promo-banner__desk" alt="Promociones Paz Inmobiliaria" />
@@ -8,5 +8,5 @@
 </section>
 
 <home-projects />
-<home-our-history />
-<home-ubication />
+<home-our-history [config]="historyConfig ?? {text:'',youtubeId:'',stats:[]}" />
+<home-ubication   [config]="ubicationConfig ?? {subtitle:'',mapImage:''}" />

@@ -18,14 +18,25 @@ export class PromotionsComponent implements OnInit {
   heroMobile    = '/images/promotions/banner-hero-mb.jpg';
   promoMainBanner = '/images/home/home_d.png';
 
+  clienteAmigoImg          = '/images/promotions/cliente-amigo.jpg';
+  clienteAmigoNote         = '';
+  clienteAmigoBlocks: { title: string; text: string }[] = [];
+  clienteAmigoDownloadLink = '';
+
   constructor(private readonly content: ContentService) { }
 
   ngOnInit(): void {
     this.content.getSettings().subscribe({
       next: (s) => {
-        if (s['promos_hero_desktop']) this.heroDesktop      = s['promos_hero_desktop'];
-        if (s['promos_hero_mobile'])  this.heroMobile       = s['promos_hero_mobile'];
-        if (s['promos_main_banner'])  this.promoMainBanner  = s['promos_main_banner'];
+        if (s['promos_hero_desktop'])          this.heroDesktop             = s['promos_hero_desktop'];
+        if (s['promos_hero_mobile'])           this.heroMobile              = s['promos_hero_mobile'];
+        if (s['promos_main_banner'])           this.promoMainBanner         = s['promos_main_banner'];
+        if (s['promo_cliente_amigo_img'])           this.clienteAmigoImg          = s['promo_cliente_amigo_img'];
+        if (s['promo_cliente_amigo_note'])          this.clienteAmigoNote         = s['promo_cliente_amigo_note'];
+        if (s['promo_cliente_amigo_download_link']) this.clienteAmigoDownloadLink = s['promo_cliente_amigo_download_link'];
+        if (s['promo_cliente_amigo_blocks']) {
+          try { this.clienteAmigoBlocks = JSON.parse(s['promo_cliente_amigo_blocks']); } catch { /* mantener vacío */ }
+        }
       },
       error: () => { /* mantener fallback */ },
     });
