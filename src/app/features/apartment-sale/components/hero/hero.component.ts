@@ -50,10 +50,10 @@ export class HeroComponent implements OnInit, OnDestroy {
     const pos = this.config.textPosition;
     if (!pos) return {};
     const style: Record<string, string> = {};
-    if (pos.top    !== undefined) style['top']    = pos.top;
+    if (pos.top !== undefined) style['top'] = pos.top;
     if (pos.bottom !== undefined) style['bottom'] = pos.bottom;
-    if (pos.left   !== undefined) style['left']   = pos.left;
-    if (pos.right  !== undefined) style['right']  = pos.right;
+    if (pos.left !== undefined) style['left'] = pos.left;
+    if (pos.right !== undefined) style['right'] = pos.right;
     return style;
   }
 
@@ -98,16 +98,16 @@ export class HeroComponent implements OnInit, OnDestroy {
     const s: HeroLogoSize | undefined = this.config.logoSize;
     if (!s) return {};
     const v: Record<string, string> = {};
-    if (s.standard?.width)  v['--logo-w']        = s.standard.width;
-    if (s.standard?.height) v['--logo-h']        = s.standard.height;
-    if (s.desktop?.width)   v['--logo-w-xl']     = s.desktop.width;
-    if (s.desktop?.height)  v['--logo-h-xl']     = s.desktop.height;
-    if (s.tablet?.width)    v['--logo-w-tablet'] = s.tablet.width;
-    if (s.tablet?.height)   v['--logo-h-tablet'] = s.tablet.height;
-    if (s.mobile?.width)    v['--logo-w-mobile'] = s.mobile.width;
-    if (s.mobile?.height)   v['--logo-h-mobile'] = s.mobile.height;
-    if (s.mobileSm?.width)  v['--logo-w-sm']     = s.mobileSm.width;
-    if (s.mobileSm?.height) v['--logo-h-sm']     = s.mobileSm.height;
+    if (s.standard?.width) v['--logo-w'] = s.standard.width;
+    if (s.standard?.height) v['--logo-h'] = s.standard.height;
+    if (s.desktop?.width) v['--logo-w-xl'] = s.desktop.width;
+    if (s.desktop?.height) v['--logo-h-xl'] = s.desktop.height;
+    if (s.tablet?.width) v['--logo-w-tablet'] = s.tablet.width;
+    if (s.tablet?.height) v['--logo-h-tablet'] = s.tablet.height;
+    if (s.mobile?.width) v['--logo-w-mobile'] = s.mobile.width;
+    if (s.mobile?.height) v['--logo-h-mobile'] = s.mobile.height;
+    if (s.mobileSm?.width) v['--logo-w-sm'] = s.mobileSm.width;
+    if (s.mobileSm?.height) v['--logo-h-sm'] = s.mobileSm.height;
     return v;
   }
 
@@ -120,14 +120,14 @@ export class HeroComponent implements OnInit, OnDestroy {
   getElementStyle(legacyColor: string, elementStyle?: HeroElementStyle): Record<string, string> {
     const style: Record<string, string> = { color: legacyColor };
     if (!elementStyle) return style;
-    if (elementStyle.color)         style['color']         = elementStyle.color;
-    if (elementStyle.fontFamily)    style['fontFamily']    = elementStyle.fontFamily;
-    if (elementStyle.fontSize)      style['fontSize']      = elementStyle.fontSize;
-    if (elementStyle.fontWeight)    style['fontWeight']    = elementStyle.fontWeight;
+    if (elementStyle.color) style['color'] = elementStyle.color;
+    if (elementStyle.fontFamily) style['fontFamily'] = elementStyle.fontFamily;
+    if (elementStyle.fontSize) style['fontSize'] = elementStyle.fontSize;
+    if (elementStyle.fontWeight) style['fontWeight'] = elementStyle.fontWeight;
     if (elementStyle.letterSpacing) style['letterSpacing'] = elementStyle.letterSpacing;
-    if (elementStyle.textAlign)     style['textAlign']     = elementStyle.textAlign;
-    if (elementStyle.marginTop)     style['marginTop']     = elementStyle.marginTop;
-    if (elementStyle.marginBottom)  style['marginBottom']  = elementStyle.marginBottom;
+    if (elementStyle.textAlign) style['textAlign'] = elementStyle.textAlign;
+    if (elementStyle.marginTop) style['marginTop'] = elementStyle.marginTop;
+    if (elementStyle.marginBottom) style['marginBottom'] = elementStyle.marginBottom;
     return style;
   }
 }

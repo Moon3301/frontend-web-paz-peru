@@ -14,6 +14,9 @@ export class PrivacyPolicyComponent implements OnInit {
   constructor(private readonly contentService: ContentService) {}
 
   ngOnInit(): void {
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     this.contentService.getSettings().subscribe({
       next: (s) => {
         this.content = s['privacy_policy'] ?? '<p>Contenido no disponible.</p>';
