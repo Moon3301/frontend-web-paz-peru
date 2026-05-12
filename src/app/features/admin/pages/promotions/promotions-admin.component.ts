@@ -19,11 +19,15 @@ export class PromotionsAdminComponent implements OnInit {
 
   // ── Banners del sitio ────────────────────────────────────────────────────
   banners = {
-    home_promo_banner:   '',
-    promos_hero_desktop: '',
-    promos_hero_mobile:  '',
-    promos_main_banner:  '',
+    home_promo_banner:                 '',
+    promos_hero_desktop:               '',
+    promos_hero_mobile:                '',
+    promos_main_banner:                '',
+    promo_cliente_amigo_img:           '',
+    promo_cliente_amigo_note:          '',
+    promo_cliente_amigo_download_link: '',
   };
+  disclaimerBlocks: { title: string; text: string }[] = [];
   savingBanners = false;
   bannersSaved = false;
 
@@ -52,10 +56,16 @@ export class PromotionsAdminComponent implements OnInit {
   loadBanners(): void {
     this.api.getSettings().subscribe({
       next: (s) => {
-        this.banners.home_promo_banner   = s['home_promo_banner']   ?? '';
-        this.banners.promos_hero_desktop = s['promos_hero_desktop'] ?? '';
-        this.banners.promos_hero_mobile  = s['promos_hero_mobile']  ?? '';
-        this.banners.promos_main_banner  = s['promos_main_banner']  ?? '';
+        this.banners.home_promo_banner                 = s['home_promo_banner']                 ?? '';
+        this.banners.promos_hero_desktop               = s['promos_hero_desktop']               ?? '';
+        this.banners.promos_hero_mobile                = s['promos_hero_mobile']                ?? '';
+        this.banners.promos_main_banner                = s['promos_main_banner']                ?? '';
+        this.banners.promo_cliente_amigo_img           = s['promo_cliente_amigo_img']           ?? '';
+        this.banners.promo_cliente_amigo_note          = s['promo_cliente_amigo_note']          ?? '';
+        this.banners.promo_cliente_amigo_download_link = s['promo_cliente_amigo_download_link'] ?? '';
+        if (s['promo_cliente_amigo_blocks']) {
+          try { this.disclaimerBlocks = JSON.parse(s['promo_cliente_amigo_blocks']); } catch { this.disclaimerBlocks = []; }
+        }
       },
     });
   }
@@ -63,10 +73,14 @@ export class PromotionsAdminComponent implements OnInit {
   saveBanners(): void {
     this.savingBanners = true;
     const items = [
-      { key: 'home_promo_banner',   value: this.banners.home_promo_banner   },
-      { key: 'promos_hero_desktop', value: this.banners.promos_hero_desktop },
-      { key: 'promos_hero_mobile',  value: this.banners.promos_hero_mobile  },
-      { key: 'promos_main_banner',  value: this.banners.promos_main_banner  },
+      { key: 'home_promo_banner',                 value: this.banners.home_promo_banner                 },
+      { key: 'promos_hero_desktop',               value: this.banners.promos_hero_desktop               },
+      { key: 'promos_hero_mobile',                value: this.banners.promos_hero_mobile                },
+      { key: 'promos_main_banner',                value: this.banners.promos_main_banner                },
+      { key: 'promo_cliente_amigo_img',           value: this.banners.promo_cliente_amigo_img           },
+      { key: 'promo_cliente_amigo_note',          value: this.banners.promo_cliente_amigo_note          },
+      { key: 'promo_cliente_amigo_blocks',        value: JSON.stringify(this.disclaimerBlocks)          },
+      { key: 'promo_cliente_amigo_download_link', value: this.banners.promo_cliente_amigo_download_link },
     ];
     this.api.updateSettings(items).subscribe({
       next: () => {
@@ -106,4 +120,16 @@ export class PromotionsAdminComponent implements OnInit {
   doDelete(id: number): void {
     this.api.deletePromotion(id).subscribe(() => { this.confirmDeleteId = null; this.load(); });
   }
+
+  // ── Bloques del disclaimer ───────────────────────────────────────────────
+
+  addDisclaimerBlock(): void {
+    this.disclaimerBlocks = [...this.disclaimerBlocks, { title: '', text: '' }];
+  }
+
+  removeDisclaimerBlock(i: number): void {
+    this.disclaimerBlocks = this.disclaimerBlocks.filter((_, idx) => idx !== i);
+  }
+
+  trackByIndex(i: number): number { return i; }
 }

@@ -295,6 +295,8 @@ export interface Executive {
   phone: string;
   /** Ruta a la foto del ejecutivo, e.g. "images/executives/nombre-apellido.jpg" */
   photo: string;
+  /** Si es false, el ejecutivo no aparece en el sitio público. Default: true */
+  isActive?: boolean;
 }
 
 export interface PromoBannerConfig {

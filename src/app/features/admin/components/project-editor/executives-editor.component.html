@@ -9,7 +9,8 @@
   </div>
 
   <div class="exec-list">
-    <div class="exec-card" *ngFor="let e of local.executives; let i = index; trackBy: trackByIndex">
+    <div class="exec-card" *ngFor="let e of local.executives; let i = index; trackBy: trackByIndex"
+         [class.exec-card--disabled]="e.isActive === false">
       <div class="exec-card__num">{{ i + 1 }}</div>
       <div class="adm-form-grid exec-card__fields">
         <div class="adm-field">
@@ -29,7 +30,14 @@
           <input class="adm-input" [(ngModel)]="e.photo" (ngModelChange)="emit()" placeholder="images/executives/nombre.jpg">
         </div>
       </div>
-      <button class="adm-btn adm-btn--sm adm-btn--danger exec-card__remove" (click)="removeExec(i)">Eliminar</button>
+      <div class="exec-card__actions">
+        <label class="adm-toggle" title="Habilitar / deshabilitar ejecutivo">
+          <input type="checkbox" [checked]="e.isActive !== false"
+                 (change)="e.isActive = $any($event.target).checked; emit()">
+          <span class="adm-toggle__label">{{ e.isActive !== false ? 'Activo' : 'Inactivo' }}</span>
+        </label>
+        <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="removeExec(i)">Eliminar</button>
+      </div>
     </div>
   </div>
   <p class="adm-empty-hint" *ngIf="!local.executives?.length">Sin ejecutivos asignados.</p>

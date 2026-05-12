@@ -4,77 +4,359 @@
     <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
   </div>
 
-  <div class="adm-form-grid">
-    <div class="adm-field">
-      <label class="adm-label">Logo del proyecto (URL)</label>
-      <input class="adm-input" [(ngModel)]="local.logo" (ngModelChange)="emit()" placeholder="images/logos/projects/logo-xxx.webp">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Nombre del proyecto</label>
-      <input class="adm-input" [(ngModel)]="local.projectName" (ngModelChange)="emit()" placeholder="Lima 15">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Subtítulo del distrito</label>
-      <input class="adm-input" [(ngModel)]="local.district" (ngModelChange)="emit()" placeholder="DEPARTAMENTOS EN MIRAFLORES">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Descripción / Badge texto</label>
-      <input class="adm-input" [(ngModel)]="local.description" (ngModelChange)="emit()" placeholder="TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Línea precio (label)</label>
-      <input class="adm-input" [(ngModel)]="local.priceLine1" (ngModelChange)="emit()" placeholder="TU DEPA DE 2 AMBIENTES">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Precio desde</label>
-      <input class="adm-input" [(ngModel)]="local.priceFrom" (ngModelChange)="emit()" placeholder="S/ 678,000*">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Color overlay (rgba)</label>
-      <input class="adm-input" [(ngModel)]="local.overlayColor" (ngModelChange)="emit()" placeholder="rgba(98,62,75,0.75)">
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Color texto general</label>
-      <div class="adm-color-row">
-        <input type="color" class="adm-color-picker" [ngModel]="local.textColor || '#ffffff'" (ngModelChange)="local.textColor=$event; emit()">
-        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()" placeholder="#ffffff">
-      </div>
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Color precio principal</label>
-      <div class="adm-color-row">
-        <input type="color" class="adm-color-picker" [ngModel]="local.priceFromColor || '#CA995E'" (ngModelChange)="local.priceFromColor=$event; emit()">
-        <input class="adm-input" [(ngModel)]="local.priceFromColor" (ngModelChange)="emit()" placeholder="#CA995E">
-      </div>
-    </div>
-    <div class="adm-field">
-      <label class="adm-label">Color descripción</label>
-      <div class="adm-color-row">
-        <input type="color" class="adm-color-picker" [ngModel]="local.descriptionColor || '#ffffff'" (ngModelChange)="local.descriptionColor=$event; emit()">
-        <input class="adm-input" [(ngModel)]="local.descriptionColor" (ngModelChange)="emit()" placeholder="#ffffff">
-      </div>
-    </div>
-  </div>
+  <!-- ══════════════════════════════════════════════════════════════
+       ACORDEÓN — organiza todas las secciones de forma limpia
+       ══════════════════════════════════════════════════════════════ -->
+  <p-accordion [multiple]="true" [(value)]="accordionValue">
 
-  <!-- Slides -->
-  <div class="sec-editor__subheader">
-    <h4 class="sec-editor__subtitle">Imágenes del slider</h4>
-    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addSlide()">+ Agregar imagen</button>
-  </div>
+    <!-- ── 1. Imágenes del slider ─────────────────────────────────── -->
+    <p-accordion-panel value="slides">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8"/>
+          </svg>
+          Imágenes del slider
+          <span class="hero-acc-badge">{{ local.slides?.length || 0 }}</span>
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+        <div class="adm-list" *ngIf="local.slides?.length">
+          <div class="adm-list__item" *ngFor="let slide of local.slides; let i = index; trackBy: trackByIndex">
+            <span class="adm-list__num">{{ i + 1 }}</span>
+            <div class="adm-list__fields">
+              <input class="adm-input" [(ngModel)]="slide.image" (ngModelChange)="emit()"
+                     placeholder="images/projects/xxx/hero-1.webp">
+              <input class="adm-input" [(ngModel)]="slide.alt" (ngModelChange)="emit()"
+                     placeholder="Descripción alt (accesibilidad)">
+            </div>
+            <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeSlide(i)" pTooltip="Eliminar slide">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <p class="adm-empty-hint" *ngIf="!local.slides?.length">Sin imágenes. Agrega al menos una.</p>
+        <button class="adm-btn adm-btn--secondary adm-btn--sm" style="margin-top:10px" (click)="addSlide()">
+          + Agregar imagen
+        </button>
+      </p-accordion-content>
+    </p-accordion-panel>
 
-  <div class="adm-list" *ngIf="local.slides?.length">
-    <div class="adm-list__item" *ngFor="let slide of local.slides; let i = index; trackBy: trackByIndex">
-      <span class="adm-list__num">{{ i + 1 }}</span>
-      <div class="adm-list__fields">
-        <input class="adm-input" [(ngModel)]="slide.image" (ngModelChange)="emit()" placeholder="images/projects/xxx/hero-1.jpg">
-        <input class="adm-input" [(ngModel)]="slide.alt" (ngModelChange)="emit()" placeholder="Descripción alt">
-      </div>
-      <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeSlide(i)">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-  <p class="adm-empty-hint" *ngIf="!local.slides?.length">No hay imágenes en el slider. Agrega al menos una.</p>
+    <!-- ── 2. Textos del logo ────────────────────────────────────── -->
+    <p-accordion-panel value="texts">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/>
+            <line x1="12" y1="4" x2="12" y2="20"/>
+          </svg>
+          Textos del logo
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label class="adm-label">Logo del proyecto (URL)</label>
+            <input class="adm-input" [(ngModel)]="local.logo" (ngModelChange)="emit()"
+                   placeholder="images/logos/projects/logo-xxx.webp">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Nombre del proyecto</label>
+            <input class="adm-input" [(ngModel)]="local.projectName" (ngModelChange)="emit()"
+                   placeholder="Lima 15">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Subtítulo del distrito</label>
+            <input class="adm-input" [(ngModel)]="local.district" (ngModelChange)="emit()"
+                   placeholder="DEPARTAMENTOS EN MIRAFLORES">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Badge (etiqueta de estado)</label>
+            <input class="adm-input" [(ngModel)]="local.badge" (ngModelChange)="emit()"
+                   placeholder="LANZAMIENTO">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Descripción / texto secundario</label>
+            <input class="adm-input" [(ngModel)]="local.description" (ngModelChange)="emit()"
+                   placeholder="TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Línea de precio (label)</label>
+            <input class="adm-input" [(ngModel)]="local.priceLine1" (ngModelChange)="emit()"
+                   placeholder="TU DEPA DE 2 AMBIENTES">
+          </div>
+          <div class="adm-field adm-field--full">
+            <label class="adm-label">Precio desde</label>
+            <input class="adm-input" [(ngModel)]="local.priceFrom" (ngModelChange)="emit()"
+                   placeholder="S/ 678,000*">
+          </div>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- ── 3. Colores ────────────────────────────────────────────── -->
+    <p-accordion-panel value="colors">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/>
+            <circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/>
+            <circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+          </svg>
+          Colores
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+        <div class="hero-colors-grid">
+
+          <!-- Color overlay -->
+          <div class="hero-color-field">
+            <label class="adm-label">Overlay del fondo (rgba)</label>
+            <input class="adm-input" [(ngModel)]="local.overlayColor" (ngModelChange)="emit()"
+                   placeholder="rgba(98,62,75,0.75)"
+                   pTooltip="Usa rgba() para controlar la transparencia. Ej: rgba(0,0,0,0.5)">
+          </div>
+
+          <!-- Badge color -->
+          <div class="hero-color-field">
+            <label class="adm-label">Badge</label>
+            <div class="hero-color-row">
+              <p-colorPicker
+                [ngModel]="hexNoHash(local.badgeColor)"
+                (ngModelChange)="setColor('badgeColor',$event)"
+                [format]="'hex'" appendTo="body">
+              </p-colorPicker>
+              <input class="adm-input adm-input--sm" [(ngModel)]="local.badgeColor"
+                     (ngModelChange)="emit()" placeholder="#ffffff">
+            </div>
+          </div>
+
+          <!-- Texto general -->
+          <div class="hero-color-field">
+            <label class="adm-label">Texto general</label>
+            <div class="hero-color-row">
+              <p-colorPicker
+                [ngModel]="hexNoHash(local.textColor)"
+                (ngModelChange)="setColor('textColor',$event)"
+                [format]="'hex'" appendTo="body">
+              </p-colorPicker>
+              <input class="adm-input adm-input--sm" [(ngModel)]="local.textColor"
+                     (ngModelChange)="emit()" placeholder="#ffffff">
+            </div>
+          </div>
+
+          <!-- Descripción -->
+          <div class="hero-color-field">
+            <label class="adm-label">Descripción</label>
+            <div class="hero-color-row">
+              <p-colorPicker
+                [ngModel]="hexNoHash(local.descriptionColor)"
+                (ngModelChange)="setColor('descriptionColor',$event)"
+                [format]="'hex'" appendTo="body">
+              </p-colorPicker>
+              <input class="adm-input adm-input--sm" [(ngModel)]="local.descriptionColor"
+                     (ngModelChange)="emit()" placeholder="#ffffff">
+            </div>
+          </div>
+
+          <!-- Precio desde -->
+          <div class="hero-color-field">
+            <label class="adm-label">Precio principal</label>
+            <div class="hero-color-row">
+              <p-colorPicker
+                [ngModel]="hexNoHash(local.priceFromColor)"
+                (ngModelChange)="setColor('priceFromColor',$event)"
+                [format]="'hex'" appendTo="body">
+              </p-colorPicker>
+              <input class="adm-input adm-input--sm" [(ngModel)]="local.priceFromColor"
+                     (ngModelChange)="emit()" placeholder="#CA995E">
+            </div>
+          </div>
+
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- ── 4. Posición del texto ─────────────────────────────────── -->
+    <p-accordion-panel value="position">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/>
+          </svg>
+          Posición del texto
+          <span class="hero-acc-hint">{{ positionLabel }}</span>
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+
+        <p class="adm-field-hint" style="margin-bottom:16px">
+          Elige dónde se ubica el bloque de textos dentro de la imagen del logo.
+          Haz clic en cualquier celda del grid para posicionarlo, luego ajusta
+          la distancia con el control deslizante.
+        </p>
+
+        <!-- Grid 3×3 de posición — usa arrays tipados PosV[]/PosH[] del componente -->
+        <div class="hero-pos-grid">
+          <ng-container *ngFor="let v of vCells">
+            <ng-container *ngFor="let h of hCells">
+              <button
+                class="hero-pos-cell"
+                [class.hero-pos-cell--active]="isActiveCell(v, h)"
+                (click)="selectCell(v, h)"
+                [attr.title]="v + ' / ' + h">
+                <span class="hero-pos-dot"></span>
+              </button>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <!-- Selector vertical/horizontal — usa (ngModelChange) en lugar de (onChange) -->
+        <div class="hero-pos-controls">
+          <div class="hero-pos-ctrl-row">
+            <label class="adm-label" style="width:110px;flex-shrink:0">Vertical</label>
+            <p-selectButton
+              [options]="vOptions"
+              [(ngModel)]="posV"
+              (ngModelChange)="applyPosition()"
+              optionLabel="label"
+              optionValue="value">
+            </p-selectButton>
+          </div>
+
+          <div class="hero-pos-ctrl-row">
+            <label class="adm-label" style="width:110px;flex-shrink:0">Horizontal</label>
+            <p-selectButton
+              [options]="hOptions"
+              [(ngModel)]="posH"
+              (ngModelChange)="applyPosition()"
+              optionLabel="label"
+              optionValue="value">
+            </p-selectButton>
+          </div>
+
+          <!-- Slider de distancia (solo cuando no es centro vertical) -->
+          <div class="hero-pos-ctrl-row" *ngIf="posV !== 'center'">
+            <label class="adm-label" style="width:110px;flex-shrink:0">
+              Distancia {{ posV === 'top' ? 'desde arriba' : 'desde abajo' }}
+            </label>
+            <div class="hero-pos-slider-wrap">
+              <p-slider
+                [(ngModel)]="posOffset"
+                [min]="0" [max]="50" [step]="1"
+                (ngModelChange)="applyPosition()"
+                styleClass="hero-pos-slider">
+              </p-slider>
+              <span class="hero-pos-offset-val">{{ posOffset }}%</span>
+            </div>
+          </div>
+        </div>
+
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- ── 5. Tamaño del logo (avanzado) ─────────────────────────── -->
+    <p-accordion-panel value="logosize">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+          Tamaño del logo por dispositivo
+          <span class="hero-acc-hint">avanzado — dejar vacío usa el valor automático</span>
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+        <p class="adm-field-hint" style="margin-bottom:12px">
+          Valores de ejemplo: <code>min(50vw, 580px)</code>, <code>420px</code>, <code>60vw</code>.
+          Dejar vacío usa el tamaño automático del sitio.
+        </p>
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label class="adm-label">Escritorio — ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.desktop.width" (ngModelChange)="emit()"
+                   placeholder="min(46vw, 720px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Escritorio — alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.desktop.height" (ngModelChange)="emit()"
+                   placeholder="min(48vh, 560px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Tablet — ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.tablet.width" (ngModelChange)="emit()"
+                   placeholder="min(54vw, 460px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Tablet — alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.tablet.height" (ngModelChange)="emit()"
+                   placeholder="min(40vh, 360px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Móvil — ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.mobile.width" (ngModelChange)="emit()"
+                   placeholder="min(76vw, 290px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Móvil — alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.mobile.height" (ngModelChange)="emit()"
+                   placeholder="min(30vh, 200px)">
+          </div>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <!-- ── 6. Fuentes (avanzado) ──────────────────────────────────── -->
+    <p-accordion-panel value="fonts">
+      <p-accordion-header>
+        <span class="hero-acc-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/>
+            <line x1="12" y1="4" x2="12" y2="20"/>
+          </svg>
+          Ajuste de fuentes
+          <span class="hero-acc-hint">avanzado — dejar vacío usa el tamaño automático</span>
+        </span>
+      </p-accordion-header>
+      <p-accordion-content>
+        <p class="adm-field-hint" style="margin-bottom:12px">
+          Ejemplos: <code>0.9rem</code>, <code>14px</code>, <code>clamp(0.6rem,3cqi,1.1rem)</code>.
+          Grosor: <code>700</code> = negrita, <code>400</code> = normal.
+        </p>
+        <div class="adm-form-grid">
+          <div class="adm-field"><label class="adm-label">Badge — tamaño</label>
+            <input class="adm-input" [(ngModel)]="local.badgeStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
+          </div>
+          <div class="adm-field"><label class="adm-label">Badge — grosor</label>
+            <input class="adm-input" [(ngModel)]="local.badgeStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
+          </div>
+          <div class="adm-field"><label class="adm-label">Descripción — tamaño</label>
+            <input class="adm-input" [(ngModel)]="local.descriptionStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
+          </div>
+          <div class="adm-field"><label class="adm-label">Descripción — grosor</label>
+            <input class="adm-input" [(ngModel)]="local.descriptionStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
+          </div>
+          <div class="adm-field"><label class="adm-label">Línea de precio — tamaño</label>
+            <input class="adm-input" [(ngModel)]="local.priceLabelStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
+          </div>
+          <div class="adm-field"><label class="adm-label">Línea de precio — grosor</label>
+            <input class="adm-input" [(ngModel)]="local.priceLabelStyle.fontWeight" (ngModelChange)="emit()" placeholder="400">
+          </div>
+          <div class="adm-field"><label class="adm-label">Precio desde — tamaño</label>
+            <input class="adm-input" [(ngModel)]="local.priceFromStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
+          </div>
+          <div class="adm-field"><label class="adm-label">Precio desde — grosor</label>
+            <input class="adm-input" [(ngModel)]="local.priceFromStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
+          </div>
+        </div>
+      </p-accordion-content>
+    </p-accordion-panel>
+
+  </p-accordion>
+
 </div>

@@ -412,6 +412,21 @@ app-savia, app-florencia, app-medina, app-matiz {
   box-shadow: 0 0 0 3px rgba(178,34,31,0.12);
 }
 .adm-textarea { resize: vertical; min-height: 72px; }
+.adm-textarea--tall { min-height: 220px; }
+
+.adm-field-hint {
+  margin-top: 5px;
+  font-size: 0.78rem;
+  color: #777;
+  line-height: 1.4;
+}
+.adm-field-hint code {
+  background: #f0f0f0;
+  border-radius: 3px;
+  padding: 1px 4px;
+  font-size: 0.76rem;
+  color: #333;
+}
 
 .adm-input-row {
   display: flex;
@@ -709,6 +724,289 @@ app-savia, app-florencia, app-medina, app-matiz {
   border-radius: 8px;
   font-size: 0.85rem;
   color: #6b1212;
+}
+
+/* ── Exec cards (executives editor) ───────────────────────── */
+.exec-list { display: flex; flex-direction: column; gap: 12px; }
+.exec-card {
+  background: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+.exec-card--disabled {
+  opacity: 0.5;
+  border-color: #cccccc;
+  background: #f2f2f2;
+}
+.exec-card__num {
+  width: 22px;
+  height: 22px;
+  background: #e0e0e0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #666;
+  flex-shrink: 0;
+}
+.exec-card__fields { width: 100%; }
+.exec-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 4px;
+  border-top: 1px solid #e8e8e8;
+}
+
+/* ── Toggle switch ─────────────────────────────────────────── */
+.adm-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+.adm-toggle input[type="checkbox"] {
+  width: 36px;
+  height: 20px;
+  appearance: none;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.adm-toggle input[type="checkbox"]:checked { background: #2e7d32; }
+.adm-toggle input[type="checkbox"]::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 50%;
+  top: 3px;
+  left: 3px;
+  transition: left 0.2s;
+}
+.adm-toggle input[type="checkbox"]:checked::after { left: 19px; }
+.adm-toggle__label { font-size: 0.82rem; color: #555; font-weight: 500; }
+
+/* ── Hero editor — preview (DEPRECATED, conservado por compatibilidad) ── */
+.hero-pv { display: none; }   /* oculto — reemplazado por acordeón PrimeNG */
+
+.hero-pv__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.hero-pv__label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.hero-pv__tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.hero-pv__tab {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 11px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 6px;
+  background: transparent;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.hero-pv__tab:hover {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.75);
+}
+
+.hero-pv__tab--on {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+
+.hero-pv__stage {
+  display: flex;
+  justify-content: center;
+  overflow-x: auto;
+  padding: 4px 0 6px;
+}
+
+.hero-pv__hint {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.3);
+  text-align: center;
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+
+/* ── Hero editor — acordeón con PrimeNG ─────────────────────── */
+
+/* Cabecera de cada panel del acordeón */
+.hero-acc-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333;
+}
+.hero-acc-badge {
+  background: #e0e0e0;
+  color: #555;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 7px;
+}
+.hero-acc-hint {
+  font-size: 0.72rem;
+  color: #999;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Grid de colores */
+.hero-colors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.hero-color-field { display: flex; flex-direction: column; gap: 6px; }
+.hero-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.adm-input--sm { max-width: 110px; }
+
+/* Grid 3×3 de posición */
+.hero-pos-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 52px);
+  grid-template-rows: repeat(3, 44px);
+  gap: 4px;
+  margin: 0 auto 20px;
+  width: fit-content;
+  background: #f0f0f0;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+.hero-pos-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+.hero-pos-cell:hover {
+  background: #f5f0ff;
+  border-color: #bbb;
+}
+.hero-pos-cell--active {
+  background: #b2221f !important;
+  border-color: #b2221f !important;
+}
+.hero-pos-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ccc;
+  transition: background 0.15s;
+}
+.hero-pos-cell--active .hero-pos-dot {
+  background: #fff;
+}
+
+/* Controles de posición */
+.hero-pos-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.hero-pos-ctrl-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.hero-pos-slider-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+}
+.hero-pos-offset-val {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #333;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* PrimeNG Accordion overrides — integrar con el diseño adm */
+.sec-editor .p-accordion .p-accordionpanel {
+  border: 1px solid #e8e8e8;
+  border-radius: 8px !important;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.sec-editor .p-accordion .p-accordionheader {
+  background: #f8f8f8;
+  padding: 12px 16px;
+  font-size: 0.88rem;
+  border-bottom: none;
+}
+.sec-editor .p-accordion .p-accordionheader:hover {
+  background: #f0f0f0;
+}
+.sec-editor .p-accordion .p-accordioncontent-content {
+  padding: 16px;
+  background: #fff;
+}
+
+/* PrimeNG SelectButton — ajuste de tamaño */
+.hero-pos-ctrl-row .p-selectbutton .p-button {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+}
+
+/* PrimeNG Slider en la sección de posición */
+.hero-pos-slider-wrap .p-slider,
+.hero-pos-slider-wrap .hero-pos-slider {
+  flex: 1;
+  min-width: 120px;
 }
 
 /* ── Admin responsive ──────────────────────────────────────── */

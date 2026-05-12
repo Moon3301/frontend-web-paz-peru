@@ -13,6 +13,7 @@ import { MediaManagerComponent }          from './pages/media-manager/media-mana
 import { BlogAdminComponent }             from './pages/blog/blog-admin.component';
 import { PrivacyPolicyAdminComponent }    from './pages/privacy-policy/privacy-policy-admin.component';
 import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admin.component';
+import { HomeAdminComponent }             from './pages/home/home-admin.component';
 import { AdminAuthGuard }                  from './guards/admin-auth.guard';
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'projects/:id',      component: ProjectEditComponent            },
       { path: 'districts',         component: DistrictsComponent              },
       { path: 'delivered-projects',component: DeliveredProjectsAdminComponent },
+      { path: 'home',              component: HomeAdminComponent              },
       { path: 'promotions',        component: PromotionsAdminComponent        },
       { path: 'media',             component: MediaManagerComponent           },
       { path: 'blog',              component: BlogAdminComponent              },

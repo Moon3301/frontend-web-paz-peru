@@ -1,0 +1,239 @@
+<div class="adm-page">
+  <div class="adm-page-header">
+    <div>
+      <h1 class="adm-page-title">Home</h1>
+      <p class="adm-page-subtitle">Edita el contenido de la página de inicio</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SECCIÓN 1 — Hero del Home
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Hero — Slider principal</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="saved['hero']">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveHero()" [disabled]="saving['hero']">
+          <span *ngIf="!saving['hero']">Guardar Hero</span>
+          <span *ngIf="saving['hero']" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <p class="adm-hint" style="margin-bottom:16px">
+      Cada slide puede ser un <strong>vídeo</strong> (se reproduce en bucle sin audio)
+      o una <strong>imagen</strong>. Puedes mezclar ambos tipos libremente.
+      Sube tus archivos en
+      <a routerLink="/admin/media" class="adm-hint-link">Archivos → Media Manager</a>
+      y pega la URL aquí.
+    </p>
+
+    <!-- Lista de slides -->
+    <div class="home-slides" *ngIf="heroSlides.length">
+      <div class="home-slide" *ngFor="let slide of heroSlides; let i = index; trackBy: trackByIndex">
+
+        <!-- Cabecera del slide -->
+        <div class="home-slide__header">
+          <span class="home-slide__num">Slide {{ i + 1 }}</span>
+
+          <!-- Selector Vídeo / Imagen -->
+          <div class="home-slide__type-tabs">
+            <button class="home-slide__type-btn"
+                    [class.home-slide__type-btn--on]="slide.type === 'video'"
+                    (click)="slide.type = 'video'">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              Vídeo
+            </button>
+            <button class="home-slide__type-btn"
+                    [class.home-slide__type-btn--on]="slide.type === 'image'"
+                    (click)="slide.type = 'image'">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              Imagen
+            </button>
+          </div>
+
+          <!-- Acciones del slide -->
+          <div class="home-slide__actions">
+            <button class="adm-btn-icon" [disabled]="i === 0"               (click)="moveSlide(i,-1)" title="Subir">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+            </button>
+            <button class="adm-btn-icon" [disabled]="i === heroSlides.length-1" (click)="moveSlide(i,1)"  title="Bajar">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            </button>
+            <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeSlide(i)" title="Eliminar">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Campos del slide -->
+        <div class="adm-form-grid home-slide__fields">
+
+          <!-- URL del medio -->
+          <div class="adm-field adm-field--full">
+            <label class="adm-label">
+              {{ slide.type === 'video' ? 'URL del vídeo (.mp4)' : 'URL de la imagen' }}
+            </label>
+            <input class="adm-input" [(ngModel)]="slide.mediaSrc"
+                   [placeholder]="slide.type === 'video' ? '/videos/hero-video.mp4' : '/images/hero/slide.jpg'">
+          </div>
+
+          <!-- Poster (solo vídeo) -->
+          <div class="adm-field adm-field--full" *ngIf="slide.type === 'video'">
+            <label class="adm-label">Imagen de portada / poster (mientras carga el vídeo)</label>
+            <input class="adm-input" [(ngModel)]="slide.poster" placeholder="/images/hero/poster.jpg">
+          </div>
+
+          <!-- Textos -->
+          <div class="adm-field">
+            <label class="adm-label">Título (línea normal)</label>
+            <input class="adm-input" [(ngModel)]="slide.title" placeholder="Bienvenido a tu">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Título (línea en negrita)</label>
+            <input class="adm-input" [(ngModel)]="slide.titleBold" placeholder="nueva vida">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Nombre del proyecto</label>
+            <input class="adm-input" [(ngModel)]="slide.projectName" placeholder="PROYECTO ESCALA">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Distrito / etiqueta del proyecto</label>
+            <input class="adm-input" [(ngModel)]="slide.projectLabel" placeholder="SANTA CATALINA">
+          </div>
+          <div class="adm-field adm-field--full">
+            <label class="adm-label">Enlace del botón "Conocer más"</label>
+            <input class="adm-input" [(ngModel)]="slide.link" placeholder="/departamentos-en-venta/distrito/proyecto">
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <p class="adm-empty-hint" *ngIf="!heroSlides.length">
+      No hay slides. Agrega al menos uno con el botón de abajo.
+    </p>
+
+    <div style="margin-top:16px">
+      <button class="adm-btn adm-btn--secondary adm-btn--sm" (click)="addSlide()">
+        + Agregar slide
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SECCIÓN 2 — Nuestra Historia
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Nuestra Historia</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="saved['history']">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveHistory()" [disabled]="saving['history']">
+          <span *ngIf="!saving['history']">Guardar Historia</span>
+          <span *ngIf="saving['history']" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="adm-form-grid">
+
+      <!-- Texto descriptivo -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Texto descriptivo</label>
+        <textarea class="adm-input adm-textarea" [(ngModel)]="historyText" rows="4"
+                  placeholder="Paz Inmobiliaria, con más de 16 años..."></textarea>
+      </div>
+
+      <!-- YouTube -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">ID del vídeo de YouTube</label>
+        <input class="adm-input" [(ngModel)]="historyYoutubeId" placeholder="8QVPyM1CRaY">
+        <p class="adm-field-hint">
+          Solo el ID del vídeo (la parte después de <code>v=</code> en la URL de YouTube).
+          Ejemplo: la URL <code>youtube.com/watch?v=<strong>8QVPyM1CRaY</strong></code> → ID: <code>8QVPyM1CRaY</code>
+        </p>
+      </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="sec-editor__subheader" style="margin-top:8px">
+      <h4 class="sec-editor__subtitle">Estadísticas (números destacados)</h4>
+    </div>
+    <div class="adm-form-grid">
+      <ng-container *ngFor="let stat of historyStats; let i = index; trackBy: trackByIndex">
+        <div class="adm-field">
+          <label class="adm-label">Valor #{{ i + 1 }}</label>
+          <input class="adm-input" [(ngModel)]="stat.value"
+                 [placeholder]="i === 0 ? '16 años' : i === 1 ? '+8,700' : '+29'">
+        </div>
+        <div class="adm-field">
+          <label class="adm-label">Etiqueta #{{ i + 1 }}</label>
+          <input class="adm-input" [(ngModel)]="stat.label"
+                 [placeholder]="i === 0 ? 'Cumpliendo sueños' : i === 1 ? 'Departamentos entregados' : 'Proyectos desarrollados'">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SECCIÓN 3 — Ubícanos
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Ubícanos</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="saved['ubication']">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveUbication()" [disabled]="saving['ubication']">
+          <span *ngIf="!saving['ubication']">Guardar Ubícanos</span>
+          <span *ngIf="saving['ubication']" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="adm-form-grid">
+
+      <!-- Subtítulo -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Texto descriptivo (debajo del título "Ubícanos")</label>
+        <input class="adm-input" [(ngModel)]="ubicSubtitle"
+               placeholder="Los proyectos de Paz Inmobiliaria están en los distritos de...">
+      </div>
+
+      <!-- Imagen del mapa -->
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Imagen del mapa (URL)</label>
+        <input class="adm-input" [(ngModel)]="ubicMap" placeholder="/images/ubication/mapa.webp">
+        <p class="adm-field-hint">
+          Sube el mapa en
+          <a routerLink="/admin/media" class="adm-hint-link">Archivos → Media Manager</a>
+          y pega la URL aquí.
+        </p>
+        <div class="home-map-preview" *ngIf="ubicMap">
+          <img [src]="ubicMap" alt="Preview mapa" class="home-map-preview__img">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

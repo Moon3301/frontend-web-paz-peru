@@ -13,7 +13,7 @@ export class ExecutivesEditorComponent implements OnInit {
   }
 
   emit(): void { this.configChange.emit(this.local); }
-  addExec(): void { this.local.executives.push({ name: '', role: 'Ejecutivo de Ventas', phone: '', photo: '' }); this.emit(); }
+  addExec(): void { this.local.executives.push({ name: '', role: 'Ejecutivo de Ventas', phone: '', photo: '', isActive: true }); this.emit(); }
   removeExec(i: number): void { this.local.executives.splice(i, 1); this.emit(); }
   trackByIndex(i: number): number { return i; }
 }
