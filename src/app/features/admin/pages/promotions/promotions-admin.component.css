@@ -35,6 +35,20 @@
 }
 .adm-hint-link:hover { text-decoration: underline; }
 
+/* ── Encabezado de la lista de promociones ──────────────────────────────── */
+.promos-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+}
+
 /* ── Bloques de texto legal (disclaimer) ────────────────────────────────── */
 .disclaimer-block-list {
   display: flex;

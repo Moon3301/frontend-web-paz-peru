@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { API_URL } from '../../../environments/environments';
+import { ContentService } from '../../core/services/content.service';
+import { SeoService } from '../../core/services/seo.service';
 
 /* ── Datos de empresas y proyectos ── */
 interface ProjectInfo {
@@ -66,9 +68,32 @@ export class ReclamacionesComponent implements OnInit {
     { value: 'queja',   label: 'Queja',   desc: 'Malestar o descontento respecto a la atención al público.' },
   ];
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private readonly content: ContentService,
+    private readonly seo: SeoService,
+  ) {}
 
   ngOnInit(): void {
+    this.content.getSettings().subscribe({
+      next: (s) => {
+        this.seo.setPage({
+          title:       s['seo_page_reclamaciones_title']       || 'Libro de Reclamaciones',
+          description: s['seo_page_reclamaciones_description'] || 'Registra tu reclamo o queja en el libro de reclamaciones virtual de Paz Inmobiliaria.',
+          keywords:    s['seo_page_reclamaciones_keywords']    || 'libro de reclamaciones, reclamos Paz Inmobiliaria, queja inmobiliaria Lima',
+          noIndex:     true,
+        });
+      },
+      error: () => {
+        this.seo.setPage({
+          title:       'Libro de Reclamaciones',
+          description: 'Registra tu reclamo o queja en el libro de reclamaciones virtual de Paz Inmobiliaria.',
+          keywords:    'libro de reclamaciones, reclamos Paz Inmobiliaria, queja inmobiliaria Lima',
+          noIndex:     true,
+        });
+      },
+    });
     this.buildForm();
     this.generateComplaintNumber();
     this.setToday();

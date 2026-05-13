@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../core/services/content.service';
+import { SeoService } from '../../core/services/seo.service';
 import { Promotion } from '../../core/models/content.models';
 
 @Component({
@@ -23,11 +24,20 @@ export class PromotionsComponent implements OnInit {
   clienteAmigoBlocks: { title: string; text: string }[] = [];
   clienteAmigoDownloadLink = '';
 
-  constructor(private readonly content: ContentService) { }
+  constructor(
+    private readonly content: ContentService,
+    private readonly seo: SeoService,
+  ) { }
 
   ngOnInit(): void {
     this.content.getSettings().subscribe({
       next: (s) => {
+        // SEO
+        this.seo.setPage({
+          title:       s['seo_page_promotions_title']       || 'Promociones',
+          description: s['seo_page_promotions_description'] || 'Descubre las mejores promociones y ofertas en departamentos de Paz Inmobiliaria en Lima.',
+          keywords:    s['seo_page_promotions_keywords']    || 'promociones departamentos Lima, ofertas inmobiliarias, descuentos Paz Inmobiliaria',
+        });
         if (s['promos_hero_desktop'])          this.heroDesktop             = s['promos_hero_desktop'];
         if (s['promos_hero_mobile'])           this.heroMobile              = s['promos_hero_mobile'];
         if (s['promos_main_banner'])           this.promoMainBanner         = s['promos_main_banner'];

@@ -10,6 +10,7 @@ import { AdminApiService } from '../../services/admin-api.service';
 })
 export class PromotionsAdminComponent implements OnInit {
   promos: any[] = [];
+  districts: any[] = [];       // distritos activos para el select
   loading = true;
   saving = false;
   editingId: number | null = null;
@@ -49,6 +50,20 @@ export class PromotionsAdminComponent implements OnInit {
   ngOnInit(): void {
     this.load();
     this.loadBanners();
+    this.loadDistricts();
+  }
+
+  // ── Distritos ────────────────────────────────────────────────────────────
+
+  loadDistricts(): void {
+    this.api.getDistricts().subscribe({
+      next: (data) => {
+        // Solo los activos, ordenados por sortOrder
+        this.districts = data
+          .filter((d: any) => d.isActive)
+          .sort((a: any, b: any) => a.sortOrder - b.sortOrder);
+      },
+    });
   }
 
   // ── Banners ──────────────────────────────────────────────────────────────

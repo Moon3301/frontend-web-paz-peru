@@ -25,7 +25,7 @@
 
         <!-- Default state: district name -->
         <div class="paz-projects__default">
-          <h3 class="paz-projects__district">{{ p.district }}</h3>
+          <h3 class="paz-projects__district">{{ p.district | slugToLabel }}</h3>
         </div>
 
         <!-- Hover state: project logo + CTA -->

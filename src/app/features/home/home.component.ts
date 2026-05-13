@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentService } from '../../core/services/content.service';
+import { SeoService } from '../../core/services/seo.service';
 import { HeroSlide, DEFAULT_SLIDES } from './components/hero/hero.component';
 import { HistoryConfig }  from './components/our-history/our-history.component';
 import { UbicationConfig } from './components/ubication/ubication.component';
@@ -25,11 +26,20 @@ export class HomeComponent implements OnInit {
   /** Config de Ubícanos */
   ubicationConfig: UbicationConfig | null = null;
 
-  constructor(private readonly content: ContentService) {}
+  constructor(
+    private readonly content: ContentService,
+    private readonly seo: SeoService,
+  ) {}
 
   ngOnInit(): void {
     this.content.getSettings().subscribe({
       next: (s) => {
+        // SEO para la página de inicio
+        this.seo.setPage({
+          title:       s['seo_page_home_title']       || 'Inicio',
+          description: s['seo_page_home_description'] || undefined,
+          keywords:    s['seo_page_home_keywords']    || undefined,
+        });
         // Banner home
         if (s['home_promo_banner']) this.homeBanner = s['home_promo_banner'];
 

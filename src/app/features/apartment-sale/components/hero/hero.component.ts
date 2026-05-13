@@ -43,17 +43,43 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Convierte textPosition del config en un objeto ngStyle para el bloque de texto.
-   * Solo sobreescribe las propiedades definidas; el resto usa el default del CSS.
+   * Convierte textPosition del config en un objeto ngStyle COMPLETO para el bloque de texto.
+   *
+   * IMPORTANTE: siempre devuelve los 4 ejes (top, bottom, left, right) + transform
+   * para evitar que los valores por defecto del CSS (.hero__logo-text { bottom: 8% })
+   * interfieran cuando el editor establece un valor en el eje contrario.
+   *
+   * Caso crítico: si se guarda { top: '10%' } sin bottom:auto, el CSS aplica
+   * simultáneamente bottom:8% + top:10% estirando el bloque a casi toda la altura.
    */
   getTextPositionStyle(): Record<string, string> {
+    // Base completa — replica los defaults del CSS para que ngStyle los controle
+    const style: Record<string, string> = {
+      bottom:    '8%',
+      top:       'auto',
+      left:      '0',
+      right:     '0',
+      transform: 'none',
+    };
+
     const pos = this.config.textPosition;
-    if (!pos) return {};
-    const style: Record<string, string> = {};
-    if (pos.top !== undefined) style['top'] = pos.top;
-    if (pos.bottom !== undefined) style['bottom'] = pos.bottom;
-    if (pos.left !== undefined) style['left'] = pos.left;
+    if (!pos) return style;
+
+    // Eje vertical: solo uno puede estar activo
+    if (pos.top !== undefined && pos.top !== 'auto') {
+      style['top']    = pos.top;
+      style['bottom'] = 'auto';
+      // Centrado verdadero: top:50% + translateY(-50%)
+      if (pos.top === '50%') style['transform'] = 'translateY(-50%)';
+    } else if (pos.bottom !== undefined && pos.bottom !== 'auto') {
+      style['bottom'] = pos.bottom;
+      style['top']    = 'auto';
+    }
+
+    // Eje horizontal
+    if (pos.left  !== undefined) style['left']  = pos.left;
     if (pos.right !== undefined) style['right'] = pos.right;
+
     return style;
   }
 
@@ -95,19 +121,44 @@ export class HeroComponent implements OnInit, OnDestroy {
    *   --logo-w-sm, --logo-h-sm    → mobile pequeño (≤480 px)
    */
   getLogoCssVars(): Record<string, string> {
-    const s: HeroLogoSize | undefined = this.config.logoSize;
-    if (!s) return {};
     const v: Record<string, string> = {};
-    if (s.standard?.width) v['--logo-w'] = s.standard.width;
-    if (s.standard?.height) v['--logo-h'] = s.standard.height;
-    if (s.desktop?.width) v['--logo-w-xl'] = s.desktop.width;
-    if (s.desktop?.height) v['--logo-h-xl'] = s.desktop.height;
-    if (s.tablet?.width) v['--logo-w-tablet'] = s.tablet.width;
-    if (s.tablet?.height) v['--logo-h-tablet'] = s.tablet.height;
-    if (s.mobile?.width) v['--logo-w-mobile'] = s.mobile.width;
-    if (s.mobile?.height) v['--logo-h-mobile'] = s.mobile.height;
-    if (s.mobileSm?.width) v['--logo-w-sm'] = s.mobileSm.width;
-    if (s.mobileSm?.height) v['--logo-h-sm'] = s.mobileSm.height;
+
+    // ── Tamaño del logo por breakpoint ───────────────────────────────────────
+    const s: HeroLogoSize | undefined = this.config.logoSize;
+    if (s) {
+      if (s.standard?.width)  v['--logo-w']         = s.standard.width;
+      if (s.standard?.height) v['--logo-h']         = s.standard.height;
+      if (s.desktop?.width)   v['--logo-w-xl']      = s.desktop.width;
+      if (s.desktop?.height)  v['--logo-h-xl']      = s.desktop.height;
+      if (s.tablet?.width)    v['--logo-w-tablet']  = s.tablet.width;
+      if (s.tablet?.height)   v['--logo-h-tablet']  = s.tablet.height;
+      if (s.mobile?.width)    v['--logo-w-mobile']  = s.mobile.width;
+      if (s.mobile?.height)   v['--logo-h-mobile']  = s.mobile.height;
+      if (s.mobileSm?.width)  v['--logo-w-sm']      = s.mobileSm.width;
+      if (s.mobileSm?.height) v['--logo-h-sm']      = s.mobileSm.height;
+    }
+
+    // ── Relleno horizontal del texto (escritorio) ────────────────────────────
+    if (this.config.textPaddingH !== undefined) {
+      v['--text-ph'] = this.config.textPaddingH + '%';
+    }
+
+    // ── Posición y relleno del texto en móvil ────────────────────────────────
+    const mpos = this.config.textPositionMobile;
+    if (mpos && Object.keys(mpos).some(k => mpos[k as keyof typeof mpos] && mpos[k as keyof typeof mpos] !== 'auto')) {
+      v['--mob-text-pos']      = 'absolute';
+      v['--mob-logo-overflow'] = 'hidden';
+      v['--mob-text-maxh']     = '88%';
+      if (mpos.top    !== undefined) v['--mob-text-top']    = mpos.top;
+      if (mpos.bottom !== undefined) v['--mob-text-bottom'] = mpos.bottom;
+      if (mpos.left   !== undefined) v['--mob-text-left']   = mpos.left;
+      if (mpos.right  !== undefined) v['--mob-text-right']  = mpos.right;
+      if (mpos.top === '50%')        v['--mob-text-tf']     = 'translateY(-50%)';
+    }
+    if (this.config.textPaddingHMobile !== undefined) {
+      v['--mob-text-ph'] = this.config.textPaddingHMobile + '%';
+    }
+
     return v;
   }
 

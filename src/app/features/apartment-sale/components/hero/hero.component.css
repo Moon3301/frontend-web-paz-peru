@@ -91,13 +91,14 @@
 /* Bloque de texto posicionado DENTRO de la imagen del logo.
    Por defecto: parte inferior, centrado, con padding lateral generoso.
    [ngStyle] desde HeroConfig.textPosition puede sobreescribir posición.
+   --text-ph controla el relleno horizontal (configurable desde el editor).
    overflow: hidden garantiza que ningún texto desborde la imagen. */
 .hero__logo-text {
   position: absolute;
   bottom: 8%;
   left: 0;
   right: 0;
-  padding: 0 10%;
+  padding: 0 var(--text-ph, 10%);
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
@@ -228,9 +229,13 @@
 
 /* ================================================================
    MOBILE (≤768px)
-   El texto sale DEBAJO del logo en lugar de estar absolutamente
-   posicionado dentro de él.
-   position:static !important anula el [ngStyle] del componente.
+   Comportamiento por defecto: el texto sale DEBAJO del logo
+   como un bloque estático (flex column).
+
+   Si el admin configura textPositionMobile, las variables CSS
+   --mob-text-pos / --mob-text-top / --mob-text-bottom / etc.
+   se inyectan en .hero__logo-wrapper vía [ngStyle]=getLogoCssVars()
+   y sobreescriben el comportamiento estático sin necesidad de !important.
    ================================================================ */
 @media (max-width: 768px) {
   .hero {
@@ -243,11 +248,11 @@
     transform: translate(-50%, -50%);
   }
 
-  /* En mobile el wrapper actúa como columna flex.
-     container-type sigue activo: cqi = % del ancho del wrapper (92vw).
-     Las dimensiones del wrapper definen el tamaño del logo. */
+  /* En mobile el wrapper actúa como columna flex (por defecto).
+     Cuando --mob-text-pos:absolute está activo, el wrapper se comporta
+     como contenedor de posicionamiento (overflow:hidden vía variable). */
   .hero__logo-wrapper {
-    overflow: visible;
+    overflow: var(--mob-logo-overflow, visible);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -263,18 +268,23 @@
     flex-shrink: 0;
   }
 
-  /* Texto debajo del logo — anula position:absolute del [ngStyle] */
+  /* Por defecto: texto estático debajo del logo.
+     Cuando --mob-text-pos:absolute, pasa a posición absoluta dentro del logo
+     igual que en escritorio (sin necesidad de !important). */
   .hero__logo-text {
-    position: static !important;
-    max-height: none;
+    position: var(--mob-text-pos, static);
+    top:       var(--mob-text-top, auto);
+    bottom:    var(--mob-text-bottom, auto);
+    left:      var(--mob-text-left, 0);
+    right:     var(--mob-text-right, 0);
+    transform: var(--mob-text-tf, none);
+    max-height: var(--mob-text-maxh, none);
     overflow: visible;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem var(--mob-text-ph, 1rem);
     width: 100%;
     box-sizing: border-box;
     text-align: center;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    /* Sin fondo ni blur — el texto se superpone directamente sobre el logo */
   }
 
   /* En mobile con container ~92vw los cqi producen tamaños razonables.

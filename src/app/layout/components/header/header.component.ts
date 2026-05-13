@@ -17,6 +17,9 @@ export class HeaderComponent implements OnInit {
   isScrolled = false;
   isMobileOpen = false;
 
+  /** Posición del scroll guardada al abrir el menú (para iOS) */
+  private savedScrollY = 0;
+
   isDropdownOpen = false;
   isMobileDropdownOpen = false;
 
@@ -77,18 +80,43 @@ export class HeaderComponent implements OnInit {
 
   toggleMobile(): void {
     this.isMobileOpen = !this.isMobileOpen;
-    if (!this.isMobileOpen) {
+    if (this.isMobileOpen) {
+      this.lockBodyScroll();
+    } else {
       this.isMobileDropdownOpen = false;
       this.isMobileAboutDropdownOpen = false;
+      this.unlockBodyScroll();
     }
-    document.body.style.overflow = this.isMobileOpen ? 'hidden' : '';
   }
 
   closeMobile(): void {
     this.isMobileOpen = false;
     this.isMobileDropdownOpen = false;
     this.isMobileAboutDropdownOpen = false;
-    document.body.style.overflow = '';
+    this.unlockBodyScroll();
+  }
+
+  /**
+   * Bloquea el scroll del body sin que el fondo salte.
+   * Técnica compatible con iOS Safari: position fixed + top negativo
+   * preserva la posición del scroll al restaurar.
+   */
+  private lockBodyScroll(): void {
+    this.savedScrollY = window.scrollY;
+    document.body.style.overflow  = 'hidden';
+    document.body.style.position  = 'fixed';
+    document.body.style.top       = `-${this.savedScrollY}px`;
+    document.body.style.left      = '0';
+    document.body.style.right     = '0';
+  }
+
+  private unlockBodyScroll(): void {
+    document.body.style.overflow  = '';
+    document.body.style.position  = '';
+    document.body.style.top       = '';
+    document.body.style.left      = '';
+    document.body.style.right     = '';
+    window.scrollTo({ top: this.savedScrollY, behavior: 'instant' as ScrollBehavior });
   }
 
   toggleMobileDropdown(): void {

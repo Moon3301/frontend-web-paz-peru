@@ -135,6 +135,18 @@
     </div>
   </div>
 
+  <!-- ── Encabezado de la lista de promociones ─────────────────────────────── -->
+  <div class="promos-list-header">
+    <div>
+      <h2 class="adm-card__title">Promociones activas</h2>
+      <p class="adm-hint" style="margin:0">{{ promos.length }} promoción{{ promos.length !== 1 ? 'es' : '' }} registrada{{ promos.length !== 1 ? 's' : '' }}</p>
+    </div>
+    <button class="adm-btn adm-btn--primary" (click)="openNew()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Nueva promoción
+    </button>
+  </div>
+
   <div class="adm-loading" *ngIf="loading"><div class="adm-spinner"></div></div>
 
   <div class="adm-table-wrap" *ngIf="!loading">
@@ -167,7 +179,13 @@
     </div>
     <form [formGroup]="form" class="adm-form-grid">
       <div class="adm-field"><label class="adm-label">Título *</label><input class="adm-input" formControlName="title" placeholder="Serena"></div>
-      <div class="adm-field"><label class="adm-label">Distrito</label><input class="adm-input" formControlName="district" placeholder="San Miguel"></div>
+      <div class="adm-field">
+        <label class="adm-label">Distrito</label>
+        <select class="adm-input adm-select" formControlName="district">
+          <option value="">— Sin distrito —</option>
+          <option *ngFor="let d of districts" [value]="d.slug">{{ d.label }}</option>
+        </select>
+      </div>
       <div class="adm-field adm-field--full"><label class="adm-label">Descripción</label><textarea class="adm-input adm-textarea" formControlName="description" rows="2"></textarea></div>
       <div class="adm-field adm-field--full"><label class="adm-label">URL imagen</label><input class="adm-input" formControlName="imageUrl" placeholder="images/promotions/xxx.jpg"></div>
       <div class="adm-field"><label class="adm-label">Precio / badge</label><input class="adm-input" formControlName="badgeText" placeholder="S/ 439,000*"></div>

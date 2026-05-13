@@ -14,6 +14,8 @@ import { BlogAdminComponent }             from './pages/blog/blog-admin.componen
 import { PrivacyPolicyAdminComponent }    from './pages/privacy-policy/privacy-policy-admin.component';
 import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admin.component';
 import { HomeAdminComponent }             from './pages/home/home-admin.component';
+import { SeoAdminComponent }             from './pages/seo/seo-admin.component';
+import { UsersAdminComponent }           from './pages/users/users-admin.component';
 import { AdminAuthGuard }                  from './guards/admin-auth.guard';
 
 const routes: Routes = [
@@ -39,6 +41,8 @@ const routes: Routes = [
       { path: 'media',             component: MediaManagerComponent           },
       { path: 'blog',              component: BlogAdminComponent              },
       { path: 'privacy-policy',   component: PrivacyPolicyAdminComponent     },
+      { path: 'seo',              component: SeoAdminComponent               },
+      { path: 'users',            component: UsersAdminComponent             },
       { path: 'dev-tools',        component: DevToolsAdminComponent          },
       { path: '**',                redirectTo: ''                             },
     ],

@@ -133,6 +133,28 @@ export interface HeroConfig {
   descriptionStyle?: HeroElementStyle;
   priceLabelStyle?: HeroElementStyle;
   priceFromStyle?: HeroElementStyle;
+
+  /**
+   * Relleno horizontal (%) del bloque de texto en escritorio/tablet.
+   * Controla cuánto se aleja el texto de los bordes izquierdo y derecho del logo.
+   * Default: 10  (equivale a padding: 0 10%).
+   * Aumenta este valor si el texto desborda visualmente la imagen circular del logo.
+   */
+  textPaddingH?: number;
+
+  /**
+   * Posición del bloque de texto dentro del logo en MÓVIL (≤768 px).
+   * Si no se define, el texto aparece estático debajo del logo (comportamiento por defecto).
+   * Si se define, se aplica posición absoluta igual que en escritorio.
+   */
+  textPositionMobile?: HeroTextPosition;
+
+  /**
+   * Relleno horizontal (%) del bloque de texto en móvil.
+   * Solo aplica cuando textPositionMobile está definido.
+   * Default: 8.
+   */
+  textPaddingHMobile?: number;
 }
 
 export interface ProjectStatsConfig {

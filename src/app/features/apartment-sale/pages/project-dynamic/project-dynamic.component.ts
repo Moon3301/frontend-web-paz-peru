@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProjectDetail } from '../../../../core/models/content.models';
+import { SeoService } from '../../../../core/services/seo.service';
 import { ProjectConfig } from '../../models/project-config.interface';
 
 @Component({
@@ -14,12 +15,20 @@ export class ProjectDynamicComponent implements OnInit, OnDestroy {
   config: ProjectConfig | null = null;
   private routeSub?: Subscription;
 
-  constructor(private readonly route: ActivatedRoute) { }
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly seo: SeoService,
+  ) { }
 
   ngOnInit(): void {
     this.routeSub = this.route.data.subscribe((data) => {
       const project: ProjectDetail = data['project'];
-      this.config = project ? this.mapToProjectConfig(project) : null;
+      if (project) {
+        this.config = this.mapToProjectConfig(project);
+        this.seo.setProject(project);
+      } else {
+        this.config = null;
+      }
       window.scrollTo(0, 0);
     });
   }

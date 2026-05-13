@@ -17,6 +17,11 @@ export interface ProjectSummary {
   thumbnailUrl: string | null;
   sperantProjectId: number | null;
   sortOrder: number;
+  // SEO
+  metaTitle: string | null;
+  metaDescription: string | null;
+  metaKeywords: string | null;
+  ogImageUrl: string | null;
 }
 
 /**

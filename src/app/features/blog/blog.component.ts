@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ContentService } from '../../core/services/content.service';
+import { SeoService } from '../../core/services/seo.service';
 import { BlogPost } from '../../core/models/content.models';
 
 @Component({
@@ -42,9 +43,20 @@ export class BlogComponent implements OnInit {
   readonly pageSize = 6;
   currentPage = 1;
 
-  constructor(private readonly content: ContentService) {}
+  constructor(
+    private readonly content: ContentService,
+    private readonly seo: SeoService,
+  ) {}
 
   ngOnInit(): void {
+    this.content.getSettings().subscribe({
+      next: (s) => this.seo.setPage({
+        title:       s['seo_page_blog_title']       || 'Blog',
+        description: s['seo_page_blog_description'] || 'Artículos, consejos e información sobre compra de departamentos, financiamiento y estilo de vida en Lima.',
+        keywords:    s['seo_page_blog_keywords']    || 'blog inmobiliario, consejos departamentos, financiamiento vivienda, Lima',
+      }),
+    });
+
     this.content.getBlogPosts().subscribe({
       next: (posts) => {
         this.allPosts = posts;

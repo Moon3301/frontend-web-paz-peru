@@ -1,0 +1,207 @@
+/* users-admin usa los estilos globales adm-* */
+
+/* ── Tabla ───────────────────────────────────────────────────────── */
+.usr-table-wrap {
+  overflow-x: auto;
+}
+
+.usr-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.usr-table th {
+  text-align: left;
+  padding: 10px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 2px solid #e0e0e0;
+  white-space: nowrap;
+}
+
+.usr-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f0f0;
+  vertical-align: middle;
+}
+
+.usr-table tr:last-child td { border-bottom: none; }
+
+.usr-row--inactive td { opacity: 0.55; }
+
+.usr-table__actions-head { text-align: right; }
+
+/* ── Nombre + avatar ─────────────────────────────────────────────── */
+.usr-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.usr-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #b2221f;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.usr-name__text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 500;
+}
+
+.usr-own-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 1px 6px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Email / Fecha ───────────────────────────────────────────────── */
+.usr-email { color: #555; font-size: 0.82rem; }
+.usr-date  { color: #888; font-size: 0.8rem; white-space: nowrap; }
+
+/* ── Rol badge ───────────────────────────────────────────────────── */
+.usr-role-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.usr-role-badge--admin  { background: #fde8e8; color: #b2221f; }
+.usr-role-badge--ventas { background: #e8f0fe; color: #1a56db; }
+.usr-role-badge--seo    { background: #fef3c7; color: #92400e; }
+
+/* ── Estado ──────────────────────────────────────────────────────── */
+.usr-status {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+.usr-status--active   { background: #e8f5e9; color: #2e7d32; }
+.usr-status--inactive { background: #f5f5f5; color: #999; }
+
+/* ── Acciones ────────────────────────────────────────────────────── */
+.usr-actions {
+  display: flex;
+  gap: 4px;
+  justify-content: flex-end;
+}
+
+/* ── Modal backdrop ──────────────────────────────────────────────── */
+.usr-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+/* ── Modal ───────────────────────────────────────────────────────── */
+.usr-modal {
+  background: #fff;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 560px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+.usr-modal--sm { max-width: 420px; }
+
+.usr-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px 14px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.usr-modal__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1c1c1c;
+  margin: 0;
+}
+
+.usr-modal__subtitle {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 0 0 16px;
+}
+
+.usr-modal__body {
+  padding: 20px 24px;
+}
+
+.usr-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.usr-modal__error {
+  background: #fde8e8;
+  color: #b2221f;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin-bottom: 14px;
+}
+
+/* ── Form helpers ────────────────────────────────────────────────── */
+.adm-input--error {
+  border-color: #b2221f !important;
+}
+.adm-field-error {
+  font-size: 0.75rem;
+  color: #b2221f;
+  margin-top: 4px;
+}
+.adm-field-hint-inline {
+  font-size: 0.72rem;
+  color: #888;
+  font-weight: 400;
+  margin-left: 6px;
+}
+.adm-label-required {
+  color: #b2221f;
+  margin-left: 2px;
+}
+.adm-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  cursor: pointer;
+}

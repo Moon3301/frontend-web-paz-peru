@@ -14,9 +14,10 @@
       <img [src]="config.logo | assetUrl" [alt]="config.projectName" class="hero__logo">
 
       <!-- Bloque de texto posicionado DENTRO de la imagen del logo.
-           La posición por defecto (CSS) es: bottom 8%, left 0, right 0.
-           Cada proyecto puede sobreescribir con textPosition en HeroConfig. -->
-      <div class="hero__logo-text" [ngStyle]="getTextPositionStyle()">
+           Solo se renderiza si hay al menos un campo de texto definido,
+           para evitar que el contenedor vacío muestre el fondo oscuro (móvil). -->
+      <div class="hero__logo-text" [ngStyle]="getTextPositionStyle()"
+           *ngIf="config.badge || config.description || config.priceLine1 || config.priceFrom">
         <span class="hero__badge"
               [ngStyle]="getElementStyle(badgeColor, config.badgeStyle)"
               *ngIf="config.badge">{{ config.badge }}</span>

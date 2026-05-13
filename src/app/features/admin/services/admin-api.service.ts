@@ -116,6 +116,26 @@ export class AdminApiService {
     return this.http.delete<any>(`${BASE}/admin/blog/${id}`);
   }
 
+  // ── Usuarios (solo admin) ─────────────────────────────────────────────────
+  getUsers(): Observable<any[]> {
+    return this.http.get<any[]>(`${BASE}/admin/users`);
+  }
+  createUser(data: { name: string; email: string; password: string; role: string }): Observable<any> {
+    return this.http.post<any>(`${BASE}/admin/users`, data);
+  }
+  updateUser(id: number, data: { name?: string; email?: string; role?: string }): Observable<any> {
+    return this.http.patch<any>(`${BASE}/admin/users/${id}`, data);
+  }
+  toggleUser(id: number): Observable<any> {
+    return this.http.patch<any>(`${BASE}/admin/users/${id}/toggle`, {});
+  }
+  changeUserPassword(id: number, newPassword: string): Observable<any> {
+    return this.http.patch<any>(`${BASE}/admin/users/${id}/password`, { newPassword });
+  }
+  deleteUser(id: number): Observable<any> {
+    return this.http.delete<any>(`${BASE}/admin/users/${id}`);
+  }
+
   // ── Dev Tools ─────────────────────────────────────────────────────────────
   getSeedExport(): Observable<any> {
     return this.http.get<any>(`${BASE}/admin/seed-export`);

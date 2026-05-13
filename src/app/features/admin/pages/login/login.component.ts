@@ -21,7 +21,7 @@ export class LoginComponent {
     private readonly router: Router,
   ) {
     this.form = this.fb.group({
-      username: ['', Validators.required],
+      email:    ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
@@ -30,13 +30,18 @@ export class LoginComponent {
     if (this.form.invalid) return;
     this.loading = true;
     this.error = '';
-    const { username, password } = this.form.value;
-    const ok = this.auth.login(username, password);
-    this.loading = false;
-    if (ok) {
-      this.router.navigate(['/admin']);
-    } else {
-      this.error = 'Usuario o contraseña incorrectos.';
-    }
+
+    const { email, password } = this.form.value;
+
+    this.auth.login(email, password).subscribe({
+      next: () => {
+        this.loading = false;
+        this.router.navigate(['/admin']);
+      },
+      error: (err) => {
+        this.loading = false;
+        this.error = err?.error?.message ?? 'Correo o contraseña incorrectos.';
+      },
+    });
   }
 }

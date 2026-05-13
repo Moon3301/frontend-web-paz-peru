@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ContactService, ContactPayload } from './services/contact.service';
+import { ContentService } from '../../core/services/content.service';
+import { SeoService } from '../../core/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,7 +10,7 @@ import { ContactService, ContactPayload } from './services/contact.service';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit {
 
   readonly projects = [
     'Serena — San Miguel',
@@ -44,7 +46,9 @@ export class ContactComponent {
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private readonly content: ContentService,
+    private readonly seo: SeoService,
   ) {
     this.form = this.fb.group({
       project:       ['', Validators.required],
@@ -57,6 +61,25 @@ export class ContactComponent {
       comentario:    [''],
       acceptTerms:   [false, Validators.requiredTrue],
       acceptPrivacy: [false, Validators.requiredTrue]
+    });
+  }
+
+  ngOnInit(): void {
+    this.content.getSettings().subscribe({
+      next: (s) => {
+        this.seo.setPage({
+          title:       s['seo_page_contact_title']       || 'Contacto',
+          description: s['seo_page_contact_description'] || 'Contáctate con Paz Inmobiliaria. Nuestros asesores te ayudarán a encontrar el departamento ideal en Lima.',
+          keywords:    s['seo_page_contact_keywords']    || 'contacto Paz Inmobiliaria, asesores inmobiliarios Lima, consulta departamentos',
+        });
+      },
+      error: () => {
+        this.seo.setPage({
+          title:       'Contacto',
+          description: 'Contáctate con Paz Inmobiliaria. Nuestros asesores te ayudarán a encontrar el departamento ideal en Lima.',
+          keywords:    'contacto Paz Inmobiliaria, asesores inmobiliarios Lima, consulta departamentos',
+        });
+      },
     });
   }
 

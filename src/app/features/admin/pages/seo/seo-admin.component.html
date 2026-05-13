@@ -1,0 +1,398 @@
+<div class="adm-page">
+
+  <!-- ── Header ─────────────────────────────────────────────────────────── -->
+  <div class="adm-page-header">
+    <div>
+      <h1 class="adm-page-title">SEO</h1>
+      <p class="adm-page-subtitle">Gestiona títulos, descripciones y metadatos para mejorar el posicionamiento en Google</p>
+    </div>
+  </div>
+
+
+  <!-- ── Tab navigation ──────────────────────────────────────────────────── -->
+  <div class="seo-tabs">
+
+    <button class="seo-tab" [class.seo-tab--active]="activeTab === 'global'" (click)="setTab('global')">
+      <svg class="seo-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      Global
+      <span class="seo-tab__check" *ngIf="savedGlobal">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </span>
+    </button>
+
+    <button class="seo-tab" [class.seo-tab--active]="activeTab === 'pages'" (click)="setTab('pages')">
+      <svg class="seo-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+      Páginas
+      <span class="seo-tab__badge">{{ pagesConfigured }}/{{ pages.length }}</span>
+    </button>
+
+    <button class="seo-tab" [class.seo-tab--active]="activeTab === 'projects'" (click)="setTab('projects')">
+      <svg class="seo-tab__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+      Proyectos
+      <span class="seo-tab__badge">{{ projectsConfigured }}/{{ projects.length }}</span>
+    </button>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       TAB: SEO GLOBAL
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card seo-global-card" *ngIf="activeTab === 'global'">
+
+    <div class="seo-global-header">
+      <div>
+        <h2 class="adm-card__title" style="margin:0">Configuración Global</h2>
+        <p class="adm-hint" style="margin:4px 0 0">
+          Valores de <strong>fallback</strong> cuando una página o proyecto no tiene SEO propio.
+        </p>
+      </div>
+      <div class="seo-header-actions">
+        <span class="adm-save-success" *ngIf="savedGlobal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary" (click)="saveGlobal()" [disabled]="savingGlobal">
+          <span *ngIf="!savingGlobal">Guardar cambios</span>
+          <span *ngIf="savingGlobal" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dos columnas de configuración -->
+    <div class="seo-global-body">
+
+      <!-- Columna izquierda — identidad del sitio -->
+      <div class="seo-global-col">
+        <h3 class="seo-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Identidad del sitio
+        </h3>
+
+        <div class="adm-field">
+          <label class="adm-label">Nombre del sitio <span class="adm-label-required">*</span></label>
+          <input class="adm-input" [(ngModel)]="siteName" placeholder="Paz Inmobiliaria">
+          <p class="adm-field-hint">Usado en og:site_name y en el footer del título.</p>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">URL canónica del sitio</label>
+          <input class="adm-input" [(ngModel)]="siteUrl" placeholder="https://paz.pe">
+          <p class="adm-field-hint">Base para construir URLs canónicas.</p>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">Plantilla de título <span class="adm-label-required">*</span></label>
+          <input class="adm-input" [(ngModel)]="titleTemplate" placeholder="%s | Paz Inmobiliaria">
+          <p class="adm-field-hint">Usa <code>%s</code> como marcador. Ej: <code>%s | Paz Inmobiliaria</code> → <em>Home | Paz Inmobiliaria</em></p>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">Directiva robots</label>
+          <select class="adm-input adm-select" [(ngModel)]="robots">
+            <option value="index, follow">index, follow (recomendado)</option>
+            <option value="noindex, follow">noindex, follow</option>
+            <option value="index, nofollow">index, nofollow</option>
+            <option value="noindex, nofollow">noindex, nofollow</option>
+          </select>
+          <p class="adm-field-hint">Controla si Google indexa las páginas del sitio.</p>
+        </div>
+      </div>
+
+      <!-- Columna derecha — contenido por defecto -->
+      <div class="seo-global-col">
+        <h3 class="seo-section-title">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Contenido por defecto
+        </h3>
+
+        <div class="adm-field">
+          <label class="adm-label">Descripción por defecto (meta description)</label>
+          <textarea class="adm-input adm-textarea" [(ngModel)]="defaultDesc" rows="3"
+                    placeholder="Paz Inmobiliaria: más de 16 años construyendo departamentos en Lima..."></textarea>
+          <div class="seo-char-row" *ngIf="defaultDesc">
+            <div class="seo-char-bar">
+              <div class="seo-char-bar__fill seo-char-bar__fill--{{ charStatus(defaultDesc, 160) }}"
+                   [style.width.%]="charPercent(defaultDesc, 160)"></div>
+            </div>
+            <span class="seo-char-count seo-char-count--{{ charStatus(defaultDesc, 160) }}">{{ defaultDesc.length }}/160</span>
+          </div>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">Keywords por defecto</label>
+          <input class="adm-input" [(ngModel)]="defaultKeywords"
+                 placeholder="departamentos Lima, inmobiliaria Peru, Paz Inmobiliaria">
+          <p class="adm-field-hint">Separadas por coma.</p>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">Imagen Open Graph por defecto</label>
+          <input class="adm-input" [(ngModel)]="defaultOgImage" placeholder="/images/og-default.jpg">
+          <p class="adm-field-hint">
+            Tamaño ideal: <strong>1200 × 630 px</strong>.
+            Sube en <a routerLink="/admin/media" class="seo-hint-link">Media Manager</a>.
+          </p>
+          <div class="seo-og-preview" *ngIf="defaultOgImage">
+            <img [src]="defaultOgImage" alt="Preview OG" class="seo-og-preview__img">
+          </div>
+        </div>
+
+        <div class="adm-field">
+          <label class="adm-label">Google Search Console — verificación</label>
+          <input class="adm-input" [(ngModel)]="googleVerification" placeholder="Código del meta tag content=...">
+          <p class="adm-field-hint">
+            Search Console → Agregar propiedad → Etiqueta HTML → copia el valor del atributo <code>content</code>.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       TAB: SEO POR PÁGINA
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card seo-split-card" *ngIf="activeTab === 'pages'">
+
+    <div class="seo-split">
+
+      <!-- ── Sidebar de páginas ─────────────────────────────────────── -->
+      <nav class="seo-split__nav">
+        <div class="seo-split__nav-header">Páginas del sitio</div>
+
+        <button class="seo-split__nav-item"
+                *ngFor="let page of pages; trackBy: trackByKey"
+                [class.seo-split__nav-item--active]="activePage === page"
+                (click)="selectPage(page)">
+          <span class="seo-nav-item__icon">{{ page.icon }}</span>
+          <span class="seo-nav-item__body">
+            <span class="seo-nav-item__label">{{ page.label }}</span>
+            <span class="seo-nav-item__preview" *ngIf="page.title">{{ page.title }}</span>
+          </span>
+          <span class="seo-status-dot seo-status-dot--{{ pageStatus(page) }}" [title]="pageStatus(page) === 'full' ? 'Completo' : pageStatus(page) === 'partial' ? 'Incompleto' : 'Sin configurar'"></span>
+        </button>
+      </nav>
+
+      <!-- ── Panel de edición ───────────────────────────────────────── -->
+      <div class="seo-split__content" *ngIf="activePage">
+
+        <div class="seo-split__content-header">
+          <div class="seo-split__content-title">
+            <span class="seo-content-icon">{{ activePage.icon }}</span>
+            <div>
+              <h3 class="seo-content-name">{{ activePage.label }}</h3>
+              <span class="seo-content-path">/{{ activePage.key }}</span>
+            </div>
+          </div>
+          <div class="seo-header-actions">
+            <span class="adm-save-success" *ngIf="activePage.saved">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Guardado
+            </span>
+            <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="savePage(activePage)" [disabled]="activePage.saving">
+              <span *ngIf="!activePage.saving">Guardar</span>
+              <span *ngIf="activePage.saving" class="adm-spinner adm-spinner--sm"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="seo-split__fields">
+
+          <!-- Título -->
+          <div class="adm-field">
+            <label class="adm-label">Título de la página</label>
+            <input class="adm-input" [(ngModel)]="activePage.title"
+                   [placeholder]="'Ej: ' + activePage.label + ' | Paz Inmobiliaria'">
+            <div class="seo-char-row" *ngIf="activePage.title">
+              <div class="seo-char-bar">
+                <div class="seo-char-bar__fill seo-char-bar__fill--{{ charStatus(activePage.title, 60) }}"
+                     [style.width.%]="charPercent(activePage.title, 60)"></div>
+              </div>
+              <span class="seo-char-count seo-char-count--{{ charStatus(activePage.title, 60) }}">{{ activePage.title.length }}/60</span>
+            </div>
+            <p class="adm-field-hint" *ngIf="!activePage.title">Recomendado: hasta 60 caracteres.</p>
+          </div>
+
+          <!-- Descripción -->
+          <div class="adm-field">
+            <label class="adm-label">Descripción (meta description)</label>
+            <textarea class="adm-input adm-textarea" [(ngModel)]="activePage.description" rows="3"
+                      placeholder="Descripción para buscadores (120–160 caracteres)"></textarea>
+            <div class="seo-char-row" *ngIf="activePage.description">
+              <div class="seo-char-bar">
+                <div class="seo-char-bar__fill seo-char-bar__fill--{{ charStatus(activePage.description, 160) }}"
+                     [style.width.%]="charPercent(activePage.description, 160)"></div>
+              </div>
+              <span class="seo-char-count seo-char-count--{{ charStatus(activePage.description, 160) }}">{{ activePage.description.length }}/160</span>
+            </div>
+            <p class="adm-field-hint" *ngIf="!activePage.description">Recomendado: entre 120 y 160 caracteres.</p>
+          </div>
+
+          <!-- Keywords -->
+          <div class="adm-field">
+            <label class="adm-label">Keywords</label>
+            <input class="adm-input" [(ngModel)]="activePage.keywords"
+                   placeholder="keyword1, keyword2, keyword3">
+            <p class="adm-field-hint">Separadas por coma.</p>
+          </div>
+
+          <!-- Preview de cómo se verá en Google -->
+          <div class="seo-preview-box" *ngIf="activePage.title || activePage.description">
+            <p class="seo-preview-box__label">Vista previa en Google</p>
+            <div class="seo-preview">
+              <p class="seo-preview__url">paz.pe › {{ activePage.key }}</p>
+              <p class="seo-preview__title">{{ activePage.title || ('Ej: ' + activePage.label) }}</p>
+              <p class="seo-preview__desc">{{ activePage.description || 'Añade una descripción para que aparezca aquí.' }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       TAB: SEO POR PROYECTO
+       ══════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card seo-split-card" *ngIf="activeTab === 'projects'">
+
+    <div class="adm-empty-hint" *ngIf="loadingProjects">Cargando proyectos...</div>
+
+    <div class="seo-split" *ngIf="!loadingProjects">
+
+      <!-- ── Sidebar de proyectos ───────────────────────────────────── -->
+      <nav class="seo-split__nav">
+        <div class="seo-split__nav-header">Proyectos</div>
+
+        <button class="seo-split__nav-item"
+                *ngFor="let p of projects; trackBy: trackById"
+                [class.seo-split__nav-item--active]="activeProject === p"
+                (click)="selectProject(p)">
+          <span class="seo-nav-item__body">
+            <span class="seo-nav-item__label">{{ p.name }}</span>
+            <span class="seo-nav-item__preview seo-nav-item__preview--mono">/{{ p.slug }}</span>
+          </span>
+          <span class="seo-status-dot seo-status-dot--{{ projectStatus(p) }}" [title]="projectStatus(p) === 'full' ? 'Completo' : projectStatus(p) === 'partial' ? 'Incompleto' : 'Sin configurar'"></span>
+        </button>
+
+        <p class="seo-split__nav-empty" *ngIf="!projects.length">No hay proyectos.</p>
+      </nav>
+
+      <!-- ── Panel de edición ───────────────────────────────────────── -->
+      <div class="seo-split__content" *ngIf="activeProject">
+
+        <div class="seo-split__content-header">
+          <div class="seo-split__content-title">
+            <div class="seo-project-avatar">{{ activeProject.name[0] }}</div>
+            <div>
+              <h3 class="seo-content-name">{{ activeProject.name }}</h3>
+              <span class="seo-content-path">/departamentos-en-venta/{{ activeProject.slug }}</span>
+            </div>
+          </div>
+          <div class="seo-header-actions">
+            <span class="adm-save-success" *ngIf="activeProject.saved">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Guardado
+            </span>
+            <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveProject(activeProject)" [disabled]="activeProject.saving">
+              <span *ngIf="!activeProject.saving">Guardar</span>
+              <span *ngIf="activeProject.saving" class="adm-spinner adm-spinner--sm"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="seo-split__fields">
+
+          <!-- Meta Title -->
+          <div class="adm-field">
+            <label class="adm-label">Título (meta title)</label>
+            <input class="adm-input" [(ngModel)]="activeProject.metaTitle"
+                   [placeholder]="activeProject.name + ' | Departamentos en venta en Lima'">
+            <div class="seo-char-row" *ngIf="activeProject.metaTitle">
+              <div class="seo-char-bar">
+                <div class="seo-char-bar__fill seo-char-bar__fill--{{ charStatus(activeProject.metaTitle, 60) }}"
+                     [style.width.%]="charPercent(activeProject.metaTitle, 60)"></div>
+              </div>
+              <span class="seo-char-count seo-char-count--{{ charStatus(activeProject.metaTitle, 60) }}">{{ activeProject.metaTitle.length }}/60</span>
+            </div>
+            <p class="adm-field-hint" *ngIf="!activeProject.metaTitle">Recomendado: hasta 60 caracteres.</p>
+          </div>
+
+          <!-- Meta Description -->
+          <div class="adm-field">
+            <label class="adm-label">Descripción (meta description)</label>
+            <textarea class="adm-input adm-textarea" [(ngModel)]="activeProject.metaDescription" rows="3"
+                      [placeholder]="'Descubre ' + activeProject.name + ', un proyecto de Paz Inmobiliaria en Lima.'"></textarea>
+            <div class="seo-char-row" *ngIf="activeProject.metaDescription">
+              <div class="seo-char-bar">
+                <div class="seo-char-bar__fill seo-char-bar__fill--{{ charStatus(activeProject.metaDescription, 160) }}"
+                     [style.width.%]="charPercent(activeProject.metaDescription, 160)"></div>
+              </div>
+              <span class="seo-char-count seo-char-count--{{ charStatus(activeProject.metaDescription, 160) }}">{{ activeProject.metaDescription.length }}/160</span>
+            </div>
+            <p class="adm-field-hint" *ngIf="!activeProject.metaDescription">Recomendado: entre 120 y 160 caracteres.</p>
+          </div>
+
+          <!-- Keywords + OG image en columnas -->
+          <div class="adm-form-grid">
+            <div class="adm-field">
+              <label class="adm-label">Keywords</label>
+              <input class="adm-input" [(ngModel)]="activeProject.metaKeywords"
+                     [placeholder]="activeProject.name + ', departamentos Lima'">
+            </div>
+
+            <div class="adm-field">
+              <label class="adm-label">Imagen Open Graph (og:image)</label>
+              <input class="adm-input" [(ngModel)]="activeProject.ogImageUrl"
+                     placeholder="/uploads/projects/imagen.jpg">
+              <p class="adm-field-hint">
+                Sube en <a routerLink="/admin/media" class="seo-hint-link">Media Manager</a>. Ideal: 1200×630 px.
+              </p>
+            </div>
+          </div>
+
+          <!-- Preview de OG image -->
+          <div class="seo-og-preview" *ngIf="activeProject.ogImageUrl">
+            <p class="seo-preview-box__label">Vista previa imagen Open Graph</p>
+            <img [src]="activeProject.ogImageUrl" alt="Preview OG" class="seo-og-preview__img">
+          </div>
+
+          <!-- Preview Google -->
+          <div class="seo-preview-box" *ngIf="activeProject.metaTitle || activeProject.metaDescription">
+            <p class="seo-preview-box__label">Vista previa en Google</p>
+            <div class="seo-preview">
+              <p class="seo-preview__url">paz.pe › departamentos-en-venta › {{ activeProject.slug }}</p>
+              <p class="seo-preview__title">{{ activeProject.metaTitle || activeProject.name }}</p>
+              <p class="seo-preview__desc">{{ activeProject.metaDescription || 'Añade una descripción.' }}</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Placeholder cuando no hay proyectos -->
+      <div class="seo-split__content seo-split__empty" *ngIf="!activeProject && !loadingProjects">
+        <p>No hay proyectos disponibles.</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

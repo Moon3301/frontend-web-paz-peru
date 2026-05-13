@@ -181,7 +181,7 @@
       </p-accordion-content>
     </p-accordion-panel>
 
-    <!-- ── 4. Posición del texto ─────────────────────────────────── -->
+    <!-- ── 4. Posición del texto (escritorio + móvil unificado) ──── -->
     <p-accordion-panel value="position">
       <p-accordion-header>
         <span class="hero-acc-title">
@@ -189,72 +189,234 @@
             <path d="M5 9l-3 3 3 3M9 5l3-3 3 3M15 19l-3 3-3-3M19 9l3 3-3 3M2 12h20M12 2v20"/>
           </svg>
           Posición del texto
-          <span class="hero-acc-hint">{{ positionLabel }}</span>
+          <span class="hero-acc-hint">
+            {{ posDevice === 'desktop'
+                ? positionLabel
+                : (mobileTextEnabled ? positionMobileLabel : 'móvil: debajo del logo') }}
+          </span>
         </span>
       </p-accordion-header>
       <p-accordion-content>
 
-        <p class="adm-field-hint" style="margin-bottom:16px">
-          Elige dónde se ubica el bloque de textos dentro de la imagen del logo.
-          Haz clic en cualquier celda del grid para posicionarlo, luego ajusta
-          la distancia con el control deslizante.
-        </p>
-
-        <!-- Grid 3×3 de posición — usa arrays tipados PosV[]/PosH[] del componente -->
-        <div class="hero-pos-grid">
-          <ng-container *ngFor="let v of vCells">
-            <ng-container *ngFor="let h of hCells">
-              <button
-                class="hero-pos-cell"
-                [class.hero-pos-cell--active]="isActiveCell(v, h)"
-                (click)="selectCell(v, h)"
-                [attr.title]="v + ' / ' + h">
-                <span class="hero-pos-dot"></span>
-              </button>
-            </ng-container>
-          </ng-container>
+        <!-- ── Selector de dispositivo ──────────────────────────────── -->
+        <div class="hero-pos-device-tabs">
+          <p-selectButton
+            [options]="deviceOptions"
+            [(ngModel)]="posDevice"
+            optionLabel="label"
+            optionValue="value">
+          </p-selectButton>
         </div>
 
-        <!-- Selector vertical/horizontal — usa (ngModelChange) en lugar de (onChange) -->
-        <div class="hero-pos-controls">
-          <div class="hero-pos-ctrl-row">
-            <label class="adm-label" style="width:110px;flex-shrink:0">Vertical</label>
-            <p-selectButton
-              [options]="vOptions"
-              [(ngModel)]="posV"
-              (ngModelChange)="applyPosition()"
-              optionLabel="label"
-              optionValue="value">
-            </p-selectButton>
-          </div>
+        <!-- ══════════ ESCRITORIO ══════════ -->
+        <ng-container *ngIf="posDevice === 'desktop'">
+          <div class="hero-pos-layout">
 
-          <div class="hero-pos-ctrl-row">
-            <label class="adm-label" style="width:110px;flex-shrink:0">Horizontal</label>
-            <p-selectButton
-              [options]="hOptions"
-              [(ngModel)]="posH"
-              (ngModelChange)="applyPosition()"
-              optionLabel="label"
-              optionValue="value">
-            </p-selectButton>
-          </div>
+            <!-- Controles escritorio -->
+            <div class="hero-pos-controls-col">
+              <p class="adm-field-hint" style="margin-bottom:14px">
+                Haz clic en una celda para posicionar el texto, luego ajusta la distancia.
+              </p>
 
-          <!-- Slider de distancia (solo cuando no es centro vertical) -->
-          <div class="hero-pos-ctrl-row" *ngIf="posV !== 'center'">
-            <label class="adm-label" style="width:110px;flex-shrink:0">
-              Distancia {{ posV === 'top' ? 'desde arriba' : 'desde abajo' }}
-            </label>
-            <div class="hero-pos-slider-wrap">
-              <p-slider
-                [(ngModel)]="posOffset"
-                [min]="0" [max]="50" [step]="1"
-                (ngModelChange)="applyPosition()"
-                styleClass="hero-pos-slider">
-              </p-slider>
-              <span class="hero-pos-offset-val">{{ posOffset }}%</span>
+              <div class="hero-pos-grid">
+                <ng-container *ngFor="let v of vCells">
+                  <ng-container *ngFor="let h of hCells">
+                    <button
+                      class="hero-pos-cell"
+                      [class.hero-pos-cell--active]="isActiveCell(v, h)"
+                      (click)="selectCell(v, h)"
+                      [attr.title]="v + ' / ' + h">
+                      <span class="hero-pos-dot"></span>
+                    </button>
+                  </ng-container>
+                </ng-container>
+              </div>
+
+              <div class="hero-pos-controls">
+                <div class="hero-pos-ctrl-row">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">Vertical</label>
+                  <p-selectButton [options]="vOptions" [(ngModel)]="posV"
+                    (ngModelChange)="applyPosition()" optionLabel="label" optionValue="value">
+                  </p-selectButton>
+                </div>
+                <div class="hero-pos-ctrl-row">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">Horizontal</label>
+                  <p-selectButton [options]="hOptions" [(ngModel)]="posH"
+                    (ngModelChange)="applyPosition()" optionLabel="label" optionValue="value">
+                  </p-selectButton>
+                </div>
+                <div class="hero-pos-ctrl-row" *ngIf="posV !== 'center'">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">
+                    Distancia<br>
+                    <span style="font-weight:400;font-size:0.72rem">{{ posV === 'top' ? 'desde arriba' : 'desde abajo' }}</span>
+                  </label>
+                  <div class="hero-pos-slider-wrap">
+                    <p-slider [(ngModel)]="posOffset" [min]="0" [max]="50" [step]="1"
+                      (ngModelChange)="applyPosition()" styleClass="hero-pos-slider">
+                    </p-slider>
+                    <span class="hero-pos-offset-val">{{ posOffset }}%</span>
+                  </div>
+                </div>
+                <div class="hero-pos-ctrl-row">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">
+                    Relleno lateral<br>
+                    <span style="font-weight:400;font-size:0.72rem">reduce el ancho del texto</span>
+                  </label>
+                  <div class="hero-pos-slider-wrap">
+                    <p-slider [(ngModel)]="local.textPaddingH" [min]="0" [max]="45" [step]="1"
+                      (ngModelChange)="emit()" styleClass="hero-pos-slider">
+                    </p-slider>
+                    <span class="hero-pos-offset-val">{{ local.textPaddingH }}%</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Preview escritorio (borde rojo) -->
+            <div class="hero-pos-preview-col">
+              <p class="hero-pos-preview__label">Vista previa escritorio</p>
+              <div class="hero-pos-preview__frame">
+                <img *ngIf="previewLogoSrc" [src]="previewLogoSrc" class="hero-pos-preview__img" alt="preview logo">
+                <div *ngIf="!previewLogoSrc" class="hero-pos-preview__no-img">Sin logo</div>
+                <div class="hero-pos-preview__text" [ngStyle]="previewStyle" *ngIf="hasPreviewText">
+                  <span *ngIf="local.badge"       class="hero-pos-preview__line">{{ local.badge }}</span>
+                  <span *ngIf="local.description" class="hero-pos-preview__line">{{ local.description }}</span>
+                  <span *ngIf="local.priceLine1"  class="hero-pos-preview__line">{{ local.priceLine1 }}</span>
+                  <span *ngIf="local.priceFrom"   class="hero-pos-preview__line hero-pos-preview__line--price">{{ local.priceFrom }}</span>
+                </div>
+                <div class="hero-pos-preview__text hero-pos-preview__text--empty"
+                     [ngStyle]="previewStyle" *ngIf="!hasPreviewText">
+                  <span class="hero-pos-preview__line" style="opacity:0.5">[ texto ]</span>
+                </div>
+                <div class="hero-pos-preview__badge">{{ positionLabel }}</div>
+              </div>
+              <p class="adm-field-hint" style="margin-top:8px;text-align:center">
+                Borde rojo = posición en escritorio
+              </p>
+            </div>
+
+          </div>
+        </ng-container>
+
+        <!-- ══════════ MÓVIL ══════════ -->
+        <ng-container *ngIf="posDevice === 'mobile'">
+
+          <!-- Toggle posición personalizada -->
+          <div style="margin-bottom:20px;padding:12px 14px;background:#f7f7f7;border-radius:8px;border:1px solid #e8e8e8">
+            <div style="display:flex;align-items:center;gap:12px">
+              <p-toggleSwitch
+                [ngModel]="mobileTextEnabled"
+                (ngModelChange)="toggleMobileText($event)">
+              </p-toggleSwitch>
+              <div>
+                <div style="font-size:0.85rem;font-weight:600;color:#333">
+                  {{ mobileTextEnabled ? '📱 Texto dentro del logo' : '📱 Texto debajo del logo (por defecto)' }}
+                </div>
+                <div style="font-size:0.76rem;color:#888;margin-top:2px" *ngIf="!mobileTextEnabled">
+                  Activa para controlar la posición exacta dentro del logo en móvil.
+                </div>
+                <div style="font-size:0.76rem;color:#1e64d2;margin-top:2px" *ngIf="mobileTextEnabled">
+                  Usa la cuadrícula de abajo para posicionar el texto.
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+
+          <!-- Relleno lateral (siempre visible en la pestaña móvil) -->
+          <div style="margin-bottom:16px">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+              <span style="font-size:0.82rem;font-weight:600;color:#444">Relleno lateral del texto</span>
+              <span style="font-size:0.78rem;color:#888">{{ local.textPaddingHMobile }}%</span>
+            </div>
+            <div style="width:100%">
+              <p-slider [(ngModel)]="local.textPaddingHMobile" [min]="0" [max]="45" [step]="1"
+                (ngModelChange)="emit()" styleClass="hero-pos-slider">
+              </p-slider>
+            </div>
+            <p class="adm-field-hint" style="margin-top:4px">
+              Aumenta este valor si el texto se sale del logo en móvil.
+            </p>
+          </div>
+
+          <!-- Controles de posición (solo cuando está activado) -->
+          <div *ngIf="mobileTextEnabled">
+            <div class="hero-pos-layout">
+
+              <!-- Controles móvil -->
+              <div class="hero-pos-controls-col">
+                <p class="adm-field-hint" style="margin-bottom:14px">
+                  Haz clic en una celda para posicionar el texto dentro del logo en móvil.
+                </p>
+
+                <div class="hero-pos-grid">
+                  <ng-container *ngFor="let v of vCells">
+                    <ng-container *ngFor="let h of hCells">
+                      <button
+                        class="hero-pos-cell"
+                        [class.hero-pos-cell--active]="isActiveMobileCell(v, h)"
+                        (click)="selectMobileCell(v, h)"
+                        [attr.title]="v + ' / ' + h">
+                        <span class="hero-pos-dot"></span>
+                      </button>
+                    </ng-container>
+                  </ng-container>
+                </div>
+
+                <div class="hero-pos-controls">
+                  <div class="hero-pos-ctrl-row">
+                    <label class="adm-label" style="width:100px;flex-shrink:0">Vertical</label>
+                    <p-selectButton [options]="vOptions" [(ngModel)]="posMV"
+                      (ngModelChange)="applyMobilePosition()" optionLabel="label" optionValue="value">
+                    </p-selectButton>
+                  </div>
+                  <div class="hero-pos-ctrl-row">
+                    <label class="adm-label" style="width:100px;flex-shrink:0">Horizontal</label>
+                    <p-selectButton [options]="hOptions" [(ngModel)]="posMH"
+                      (ngModelChange)="applyMobilePosition()" optionLabel="label" optionValue="value">
+                    </p-selectButton>
+                  </div>
+                  <div class="hero-pos-ctrl-row" *ngIf="posMV !== 'center'">
+                    <label class="adm-label" style="width:100px;flex-shrink:0">
+                      Distancia<br>
+                      <span style="font-weight:400;font-size:0.72rem">{{ posMV === 'top' ? 'desde arriba' : 'desde abajo' }}</span>
+                    </label>
+                    <div class="hero-pos-slider-wrap">
+                      <p-slider [(ngModel)]="posMOffset" [min]="0" [max]="50" [step]="1"
+                        (ngModelChange)="applyMobilePosition()" styleClass="hero-pos-slider">
+                      </p-slider>
+                      <span class="hero-pos-offset-val">{{ posMOffset }}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Preview móvil (borde azul) -->
+              <div class="hero-pos-preview-col">
+                <p class="hero-pos-preview__label">Vista previa móvil</p>
+                <div class="hero-pos-preview__frame hero-pos-preview__frame--mobile">
+                  <img *ngIf="previewLogoSrc" [src]="previewLogoSrc" class="hero-pos-preview__img" alt="preview logo">
+                  <div *ngIf="!previewLogoSrc" class="hero-pos-preview__no-img">Sin logo</div>
+                  <div class="hero-pos-preview__text" [ngStyle]="previewMobileStyle" *ngIf="hasPreviewText">
+                    <span *ngIf="local.badge"       class="hero-pos-preview__line">{{ local.badge }}</span>
+                    <span *ngIf="local.description" class="hero-pos-preview__line">{{ local.description }}</span>
+                    <span *ngIf="local.priceLine1"  class="hero-pos-preview__line">{{ local.priceLine1 }}</span>
+                    <span *ngIf="local.priceFrom"   class="hero-pos-preview__line hero-pos-preview__line--price">{{ local.priceFrom }}</span>
+                  </div>
+                  <div class="hero-pos-preview__text hero-pos-preview__text--empty"
+                       [ngStyle]="previewMobileStyle" *ngIf="!hasPreviewText">
+                    <span class="hero-pos-preview__line" style="opacity:0.5">[ texto ]</span>
+                  </div>
+                  <div class="hero-pos-preview__badge">{{ positionMobileLabel }}</div>
+                </div>
+                <p class="adm-field-hint" style="margin-top:8px;text-align:center">
+                  Borde azul = posición en móvil
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </ng-container>
 
       </p-accordion-content>
     </p-accordion-panel>
