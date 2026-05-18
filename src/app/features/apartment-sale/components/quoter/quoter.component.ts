@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { QuoterConfig } from '../../models/project-config.interface';
 import {
   QuoterService,
@@ -20,7 +21,7 @@ interface BedroomGroup {
   templateUrl: './quoter.component.html',
   styleUrl: './quoter.component.css'
 })
-export class QuoterComponent implements OnInit {
+export class QuoterComponent implements OnInit, OnChanges, OnDestroy {
   @Input() config!: QuoterConfig;
 
   // ── Estado de carga ─────────────────────────────────────────────────────────
@@ -48,6 +49,9 @@ export class QuoterComponent implements OnInit {
   // ── Formulario ──────────────────────────────────────────────────────────────
   form!: FormGroup;
 
+  // ── Suscripción activa de unidades ──────────────────────────────────────────
+  private unitsSub?: Subscription;
+
   constructor(
     private quoterService: QuoterService,
     private fb: FormBuilder
@@ -65,13 +69,64 @@ export class QuoterComponent implements OnInit {
       terminos:      [false, Validators.requiredTrue],
     });
 
-    this.quoterService.getUnits(this.config.projectId).subscribe({
+    this.loadUnits();
+  }
+
+  /**
+   * Detecta cuando el @Input config cambia (al navegar entre proyectos).
+   * Angular reutiliza la instancia del componente en rutas del mismo patrón,
+   * por lo que ngOnInit no vuelve a ejecutarse — se usa ngOnChanges.
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    const configChange = changes['config'];
+    if (!configChange || configChange.firstChange) return;
+
+    const prev = configChange.previousValue as QuoterConfig | undefined;
+    const curr = configChange.currentValue as QuoterConfig | undefined;
+
+    if (curr?.projectId && curr.projectId !== prev?.projectId) {
+      this.resetState();
+      this.loadUnits();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.unitsSub?.unsubscribe();
+  }
+
+  // ── Carga de datos ──────────────────────────────────────────────────────────
+
+  private loadUnits() {
+    // Cancelar la suscripción anterior para evitar condiciones de carrera
+    this.unitsSub?.unsubscribe();
+
+    this.unitsSub = this.quoterService.getUnits(this.config.projectId).subscribe({
       next: (data) => this.processUnits(data),
       error: () => {
         this.isLoading = false;
         this.loadError = true;
       }
     });
+  }
+
+  private resetState() {
+    this.unitsSub?.unsubscribe();
+    this.isLoading = true;
+    this.loadError = false;
+    this.hasUnits = false;
+    this.bedroomGroups = [];
+    this.selectedBedrooms = '';
+    this.selectedTypologyId = '';
+    this.selectedTypologyData = null;
+    this.selectedUnitId = '';
+    this.selectedUnitName = '';
+    this.isSubmitting = false;
+    this.submitResult = null;
+    if (this.isImageModalOpen) {
+      this.isImageModalOpen = false;
+      document.body.style.overflow = '';
+    }
+    this.form?.reset();
   }
 
   // ── Procesamiento de datos ──────────────────────────────────────────────────
