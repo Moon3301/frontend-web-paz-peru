@@ -438,6 +438,57 @@
                       <span class="hero-pos-offset-val">{{ posMOffset }}%</span>
                     </div>
                   </div>
+
+                  <!-- ── Ajuste fino móvil (píxeles) ───────────── -->
+                  <div class="hero-pos-fine-title">
+                    <span>🎯 Ajuste fino</span>
+                    <button class="adm-btn adm-btn--ghost adm-btn--xs"
+                            (click)="resetMobileOffset()"
+                            *ngIf="textOffsetXMobile !== 0 || textOffsetYMobile !== 0"
+                            pTooltip="Restablecer a 0">
+                      ↩ Resetear
+                    </button>
+                  </div>
+                  <p class="adm-field-hint" style="margin:-4px 0 10px">
+                    Ajuste pixel a pixel dentro del logo en móvil.
+                  </p>
+
+                  <div class="hero-pos-ctrl-row">
+                    <label class="adm-label" style="width:100px;flex-shrink:0">
+                      ← → Horizontal<br>
+                      <span style="font-weight:400;font-size:0.72rem">izq (-) / der (+)</span>
+                    </label>
+                    <div class="hero-pos-slider-wrap">
+                      <p-slider [(ngModel)]="textOffsetXMobile" [min]="-150" [max]="150" [step]="1"
+                        (ngModelChange)="applyMobileOffset()" styleClass="hero-pos-slider">
+                      </p-slider>
+                      <input class="adm-input hero-pos-px-input"
+                             type="number"
+                             [(ngModel)]="textOffsetXMobile"
+                             (ngModelChange)="applyMobileOffset()"
+                             min="-150" max="150">
+                      <span class="hero-pos-offset-val">px</span>
+                    </div>
+                  </div>
+
+                  <div class="hero-pos-ctrl-row">
+                    <label class="adm-label" style="width:100px;flex-shrink:0">
+                      ↑ ↓ Vertical<br>
+                      <span style="font-weight:400;font-size:0.72rem">arriba (-) / abajo (+)</span>
+                    </label>
+                    <div class="hero-pos-slider-wrap">
+                      <p-slider [(ngModel)]="textOffsetYMobile" [min]="-150" [max]="150" [step]="1"
+                        (ngModelChange)="applyMobileOffset()" styleClass="hero-pos-slider">
+                      </p-slider>
+                      <input class="adm-input hero-pos-px-input"
+                             type="number"
+                             [(ngModel)]="textOffsetYMobile"
+                             (ngModelChange)="applyMobileOffset()"
+                             min="-150" max="150">
+                      <span class="hero-pos-offset-val">px</span>
+                    </div>
+                  </div>
+
                 </div>
               </div>
 

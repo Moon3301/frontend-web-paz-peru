@@ -157,7 +157,7 @@ export interface HeroConfig {
   textPaddingHMobile?: number;
 
   /**
-   * Ajuste fino horizontal del bloque de texto completo (en píxeles).
+   * Ajuste fino horizontal del bloque de texto completo (en píxeles) — ESCRITORIO.
    * Positivo = mueve a la derecha, negativo = mueve a la izquierda.
    * Se aplica vía transform: translate() sobre la posición base.
    * Default: 0.
@@ -165,13 +165,31 @@ export interface HeroConfig {
   textOffsetX?: number;
 
   /**
-   * Ajuste fino vertical del bloque de texto completo (en píxeles).
+   * Ajuste fino vertical del bloque de texto completo (en píxeles) — ESCRITORIO.
    * Positivo = baja, negativo = sube.
    * Útil para logos con formas irregulares (circular, elíptico, etc.)
    * donde el porcentaje no es lo suficientemente preciso.
    * Default: 0.
    */
   textOffsetY?: number;
+
+  /**
+   * Ajuste fino horizontal del bloque de texto (en píxeles) — MÓVIL.
+   * Positivo = mueve a la derecha, negativo = mueve a la izquierda.
+   * Se inyecta vía la variable CSS --mob-text-tf sobre la posición base.
+   * Solo aplica cuando textPositionMobile está definido (texto dentro del logo).
+   * Default: 0.
+   */
+  textOffsetXMobile?: number;
+
+  /**
+   * Ajuste fino vertical del bloque de texto (en píxeles) — MÓVIL.
+   * Positivo = baja, negativo = sube.
+   * Se inyecta vía la variable CSS --mob-text-tf sobre la posición base.
+   * Solo aplica cuando textPositionMobile está definido (texto dentro del logo).
+   * Default: 0.
+   */
+  textOffsetYMobile?: number;
 }
 
 export interface ProjectStatsConfig {

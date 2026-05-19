@@ -25,6 +25,10 @@ export class HeroEditorComponent implements OnInit {
   textOffsetX = 0;
   textOffsetY = 0;
 
+  // ── Ajuste fino (píxeles) — móvil ────────────────────────────────────────
+  textOffsetXMobile = 0;
+  textOffsetYMobile = 0;
+
   // ── Selector de posición — MÓVIL ─────────────────────────────────────────
   posMV: PosV = 'bottom';
   posMH: PosH = 'center';
@@ -79,9 +83,13 @@ export class HeroEditorComponent implements OnInit {
     this.readPositionFromConfig();
     this.readMobilePositionFromConfig();
 
-    // Ajuste fino
+    // Ajuste fino — escritorio
     this.textOffsetX = this.local.textOffsetX ?? 0;
     this.textOffsetY = this.local.textOffsetY ?? 0;
+
+    // Ajuste fino — móvil
+    this.textOffsetXMobile = this.local.textOffsetXMobile ?? 0;
+    this.textOffsetYMobile = this.local.textOffsetYMobile ?? 0;
   }
 
   emit(): void { this.configChange.emit(this.local); }
@@ -193,6 +201,20 @@ export class HeroEditorComponent implements OnInit {
     this.textOffsetY = 0;
     delete this.local.textOffsetX;
     delete this.local.textOffsetY;
+    this.emit();
+  }
+
+  applyMobileOffset(): void {
+    this.local.textOffsetXMobile = this.textOffsetXMobile !== 0 ? this.textOffsetXMobile : undefined;
+    this.local.textOffsetYMobile = this.textOffsetYMobile !== 0 ? this.textOffsetYMobile : undefined;
+    this.emit();
+  }
+
+  resetMobileOffset(): void {
+    this.textOffsetXMobile = 0;
+    this.textOffsetYMobile = 0;
+    delete this.local.textOffsetXMobile;
+    delete this.local.textOffsetYMobile;
     this.emit();
   }
 
@@ -335,6 +357,17 @@ export class HeroEditorComponent implements OnInit {
       style['right']     = '5%';
       style['left']      = 'auto';
       style['textAlign'] = 'right';
+    }
+
+    // Ajuste fino móvil escalado al preview (~25%)
+    const mox = this.textOffsetXMobile ?? 0;
+    const moy = this.textOffsetYMobile ?? 0;
+    if (mox !== 0 || moy !== 0) {
+      const scale = 0.25;
+      const tx = Math.round(mox * scale);
+      const ty = Math.round(moy * scale);
+      const base = style['transform'] && style['transform'] !== 'none' ? style['transform'] + ' ' : '';
+      style['transform'] = `${base}translate(${tx}px, ${ty}px)`;
     }
 
     return style;

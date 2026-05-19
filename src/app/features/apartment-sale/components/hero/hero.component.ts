@@ -167,6 +167,18 @@ export class HeroComponent implements OnInit, OnDestroy {
       v['--mob-text-ph'] = this.config.textPaddingHMobile + '%';
     }
 
+    // ── Ajuste fino de posición en móvil (píxeles) ───────────────────────────
+    // Se combina con --mob-text-tf que ya puede contener translateY(-50%)
+    const mox = this.config.textOffsetXMobile ?? 0;
+    const moy = this.config.textOffsetYMobile ?? 0;
+    if (mox !== 0 || moy !== 0) {
+      const translatePart = `translate(${mox}px, ${moy}px)`;
+      const existingTf = v['--mob-text-tf'];
+      v['--mob-text-tf'] = existingTf && existingTf !== 'none'
+        ? `${existingTf} ${translatePart}`
+        : translatePart;
+    }
+
     return v;
   }
 
