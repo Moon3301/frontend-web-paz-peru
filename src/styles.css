@@ -1157,6 +1157,61 @@ app-savia, app-florencia, app-medina, app-matiz {
   height: 230px;
 }
 
+/* ── Ajuste fino — título de sección ──────────────────────── */
+.hero-pos-fine-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0 6px;
+  padding: 6px 10px;
+  background: linear-gradient(90deg, #fff8e6 0%, #fffdf5 100%);
+  border-left: 3px solid #f59e0b;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #92400e;
+}
+
+/* Input numérico compacto junto al slider */
+.hero-pos-px-input {
+  width: 56px !important;
+  min-width: 56px !important;
+  padding: 4px 6px !important;
+  font-size: 0.82rem !important;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Botón ghost pequeño (reset offset) */
+.adm-btn--ghost {
+  background: transparent;
+  border: 1px solid #d1d5db;
+  color: #6b7280;
+}
+.adm-btn--ghost:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #374151;
+}
+.adm-btn--xs {
+  padding: 3px 10px !important;
+  font-size: 0.72rem !important;
+  border-radius: 5px !important;
+}
+
+/* ── Fuentes — etiqueta de grupo ─────────────────────────── */
+.hero-font-group-label {
+  grid-column: 1 / -1;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 0 2px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 2px;
+}
+
 /* ── Admin responsive ──────────────────────────────────────── */
 @media (max-width: 640px) {
   .adm-form-grid { grid-template-columns: 1fr; }

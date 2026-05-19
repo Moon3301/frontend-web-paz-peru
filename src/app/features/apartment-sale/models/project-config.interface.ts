@@ -155,6 +155,23 @@ export interface HeroConfig {
    * Default: 8.
    */
   textPaddingHMobile?: number;
+
+  /**
+   * Ajuste fino horizontal del bloque de texto completo (en píxeles).
+   * Positivo = mueve a la derecha, negativo = mueve a la izquierda.
+   * Se aplica vía transform: translate() sobre la posición base.
+   * Default: 0.
+   */
+  textOffsetX?: number;
+
+  /**
+   * Ajuste fino vertical del bloque de texto completo (en píxeles).
+   * Positivo = baja, negativo = sube.
+   * Útil para logos con formas irregulares (circular, elíptico, etc.)
+   * donde el porcentaje no es lo suficientemente preciso.
+   * Default: 0.
+   */
+  textOffsetY?: number;
 }
 
 export interface ProjectStatsConfig {

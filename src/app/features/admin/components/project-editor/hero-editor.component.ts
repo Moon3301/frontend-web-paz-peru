@@ -21,6 +21,10 @@ export class HeroEditorComponent implements OnInit {
   posH: PosH = 'center';
   posOffset = 8;   // % desde el borde (top o bottom según posV)
 
+  // ── Ajuste fino (píxeles) — escritorio ───────────────────────────────────
+  textOffsetX = 0;
+  textOffsetY = 0;
+
   // ── Selector de posición — MÓVIL ─────────────────────────────────────────
   posMV: PosV = 'bottom';
   posMH: PosH = 'center';
@@ -74,6 +78,10 @@ export class HeroEditorComponent implements OnInit {
 
     this.readPositionFromConfig();
     this.readMobilePositionFromConfig();
+
+    // Ajuste fino
+    this.textOffsetX = this.local.textOffsetX ?? 0;
+    this.textOffsetY = this.local.textOffsetY ?? 0;
   }
 
   emit(): void { this.configChange.emit(this.local); }
@@ -169,6 +177,22 @@ export class HeroEditorComponent implements OnInit {
     }
 
     this.local.textPosition = pos;
+    this.emit();
+  }
+
+  // ── Ajuste fino (offset px) ───────────────────────────────────────────────
+
+  applyOffset(): void {
+    this.local.textOffsetX = this.textOffsetX !== 0 ? this.textOffsetX : undefined;
+    this.local.textOffsetY = this.textOffsetY !== 0 ? this.textOffsetY : undefined;
+    this.emit();
+  }
+
+  resetOffset(): void {
+    this.textOffsetX = 0;
+    this.textOffsetY = 0;
+    delete this.local.textOffsetX;
+    delete this.local.textOffsetY;
     this.emit();
   }
 
@@ -361,6 +385,17 @@ export class HeroEditorComponent implements OnInit {
       style['right']     = '5%';
       style['left']      = 'auto';
       style['textAlign'] = 'right';
+    }
+
+    // Ajuste fino escalado al preview (~25% del tamaño real)
+    const ox = this.textOffsetX ?? 0;
+    const oy = this.textOffsetY ?? 0;
+    if (ox !== 0 || oy !== 0) {
+      const scale = 0.25;
+      const tx = Math.round(ox * scale);
+      const ty = Math.round(oy * scale);
+      const base = style['transform'] && style['transform'] !== 'none' ? style['transform'] + ' ' : '';
+      style['transform'] = `${base}translate(${tx}px, ${ty}px)`;
     }
 
     return style;

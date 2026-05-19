@@ -269,6 +269,57 @@
                     <span class="hero-pos-offset-val">{{ local.textPaddingH }}%</span>
                   </div>
                 </div>
+
+                <!-- ── Ajuste fino (píxeles) ───────────────────── -->
+                <div class="hero-pos-fine-title">
+                  <span>🎯 Ajuste fino</span>
+                  <button class="adm-btn adm-btn--ghost adm-btn--xs"
+                          (click)="resetOffset()"
+                          *ngIf="textOffsetX !== 0 || textOffsetY !== 0"
+                          pTooltip="Restablecer a 0">
+                    ↩ Resetear
+                  </button>
+                </div>
+                <p class="adm-field-hint" style="margin:-4px 0 10px">
+                  Mueve el bloque de texto pixel a pixel para logos con formas irregulares (circular, elíptico...).
+                </p>
+
+                <div class="hero-pos-ctrl-row">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">
+                    ← → Horizontal<br>
+                    <span style="font-weight:400;font-size:0.72rem">izq (-) / der (+)</span>
+                  </label>
+                  <div class="hero-pos-slider-wrap">
+                    <p-slider [(ngModel)]="textOffsetX" [min]="-150" [max]="150" [step]="1"
+                      (ngModelChange)="applyOffset()" styleClass="hero-pos-slider">
+                    </p-slider>
+                    <input class="adm-input hero-pos-px-input"
+                           type="number"
+                           [(ngModel)]="textOffsetX"
+                           (ngModelChange)="applyOffset()"
+                           min="-150" max="150">
+                    <span class="hero-pos-offset-val">px</span>
+                  </div>
+                </div>
+
+                <div class="hero-pos-ctrl-row">
+                  <label class="adm-label" style="width:100px;flex-shrink:0">
+                    ↑ ↓ Vertical<br>
+                    <span style="font-weight:400;font-size:0.72rem">arriba (-) / abajo (+)</span>
+                  </label>
+                  <div class="hero-pos-slider-wrap">
+                    <p-slider [(ngModel)]="textOffsetY" [min]="-150" [max]="150" [step]="1"
+                      (ngModelChange)="applyOffset()" styleClass="hero-pos-slider">
+                    </p-slider>
+                    <input class="adm-input hero-pos-px-input"
+                           type="number"
+                           [(ngModel)]="textOffsetY"
+                           (ngModelChange)="applyOffset()"
+                           min="-150" max="150">
+                    <span class="hero-pos-offset-val">px</span>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -490,30 +541,79 @@
           Ejemplos: <code>0.9rem</code>, <code>14px</code>, <code>clamp(0.6rem,3cqi,1.1rem)</code>.
           Grosor: <code>700</code> = negrita, <code>400</code> = normal.
         </p>
+        <!-- Badge -->
+        <div class="hero-font-group-label">Badge</div>
         <div class="adm-form-grid">
-          <div class="adm-field"><label class="adm-label">Badge — tamaño</label>
+          <div class="adm-field"><label class="adm-label">Tamaño</label>
             <input class="adm-input" [(ngModel)]="local.badgeStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
           </div>
-          <div class="adm-field"><label class="adm-label">Badge — grosor</label>
+          <div class="adm-field"><label class="adm-label">Grosor</label>
             <input class="adm-input" [(ngModel)]="local.badgeStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
           </div>
-          <div class="adm-field"><label class="adm-label">Descripción — tamaño</label>
+          <div class="adm-field"><label class="adm-label">Margen superior</label>
+            <input class="adm-input" [(ngModel)]="local.badgeStyle.marginTop" (ngModelChange)="emit()"
+                   placeholder="0px" pTooltip="Separa el badge hacia abajo. Ej: 8px, -4px, 0.5rem">
+          </div>
+          <div class="adm-field"><label class="adm-label">Margen inferior</label>
+            <input class="adm-input" [(ngModel)]="local.badgeStyle.marginBottom" (ngModelChange)="emit()"
+                   placeholder="0px">
+          </div>
+        </div>
+
+        <!-- Descripción -->
+        <div class="hero-font-group-label" style="margin-top:14px">Descripción</div>
+        <div class="adm-form-grid">
+          <div class="adm-field"><label class="adm-label">Tamaño</label>
             <input class="adm-input" [(ngModel)]="local.descriptionStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
           </div>
-          <div class="adm-field"><label class="adm-label">Descripción — grosor</label>
+          <div class="adm-field"><label class="adm-label">Grosor</label>
             <input class="adm-input" [(ngModel)]="local.descriptionStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
           </div>
-          <div class="adm-field"><label class="adm-label">Línea de precio — tamaño</label>
+          <div class="adm-field"><label class="adm-label">Margen superior</label>
+            <input class="adm-input" [(ngModel)]="local.descriptionStyle.marginTop" (ngModelChange)="emit()"
+                   placeholder="0px" pTooltip="Separa la descripción del elemento anterior">
+          </div>
+          <div class="adm-field"><label class="adm-label">Margen inferior</label>
+            <input class="adm-input" [(ngModel)]="local.descriptionStyle.marginBottom" (ngModelChange)="emit()"
+                   placeholder="0px">
+          </div>
+        </div>
+
+        <!-- Línea de precio -->
+        <div class="hero-font-group-label" style="margin-top:14px">Línea de precio</div>
+        <div class="adm-form-grid">
+          <div class="adm-field"><label class="adm-label">Tamaño</label>
             <input class="adm-input" [(ngModel)]="local.priceLabelStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
           </div>
-          <div class="adm-field"><label class="adm-label">Línea de precio — grosor</label>
+          <div class="adm-field"><label class="adm-label">Grosor</label>
             <input class="adm-input" [(ngModel)]="local.priceLabelStyle.fontWeight" (ngModelChange)="emit()" placeholder="400">
           </div>
-          <div class="adm-field"><label class="adm-label">Precio desde — tamaño</label>
+          <div class="adm-field"><label class="adm-label">Margen superior</label>
+            <input class="adm-input" [(ngModel)]="local.priceLabelStyle.marginTop" (ngModelChange)="emit()"
+                   placeholder="0px">
+          </div>
+          <div class="adm-field"><label class="adm-label">Margen inferior</label>
+            <input class="adm-input" [(ngModel)]="local.priceLabelStyle.marginBottom" (ngModelChange)="emit()"
+                   placeholder="0px">
+          </div>
+        </div>
+
+        <!-- Precio desde -->
+        <div class="hero-font-group-label" style="margin-top:14px">Precio desde</div>
+        <div class="adm-form-grid">
+          <div class="adm-field"><label class="adm-label">Tamaño</label>
             <input class="adm-input" [(ngModel)]="local.priceFromStyle.fontSize" (ngModelChange)="emit()" placeholder="automático">
           </div>
-          <div class="adm-field"><label class="adm-label">Precio desde — grosor</label>
+          <div class="adm-field"><label class="adm-label">Grosor</label>
             <input class="adm-input" [(ngModel)]="local.priceFromStyle.fontWeight" (ngModelChange)="emit()" placeholder="700">
+          </div>
+          <div class="adm-field"><label class="adm-label">Margen superior</label>
+            <input class="adm-input" [(ngModel)]="local.priceFromStyle.marginTop" (ngModelChange)="emit()"
+                   placeholder="0px">
+          </div>
+          <div class="adm-field"><label class="adm-label">Margen inferior</label>
+            <input class="adm-input" [(ngModel)]="local.priceFromStyle.marginBottom" (ngModelChange)="emit()"
+                   placeholder="0px">
           </div>
         </div>
       </p-accordion-content>

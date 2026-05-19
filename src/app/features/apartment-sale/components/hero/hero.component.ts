@@ -80,6 +80,14 @@ export class HeroComponent implements OnInit, OnDestroy {
     if (pos.left  !== undefined) style['left']  = pos.left;
     if (pos.right !== undefined) style['right'] = pos.right;
 
+    // Ajuste fino en píxeles: se suma al transform ya aplicado (si hay)
+    const ox = this.config.textOffsetX ?? 0;
+    const oy = this.config.textOffsetY ?? 0;
+    if (ox !== 0 || oy !== 0) {
+      const base = style['transform'] && style['transform'] !== 'none' ? style['transform'] + ' ' : '';
+      style['transform'] = `${base}translate(${ox}px, ${oy}px)`;
+    }
+
     return style;
   }
 
