@@ -104,6 +104,9 @@
   box-sizing: border-box;
   /* Limita la altura máxima al 88% del logo para no pisar el área gráfica */
   max-height: 88%;
+  /* Transform controlado por custom property — permite que las reglas @media
+     sobreescriban el valor sin batallar contra la especificidad inline. */
+  transform: var(--hero-text-tf, none);
 }
 
 /* ---- Textos — tamaño relativo al CONTENEDOR (logo), no al viewport ----
@@ -277,7 +280,7 @@
     bottom:    var(--mob-text-bottom, auto);
     left:      var(--mob-text-left, 0);
     right:     var(--mob-text-right, 0);
-    transform: var(--mob-text-tf, none);
+    transform: var(--mob-text-tf, var(--hero-text-tf, none));
     max-height: var(--mob-text-maxh, none);
     overflow: visible;
     padding: 0.5rem var(--mob-text-ph, 1rem);

@@ -53,13 +53,18 @@ export class HeroComponent implements OnInit, OnDestroy {
    * simultáneamente bottom:8% + top:10% estirando el bloque a casi toda la altura.
    */
   getTextPositionStyle(): Record<string, string> {
-    // Base completa — replica los defaults del CSS para que ngStyle los controle
+    // Base — controla ejes de posición como inline style para garantizar
+    // que los valores del editor sobreescriban los defaults del CSS.
+    // IMPORTANTE: NO se incluye 'transform' como inline style para que
+    // las reglas CSS (@media móvil) puedan controlar el transform vía
+    // variables CSS sin ser bloqueadas por especificidad inline.
+    // El transform de escritorio se pasa como custom property --hero-text-tf.
     const style: Record<string, string> = {
-      bottom:    '8%',
-      top:       'auto',
-      left:      '0',
-      right:     '0',
-      transform: 'none',
+      bottom:           '8%',
+      top:              'auto',
+      left:             '0',
+      right:            '0',
+      '--hero-text-tf': 'none',
     };
 
     const pos = this.config.textPosition;
@@ -70,7 +75,7 @@ export class HeroComponent implements OnInit, OnDestroy {
       style['top']    = pos.top;
       style['bottom'] = 'auto';
       // Centrado verdadero: top:50% + translateY(-50%)
-      if (pos.top === '50%') style['transform'] = 'translateY(-50%)';
+      if (pos.top === '50%') style['--hero-text-tf'] = 'translateY(-50%)';
     } else if (pos.bottom !== undefined && pos.bottom !== 'auto') {
       style['bottom'] = pos.bottom;
       style['top']    = 'auto';
@@ -80,12 +85,12 @@ export class HeroComponent implements OnInit, OnDestroy {
     if (pos.left  !== undefined) style['left']  = pos.left;
     if (pos.right !== undefined) style['right'] = pos.right;
 
-    // Ajuste fino en píxeles: se suma al transform ya aplicado (si hay)
+    // Ajuste fino escritorio (px): se concatena al transform base
     const ox = this.config.textOffsetX ?? 0;
     const oy = this.config.textOffsetY ?? 0;
     if (ox !== 0 || oy !== 0) {
-      const base = style['transform'] && style['transform'] !== 'none' ? style['transform'] + ' ' : '';
-      style['transform'] = `${base}translate(${ox}px, ${oy}px)`;
+      const base = style['--hero-text-tf'] !== 'none' ? style['--hero-text-tf'] + ' ' : '';
+      style['--hero-text-tf'] = `${base}translate(${ox}px, ${oy}px)`;
     }
 
     return style;
