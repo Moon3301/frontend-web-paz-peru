@@ -240,6 +240,7 @@ export class QuoterComponent implements OnInit, OnChanges, OnDestroy {
       utm_source:   params.get('utm_source')   ?? 'organico',
       utm_medium:   params.get('utm_medium')   ?? 'proforma web',
       utm_campaign: params.get('utm_campaign') ?? 'organico',
+      sendEmail:    true,
     };
 
     this.isSubmitting = true;

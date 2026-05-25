@@ -48,6 +48,7 @@ export interface QuotationPayload {
   utm_source?: string;
   utm_medium?: string;
   utm_campaign?: string;
+  sendEmail?: boolean;
 }
 
 export interface QuotationResponse {
