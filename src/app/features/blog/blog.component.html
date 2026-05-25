@@ -37,9 +37,9 @@
         <!-- Body -->
         <div class="blog-card__body">
           <div class="blog-card__meta">
-            <span class="blog-card__badge">{{ post.category }}</span>
-            <span class="blog-card__date">{{ formatDate(post.publishedAt) }}</span>
-            <span class="blog-card__read-time">{{ post.readTime }} min</span>
+            <span class="blog-card__badge" *ngIf="post.category">{{ post.category }}</span>
+            <span class="blog-card__date" *ngIf="formatDate(post.publishedAt)">{{ formatDate(post.publishedAt) }}</span>
+            <span class="blog-card__read-time" *ngIf="post.readTime">{{ post.readTime }} min</span>
           </div>
           <h2 class="blog-card__title">{{ post.title }}</h2>
           <p class="blog-card__excerpt">{{ post.excerpt }}</p>
@@ -103,7 +103,7 @@
       <h3 class="blog-sidebar__section-title">Nuevos artículos</h3>
       <ul class="blog-sidebar__list">
         <li *ngFor="let post of allPosts.slice(0, 5)" class="blog-sidebar__list-item">
-          <a href="#" class="blog-sidebar__list-link">{{ post.title }}</a>
+          <a [routerLink]="['/blog', post.slug]" class="blog-sidebar__list-link">{{ post.title }}</a>
         </li>
       </ul>
     </div>

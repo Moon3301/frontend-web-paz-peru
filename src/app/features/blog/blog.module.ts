@@ -6,9 +6,10 @@ import { CoreModule } from '../../core/core.module';
 
 import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog.component';
+import { BlogDetailComponent } from './blog-detail.component';
 
 @NgModule({
-  declarations: [BlogComponent],
+  declarations: [BlogComponent, BlogDetailComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

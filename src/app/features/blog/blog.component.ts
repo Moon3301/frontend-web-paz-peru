@@ -18,15 +18,13 @@ export class BlogComponent implements OnInit {
   filteredPosts: BlogPost[] = [];
   loading = true;
 
-  readonly categories = [
-    'Financiamiento',
-    'Primer departamento',
-    'Estilo de vida',
-    'Inspiracional',
-    'Proyecto inmobiliario',
-    'Tributario',
-    'Arquitectura & Interiorismo',
-  ];
+  /** Categorías derivadas dinámicamente de los posts cargados. */
+  get categories(): string[] {
+    const cats = new Set(
+      this.allPosts.map(p => p.category).filter((c): c is string => !!c)
+    );
+    return Array.from(cats).sort();
+  }
 
   readonly sidebarProjects = [
     { name: 'Central Apartments', district: 'Miraflores',     link: '/departamentos-en-venta/miraflores/central' },
@@ -81,8 +79,11 @@ export class BlogComponent implements OnInit {
         !q ||
         p.title.toLowerCase().includes(q) ||
         (p.excerpt ?? '').toLowerCase().includes(q);
+      // Filtra por category (campo principal) o tags como fallback
       const matchesCat =
-        !this.selectedCategory || p.tags.includes(this.selectedCategory);
+        !this.selectedCategory ||
+        p.category === this.selectedCategory ||
+        p.tags.includes(this.selectedCategory);
       return matchesSearch && matchesCat;
     });
   }
@@ -112,8 +113,9 @@ export class BlogComponent implements OnInit {
 
   formatDate(iso: string | null): string {
     if (!iso) return '';
-    const [year, month, day] = iso.split('T')[0].split('-');
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
     const months = ['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'];
-    return `${Number(day)} ${months[Number(month) - 1]} ${year}`;
+    return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
   }
 }

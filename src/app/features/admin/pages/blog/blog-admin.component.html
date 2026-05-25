@@ -131,7 +131,7 @@
         <span class="adm-hint">Solo letras minúsculas, números y guiones. Se genera automáticamente desde el título.</span>
       </div>
 
-      <!-- Categoría + Autor -->
+      <!-- Categoría + Autor + Tiempo de lectura (3 cols) -->
       <div class="adm-field">
         <label class="adm-label">Categoría</label>
         <select class="adm-select" formControlName="category">
@@ -143,6 +143,11 @@
       <div class="adm-field">
         <label class="adm-label">Autor</label>
         <input class="adm-input" formControlName="author" placeholder="Equipo Paz Perú">
+      </div>
+
+      <div class="adm-field">
+        <label class="adm-label">Tiempo de lectura (min)</label>
+        <input class="adm-input" type="number" formControlName="readTime" min="1" max="60">
       </div>
 
       <!-- Imagen de portada -->
@@ -183,8 +188,8 @@
         ></textarea>
       </div>
 
-      <!-- Tags + Tiempo de lectura -->
-      <div class="adm-field">
+      <!-- Tags + Fecha + Publicado (3 cols) -->
+      <div class="adm-field adm-field--col2">
         <label class="adm-label">Etiquetas</label>
         <input
           class="adm-input"
@@ -195,18 +200,12 @@
       </div>
 
       <div class="adm-field">
-        <label class="adm-label">Tiempo de lectura (min)</label>
-        <input class="adm-input" type="number" formControlName="readTime" min="1" max="60">
-      </div>
-
-      <!-- Publicación -->
-      <div class="adm-field">
         <label class="adm-label">Fecha de publicación</label>
         <input class="adm-input" type="date" formControlName="publishedAt">
-        <span class="adm-hint">Vacío = se asigna la fecha actual al publicar</span>
+        <span class="adm-hint">Vacío = fecha actual al publicar</span>
       </div>
 
-      <div class="adm-field adm-field--checkboxes">
+      <div class="adm-field adm-field--full adm-field--checkboxes">
         <label class="adm-checkbox">
           <input type="checkbox" formControlName="isPublished">
           <span>Publicado (visible en el blog)</span>

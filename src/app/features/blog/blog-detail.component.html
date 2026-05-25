@@ -1,0 +1,117 @@
+<!-- ============================================================
+     BLOG DETAIL PAGE
+     ============================================================ -->
+
+<!-- Loading -->
+<div class="bd-loading" *ngIf="loading">
+  <div class="bd-loading__spinner"></div>
+</div>
+
+<!-- Error -->
+<div class="bd-error" *ngIf="error && !loading">
+  <p class="bd-error__text">No se pudo cargar el artículo.</p>
+  <button class="bd-back-btn" (click)="goBack()">
+    <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+    </svg>
+    Volver al blog
+  </button>
+</div>
+
+<!-- Article -->
+<ng-container *ngIf="post && !loading">
+
+  <!-- Hero cover -->
+  <div class="bd-cover" *ngIf="post.coverImageUrl">
+    <img [src]="post.coverImageUrl" [alt]="post.title" class="bd-cover__img">
+    <div class="bd-cover__overlay"></div>
+    <div class="bd-cover__label">
+      <span *ngIf="post.category" class="bd-cover__badge">{{ post.category }}</span>
+    </div>
+  </div>
+
+  <!-- No cover: narrow colored bar -->
+  <div class="bd-cover bd-cover--minimal" *ngIf="!post.coverImageUrl">
+    <div class="bd-cover__label">
+      <span *ngIf="post.category" class="bd-cover__badge">{{ post.category }}</span>
+    </div>
+  </div>
+
+  <!-- Content layout -->
+  <div class="bd-layout">
+
+    <!-- Breadcrumb -->
+    <nav class="bd-breadcrumb">
+      <button class="bd-back-btn" (click)="goBack()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Blog
+      </button>
+      <span class="bd-breadcrumb__sep">/</span>
+      <span class="bd-breadcrumb__current">{{ post.title }}</span>
+    </nav>
+
+    <!-- Article body -->
+    <article class="bd-article">
+
+      <!-- Header -->
+      <header class="bd-article__header">
+        <div class="bd-article__meta">
+          <span class="bd-article__badge" *ngIf="post.category">{{ post.category }}</span>
+          <span class="bd-article__date" *ngIf="post.publishedAt">
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke-width="2"/>
+              <line x1="16" y1="2" x2="16" y2="6" stroke-width="2" stroke-linecap="round"/>
+              <line x1="8" y1="2" x2="8" y2="6" stroke-width="2" stroke-linecap="round"/>
+              <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+            </svg>
+            {{ formatDate(post.publishedAt) }}
+          </span>
+          <span class="bd-article__read-time" *ngIf="post.readTime">
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke-width="2"/>
+              <polyline points="12 6 12 12 16 14" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            {{ post.readTime }} min de lectura
+          </span>
+          <span class="bd-article__author" *ngIf="post.author">
+            Por <strong>{{ post.author }}</strong>
+          </span>
+        </div>
+
+        <h1 class="bd-article__title">{{ post.title }}</h1>
+
+        <p class="bd-article__excerpt" *ngIf="post.excerpt">{{ post.excerpt }}</p>
+
+        <!-- Tags -->
+        <div class="bd-article__tags" *ngIf="post.tags && post.tags.length > 0">
+          <span *ngFor="let tag of post.tags" class="bd-article__tag">{{ tag }}</span>
+        </div>
+      </header>
+
+      <!-- Divider -->
+      <div class="bd-article__divider"></div>
+
+      <!-- Content: HTML from CMS -->
+      <div class="bd-article__content" *ngIf="safeContent" [innerHTML]="safeContent"></div>
+
+      <!-- Fallback: no content -->
+      <div class="bd-article__no-content" *ngIf="!safeContent">
+        <p>El contenido completo de este artículo no está disponible.</p>
+      </div>
+
+    </article>
+
+    <!-- Footer nav -->
+    <footer class="bd-footer-nav">
+      <button class="bd-back-btn bd-back-btn--lg" (click)="goBack()">
+        <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/>
+        </svg>
+        Volver al blog
+      </button>
+    </footer>
+
+  </div>
+</ng-container>

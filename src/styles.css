@@ -414,6 +414,16 @@ app-savia, app-florencia, app-medina, app-matiz {
 .adm-textarea { resize: vertical; min-height: 72px; }
 .adm-textarea--tall { min-height: 220px; }
 
+/* Restaurar picker nativo para inputs de fecha/hora
+   (appearance:none suprime el ícono de calendario en Chrome/Edge) */
+input[type="date"].adm-input,
+input[type="time"].adm-input,
+input[type="datetime-local"].adm-input {
+  appearance: auto;
+  -webkit-appearance: auto;
+  cursor: pointer;
+}
+
 .adm-field-hint {
   margin-top: 5px;
   font-size: 0.78rem;
