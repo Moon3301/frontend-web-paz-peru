@@ -13,15 +13,19 @@
   text-align: center;
 }
 
-.apartment-specs__description {
-  /* align-self: stretch sobreescribe el align-items: center del panel padre
-     y fuerza al <p> a tomar el 100% del ancho del contenedor.
-     width: 100% es el refuerzo explícito (ambos son necesarios). */
-  align-self: stretch;
+/* Wrapper del texto descripción — es el flex item que toma el 100% del ancho.
+   Separarlo del <p> permite que align-items:center del panel no lo colapse. */
+.apartment-specs__description-wrap {
   width: 100%;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.apartment-specs__description {
+  width: 100%;
+  margin: 0;
   font-size: 0.95rem;
   font-weight: 400;
-  margin: 0 0 1rem;
   text-align: justify;
   line-height: 1.65;
 }
