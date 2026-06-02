@@ -14,8 +14,10 @@
 }
 
 .apartment-specs__description {
-  /* width: 100% para que el <p> ocupe todo el ancho del panel.
-     Sin esto, el flexbox con align-items:center lo colapsa al ancho del texto. */
+  /* align-self: stretch sobreescribe el align-items: center del panel padre
+     y fuerza al <p> a tomar el 100% del ancho del contenedor.
+     width: 100% es el refuerzo explícito (ambos son necesarios). */
+  align-self: stretch;
   width: 100%;
   font-size: 0.95rem;
   font-weight: 400;
@@ -179,12 +181,12 @@
   flex-shrink: 0;
 }
 
-/* Lista de specs (pisos, tipos, metrajes + ítems personalizados) */
+/* Lista de specs (pisos, tipos, metrajes + ítems personalizados).
+   Sin width explícito: el align-items:center del padre lo mantiene compact (ancho natural). */
 .apartment-specs__details {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
