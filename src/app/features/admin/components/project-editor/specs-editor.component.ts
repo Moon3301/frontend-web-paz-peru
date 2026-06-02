@@ -20,6 +20,7 @@ export class SpecsEditorComponent implements OnInit {
     if (!this.local.stats.location) this.local.stats.location = { icon: '', label: '' };
     if (!this.local.stats.commonAreasLabel) this.local.stats.commonAreasLabel = { icon: '', label: '' };
     if (!this.local.specs.amenityIcons) this.local.specs.amenityIcons = [];
+    if (!this.local.specs.customDetails) this.local.specs.customDetails = [];
   }
 
   emit(): void { this.configChange.emit(this.local); }
@@ -31,6 +32,16 @@ export class SpecsEditorComponent implements OnInit {
 
   removeAmenityIcon(i: number): void {
     this.local.specs.amenityIcons.splice(i, 1);
+    this.emit();
+  }
+
+  addDetail(): void {
+    this.local.specs.customDetails.push({ icon: '', title: '', text: '' });
+    this.emit();
+  }
+
+  removeDetail(i: number): void {
+    this.local.specs.customDetails.splice(i, 1);
     this.emit();
   }
 

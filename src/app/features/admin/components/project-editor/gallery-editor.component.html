@@ -4,6 +4,35 @@
     <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="save.emit()">Guardar sección</button>
   </div>
 
+  <!-- Colores y título de la sección -->
+  <div class="adm-form-grid" style="margin-bottom:20px">
+    <div class="adm-field">
+      <label class="adm-label">Título de la sección</label>
+      <input class="adm-input" [(ngModel)]="local.title" (ngModelChange)="emit()" placeholder="GALERIA">
+    </div>
+    <div class="adm-field"><!-- spacer --></div>
+    <div class="adm-field">
+      <label class="adm-label">Color de fondo</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker"
+               [ngModel]="local.backgroundColor || '#faf7f2'"
+               (ngModelChange)="local.backgroundColor=$event; emit()">
+        <input class="adm-input" [(ngModel)]="local.backgroundColor" (ngModelChange)="emit()"
+               placeholder="#faf7f2">
+      </div>
+    </div>
+    <div class="adm-field">
+      <label class="adm-label">Color de texto / tabs</label>
+      <div class="adm-color-row">
+        <input type="color" class="adm-color-picker"
+               [ngModel]="local.textColor || '#333333'"
+               (ngModelChange)="local.textColor=$event; emit()">
+        <input class="adm-input" [(ngModel)]="local.textColor" (ngModelChange)="emit()"
+               placeholder="#333333">
+      </div>
+    </div>
+  </div>
+
   <div class="sec-editor__subheader">
     <h4 class="sec-editor__subtitle">Tabs de galería</h4>
     <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addTab()">+ Agregar tab</button>

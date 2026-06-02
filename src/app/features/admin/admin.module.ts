@@ -41,6 +41,7 @@ import { VirtualTourEditorComponent } from './components/project-editor/virtual-
 import { UbicationEditorComponent }   from './components/project-editor/ubication-editor.component';
 import { ExecutivesEditorComponent }  from './components/project-editor/executives-editor.component';
 import { PromoBannerEditorComponent } from './components/project-editor/promo-banner-editor.component';
+import { QuoterEditorComponent }     from './components/project-editor/quoter-editor.component';
 
 const DECLARATIONS = [
   // Layout
@@ -72,6 +73,7 @@ const DECLARATIONS = [
   UbicationEditorComponent,
   ExecutivesEditorComponent,
   PromoBannerEditorComponent,
+  QuoterEditorComponent,
 ];
 
 @NgModule({

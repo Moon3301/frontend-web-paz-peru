@@ -15,6 +15,8 @@ export class GalleryEditorComponent implements OnInit {
   ngOnInit(): void {
     this.local = JSON.parse(JSON.stringify(this.config || {}));
     if (!this.local.tabs) this.local.tabs = [];
+    if (this.local.backgroundColor === undefined) this.local.backgroundColor = '';
+    if (this.local.textColor       === undefined) this.local.textColor       = '';
   }
 
   emit(): void { this.configChange.emit(this.local); }

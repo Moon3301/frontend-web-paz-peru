@@ -45,9 +45,13 @@ export class ProjectDynamicComponent implements OnInit, OnDestroy {
       stats: (s.specs as any)?.stats,
       specs: (s.specs as any)?.specs,
       amenities: s.amenities as any,
+      // Si existe la sección quoter usa su config; si no, cae al sperantProjectId del proyecto.
+      // Así el cotizador aparece automáticamente para cualquier proyecto con ID de Sperant definido.
       quoter: s.quoter
         ? { projectId: s.quoter.projectId, projectName: s.quoter.projectName ?? project.name }
-        : undefined,
+        : (project.sperantProjectId != null
+            ? { projectId: project.sperantProjectId, projectName: project.name }
+            : undefined),
       gallery: s.gallery as any,
       video: s.video as any,
       virtualTour: s.virtual_tour as any,

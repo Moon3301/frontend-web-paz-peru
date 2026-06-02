@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminApiService } from '../../services/admin-api.service';
 
-export type SectionTab = 'hero' | 'promo_banner' | 'specs' | 'amenities' | 'gallery' | 'video' | 'virtual_tour' | 'ubication' | 'executives';
+export type SectionTab = 'hero' | 'promo_banner' | 'specs' | 'amenities' | 'gallery' | 'video' | 'virtual_tour' | 'ubication' | 'executives' | 'quoter';
 
 const SECTION_TABS: { key: SectionTab; label: string }[] = [
   { key: 'hero',         label: 'Hero'            },
@@ -15,6 +15,7 @@ const SECTION_TABS: { key: SectionTab; label: string }[] = [
   { key: 'virtual_tour', label: 'Tour Virtual'    },
   { key: 'ubication',    label: 'Ubicación'       },
   { key: 'executives',   label: 'Ejecutivos'      },
+  { key: 'quoter',       label: 'Cotizador'       },
 ];
 
 @Component({

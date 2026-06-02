@@ -219,6 +219,17 @@ export interface AmenityIconItem {
   label: string;
 }
 
+/** Ítem de detalle personalizado en el panel de specs.
+ *  Aparece en la lista con icono (opcional), título en negrita (opcional) y texto. */
+export interface SpecsDetailItem {
+  /** URL de la imagen/ícono. Si está vacío no se renderiza el ícono. */
+  icon?: string;
+  /** Texto en negrita, e.g. "Pisos:" */
+  title?: string;
+  /** Texto descriptivo, e.g. "17 pisos + Azotea" */
+  text: string;
+}
+
 export interface ApartmentSpecsConfig {
 
   description?: string;
@@ -230,6 +241,8 @@ export interface ApartmentSpecsConfig {
   projectSubtitle?: string;
   /** Íconos de amenidades que van en el panel derecho */
   amenityIcons?: AmenityIconItem[];
+  /** Ítems de detalle personalizados (reemplazan o complementan floors/unitTypes/areaRange) */
+  customDetails?: SpecsDetailItem[];
 
   amenityIcon?: string;
   /** e.g. "18 pisos + Azotea" */
@@ -286,6 +299,12 @@ export interface GalleryTab {
 
 export interface GalleryConfig {
   tabs: GalleryTab[];
+  /** Título de la sección. Default: 'GALERIA' */
+  title?: string;
+  /** Color de fondo de la sección galería */
+  backgroundColor?: string;
+  /** Color del texto (título, tabs). Default: '#333' */
+  textColor?: string;
 }
 
 export interface VideoTab {

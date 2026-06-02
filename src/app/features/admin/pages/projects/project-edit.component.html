@@ -151,6 +151,15 @@
         (save)="saveSection('executives')">
       </app-executives-editor>
 
+      <!-- COTIZADOR -->
+      <app-quoter-editor *ngIf="activeTab === 'quoter'"
+        [config]="getSectionConfig('quoter')"
+        [sperantProjectId]="projectForm.get('sperantProjectId')?.value"
+        [projectName]="projectForm.get('name')?.value"
+        (configChange)="updateSection('quoter', $event)"
+        (save)="saveSection('quoter')">
+      </app-quoter-editor>
+
     </div>
   </div>
 

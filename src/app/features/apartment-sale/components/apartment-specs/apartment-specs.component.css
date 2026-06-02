@@ -168,6 +168,14 @@
   word-break: break-word;
 }
 
+/* Placeholder de espacio cuando el ítem personalizado no tiene ícono */
+.apartment-specs__detail-icon-placeholder {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  flex-shrink: 0;
+}
+
 /* Lista de specs (pisos, tipos, metrajes) */
 .apartment-specs__details {
   list-style: none;

@@ -111,12 +111,44 @@
     <div class="adm-list__item" *ngFor="let item of local.specs.amenityIcons; let i = index; trackBy: trackByIndex">
       <span class="adm-list__num">{{ i + 1 }}</span>
       <div class="adm-list__fields">
-        <input class="adm-input" [(ngModel)]="item.icon" (ngModelChange)="emit()" placeholder="URL del ícono">
-        <input class="adm-input" [(ngModel)]="item.label" (ngModelChange)="emit()" placeholder="Etiqueta">
+        <input class="adm-input" [(ngModel)]="item.icon" (ngModelChange)="emit()" placeholder="URL del ícono (opcional para solo texto)">
+        <input class="adm-input" [(ngModel)]="item.label" (ngModelChange)="emit()" placeholder="Etiqueta de texto">
       </div>
       <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeAmenityIcon(i)">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
   </div>
+  <p class="adm-field-hint" style="margin-top:6px">
+    💡 El ícono es opcional. Si solo pones etiqueta sin ícono, aparece como texto solo.
+  </p>
+
+  <!-- Detalles personalizados (lista con ícono + título + texto) -->
+  <div class="sec-editor__subheader" style="margin-top:24px">
+    <h4 class="sec-editor__subtitle">Detalles del proyecto (lista con ícono)</h4>
+    <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addDetail()">+ Agregar ítem</button>
+  </div>
+  <p class="adm-field-hint" style="margin:-8px 0 12px">
+    Aparecen en lista vertical con ícono a la izquierda. Equivalente a los ítems de Pisos, Tipos de unidad y Metrajes, pero completamente personalizables.
+  </p>
+  <div class="adm-list">
+    <div class="adm-list__item adm-list__item--vertical"
+         *ngFor="let item of local.specs.customDetails; let i = index; trackBy: trackByIndex">
+      <span class="adm-list__num">{{ i + 1 }}</span>
+      <div class="adm-list__fields">
+        <input class="adm-input" [(ngModel)]="item.icon" (ngModelChange)="emit()"
+               placeholder="URL del ícono (opcional)">
+        <input class="adm-input" [(ngModel)]="item.title" (ngModelChange)="emit()"
+               placeholder="Título en negrita, ej: Pisos:">
+        <input class="adm-input" [(ngModel)]="item.text" (ngModelChange)="emit()"
+               placeholder="Texto descriptivo, ej: 17 pisos + Azotea">
+      </div>
+      <button class="adm-btn-icon adm-btn-icon--danger" (click)="removeDetail(i)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <p class="adm-empty-hint" *ngIf="!local.specs.customDetails?.length">
+    Sin ítems personalizados. Agrega uno con el botón de arriba.
+  </p>
 </div>

@@ -51,9 +51,10 @@
     </div>
 
     <ul class="apartment-specs__details" [style.color]="specs.textColor">
+      <!-- Ítems fijos heredados (floors, unitTypes, areaRange, amenities) -->
       <li class="apartment-specs__detail-item" *ngIf="specs.floors" [style.color]="specs.textColor">
-        <img [src]="'svg/icons/floors.svg' | assetUrl" alt="Pisos" class="apartment-specs__detail-icon" >
-        <span >{{ specs.floors }}</span>
+        <img [src]="'svg/icons/floors.svg' | assetUrl" alt="Pisos" class="apartment-specs__detail-icon">
+        <span>{{ specs.floors }}</span>
       </li>
       <li class="apartment-specs__detail-item" *ngIf="specs.unitTypes" [style.color]="specs.textColor">
         <img [src]="'svg/icons/unit-type.svg' | assetUrl" alt="Tipo unidad" class="apartment-specs__detail-icon">
@@ -63,11 +64,21 @@
         <img [src]="'svg/icons/area.svg' | assetUrl" alt="Metrajes" class="apartment-specs__detail-icon">
         <span>{{ specs.areaRange }}</span>
       </li>
-
       <li class="apartment-specs__detail-item" *ngIf="specs.amenities" [style.color]="specs.textColor">
         <img [src]="'svg/icons/floors.svg' | assetUrl" alt="Amenidades" class="apartment-specs__detail-icon">
         <span>{{ specs.amenities }}</span>
       </li>
+
+      <!-- Ítems personalizados configurados desde el panel de admin -->
+      <ng-container *ngIf="specs.customDetails?.length">
+        <li class="apartment-specs__detail-item" *ngFor="let item of specs.customDetails" [style.color]="specs.textColor">
+          <img *ngIf="item.icon" [src]="item.icon | assetUrl" [alt]="item.title || item.text" class="apartment-specs__detail-icon">
+          <div *ngIf="!item.icon" class="apartment-specs__detail-icon-placeholder"></div>
+          <span>
+            <strong *ngIf="item.title">{{ item.title }} </strong>{{ item.text }}
+          </span>
+        </li>
+      </ng-container>
     </ul>
 
     <!-- Botones: Brochure + Video -->

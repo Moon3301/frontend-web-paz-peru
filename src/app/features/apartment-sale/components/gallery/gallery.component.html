@@ -1,5 +1,7 @@
-<section class="gallery">
-  <h2 class="gallery__title">GALERIA</h2>
+<section class="gallery" [style.background-color]="config.backgroundColor || null">
+  <h2 class="gallery__title" [style.color]="config.textColor || null">
+    {{ config.title || 'GALERIA' }}
+  </h2>
 
   <!-- Tabs de categoría -->
   <div class="gallery__tabs">
@@ -7,6 +9,8 @@
       *ngFor="let tab of config.tabs; let i = index"
       class="gallery__tab-btn"
       [class.gallery__tab-btn--active]="i === activeTabIndex"
+      [style.color]="i === activeTabIndex ? null : (config.textColor || null)"
+      [style.border-color]="config.textColor || null"
       (click)="selectTab(i)">
       {{ tab.label }}
     </button>
