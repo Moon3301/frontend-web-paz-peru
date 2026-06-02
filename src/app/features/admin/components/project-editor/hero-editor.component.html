@@ -79,13 +79,15 @@
           </div>
           <div class="adm-field">
             <label class="adm-label">Descripción / texto secundario</label>
-            <input class="adm-input" [(ngModel)]="local.description" (ngModelChange)="emit()"
-                   placeholder="TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:">
+            <textarea class="adm-input adm-textarea" [(ngModel)]="local.description" (ngModelChange)="emit()"
+                      placeholder="TU DEPA DE 2 AMBIENTES CON PRECIO DESDE:" rows="2"></textarea>
+            <span class="adm-field-hint">Presiona Enter para saltar de línea.</span>
           </div>
           <div class="adm-field">
             <label class="adm-label">Línea de precio (label)</label>
-            <input class="adm-input" [(ngModel)]="local.priceLine1" (ngModelChange)="emit()"
-                   placeholder="TU DEPA DE 2 AMBIENTES">
+            <textarea class="adm-input adm-textarea" [(ngModel)]="local.priceLine1" (ngModelChange)="emit()"
+                      placeholder="TU DEPA DE 2 AMBIENTES" rows="2"></textarea>
+            <span class="adm-field-hint">Presiona Enter para saltar de línea.</span>
           </div>
           <div class="adm-field adm-field--full">
             <label class="adm-label">Precio desde</label>

@@ -134,8 +134,17 @@
 /* Íconos de amenidades en fila */
 .apartment-specs__amenity-icons {
   display: flex;
-  gap: 1.75rem;
+  gap: 1.25rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.apartment-specs__amenity-item {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 0.4rem;
 }
 
 .apartment-specs__amenity-icon {
@@ -143,10 +152,20 @@
   height: 56px;
   min-width: 56px;
   min-height: 56px;
-  /* background-color: #d0c8b8; */
   padding: 5px;
   border-radius: 4px;
   color: #444;
+}
+
+.apartment-specs__amenity-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+  max-width: 72px;
+  word-break: break-word;
 }
 
 /* Lista de specs (pisos, tipos, metrajes) */

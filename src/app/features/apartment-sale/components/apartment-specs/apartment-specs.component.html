@@ -34,12 +34,9 @@
 
   <div class="apartment-specs__panel" [style.background-color]="specs.backgroundColor" [style.color]="specs.textColor">
     <div class="apartment-specs__branding">
-      <!-- <h2 class="apartment-specs__name">{{ specs.projectName }}</h2>
-      <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">
-        {{ specs.projectSubtitle }}
-      </p> -->
-      <img [src]="specs.logo | assetUrl" alt="Logo" class="apartment-specs__logo">
-      
+      <img *ngIf="specs.logo" [src]="specs.logo | assetUrl" alt="Logo" class="apartment-specs__logo">
+      <h2 class="apartment-specs__name" *ngIf="specs.projectName && !specs.logo">{{ specs.projectName }}</h2>
+      <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">{{ specs.projectSubtitle }}</p>
     </div>
 
     <p class="apartment-specs__description" *ngIf="specs.description">
@@ -48,7 +45,8 @@
 
     <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
       <div class="apartment-specs__amenity-item" *ngFor="let item of specs.amenityIcons">
-        <img [src]="item.icon | assetUrl" [alt]="item.label" class="apartment-specs__amenity-icon">
+        <img *ngIf="item.icon" [src]="item.icon | assetUrl" [alt]="item.label" class="apartment-specs__amenity-icon">
+        <span *ngIf="item.label" class="apartment-specs__amenity-label">{{ item.label }}</span>
       </div>
     </div>
 
