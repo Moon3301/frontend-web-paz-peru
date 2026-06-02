@@ -650,6 +650,61 @@ input[type="datetime-local"].adm-input {
 .adm-tab--active { color: #b2221f; border-bottom-color: #b2221f; background: rgba(178,34,31,0.05); }
 .adm-tab-content { padding-top: 4px; }
 
+/* ── Gallery tab-nav con botón eliminar ────────────────────── */
+.gallery-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-bottom: 4px;
+}
+.gallery-tab-item {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+}
+.gallery-tab-item--active {
+  border-color: #b2221f;
+  background: rgba(178,34,31,0.05);
+}
+.gallery-tab-item__label {
+  border: none !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  background: transparent;
+  padding: 7px 12px;
+}
+.gallery-tab-item__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  border: none;
+  border-left: 1px solid #e0e0e0;
+  background: transparent;
+  color: #aaa;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  padding: 0;
+  flex-shrink: 0;
+}
+.gallery-tab-item__remove:hover {
+  background: rgba(178,34,31,0.1);
+  color: #b2221f;
+}
+.gallery-tab-item--active .gallery-tab-item__remove {
+  border-left-color: rgba(178,34,31,0.3);
+}
+
+/* ── Fila de botones de acción secundarios ─────────────────── */
+.adm-row-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 /* ── Section editor layout ─────────────────────────────────── */
 .sec-editor { display: flex; flex-direction: column; gap: 20px; }
 .sec-editor__header {

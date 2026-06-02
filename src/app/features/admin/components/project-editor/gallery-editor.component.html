@@ -38,14 +38,27 @@
     <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addTab()">+ Agregar tab</button>
   </div>
 
+  <!-- Tabs de navegación: cada tab tiene botón de selección + X para eliminar -->
   <div class="gallery-tabs-nav" *ngIf="local.tabs?.length">
-    <button
-      *ngFor="let t of local.tabs; let i = index; trackBy: trackByIndex"
-      class="adm-tab"
-      [class.adm-tab--active]="activeTabIndex === i"
-      (click)="activeTabIndex = i">
-      {{ t.label || 'Tab ' + (i+1) }}
-    </button>
+    <div class="gallery-tab-item"
+         *ngFor="let t of local.tabs; let i = index; trackBy: trackByIndex"
+         [class.gallery-tab-item--active]="activeTabIndex === i">
+      <button
+        class="adm-tab gallery-tab-item__label"
+        [class.adm-tab--active]="activeTabIndex === i"
+        (click)="activeTabIndex = i">
+        {{ t.label || 'Tab ' + (i+1) }}
+      </button>
+      <button
+        class="gallery-tab-item__remove"
+        (click)="removeTab(i)"
+        title="Eliminar este tab"
+        pTooltip="Eliminar tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
   </div>
 
   <ng-container *ngIf="local.tabs?.length && local.tabs[activeTabIndex]">
@@ -61,11 +74,8 @@
     </div>
 
     <div class="sec-editor__subheader">
-      <h4 class="sec-editor__subtitle">Imágenes del tab</h4>
-      <div class="adm-row-actions">
-        <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addImage(local.tabs[activeTabIndex])">+ Imagen</button>
-        <button class="adm-btn adm-btn--sm adm-btn--danger" (click)="removeTab(activeTabIndex)">Eliminar tab</button>
-      </div>
+      <h4 class="sec-editor__subtitle">Imágenes del tab activo</h4>
+      <button class="adm-btn adm-btn--sm adm-btn--secondary" (click)="addImage(local.tabs[activeTabIndex])">+ Imagen</button>
     </div>
 
     <div class="adm-list">
