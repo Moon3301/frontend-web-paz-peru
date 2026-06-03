@@ -13,16 +13,8 @@
   text-align: center;
 }
 
-/* Wrapper del texto descripción — es el flex item que toma el 100% del ancho.
-   Separarlo del <p> permite que align-items:center del panel no lo colapse. */
-.apartment-specs__description-wrap {
-  width: 100%;
-  align-self: stretch;
-  box-sizing: border-box;
-}
-
 .apartment-specs__description {
-  width: 100%;
+  /* El panel usa align-items: stretch, así que este <p> toma el 100% del ancho automáticamente. */
   margin: 0;
   font-size: 0.95rem;
   font-weight: 400;
@@ -114,13 +106,18 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* stretch: los hijos toman todo el ancho disponible por defecto.
+     Los que necesiten centrarse usan align-self: center explícitamente. */
+  align-items: stretch;
   gap: 1.75rem;
 }
 
 .apartment-specs__branding {
+  /* Este bloque se centra a sí mismo (logo, nombre, subtítulo) */
+  align-self: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.25rem;
 }
 
@@ -140,8 +137,9 @@
   text-transform: uppercase;
 }
 
-/* Íconos de amenidades en fila */
+/* Íconos de amenidades en fila — se centra a sí mismo */
 .apartment-specs__amenity-icons {
+  align-self: center;
   display: flex;
   gap: 1.25rem;
   align-items: flex-start;
@@ -185,9 +183,9 @@
   flex-shrink: 0;
 }
 
-/* Lista de specs (pisos, tipos, metrajes + ítems personalizados).
-   Sin width explícito: el align-items:center del padre lo mantiene compact (ancho natural). */
+/* Lista de specs — se centra a sí misma para quedar compacta */
 .apartment-specs__details {
+  align-self: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -214,8 +212,9 @@
   border-radius: 3px;
 }
 
-/* Botones: Descarga Brochure + Ver video */
+/* Botones: Descarga Brochure + Ver video — se centran a sí mismos */
 .apartment-specs__actions {
+  align-self: center;
   display: flex;
   gap: 0.85rem;
   flex-wrap: wrap;

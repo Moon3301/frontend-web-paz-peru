@@ -39,11 +39,7 @@
       <p class="apartment-specs__subtitle" *ngIf="specs.projectSubtitle">{{ specs.projectSubtitle }}</p>
     </div>
 
-    <!-- Wrapper con width:100% en el template garantiza que el párrafo ocupe
-         todo el ancho del panel, independientemente del align-items:center del padre. -->
-    <div class="apartment-specs__description-wrap" *ngIf="specs.description">
-      <p class="apartment-specs__description">{{ specs.description }}</p>
-    </div>
+    <p class="apartment-specs__description" *ngIf="specs.description">{{ specs.description }}</p>
 
     <div class="apartment-specs__amenity-icons" *ngIf="specs.amenityIcons?.length">
       <div class="apartment-specs__amenity-item" *ngFor="let item of specs.amenityIcons">
