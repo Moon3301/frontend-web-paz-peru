@@ -30,6 +30,7 @@ import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admi
 import { HomeAdminComponent }             from './pages/home/home-admin.component';
 import { SeoAdminComponent }             from './pages/seo/seo-admin.component';
 import { UsersAdminComponent }           from './pages/users/users-admin.component';
+import { NosotrosAdminComponent }        from './pages/nosotros/nosotros-admin.component';
 
 // Section editors
 import { HeroEditorComponent }        from './components/project-editor/hero-editor.component';
@@ -62,6 +63,7 @@ const DECLARATIONS = [
   HomeAdminComponent,
   SeoAdminComponent,
   UsersAdminComponent,
+  NosotrosAdminComponent,
 
   // Section editors
   HeroEditorComponent,

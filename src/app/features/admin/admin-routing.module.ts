@@ -16,6 +16,7 @@ import { DevToolsAdminComponent }         from './pages/dev-tools/dev-tools-admi
 import { HomeAdminComponent }             from './pages/home/home-admin.component';
 import { SeoAdminComponent }             from './pages/seo/seo-admin.component';
 import { UsersAdminComponent }           from './pages/users/users-admin.component';
+import { NosotrosAdminComponent }        from './pages/nosotros/nosotros-admin.component';
 import { AdminAuthGuard }                  from './guards/admin-auth.guard';
 
 const routes: Routes = [
@@ -37,6 +38,7 @@ const routes: Routes = [
       { path: 'districts',         component: DistrictsComponent              },
       { path: 'delivered-projects',component: DeliveredProjectsAdminComponent },
       { path: 'home',              component: HomeAdminComponent              },
+      { path: 'nosotros',          component: NosotrosAdminComponent          },
       { path: 'promotions',        component: PromotionsAdminComponent        },
       { path: 'media',             component: MediaManagerComponent           },
       { path: 'blog',              component: BlogAdminComponent              },

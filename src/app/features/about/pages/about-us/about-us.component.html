@@ -25,28 +25,17 @@
   <div class="about-stats__content">
     <div class="about-stats__grid">
 
-      <div class="about-stats__item">
-        <span class="about-stats__number">15 años</span>
-        <span class="about-stats__label">Cumpliendo sueños</span>
-      </div>
-
-      <div class="about-stats__divider"></div>
-
-      <div class="about-stats__item">
-        <span class="about-stats__number">+ 8,600</span>
-        <span class="about-stats__label">Unidades entregadas</span>
-      </div>
-
-      <div class="about-stats__divider"></div>
-
-      <div class="about-stats__item">
-        <span class="about-stats__number">+ 25</span>
-        <span class="about-stats__label">Proyectos desarrollados</span>
-      </div>
+      <ng-container *ngFor="let stat of stats; let i = index; let last = last">
+        <div class="about-stats__item">
+          <span class="about-stats__number">{{ stat.value }}</span>
+          <span class="about-stats__label">{{ stat.label }}</span>
+        </div>
+        <div class="about-stats__divider" *ngIf="!last"></div>
+      </ng-container>
 
     </div>
 
-    <p class="about-stats__tagline">Creamos espacios para disfrutar la vida</p>
+    <p class="about-stats__tagline">{{ tagline }}</p>
   </div>
 </section>
 
@@ -54,10 +43,8 @@
 <section class="about-respaldo">
   <div class="about-respaldo__container">
     <div class="about-respaldo__text">
-      <h2 class="about-respaldo__title">Nuestro respaldo</h2>
-      <p>En el 2008, 2 de los más importantes grupos inmobiliarios del Perú (Grupo Centenario) y Chile (Paz Corp.) se unieron para crear una empresa que desarrolle proyectos inmobiliarios que trasciendan en el país.</p>
-      <p>Ese año marcó un antes y un después para miles de familias que hoy ven realizado sus sueños a través del trabajo de nuestro gran equipo de colaboradores.</p>
-      <p>El respaldo que nos dan estas 2 grandes empresas, nos permiten desarrollar proyectos de una gran calidad que van acorde a la exigencia de nuestros clientes y que nos impulsan a seguir innovando día a día en el mundo inmobiliario.</p>
+      <h2 class="about-respaldo__title">{{ respaldoTitle }}</h2>
+      <p *ngFor="let para of respaldoParas">{{ para }}</p>
     </div>
     <div class="about-respaldo__logos">
       <img src="/images/logos/logo-paz-nosotros.png" alt="Paz Corp" class="about-respaldo__logo">

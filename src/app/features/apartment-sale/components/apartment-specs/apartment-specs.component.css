@@ -14,13 +14,18 @@
 }
 
 .apartment-specs__description {
-  display: block !important;
-  width: 100% !important;
+  /* justify-self: stretch (grid nativo) en lugar de width: 100%
+     porque un porcentaje dentro de un grid-dentro-flex puede resolverse
+     a cero cuando el 1fr track aún no tiene tamaño definitivo. */
+  justify-self: stretch;
+  align-self: auto;
+  width: auto;
+  min-width: 0;
   box-sizing: border-box;
   margin: 0;
   font-size: 0.95rem;
   font-weight: 400;
-  text-align: justify;
+  text-align: left;
   line-height: 1.65;
 }
 
@@ -103,10 +108,12 @@
 
 .apartment-specs__panel {
   flex: 1;
+  /* min-width: 0 impide que el flex item crezca más allá de su flex-basis
+     por el min-content de sus hijos y garantiza que el 1fr del grid
+     tenga un tamaño definitivo para que justify-self: stretch funcione. */
+  min-width: 0;
   padding: 3.5rem 3rem;
   background: #f5f0e8;
-  /* Grid: 1 columna = todos los hijos toman el 100% del ancho del panel.
-     Los que deben ser compactos/centrados usan justify-self: center. */
   display: grid;
   grid-template-columns: 1fr;
   grid-auto-rows: min-content;
@@ -173,7 +180,7 @@
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.3;
-  max-width: 72px;
+  max-width: 80%;
   word-break: break-word;
 }
 

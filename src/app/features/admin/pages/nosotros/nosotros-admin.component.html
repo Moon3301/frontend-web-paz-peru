@@ -1,0 +1,97 @@
+<div class="adm-page">
+  <div class="adm-page-header">
+    <div>
+      <h1 class="adm-page-title">Nosotros</h1>
+      <p class="adm-page-subtitle">Edita el contenido de la página "Nosotros"</p>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SECCIÓN 1 — Estadísticas y tagline
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Estadísticas y tagline</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="saved['stats']">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveStats()" [disabled]="saving['stats']">
+          <span *ngIf="!saving['stats']">Guardar</span>
+          <span *ngIf="saving['stats']" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <p class="adm-hint" style="margin-bottom:16px">
+      Estos tres números aparecen sobre la imagen de fondo en la sección estadísticas de la página Nosotros.
+    </p>
+
+    <div class="adm-form-grid">
+      <ng-container *ngFor="let stat of stats; let i = index; trackBy: trackByIndex">
+        <div class="adm-field">
+          <label class="adm-label">Valor #{{ i + 1 }}</label>
+          <input class="adm-input" [(ngModel)]="stat.value"
+                 [placeholder]="i === 0 ? '15 años' : i === 1 ? '+ 8,600' : '+ 25'">
+        </div>
+        <div class="adm-field">
+          <label class="adm-label">Etiqueta #{{ i + 1 }}</label>
+          <input class="adm-input" [(ngModel)]="stat.label"
+                 [placeholder]="i === 0 ? 'Cumpliendo sueños' : i === 1 ? 'Unidades entregadas' : 'Proyectos desarrollados'">
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="adm-form-grid" style="margin-top:16px">
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Tagline (texto bajo las estadísticas)</label>
+        <input class="adm-input" [(ngModel)]="tagline"
+               placeholder="Creamos espacios para disfrutar la vida">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════════════
+       SECCIÓN 2 — Nuestro Respaldo
+       ════════════════════════════════════════════════════════════════ -->
+  <div class="adm-card adm-card--mb">
+    <div class="adm-card__title-row">
+      <h2 class="adm-card__title">Nuestro respaldo</h2>
+      <div class="adm-card__title-actions">
+        <span class="adm-save-success" *ngIf="saved['respaldo']">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+          Guardado
+        </span>
+        <button class="adm-btn adm-btn--primary adm-btn--sm" (click)="saveRespaldo()" [disabled]="saving['respaldo']">
+          <span *ngIf="!saving['respaldo']">Guardar</span>
+          <span *ngIf="saving['respaldo']" class="adm-spinner adm-spinner--sm"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="adm-form-grid">
+
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Título de la sección</label>
+        <input class="adm-input" [(ngModel)]="respaldoTitle" placeholder="Nuestro respaldo">
+      </div>
+
+      <div class="adm-field adm-field--full">
+        <label class="adm-label">Texto descriptivo</label>
+        <textarea class="adm-input adm-textarea" [(ngModel)]="respaldoText" rows="8"
+                  placeholder="Escribe el texto aquí. Separa cada párrafo con una línea en blanco."></textarea>
+        <p class="adm-field-hint">
+          Cada párrafo separado por una línea en blanco se mostrará como un bloque de texto independiente en la página.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</div>
