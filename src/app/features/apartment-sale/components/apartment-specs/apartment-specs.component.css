@@ -176,7 +176,7 @@
 .apartment-specs__amenity-label {
   font-size: 0.7rem;
   font-weight: 600;
-  text-align: center;
+  text-align: justify;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   line-height: 1.3;
