@@ -14,7 +14,7 @@ import { UbicationConfig } from './components/ubication/ubication.component';
 export class HomeComponent implements OnInit {
 
   /** Banner promocional entre hero y proyectos */
-  homeBanner = '/images/home/home_m.png';
+  homeBanner: string | null = null;
 
   /** Slides del hero — empieza con los defaults para que el vídeo se muestre
    *  inmediatamente; se reemplaza cuando el CMS carga datos distintos. */
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
           keywords:    s['seo_page_home_keywords']    || undefined,
         });
         // Banner home
-        if (s['home_promo_banner']) this.homeBanner = s['home_promo_banner'];
+        this.homeBanner = s['home_promo_banner'] || null;
 
         // Hero slides
         if (s['home_hero_slides']) {

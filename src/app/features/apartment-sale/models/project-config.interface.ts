@@ -52,18 +52,20 @@ export interface LogoBreakpointSize {
  * Solo los breakpoints definidos sobreescriben el default del CSS.
  *
  * Breakpoints de referencia:
- *   desktop  → ≥1440 px
- *   standard → 1025–1439 px  (base por defecto)
- *   tablet   → 768–1024 px
- *   mobile   → ≤767 px
- *   mobileSm → ≤480 px
+ *   desktopXxl → ≥1920 px  (extra-extra-large)
+ *   desktop    → 1440–1919 px
+ *   standard   → 1025–1439 px  (base por defecto)
+ *   tablet     → 769–1024 px
+ *   mobile     → ≤768 px
+ *   mobileSm   → ≤480 px
  */
 export interface HeroLogoSize {
-  desktop?:  LogoBreakpointSize;
-  standard?: LogoBreakpointSize;
-  tablet?:   LogoBreakpointSize;
-  mobile?:   LogoBreakpointSize;
-  mobileSm?: LogoBreakpointSize;
+  desktopXxl?: LogoBreakpointSize;  // ≥1920 px — NEW
+  desktop?:    LogoBreakpointSize;  // 1440–1919 px
+  standard?:   LogoBreakpointSize;  // 1025–1439 px (base)
+  tablet?:     LogoBreakpointSize;  // 769–1024 px
+  mobile?:     LogoBreakpointSize;  // ≤768 px
+  mobileSm?:   LogoBreakpointSize;  // ≤480 px
 }
 
 export interface HeroConfig {
@@ -156,6 +158,35 @@ export interface HeroConfig {
    */
   textPaddingHMobile?: number;
 
+  // ── Posición del texto por breakpoint (override del estándar) ──────────────
+
+  /**
+   * Override de posición SOLO en tablet (769–1024 px).
+   * Si no se define, hereda la posición estándar (textPosition).
+   */
+  textPositionTablet?: HeroTextPosition;
+
+  /**
+   * Override de posición SOLO en desktop grande (1440–1919 px).
+   * Si no se define, hereda la posición estándar (textPosition).
+   */
+  textPositionXl?: HeroTextPosition;
+
+  /**
+   * Override de posición SOLO en pantallas muy grandes (≥1920 px).
+   * Si no se define, hereda la posición XL o estándar.
+   */
+  textPositionXxl?: HeroTextPosition;
+
+  /** Relleno horizontal (%) del bloque de texto en tablet. */
+  textPaddingHTablet?: number;
+
+  /** Relleno horizontal (%) del bloque de texto en 1440px+. */
+  textPaddingHXl?: number;
+
+  /** Relleno horizontal (%) del bloque de texto en 1920px+. */
+  textPaddingHXxl?: number;
+
   /**
    * Ajuste fino horizontal del bloque de texto completo (en píxeles) — ESCRITORIO.
    * Positivo = mueve a la derecha, negativo = mueve a la izquierda.
@@ -190,6 +221,21 @@ export interface HeroConfig {
    * Default: 0.
    */
   textOffsetYMobile?: number;
+
+  /** Ajuste fino horizontal en píxeles — TABLET (769–1024px). */
+  textOffsetXTablet?: number;
+  /** Ajuste fino vertical en píxeles — TABLET. */
+  textOffsetYTablet?: number;
+
+  /** Ajuste fino horizontal en píxeles — 1440–1919px. */
+  textOffsetXXl?: number;
+  /** Ajuste fino vertical en píxeles — 1440–1919px. */
+  textOffsetYXl?: number;
+
+  /** Ajuste fino horizontal en píxeles — ≥1920px. */
+  textOffsetXXxl?: number;
+  /** Ajuste fino vertical en píxeles — ≥1920px. */
+  textOffsetYXxl?: number;
 }
 
 export interface ProjectStatsConfig {

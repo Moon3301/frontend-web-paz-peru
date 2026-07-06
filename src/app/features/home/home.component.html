@@ -1,7 +1,7 @@
 <home-hero [slides]="heroSlides" />
 
 <!-- Banner promocional (full-width, links a /promotions) -->
-<section class="paz-promo-banner">
+<section class="paz-promo-banner" *ngIf="homeBanner">
   <a routerLink="/promotions">
     <img [src]="homeBanner" class="paz-promo-banner__desk" alt="Promociones Paz Inmobiliaria" />
   </a>

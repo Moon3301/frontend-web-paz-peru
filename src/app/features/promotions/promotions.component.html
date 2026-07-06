@@ -3,7 +3,7 @@
   ============================================================ -->
 
 <!-- Hero Banner — imágenes desde CMS settings -->
-<div class="promo-hero">
+<div class="promo-hero" *ngIf="heroDesktop || heroMobile">
   <picture>
     <source media="(max-width: 768px)" [attr.srcset]="heroMobile">
     <img [src]="heroDesktop" alt="Promociones Paz Perú" class="promo-hero__img">
@@ -79,7 +79,7 @@
 <section id="promotions" class="promo-cliente-amigo">
   <div class="promo-cliente-amigo__container">
 
-    <div class="promo-cliente-amigo__img-wrap">
+    <div class="promo-cliente-amigo__img-wrap" *ngIf="clienteAmigoImg">
       <img
         [src]="clienteAmigoImg"
         alt="Programa Cliente Amigo"

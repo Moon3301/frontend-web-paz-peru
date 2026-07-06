@@ -3,6 +3,7 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 /** Las 9 posiciones del selector visual */
 export type PosV = 'top' | 'center' | 'bottom';
 export type PosH = 'left' | 'center' | 'right';
+export type PosDevice = 'mobile' | 'tablet' | 'desktop' | 'xl' | 'xxl';
 
 @Component({
   selector: 'app-hero-editor',
@@ -16,30 +17,53 @@ export class HeroEditorComponent implements OnInit {
 
   local: any = {};
 
-  // ── Selector de posición — ESCRITORIO ────────────────────────────────────
+  // ── Estándar / Escritorio base (1025–1439px) ──────────────────────────────
   posV: PosV = 'bottom';
   posH: PosH = 'center';
-  posOffset = 8;   // % desde el borde (top o bottom según posV)
-
-  // ── Ajuste fino (píxeles) — escritorio ───────────────────────────────────
+  posOffset = 8;
   textOffsetX = 0;
   textOffsetY = 0;
 
-  // ── Ajuste fino (píxeles) — móvil ────────────────────────────────────────
-  textOffsetXMobile = 0;
-  textOffsetYMobile = 0;
+  // ── Tablet (769–1024px) ───────────────────────────────────────────────────
+  posTabV: PosV = 'bottom';
+  posTabH: PosH = 'center';
+  posTabOffset = 8;
+  tabTextEnabled = false;
+  textOffsetXTablet = 0;
+  textOffsetYTablet = 0;
 
-  // ── Selector de posición — MÓVIL ─────────────────────────────────────────
+  // ── 1440–1919px ───────────────────────────────────────────────────────────
+  posXlV: PosV = 'bottom';
+  posXlH: PosH = 'center';
+  posXlOffset = 8;
+  xlTextEnabled = false;
+  textOffsetXXl = 0;
+  textOffsetYXl = 0;
+
+  // ── ≥1920px ───────────────────────────────────────────────────────────────
+  posXxlV: PosV = 'bottom';
+  posXxlH: PosH = 'center';
+  posXxlOffset = 8;
+  xxlTextEnabled = false;
+  textOffsetXXxl = 0;
+  textOffsetYXxl = 0;
+
+  // ── Móvil (≤768px) ────────────────────────────────────────────────────────
   posMV: PosV = 'bottom';
   posMH: PosH = 'center';
   posMOffset = 8;
   mobileTextEnabled = false;
+  textOffsetXMobile = 0;
+  textOffsetYMobile = 0;
 
-  /** Pestaña activa en el panel de posición: 'desktop' | 'mobile' */
-  posDevice: 'desktop' | 'mobile' = 'desktop';
+  /** Pestaña activa en el panel de posición */
+  posDevice: PosDevice = 'desktop';
   readonly deviceOptions = [
-    { label: '🖥  Escritorio', value: 'desktop' },
-    { label: '📱  Móvil',      value: 'mobile'  },
+    { label: '📱 Móvil',      value: 'mobile'  },
+    { label: 'Tablet',        value: 'tablet'  },
+    { label: '🖥 Estándar',   value: 'desktop' },
+    { label: '🖥 1440px',     value: 'xl'      },
+    { label: '🖥 1920px',     value: 'xxl'     },
   ];
 
   readonly vOptions = [
@@ -65,34 +89,202 @@ export class HeroEditorComponent implements OnInit {
     if (!this.local.slides)        this.local.slides        = [];
     if (!this.local.textPosition)  this.local.textPosition  = {};
     if (!this.local.logoSize)      this.local.logoSize      = {};
-    ['desktop','tablet','mobile'].forEach(bp => {
+
+    // Asegurar que todos los breakpoints de logo tengan un objeto
+    ['desktopXxl','desktop','standard','tablet','mobile','mobileSm'].forEach(bp => {
       if (!this.local.logoSize[bp]) this.local.logoSize[bp] = {};
     });
+
     ['badgeStyle','descriptionStyle','priceLabelStyle','priceFromStyle'].forEach(k => {
       if (!this.local[k]) this.local[k] = {};
     });
 
     // Padding por defecto si no está definido
-    if (this.local.textPaddingH        === undefined) this.local.textPaddingH        = 10;
-    if (this.local.textPaddingHMobile  === undefined) this.local.textPaddingHMobile  = 8;
+    if (this.local.textPaddingH       === undefined) this.local.textPaddingH       = 10;
+    if (this.local.textPaddingHMobile === undefined) this.local.textPaddingHMobile = 8;
+    if (this.local.textPaddingHTablet === undefined) this.local.textPaddingHTablet = 10;
+    if (this.local.textPaddingHXl     === undefined) this.local.textPaddingHXl     = 10;
+    if (this.local.textPaddingHXxl    === undefined) this.local.textPaddingHXxl    = 10;
 
-    // Estado móvil
-    this.mobileTextEnabled = !!(this.local.textPositionMobile &&
-      Object.values(this.local.textPositionMobile).some(v => v && v !== 'auto'));
+    // Estado de los toggles
+    this.mobileTextEnabled  = this.hasCustomPos(this.local.textPositionMobile);
+    this.tabTextEnabled     = this.hasCustomPos(this.local.textPositionTablet);
+    this.xlTextEnabled      = this.hasCustomPos(this.local.textPositionXl);
+    this.xxlTextEnabled     = this.hasCustomPos(this.local.textPositionXxl);
 
+    // Leer posiciones guardadas
     this.readPositionFromConfig();
     this.readMobilePositionFromConfig();
+    this.readBreakpointPosition('tablet', this.local.textPositionTablet);
+    this.readBreakpointPosition('xl',     this.local.textPositionXl);
+    this.readBreakpointPosition('xxl',    this.local.textPositionXxl);
 
-    // Ajuste fino — escritorio
-    this.textOffsetX = this.local.textOffsetX ?? 0;
-    this.textOffsetY = this.local.textOffsetY ?? 0;
-
-    // Ajuste fino — móvil
+    // Ajustes finos
+    this.textOffsetX     = this.local.textOffsetX     ?? 0;
+    this.textOffsetY     = this.local.textOffsetY     ?? 0;
     this.textOffsetXMobile = this.local.textOffsetXMobile ?? 0;
     this.textOffsetYMobile = this.local.textOffsetYMobile ?? 0;
+    this.textOffsetXTablet = this.local.textOffsetXTablet ?? 0;
+    this.textOffsetYTablet = this.local.textOffsetYTablet ?? 0;
+    this.textOffsetXXl   = this.local.textOffsetXXl   ?? 0;
+    this.textOffsetYXl   = this.local.textOffsetYXl   ?? 0;
+    this.textOffsetXXxl  = this.local.textOffsetXXxl  ?? 0;
+    this.textOffsetYXxl  = this.local.textOffsetYXxl  ?? 0;
+  }
+
+  private hasCustomPos(pos: any): boolean {
+    return !!(pos && Object.values(pos).some((v: any) => v && v !== 'auto'));
   }
 
   emit(): void { this.configChange.emit(this.local); }
+
+  // ── Lectura genérica de posición por breakpoint ───────────────────────────
+
+  private readBreakpointPosition(bp: 'tablet' | 'xl' | 'xxl', pos: any): void {
+    if (!pos) return;
+    const readV = (p: any): PosV =>
+      p?.top !== undefined && p.top !== 'auto'
+        ? (p.top === '50%' ? 'center' : 'top')
+        : p?.bottom !== undefined && p.bottom !== 'auto' ? 'bottom' : 'bottom';
+    const readOffset = (p: any, v: PosV): number => {
+      const raw = v === 'bottom' ? p?.bottom : v === 'top' ? p?.top : null;
+      if (!raw || raw === '50%' || raw === 'auto') return 8;
+      const n = parseFloat(raw); return isNaN(n) ? 8 : n;
+    };
+    const readH = (p: any): PosH => {
+      const hasL = p?.left  !== undefined && p.left  !== 'auto';
+      const hasR = p?.right !== undefined && p.right !== 'auto';
+      if (hasL && hasR) return 'center';
+      if (hasR) return 'right';
+      if (hasL) return 'left';
+      return 'center';
+    };
+    if (bp === 'tablet') {
+      this.posTabV = readV(pos); this.posTabOffset = readOffset(pos, this.posTabV); this.posTabH = readH(pos);
+    } else if (bp === 'xl') {
+      this.posXlV  = readV(pos); this.posXlOffset  = readOffset(pos, this.posXlV);  this.posXlH  = readH(pos);
+    } else {
+      this.posXxlV = readV(pos); this.posXxlOffset = readOffset(pos, this.posXxlV); this.posXxlH = readH(pos);
+    }
+  }
+
+  // ── Apply genérico ────────────────────────────────────────────────────────
+
+  private buildPos(v: PosV, h: PosH, offset: number): Record<string, string> {
+    const pos: Record<string, string> = {};
+    const off = offset + '%';
+    if (v === 'top')    { pos['top'] = off;    pos['bottom'] = 'auto'; }
+    else if (v === 'center') { pos['top'] = '50%'; pos['bottom'] = 'auto'; }
+    else                { pos['bottom'] = off;  pos['top']    = 'auto'; }
+    if (h === 'left')   { pos['left']  = '5%'; pos['right'] = 'auto'; }
+    else if (h === 'right') { pos['right'] = '5%'; pos['left']  = 'auto'; }
+    else                { pos['left'] = '0'; pos['right'] = '0'; }
+    return pos;
+  }
+
+  applyTabletPosition(): void {
+    if (!this.tabTextEnabled) return;
+    this.local.textPositionTablet = this.buildPos(this.posTabV, this.posTabH, this.posTabOffset);
+    this.emit();
+  }
+
+  applyXlPosition(): void {
+    if (!this.xlTextEnabled) return;
+    this.local.textPositionXl = this.buildPos(this.posXlV, this.posXlH, this.posXlOffset);
+    this.emit();
+  }
+
+  applyXxlPosition(): void {
+    if (!this.xxlTextEnabled) return;
+    this.local.textPositionXxl = this.buildPos(this.posXxlV, this.posXxlH, this.posXxlOffset);
+    this.emit();
+  }
+
+  toggleTabletText(enabled: boolean): void {
+    this.tabTextEnabled = enabled;
+    if (!enabled) { delete this.local.textPositionTablet; this.emit(); }
+    else { this.local.textPositionTablet = {}; this.applyTabletPosition(); }
+  }
+
+  toggleXlText(enabled: boolean): void {
+    this.xlTextEnabled = enabled;
+    if (!enabled) { delete this.local.textPositionXl; this.emit(); }
+    else { this.local.textPositionXl = {}; this.applyXlPosition(); }
+  }
+
+  toggleXxlText(enabled: boolean): void {
+    this.xxlTextEnabled = enabled;
+    if (!enabled) { delete this.local.textPositionXxl; this.emit(); }
+    else { this.local.textPositionXxl = {}; this.applyXxlPosition(); }
+  }
+
+  selectTabletCell(v: string, h: string): void {
+    this.posTabV = v as PosV; this.posTabH = h as PosH; this.applyTabletPosition();
+  }
+  selectXlCell(v: string, h: string): void {
+    this.posXlV = v as PosV; this.posXlH = h as PosH; this.applyXlPosition();
+  }
+  selectXxlCell(v: string, h: string): void {
+    this.posXxlV = v as PosV; this.posXxlH = h as PosH; this.applyXxlPosition();
+  }
+
+  isActiveTabletCell(v: string, h: string): boolean { return this.posTabV === v && this.posTabH === h; }
+  isActiveXlCell   (v: string, h: string): boolean { return this.posXlV  === v && this.posXlH  === h; }
+  isActiveXxlCell  (v: string, h: string): boolean { return this.posXxlV === v && this.posXxlH === h; }
+
+  // Ajuste fino tablet
+  applyTabletOffset(): void {
+    this.local.textOffsetXTablet = this.textOffsetXTablet || undefined;
+    this.local.textOffsetYTablet = this.textOffsetYTablet || undefined;
+    this.emit();
+  }
+  resetTabletOffset(): void {
+    this.textOffsetXTablet = 0; this.textOffsetYTablet = 0;
+    delete this.local.textOffsetXTablet; delete this.local.textOffsetYTablet; this.emit();
+  }
+
+  // Ajuste fino xl
+  applyXlOffset(): void {
+    this.local.textOffsetXXl = this.textOffsetXXl || undefined;
+    this.local.textOffsetYXl = this.textOffsetYXl || undefined;
+    this.emit();
+  }
+  resetXlOffset(): void {
+    this.textOffsetXXl = 0; this.textOffsetYXl = 0;
+    delete this.local.textOffsetXXl; delete this.local.textOffsetYXl; this.emit();
+  }
+
+  // Ajuste fino xxl
+  applyXxlOffset(): void {
+    this.local.textOffsetXXxl = this.textOffsetXXxl || undefined;
+    this.local.textOffsetYXxl = this.textOffsetYXxl || undefined;
+    this.emit();
+  }
+  resetXxlOffset(): void {
+    this.textOffsetXXxl = 0; this.textOffsetYXxl = 0;
+    delete this.local.textOffsetXXxl; delete this.local.textOffsetYXxl; this.emit();
+  }
+
+  get positionTabletLabel(): string {
+    const v = { top: 'arriba', center: 'al centro', bottom: 'abajo' }[this.posTabV];
+    const h = { left: 'a la izquierda', center: 'centrado', right: 'a la derecha' }[this.posTabH];
+    const e = this.posTabV !== 'center' ? `, ${this.posTabOffset}%` : '';
+    return `Texto ${v}, ${h}${e}`;
+  }
+
+  get positionXlLabel(): string {
+    const v = { top: 'arriba', center: 'al centro', bottom: 'abajo' }[this.posXlV];
+    const h = { left: 'a la izquierda', center: 'centrado', right: 'a la derecha' }[this.posXlH];
+    const e = this.posXlV !== 'center' ? `, ${this.posXlOffset}%` : '';
+    return `Texto ${v}, ${h}${e}`;
+  }
+
+  get positionXxlLabel(): string {
+    const v = { top: 'arriba', center: 'al centro', bottom: 'abajo' }[this.posXxlV];
+    const h = { left: 'a la izquierda', center: 'centrado', right: 'a la derecha' }[this.posXxlH];
+    const e = this.posXxlV !== 'center' ? `, ${this.posXxlOffset}%` : '';
+    return `Texto ${v}, ${h}${e}`;
+  }
 
   // ── Slides ────────────────────────────────────────────────────────────────
 

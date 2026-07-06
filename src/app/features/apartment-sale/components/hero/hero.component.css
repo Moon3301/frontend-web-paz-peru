@@ -89,23 +89,28 @@
 }
 
 /* Bloque de texto posicionado DENTRO de la imagen del logo.
-   Por defecto: parte inferior, centrado, con padding lateral generoso.
-   [ngStyle] desde HeroConfig.textPosition puede sobreescribir posición.
-   --text-ph controla el relleno horizontal (configurable desde el editor).
-   overflow: hidden garantiza que ningún texto desborde la imagen. */
+   TODA la posición se controla mediante CSS custom properties (no inline styles)
+   para que los @media overrides de breakpoint funcionen correctamente.
+
+   Variables inyectadas por HeroComponent.getLogoCssVars() en .hero__logo-wrapper:
+     --hero-text-bottom/top/left/right   → posición estándar (1025–1439px)
+     --tab-text-*                        → tablet (769–1024px)
+     --xl-text-*                         → 1440–1919px
+     --xxl-text-*                        → ≥1920px
+     --mob-text-*                        → ≤768px (existentes)
+     --text-ph / --tab-text-ph / etc.    → relleno horizontal por breakpoint
+*/
 .hero__logo-text {
   position: absolute;
-  bottom: 8%;
-  left: 0;
-  right: 0;
+  bottom: var(--hero-text-bottom, 8%);
+  top:    var(--hero-text-top, auto);
+  left:   var(--hero-text-left, 0);
+  right:  var(--hero-text-right, 0);
   padding: 0 var(--text-ph, 10%);
   text-align: center;
   overflow: hidden;
   box-sizing: border-box;
-  /* Limita la altura máxima al 88% del logo para no pisar el área gráfica */
   max-height: 88%;
-  /* Transform controlado por custom property — permite que las reglas @media
-     sobreescriban el valor sin batallar contra la especificidad inline. */
   transform: var(--hero-text-tf, none);
 }
 
@@ -206,28 +211,53 @@
   transform: scale(1.3);
 }
 
-/* ---- Pantallas grandes (≥1440px) ---- */
-@media (min-width: 1440px) {
+/* ---- Tablet (769–1024px) ---- */
+@media (min-width: 769px) and (max-width: 1024px) {
   .hero__logo-wrapper {
-    width: var(--logo-w-xl, min(46vw, 720px));
+    width:  var(--logo-w-tablet, min(54vw, 460px));
+    height: var(--logo-h-tablet, min(40vh, 360px));
+  }
+  /* Override de posición de texto — solo si el admin lo configura */
+  .hero__logo-text {
+    bottom:  var(--tab-text-bottom,  var(--hero-text-bottom, 8%));
+    top:     var(--tab-text-top,     var(--hero-text-top, auto));
+    left:    var(--tab-text-left,    var(--hero-text-left, 0));
+    right:   var(--tab-text-right,   var(--hero-text-right, 0));
+    transform: var(--tab-text-tf,    var(--hero-text-tf, none));
+    padding: 0 var(--tab-text-ph,    var(--text-ph, 10%));
+  }
+}
+
+/* ---- Pantallas grandes (1440–1919px) ---- */
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .hero__logo-wrapper {
+    width:  var(--logo-w-xl, min(46vw, 720px));
     height: var(--logo-h-xl, min(48vh, 560px));
   }
-  /* Los font-size escalan solos con cqi al crecer el wrapper; no necesitan override */
+  .hero__logo-text {
+    bottom:  var(--xl-text-bottom,  var(--hero-text-bottom, 8%));
+    top:     var(--xl-text-top,     var(--hero-text-top, auto));
+    left:    var(--xl-text-left,    var(--hero-text-left, 0));
+    right:   var(--xl-text-right,   var(--hero-text-right, 0));
+    transform: var(--xl-text-tf,    var(--hero-text-tf, none));
+    padding: 0 var(--xl-text-ph,    var(--text-ph, 10%));
+  }
 }
 
 /* ---- Pantallas muy grandes (≥1920px) ---- */
 @media (min-width: 1920px) {
   .hero__logo-wrapper {
-    width: var(--logo-w-xl, min(44vw, 860px));
-    height: var(--logo-h-xl, min(50vh, 640px));
+    /* --logo-w-xxl → nuevo; fallback a --logo-w-xl; fallback a CSS default */
+    width:  var(--logo-w-xxl, var(--logo-w-xl, min(44vw, 860px)));
+    height: var(--logo-h-xxl, var(--logo-h-xl, min(50vh, 640px)));
   }
-}
-
-/* ---- Tablet (768–1024px) ---- */
-@media (max-width: 1024px) {
-  .hero__logo-wrapper {
-    width: var(--logo-w-tablet, min(54vw, 460px));
-    height: var(--logo-h-tablet, min(40vh, 360px));
+  .hero__logo-text {
+    bottom:  var(--xxl-text-bottom,  var(--xl-text-bottom,  var(--hero-text-bottom, 8%)));
+    top:     var(--xxl-text-top,     var(--xl-text-top,     var(--hero-text-top, auto)));
+    left:    var(--xxl-text-left,    var(--xl-text-left,    var(--hero-text-left, 0)));
+    right:   var(--xxl-text-right,   var(--xl-text-right,   var(--hero-text-right, 0)));
+    transform: var(--xxl-text-tf,    var(--xl-text-tf,      var(--hero-text-tf, none)));
+    padding: 0 var(--xxl-text-ph,    var(--xl-text-ph,      var(--text-ph, 10%)));
   }
 }
 

@@ -14,12 +14,12 @@ export class PromotionsComponent implements OnInit {
   otherPromos: Promotion[] = [];
   loading = true;
 
-  /** Banners desde CMS settings (valores por defecto = imágenes estáticas) */
-  heroDesktop   = '/images/promotions/banner-hero-desk.jpg';
-  heroMobile    = '/images/promotions/banner-hero-mb.jpg';
-  promoMainBanner = '/images/home/home_d.png';
+  /** Banners desde CMS settings — null significa sin imagen configurada */
+  heroDesktop: string | null     = null;
+  heroMobile: string | null      = null;
+  promoMainBanner: string | null = null;
 
-  clienteAmigoImg          = '/images/promotions/cliente-amigo.jpg';
+  clienteAmigoImg: string | null = null;
   clienteAmigoNote         = '';
   clienteAmigoBlocks: { title: string; text: string }[] = [];
   clienteAmigoDownloadLink = '';
@@ -38,10 +38,10 @@ export class PromotionsComponent implements OnInit {
           description: s['seo_page_promotions_description'] || 'Descubre las mejores promociones y ofertas en departamentos de Paz Inmobiliaria en Lima.',
           keywords:    s['seo_page_promotions_keywords']    || 'promociones departamentos Lima, ofertas inmobiliarias, descuentos Paz Inmobiliaria',
         });
-        if (s['promos_hero_desktop'])          this.heroDesktop             = s['promos_hero_desktop'];
-        if (s['promos_hero_mobile'])           this.heroMobile              = s['promos_hero_mobile'];
-        if (s['promos_main_banner'])           this.promoMainBanner         = s['promos_main_banner'];
-        if (s['promo_cliente_amigo_img'])           this.clienteAmigoImg          = s['promo_cliente_amigo_img'];
+        this.heroDesktop     = s['promos_hero_desktop']    || null;
+        this.heroMobile      = s['promos_hero_mobile']     || null;
+        this.promoMainBanner = s['promos_main_banner']     || null;
+        this.clienteAmigoImg = s['promo_cliente_amigo_img'] || null;
         if (s['promo_cliente_amigo_note'])          this.clienteAmigoNote         = s['promo_cliente_amigo_note'];
         if (s['promo_cliente_amigo_download_link']) this.clienteAmigoDownloadLink = s['promo_cliente_amigo_download_link'];
         if (s['promo_cliente_amigo_blocks']) {

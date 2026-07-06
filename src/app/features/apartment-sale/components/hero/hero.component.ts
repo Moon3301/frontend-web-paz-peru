@@ -4,7 +4,7 @@ import {
   OnInit,
   OnDestroy,
 } from '@angular/core';
-import { HeroConfig, HeroElementStyle, HeroLogoSize } from '../../models/project-config.interface';
+import { HeroConfig, HeroElementStyle, HeroLogoSize, HeroTextPosition } from '../../models/project-config.interface';
 
 @Component({
   selector: 'app-hero',
@@ -43,57 +43,16 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Convierte textPosition del config en un objeto ngStyle COMPLETO para el bloque de texto.
+   * Toda la posición del texto se gestiona ahora mediante CSS custom properties
+   * inyectadas en .hero__logo-wrapper vía getLogoCssVars().
+   * Este método solo define el --hero-text-tf (transform) para el estándar
+   * y devuelve vacío para el resto — evita conflictos inline vs @media.
    *
-   * IMPORTANTE: siempre devuelve los 4 ejes (top, bottom, left, right) + transform
-   * para evitar que los valores por defecto del CSS (.hero__logo-text { bottom: 8% })
-   * interfieran cuando el editor establece un valor en el eje contrario.
-   *
-   * Caso crítico: si se guarda { top: '10%' } sin bottom:auto, el CSS aplica
-   * simultáneamente bottom:8% + top:10% estirando el bloque a casi toda la altura.
+   * @deprecated Mantener la firma para no romper el template binding.
    */
   getTextPositionStyle(): Record<string, string> {
-    // Base — controla ejes de posición como inline style para garantizar
-    // que los valores del editor sobreescriban los defaults del CSS.
-    // IMPORTANTE: NO se incluye 'transform' como inline style para que
-    // las reglas CSS (@media móvil) puedan controlar el transform vía
-    // variables CSS sin ser bloqueadas por especificidad inline.
-    // El transform de escritorio se pasa como custom property --hero-text-tf.
-    const style: Record<string, string> = {
-      bottom:           '8%',
-      top:              'auto',
-      left:             '0',
-      right:            '0',
-      '--hero-text-tf': 'none',
-    };
-
-    const pos = this.config.textPosition;
-    if (!pos) return style;
-
-    // Eje vertical: solo uno puede estar activo
-    if (pos.top !== undefined && pos.top !== 'auto') {
-      style['top']    = pos.top;
-      style['bottom'] = 'auto';
-      // Centrado verdadero: top:50% + translateY(-50%)
-      if (pos.top === '50%') style['--hero-text-tf'] = 'translateY(-50%)';
-    } else if (pos.bottom !== undefined && pos.bottom !== 'auto') {
-      style['bottom'] = pos.bottom;
-      style['top']    = 'auto';
-    }
-
-    // Eje horizontal
-    if (pos.left  !== undefined) style['left']  = pos.left;
-    if (pos.right !== undefined) style['right'] = pos.right;
-
-    // Ajuste fino escritorio (px): se concatena al transform base
-    const ox = this.config.textOffsetX ?? 0;
-    const oy = this.config.textOffsetY ?? 0;
-    if (ox !== 0 || oy !== 0) {
-      const base = style['--hero-text-tf'] !== 'none' ? style['--hero-text-tf'] + ' ' : '';
-      style['--hero-text-tf'] = `${base}translate(${ox}px, ${oy}px)`;
-    }
-
-    return style;
+    // Vacío: toda la lógica se trasladó a getLogoCssVars()
+    return {};
   }
 
   /** Color de texto efectivo (textColor del config o blanco por defecto). */
@@ -122,41 +81,65 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Convierte logoSize del config en CSS custom properties para controlar el tamaño
-   * del logo por breakpoint. Se aplica vía [ngStyle] al .hero__logo-wrapper.
-   * Las propiedades solo se emiten si están definidas; el resto usa el default del CSS.
-   *
-   * Variables generadas:
-   *   --logo-w, --logo-h          → breakpoint standard (1025–1439 px)
-   *   --logo-w-xl, --logo-h-xl    → breakpoint desktop (≥1440 px)
-   *   --logo-w-tablet, --logo-h-tablet → tablet (768–1024 px)
-   *   --logo-w-mobile, --logo-h-mobile → mobile (≤767 px)
-   *   --logo-w-sm, --logo-h-sm    → mobile pequeño (≤480 px)
+   * Inyecta TODAS las CSS custom properties en .hero__logo-wrapper:
+   *   — Tamaño de logo por breakpoint (--logo-w, --logo-w-xl, --logo-w-xxl, ...)
+   *   — Posición del texto por breakpoint (--hero-text-*, --tab-text-*, --xl-text-*, --xxl-text-*)
+   *   — Relleno horizontal por breakpoint (--text-ph, --tab-text-ph, --xl-text-ph, --xxl-text-ph)
+   *   — Variables legacy de móvil (--mob-text-*)
    */
   getLogoCssVars(): Record<string, string> {
     const v: Record<string, string> = {};
 
-    // ── Tamaño del logo por breakpoint ───────────────────────────────────────
+    // ── 1. Tamaño del logo por breakpoint ────────────────────────────────────
     const s: HeroLogoSize | undefined = this.config.logoSize;
     if (s) {
-      if (s.standard?.width)  v['--logo-w']         = s.standard.width;
-      if (s.standard?.height) v['--logo-h']         = s.standard.height;
-      if (s.desktop?.width)   v['--logo-w-xl']      = s.desktop.width;
-      if (s.desktop?.height)  v['--logo-h-xl']      = s.desktop.height;
-      if (s.tablet?.width)    v['--logo-w-tablet']  = s.tablet.width;
-      if (s.tablet?.height)   v['--logo-h-tablet']  = s.tablet.height;
-      if (s.mobile?.width)    v['--logo-w-mobile']  = s.mobile.width;
-      if (s.mobile?.height)   v['--logo-h-mobile']  = s.mobile.height;
-      if (s.mobileSm?.width)  v['--logo-w-sm']      = s.mobileSm.width;
-      if (s.mobileSm?.height) v['--logo-h-sm']      = s.mobileSm.height;
+      if (s.desktopXxl?.width)  v['--logo-w-xxl']     = s.desktopXxl.width;
+      if (s.desktopXxl?.height) v['--logo-h-xxl']     = s.desktopXxl.height;
+      if (s.desktop?.width)     v['--logo-w-xl']      = s.desktop.width;
+      if (s.desktop?.height)    v['--logo-h-xl']      = s.desktop.height;
+      if (s.standard?.width)    v['--logo-w']         = s.standard.width;
+      if (s.standard?.height)   v['--logo-h']         = s.standard.height;
+      if (s.tablet?.width)      v['--logo-w-tablet']  = s.tablet.width;
+      if (s.tablet?.height)     v['--logo-h-tablet']  = s.tablet.height;
+      if (s.mobile?.width)      v['--logo-w-mobile']  = s.mobile.width;
+      if (s.mobile?.height)     v['--logo-h-mobile']  = s.mobile.height;
+      if (s.mobileSm?.width)    v['--logo-w-sm']      = s.mobileSm.width;
+      if (s.mobileSm?.height)   v['--logo-h-sm']      = s.mobileSm.height;
     }
 
-    // ── Relleno horizontal del texto (escritorio) ────────────────────────────
-    if (this.config.textPaddingH !== undefined) {
-      v['--text-ph'] = this.config.textPaddingH + '%';
+    // ── 2. Posición de texto — ESTÁNDAR (1025–1439 px, base) ─────────────────
+    this.injectTextPosition(v, this.config.textPosition, 'hero',
+      this.config.textOffsetX,  this.config.textOffsetY,
+      this.config.textPaddingH, '--text-ph');
+
+    // ── 3. Posición de texto — TABLET (769–1024 px) ───────────────────────────
+    if (this.config.textPositionTablet) {
+      this.injectTextPosition(v, this.config.textPositionTablet, 'tab',
+        this.config.textOffsetXTablet,  this.config.textOffsetYTablet,
+        this.config.textPaddingHTablet, '--tab-text-ph');
+    } else if (this.config.textPaddingHTablet !== undefined) {
+      v['--tab-text-ph'] = this.config.textPaddingHTablet + '%';
     }
 
-    // ── Posición y relleno del texto en móvil ────────────────────────────────
+    // ── 4. Posición de texto — 1440–1919px ────────────────────────────────────
+    if (this.config.textPositionXl) {
+      this.injectTextPosition(v, this.config.textPositionXl, 'xl',
+        this.config.textOffsetXXl,  this.config.textOffsetYXl,
+        this.config.textPaddingHXl, '--xl-text-ph');
+    } else if (this.config.textPaddingHXl !== undefined) {
+      v['--xl-text-ph'] = this.config.textPaddingHXl + '%';
+    }
+
+    // ── 5. Posición de texto — ≥1920px ────────────────────────────────────────
+    if (this.config.textPositionXxl) {
+      this.injectTextPosition(v, this.config.textPositionXxl, 'xxl',
+        this.config.textOffsetXXxl,  this.config.textOffsetYXxl,
+        this.config.textPaddingHXxl, '--xxl-text-ph');
+    } else if (this.config.textPaddingHXxl !== undefined) {
+      v['--xxl-text-ph'] = this.config.textPaddingHXxl + '%';
+    }
+
+    // ── 6. Posición y relleno del texto en MÓVIL (≤768px) — legacy ───────────
     const mpos = this.config.textPositionMobile;
     if (mpos && Object.keys(mpos).some(k => mpos[k as keyof typeof mpos] && mpos[k as keyof typeof mpos] !== 'auto')) {
       v['--mob-text-pos']      = 'absolute';
@@ -171,20 +154,67 @@ export class HeroComponent implements OnInit, OnDestroy {
     if (this.config.textPaddingHMobile !== undefined) {
       v['--mob-text-ph'] = this.config.textPaddingHMobile + '%';
     }
-
-    // ── Ajuste fino de posición en móvil (píxeles) ───────────────────────────
-    // Se combina con --mob-text-tf que ya puede contener translateY(-50%)
     const mox = this.config.textOffsetXMobile ?? 0;
     const moy = this.config.textOffsetYMobile ?? 0;
     if (mox !== 0 || moy !== 0) {
-      const translatePart = `translate(${mox}px, ${moy}px)`;
-      const existingTf = v['--mob-text-tf'];
-      v['--mob-text-tf'] = existingTf && existingTf !== 'none'
-        ? `${existingTf} ${translatePart}`
-        : translatePart;
+      const tp = `translate(${mox}px, ${moy}px)`;
+      const ex = v['--mob-text-tf'];
+      v['--mob-text-tf'] = ex && ex !== 'none' ? `${ex} ${tp}` : tp;
     }
 
     return v;
+  }
+
+  /**
+   * Helper: inyecta las CSS vars de posición de texto para un prefijo dado.
+   * Prefijos soportados: 'hero' (estándar), 'tab' (tablet), 'xl', 'xxl'.
+   */
+  private injectTextPosition(
+    v: Record<string, string>,
+    pos: HeroTextPosition | undefined,
+    prefix: string,
+    offsetX: number | undefined,
+    offsetY: number | undefined,
+    paddingH: number | undefined,
+    paddingVar: string,
+  ): void {
+    const pfx = prefix === 'hero' ? '--hero-text' : `--${prefix}-text`;
+
+    // Defaults
+    v[`${pfx}-bottom`] = '8%';
+    v[`${pfx}-top`]    = 'auto';
+    v[`${pfx}-left`]   = '0';
+    v[`${pfx}-right`]  = '0';
+    v[prefix === 'hero' ? '--hero-text-tf' : `${pfx}-tf`] = 'none';
+
+    if (pos) {
+      if (pos.top !== undefined && pos.top !== 'auto') {
+        v[`${pfx}-top`]    = pos.top;
+        v[`${pfx}-bottom`] = 'auto';
+        if (pos.top === '50%') {
+          v[prefix === 'hero' ? '--hero-text-tf' : `${pfx}-tf`] = 'translateY(-50%)';
+        }
+      } else if (pos.bottom !== undefined && pos.bottom !== 'auto') {
+        v[`${pfx}-bottom`] = pos.bottom;
+        v[`${pfx}-top`]    = 'auto';
+      }
+      if (pos.left  !== undefined) v[`${pfx}-left`]  = pos.left;
+      if (pos.right !== undefined) v[`${pfx}-right`] = pos.right;
+    }
+
+    // Ajuste fino (píxeles)
+    const ox = offsetX ?? 0;
+    const oy = offsetY ?? 0;
+    if (ox !== 0 || oy !== 0) {
+      const tfKey = prefix === 'hero' ? '--hero-text-tf' : `${pfx}-tf`;
+      const base = v[tfKey] !== 'none' ? v[tfKey] + ' ' : '';
+      v[tfKey] = `${base}translate(${ox}px, ${oy}px)`;
+    }
+
+    // Relleno horizontal
+    if (paddingH !== undefined) {
+      v[paddingVar] = paddingH + '%';
+    }
   }
 
   /**

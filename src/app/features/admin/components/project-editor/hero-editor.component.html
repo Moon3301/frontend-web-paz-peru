@@ -209,8 +209,11 @@
             optionValue="value">
           </p-selectButton>
         </div>
+        <p class="adm-field-hint" style="margin:-8px 0 16px;text-align:center">
+          Cada resolución hereda la posición del breakpoint anterior si no tiene un override propio.
+        </p>
 
-        <!-- ══════════ ESCRITORIO ══════════ -->
+        <!-- ══════════ ESTÁNDAR / ESCRITORIO BASE ══════════ -->
         <ng-container *ngIf="posDevice === 'desktop'">
           <div class="hero-pos-layout">
 
@@ -522,6 +525,286 @@
 
         </ng-container>
 
+        <!-- ══════════ TABLET (769–1024px) ══════════ -->
+        <ng-container *ngIf="posDevice === 'tablet'">
+          <ng-container *ngTemplateOutlet="bpPosBlock; context: { $implicit: 'tablet' }"></ng-container>
+        </ng-container>
+
+        <!-- ══════════ 1440–1919px ══════════ -->
+        <ng-container *ngIf="posDevice === 'xl'">
+          <ng-container *ngTemplateOutlet="bpPosBlock; context: { $implicit: 'xl' }"></ng-container>
+        </ng-container>
+
+        <!-- ══════════ ≥1920px ══════════ -->
+        <ng-container *ngIf="posDevice === 'xxl'">
+          <ng-container *ngTemplateOutlet="bpPosBlock; context: { $implicit: 'xxl' }"></ng-container>
+        </ng-container>
+
+        <!-- ── Template reutilizable para breakpoints tablet/xl/xxl ── -->
+        <ng-template #bpPosBlock let-bp>
+
+          <!-- TABLET -->
+          <ng-container *ngIf="bp === 'tablet'">
+            <div style="margin-bottom:20px;padding:12px 14px;background:#f7f7f7;border-radius:8px;border:1px solid #e8e8e8">
+              <div style="display:flex;align-items:center;gap:12px">
+                <p-toggleSwitch [ngModel]="tabTextEnabled" (ngModelChange)="toggleTabletText($event)"></p-toggleSwitch>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:#333">
+                    {{ tabTextEnabled ? '✅ Override activo para tablet' : 'Sin override — hereda posición estándar' }}
+                  </div>
+                  <div style="font-size:0.76rem;color:#888;margin-top:2px">
+                    Tablet: 769–1024px
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+                <span style="font-size:0.82rem;font-weight:600;color:#444">Relleno lateral del texto</span>
+                <span style="font-size:0.78rem;color:#888">{{ local.textPaddingHTablet }}%</span>
+              </div>
+              <p-slider [(ngModel)]="local.textPaddingHTablet" [min]="0" [max]="45" [step]="1"
+                (ngModelChange)="emit()" styleClass="hero-pos-slider"></p-slider>
+            </div>
+            <div *ngIf="tabTextEnabled">
+              <div class="hero-pos-layout">
+                <div class="hero-pos-controls-col">
+                  <div class="hero-pos-grid">
+                    <ng-container *ngFor="let v of vCells">
+                      <ng-container *ngFor="let h of hCells">
+                        <button class="hero-pos-cell" [class.hero-pos-cell--active]="isActiveTabletCell(v,h)" (click)="selectTabletCell(v,h)"><span class="hero-pos-dot"></span></button>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <div class="hero-pos-controls">
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Vertical</label>
+                      <p-selectButton [options]="vOptions" [(ngModel)]="posTabV" (ngModelChange)="applyTabletPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Horizontal</label>
+                      <p-selectButton [options]="hOptions" [(ngModel)]="posTabH" (ngModelChange)="applyTabletPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row" *ngIf="posTabV !== 'center'">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Distancia</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="posTabOffset" [min]="0" [max]="50" [step]="1" (ngModelChange)="applyTabletPosition()" styleClass="hero-pos-slider"></p-slider>
+                        <span class="hero-pos-offset-val">{{ posTabOffset }}%</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-fine-title">
+                      <span>🎯 Ajuste fino</span>
+                      <button class="adm-btn adm-btn--ghost adm-btn--xs" (click)="resetTabletOffset()" *ngIf="textOffsetXTablet !== 0 || textOffsetYTablet !== 0">↩ Resetear</button>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">← → Horizontal</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetXTablet" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyTabletOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetXTablet" (ngModelChange)="applyTabletOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">↑ ↓ Vertical</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetYTablet" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyTabletOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetYTablet" (ngModelChange)="applyTabletOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-pos-preview-col">
+                  <p class="hero-pos-preview__label">Vista previa tablet</p>
+                  <div class="hero-pos-preview__frame">
+                    <img *ngIf="previewLogoSrc" [src]="previewLogoSrc" class="hero-pos-preview__img" alt="preview">
+                    <div *ngIf="!previewLogoSrc" class="hero-pos-preview__no-img">Sin logo</div>
+                    <div class="hero-pos-preview__text" *ngIf="hasPreviewText">
+                      <span *ngIf="local.badge" class="hero-pos-preview__line">{{ local.badge }}</span>
+                      <span *ngIf="local.description" class="hero-pos-preview__line">{{ local.description }}</span>
+                      <span *ngIf="local.priceFrom" class="hero-pos-preview__line hero-pos-preview__line--price">{{ local.priceFrom }}</span>
+                    </div>
+                    <div class="hero-pos-preview__badge">{{ positionTabletLabel }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- 1440–1919px -->
+          <ng-container *ngIf="bp === 'xl'">
+            <div style="margin-bottom:20px;padding:12px 14px;background:#f7f7f7;border-radius:8px;border:1px solid #e8e8e8">
+              <div style="display:flex;align-items:center;gap:12px">
+                <p-toggleSwitch [ngModel]="xlTextEnabled" (ngModelChange)="toggleXlText($event)"></p-toggleSwitch>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:#333">
+                    {{ xlTextEnabled ? '✅ Override activo para 1440px' : 'Sin override — hereda posición estándar' }}
+                  </div>
+                  <div style="font-size:0.76rem;color:#888;margin-top:2px">Aplica a resoluciones 1440–1919px</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+                <span style="font-size:0.82rem;font-weight:600;color:#444">Relleno lateral del texto</span>
+                <span style="font-size:0.78rem;color:#888">{{ local.textPaddingHXl }}%</span>
+              </div>
+              <p-slider [(ngModel)]="local.textPaddingHXl" [min]="0" [max]="45" [step]="1"
+                (ngModelChange)="emit()" styleClass="hero-pos-slider"></p-slider>
+            </div>
+            <div *ngIf="xlTextEnabled">
+              <div class="hero-pos-layout">
+                <div class="hero-pos-controls-col">
+                  <div class="hero-pos-grid">
+                    <ng-container *ngFor="let v of vCells">
+                      <ng-container *ngFor="let h of hCells">
+                        <button class="hero-pos-cell" [class.hero-pos-cell--active]="isActiveXlCell(v,h)" (click)="selectXlCell(v,h)"><span class="hero-pos-dot"></span></button>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <div class="hero-pos-controls">
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Vertical</label>
+                      <p-selectButton [options]="vOptions" [(ngModel)]="posXlV" (ngModelChange)="applyXlPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Horizontal</label>
+                      <p-selectButton [options]="hOptions" [(ngModel)]="posXlH" (ngModelChange)="applyXlPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row" *ngIf="posXlV !== 'center'">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Distancia</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="posXlOffset" [min]="0" [max]="50" [step]="1" (ngModelChange)="applyXlPosition()" styleClass="hero-pos-slider"></p-slider>
+                        <span class="hero-pos-offset-val">{{ posXlOffset }}%</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-fine-title">
+                      <span>🎯 Ajuste fino</span>
+                      <button class="adm-btn adm-btn--ghost adm-btn--xs" (click)="resetXlOffset()" *ngIf="textOffsetXXl !== 0 || textOffsetYXl !== 0">↩ Resetear</button>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">← → Horizontal</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetXXl" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyXlOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetXXl" (ngModelChange)="applyXlOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">↑ ↓ Vertical</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetYXl" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyXlOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetYXl" (ngModelChange)="applyXlOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-pos-preview-col">
+                  <p class="hero-pos-preview__label">Vista previa 1440px</p>
+                  <div class="hero-pos-preview__frame">
+                    <img *ngIf="previewLogoSrc" [src]="previewLogoSrc" class="hero-pos-preview__img" alt="preview">
+                    <div *ngIf="!previewLogoSrc" class="hero-pos-preview__no-img">Sin logo</div>
+                    <div class="hero-pos-preview__text" *ngIf="hasPreviewText">
+                      <span *ngIf="local.badge" class="hero-pos-preview__line">{{ local.badge }}</span>
+                      <span *ngIf="local.description" class="hero-pos-preview__line">{{ local.description }}</span>
+                      <span *ngIf="local.priceFrom" class="hero-pos-preview__line hero-pos-preview__line--price">{{ local.priceFrom }}</span>
+                    </div>
+                    <div class="hero-pos-preview__badge">{{ positionXlLabel }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+          <!-- ≥1920px -->
+          <ng-container *ngIf="bp === 'xxl'">
+            <div style="margin-bottom:20px;padding:12px 14px;background:#f7f7f7;border-radius:8px;border:1px solid #e8e8e8">
+              <div style="display:flex;align-items:center;gap:12px">
+                <p-toggleSwitch [ngModel]="xxlTextEnabled" (ngModelChange)="toggleXxlText($event)"></p-toggleSwitch>
+                <div>
+                  <div style="font-size:0.85rem;font-weight:600;color:#333">
+                    {{ xxlTextEnabled ? '✅ Override activo para 1920px' : 'Sin override — hereda posición de 1440px o estándar' }}
+                  </div>
+                  <div style="font-size:0.76rem;color:#888;margin-top:2px">Aplica a resoluciones ≥1920px</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-bottom:16px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+                <span style="font-size:0.82rem;font-weight:600;color:#444">Relleno lateral del texto</span>
+                <span style="font-size:0.78rem;color:#888">{{ local.textPaddingHXxl }}%</span>
+              </div>
+              <p-slider [(ngModel)]="local.textPaddingHXxl" [min]="0" [max]="45" [step]="1"
+                (ngModelChange)="emit()" styleClass="hero-pos-slider"></p-slider>
+            </div>
+            <div *ngIf="xxlTextEnabled">
+              <div class="hero-pos-layout">
+                <div class="hero-pos-controls-col">
+                  <div class="hero-pos-grid">
+                    <ng-container *ngFor="let v of vCells">
+                      <ng-container *ngFor="let h of hCells">
+                        <button class="hero-pos-cell" [class.hero-pos-cell--active]="isActiveXxlCell(v,h)" (click)="selectXxlCell(v,h)"><span class="hero-pos-dot"></span></button>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                  <div class="hero-pos-controls">
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Vertical</label>
+                      <p-selectButton [options]="vOptions" [(ngModel)]="posXxlV" (ngModelChange)="applyXxlPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Horizontal</label>
+                      <p-selectButton [options]="hOptions" [(ngModel)]="posXxlH" (ngModelChange)="applyXxlPosition()" optionLabel="label" optionValue="value"></p-selectButton>
+                    </div>
+                    <div class="hero-pos-ctrl-row" *ngIf="posXxlV !== 'center'">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">Distancia</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="posXxlOffset" [min]="0" [max]="50" [step]="1" (ngModelChange)="applyXxlPosition()" styleClass="hero-pos-slider"></p-slider>
+                        <span class="hero-pos-offset-val">{{ posXxlOffset }}%</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-fine-title">
+                      <span>🎯 Ajuste fino</span>
+                      <button class="adm-btn adm-btn--ghost adm-btn--xs" (click)="resetXxlOffset()" *ngIf="textOffsetXXxl !== 0 || textOffsetYXxl !== 0">↩ Resetear</button>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">← → Horizontal</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetXXxl" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyXxlOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetXXxl" (ngModelChange)="applyXxlOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                    <div class="hero-pos-ctrl-row">
+                      <label class="adm-label" style="width:100px;flex-shrink:0">↑ ↓ Vertical</label>
+                      <div class="hero-pos-slider-wrap">
+                        <p-slider [(ngModel)]="textOffsetYXxl" [min]="-150" [max]="150" [step]="1" (ngModelChange)="applyXxlOffset()" styleClass="hero-pos-slider"></p-slider>
+                        <input class="adm-input hero-pos-px-input" type="number" [(ngModel)]="textOffsetYXxl" (ngModelChange)="applyXxlOffset()" min="-150" max="150">
+                        <span class="hero-pos-offset-val">px</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-pos-preview-col">
+                  <p class="hero-pos-preview__label">Vista previa 1920px</p>
+                  <div class="hero-pos-preview__frame">
+                    <img *ngIf="previewLogoSrc" [src]="previewLogoSrc" class="hero-pos-preview__img" alt="preview">
+                    <div *ngIf="!previewLogoSrc" class="hero-pos-preview__no-img">Sin logo</div>
+                    <div class="hero-pos-preview__text" *ngIf="hasPreviewText">
+                      <span *ngIf="local.badge" class="hero-pos-preview__line">{{ local.badge }}</span>
+                      <span *ngIf="local.description" class="hero-pos-preview__line">{{ local.description }}</span>
+                      <span *ngIf="local.priceFrom" class="hero-pos-preview__line hero-pos-preview__line--price">{{ local.priceFrom }}</span>
+                    </div>
+                    <div class="hero-pos-preview__badge">{{ positionXxlLabel }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+
+        </ng-template>
+
       </p-accordion-content>
     </p-accordion-panel>
 
@@ -539,39 +822,97 @@
       </p-accordion-header>
       <p-accordion-content>
         <p class="adm-field-hint" style="margin-bottom:12px">
-          Valores de ejemplo: <code>min(50vw, 580px)</code>, <code>420px</code>, <code>60vw</code>.
-          Dejar vacío usa el tamaño automático del sitio.
+          Valores CSS: <code>min(50vw, 580px)</code>, <code>420px</code>, <code>60vw</code>.
+          Dejar vacío hereda el valor del breakpoint anterior o el default del CSS.
         </p>
+
+        <!-- ≥1920px -->
+        <div class="hero-font-group-label">🖥 Pantalla muy grande — ≥1920px</div>
         <div class="adm-form-grid">
           <div class="adm-field">
-            <label class="adm-label">Escritorio — ancho</label>
+            <label class="adm-label">Ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.desktopXxl.width" (ngModelChange)="emit()"
+                   placeholder="min(44vw, 860px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.desktopXxl.height" (ngModelChange)="emit()"
+                   placeholder="min(50vh, 640px)">
+          </div>
+        </div>
+
+        <!-- 1440–1919px -->
+        <div class="hero-font-group-label" style="margin-top:14px">🖥 Escritorio grande — 1440–1919px</div>
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label class="adm-label">Ancho</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.desktop.width" (ngModelChange)="emit()"
                    placeholder="min(46vw, 720px)">
           </div>
           <div class="adm-field">
-            <label class="adm-label">Escritorio — alto</label>
+            <label class="adm-label">Alto</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.desktop.height" (ngModelChange)="emit()"
                    placeholder="min(48vh, 560px)">
           </div>
+        </div>
+
+        <!-- 1025–1439px (base) -->
+        <div class="hero-font-group-label" style="margin-top:14px">🖥 Estándar — 1025–1439px <span style="font-weight:400;color:#999">(base)</span></div>
+        <div class="adm-form-grid">
           <div class="adm-field">
-            <label class="adm-label">Tablet — ancho</label>
+            <label class="adm-label">Ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.standard.width" (ngModelChange)="emit()"
+                   placeholder="min(50vw, 580px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.standard.height" (ngModelChange)="emit()"
+                   placeholder="min(45vh, 460px)">
+          </div>
+        </div>
+
+        <!-- Tablet -->
+        <div class="hero-font-group-label" style="margin-top:14px">Tablet — 769–1024px</div>
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label class="adm-label">Ancho</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.tablet.width" (ngModelChange)="emit()"
                    placeholder="min(54vw, 460px)">
           </div>
           <div class="adm-field">
-            <label class="adm-label">Tablet — alto</label>
+            <label class="adm-label">Alto</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.tablet.height" (ngModelChange)="emit()"
                    placeholder="min(40vh, 360px)">
           </div>
+        </div>
+
+        <!-- Móvil -->
+        <div class="hero-font-group-label" style="margin-top:14px">📱 Móvil — ≤768px</div>
+        <div class="adm-form-grid">
           <div class="adm-field">
-            <label class="adm-label">Móvil — ancho</label>
+            <label class="adm-label">Ancho</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.mobile.width" (ngModelChange)="emit()"
                    placeholder="min(76vw, 290px)">
           </div>
           <div class="adm-field">
-            <label class="adm-label">Móvil — alto</label>
+            <label class="adm-label">Alto</label>
             <input class="adm-input" [(ngModel)]="local.logoSize.mobile.height" (ngModelChange)="emit()"
                    placeholder="min(30vh, 200px)">
+          </div>
+        </div>
+
+        <!-- Móvil pequeño -->
+        <div class="hero-font-group-label" style="margin-top:14px">📱 Móvil pequeño — ≤480px</div>
+        <div class="adm-form-grid">
+          <div class="adm-field">
+            <label class="adm-label">Ancho</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.mobileSm.width" (ngModelChange)="emit()"
+                   placeholder="min(80vw, 260px)">
+          </div>
+          <div class="adm-field">
+            <label class="adm-label">Alto</label>
+            <input class="adm-input" [(ngModel)]="local.logoSize.mobileSm.height" (ngModelChange)="emit()"
+                   placeholder="min(28vh, 185px)">
           </div>
         </div>
       </p-accordion-content>
